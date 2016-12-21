@@ -7,7 +7,7 @@
     <ProjectGuid>{BC2ECA0D-7FDB-4C96-88B8-5E7F88594839}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>Redhotminute.Mvx.Plugin.Style</RootNamespace>
-    <AssemblyName>Redhotminute.Plugin.Style</AssemblyName>
+    <AssemblyName>Redhotminute.Mvx.Plugin.Style</AssemblyName>
     <TargetFrameworkProfile>Profile78</TargetFrameworkProfile>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
