@@ -33,16 +33,16 @@
     <files>     
 
         <!-- pcl -->
-        <file src="bin/Release/pcl/Redhotminute.Mvx.Plugin.Style.*" target="lib/portable-net45+win+wp80" />
+        <file src="bin/Release/Redhotminute.Mvx.Plugin.Style.dll" target="lib/portable-net45+win+wp80" />
 
         <!-- droid -->
-        <file src="bin/Release/pcl/Redhotminute.Mvx.Plugin.Style.*" target="lib/MonoAndroid" />
-        <file src="bin/Release/Redhotminute.Mvx.Plugin.Style.Droid.*" target="lib/MonoAndroid" />
+        <file src="bin/Release/Redhotminute.Mvx.Plugin.Style.dll" target="lib/MonoAndroid" />
+        <file src="bin/Release/Redhotminute.Mvx.Plugin.Style.Droid.dll" target="lib/MonoAndroid" />
         <file src="Bootstrap/BootstrapDroid/RHMStylePluginBootstrap.cs.pp" target="content/MonoAndroid/Bootstrap/RHMStylePluginBootstrap.cs.pp" />
 
         <!-- ios -->
-        <file src="bin/Release/pcl/Redhotminute.Mvx.Plugin.Style.*" target="lib/Xamarin.iOS10" />
-        <file src="bin/Release/Redhotminute.Mvx.Plugin.Style.Touch.*" target="lib/Xamarin.iOS10" />
+        <file src="bin/Release/pcl/Redhotminute.Mvx.Plugin.Style.dll" target="lib/Xamarin.iOS10" />
+        <file src="bin/Release/Redhotminute.Mvx.Plugin.Style.Touch.dll" target="lib/Xamarin.iOS10" />
         <file src="Bootstrap/BootstrapIOS/RHMStylePluginBootstrap.cs.pp" target="content/Xamarin.iOS10/Bootstrap/RHMStylePluginBootstrap.cs.pp" />
 
     </files>
