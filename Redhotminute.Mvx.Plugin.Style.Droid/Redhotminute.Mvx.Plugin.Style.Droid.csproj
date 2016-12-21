@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{794731BB-9BF8-4DC9-BC23-DAAE7F776291}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Redhotminute.Mvx.Plugin.Style.Droid</RootNamespace>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <AndroidResgenClass>Resource</AndroidResgenClass>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
+    <AssemblyName>Redhotminute.Mvx.Plugin.Style.Droid</AssemblyName>
+    <TargetFrameworkVersion>v7.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidLinkMode>None</AndroidLinkMode>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Mono.Android" />
+    <Reference Include="MvvmCross.Platform">
+      <HintPath>..\packages\MvvmCross.Platform.4.3.0\lib\MonoAndroid\MvvmCross.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Platform.Droid">
+      <HintPath>..\packages\MvvmCross.Platform.4.3.0\lib\MonoAndroid\MvvmCross.Platform.Droid.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Core">
+      <HintPath>..\packages\MvvmCross.Core.4.3.0\lib\MonoAndroid\MvvmCross.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Droid">
+      <HintPath>..\packages\MvvmCross.Core.4.3.0\lib\MonoAndroid\MvvmCross.Droid.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Droid.Shared">
+      <HintPath>..\packages\MvvmCross.Core.4.3.0\lib\MonoAndroid\MvvmCross.Droid.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Binding">
+      <HintPath>..\packages\MvvmCross.Binding.4.3.0\lib\MonoAndroid\MvvmCross.Binding.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Binding.Droid">
+      <HintPath>..\packages\MvvmCross.Binding.4.3.0\lib\MonoAndroid\MvvmCross.Binding.Droid.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Localization">
+      <HintPath>..\packages\MvvmCross.Binding.4.3.0\lib\MonoAndroid\MvvmCross.Localization.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Android.Export" />
+    <Reference Include="MvvmCross.Plugins.Color">
+      <HintPath>..\packages\MvvmCross.Plugin.Color.4.3.0\lib\MonoAndroid\MvvmCross.Plugins.Color.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.Color.Droid">
+      <HintPath>..\packages\MvvmCross.Plugin.Color.4.3.0\lib\MonoAndroid\MvvmCross.Plugins.Color.Droid.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Plugin\AssetPlugin.cs" />
+    <Compile Include="Plugin\Plugin.cs" />
+    <Compile Include="Plugin\PluginLoader.cs" />
+    <Compile Include="Bindings\TextViewFontTargetBinding.cs" />
+    <Compile Include="Bootstrap\ColorPluginBootstrap.cs" />
+    <Compile Include="Plugin\BindingSetup\MvxAndroidStyleBindingBuilder.cs" />
+    <Compile Include="Plugin\BindingSetup\MvxAndroidStyleViewBinderFactory.cs" />
+    <Compile Include="Plugin\BindingSetup\MvxAndroidStyleViewBinder.cs" />
+    <Compile Include="Plugin\BindingSetup\MvxAndroidStyleBindingResource.cs" />
+    <Compile Include="Resources\Resource.designer.cs" />
+    <Compile Include="Bindings\ButtonFontTargetBinding.cs" />
+    <Compile Include="Helpers\FontAlignmentHelper.cs" />
+    <Compile Include="Converters\AttributedTextConverter.cs" />
+    <Compile Include="Helpers\CustomTypefaceSpan.cs" />
+    <Compile Include="Bindings\TextViewAttributedTargetBinding.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Plugin\" />
+    <Folder Include="Bindings\" />
+    <Folder Include="Plugin\BindingSetup\" />
+    <Folder Include="Resources\values\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Converters\" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\MvxExtendedBindingAttributes.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Redhotminute.Mvx.Plugin.Style\Redhotminute.Mvx.Plugin.Style.csproj">
+      <Project>{BC2ECA0D-7FDB-4C96-88B8-5E7F88594839}</Project>
+      <Name>Redhotminute.Mvx.Plugin.Style</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+</Project>

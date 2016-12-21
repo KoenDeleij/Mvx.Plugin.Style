@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{D802EB5C-F1CA-40E8-B59B-1995CA3BE304}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Redhotminute.Mvx.Plugin.Style.Touch</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>Redhotminute.Mvx.Plugin.Style.Touch</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType></DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+    <Reference Include="MvvmCross.Platform">
+      <HintPath>..\packages\MvvmCross.Platform.4.3.0\lib\Xamarin.iOS10\MvvmCross.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Platform.iOS">
+      <HintPath>..\packages\MvvmCross.Platform.4.3.0\lib\Xamarin.iOS10\MvvmCross.Platform.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Core">
+      <HintPath>..\packages\MvvmCross.Core.4.3.0\lib\Xamarin.iOS10\MvvmCross.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.iOS">
+      <HintPath>..\packages\MvvmCross.Core.4.3.0\lib\Xamarin.iOS10\MvvmCross.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Binding">
+      <HintPath>..\packages\MvvmCross.Binding.4.3.0\lib\Xamarin.iOS10\MvvmCross.Binding.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Binding.iOS">
+      <HintPath>..\packages\MvvmCross.Binding.4.3.0\lib\Xamarin.iOS10\MvvmCross.Binding.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Localization">
+      <HintPath>..\packages\MvvmCross.Binding.4.3.0\lib\Xamarin.iOS10\MvvmCross.Localization.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.Color">
+      <HintPath>..\packages\MvvmCross.Plugin.Color.4.3.0\lib\Xamarin.iOS10\MvvmCross.Plugins.Color.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.Color.iOS">
+      <HintPath>..\packages\MvvmCross.Plugin.Color.4.3.0\lib\Xamarin.iOS10\MvvmCross.Plugins.Color.iOS.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="Bindings\" />
+    <Folder Include="Plugin\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Converters\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Bindings\UILabelFontTargetBinding.cs" />
+    <Compile Include="Plugin\AssetPlugin.cs" />
+    <Compile Include="Plugin\Plugin.cs" />
+    <Compile Include="Plugin\PluginLoader.cs" />
+    <Compile Include="Bootstrap\ColorPluginBootstrap.cs" />
+    <Compile Include="Bindings\UIButtonFontTargetBinding.cs" />
+    <Compile Include="Bindings\BaseStyleBinding.cs" />
+    <Compile Include="Helpers\FontAlignmentHelper.cs" />
+    <Compile Include="Converters\FontLangValueConverter.cs" />
+    <Compile Include="Bindings\MvxBindingContextOwnerExtensions.Font.cs" />
+    <Compile Include="Bindings\UILabelAttributedFontTargetBinding.cs" />
+    <Compile Include="Converters\FontTextValueConverter.cs" />
+    <Compile Include="Bindings\UITextFieldFontTargetBinding.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Redhotminute.Mvx.Plugin.Style\Redhotminute.Mvx.Plugin.Style.csproj">
+      <Project>{BC2ECA0D-7FDB-4C96-88B8-5E7F88594839}</Project>
+      <Name>Redhotminute.Mvx.Plugin.Style</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

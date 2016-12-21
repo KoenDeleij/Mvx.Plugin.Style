@@ -1,0 +1,83 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Redhotminute.Mvx.Plugin.Style.Touch", "Redhotminute.Mvx.Plugin.Style.Touch\Redhotminute.Mvx.Plugin.Style.Touch.csproj", "{D802EB5C-F1CA-40E8-B59B-1995CA3BE304}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Redhotminute.Mvx.Plugin.Style.Droid", "Redhotminute.Mvx.Plugin.Style.Droid\Redhotminute.Mvx.Plugin.Style.Droid.csproj", "{794731BB-9BF8-4DC9-BC23-DAAE7F776291}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Redhotminute.Mvx.Plugin.Style", "Redhotminute.Mvx.Plugin.Style\Redhotminute.Mvx.Plugin.Style.csproj", "{BC2ECA0D-7FDB-4C96-88B8-5E7F88594839}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|iPhone = Debug|iPhone
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		HockeyApp|Any CPU = HockeyApp|Any CPU
+		HockeyApp|iPhone = HockeyApp|iPhone
+		HockeyApp|iPhoneSimulator = HockeyApp|iPhoneSimulator
+		Release|Any CPU = Release|Any CPU
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D802EB5C-F1CA-40E8-B59B-1995CA3BE304}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D802EB5C-F1CA-40E8-B59B-1995CA3BE304}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D802EB5C-F1CA-40E8-B59B-1995CA3BE304}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{D802EB5C-F1CA-40E8-B59B-1995CA3BE304}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{D802EB5C-F1CA-40E8-B59B-1995CA3BE304}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{D802EB5C-F1CA-40E8-B59B-1995CA3BE304}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{D802EB5C-F1CA-40E8-B59B-1995CA3BE304}.HockeyApp|Any CPU.ActiveCfg = Debug|Any CPU
+		{D802EB5C-F1CA-40E8-B59B-1995CA3BE304}.HockeyApp|Any CPU.Build.0 = Debug|Any CPU
+		{D802EB5C-F1CA-40E8-B59B-1995CA3BE304}.HockeyApp|iPhone.ActiveCfg = Debug|Any CPU
+		{D802EB5C-F1CA-40E8-B59B-1995CA3BE304}.HockeyApp|iPhone.Build.0 = Debug|Any CPU
+		{D802EB5C-F1CA-40E8-B59B-1995CA3BE304}.HockeyApp|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{D802EB5C-F1CA-40E8-B59B-1995CA3BE304}.HockeyApp|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{D802EB5C-F1CA-40E8-B59B-1995CA3BE304}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D802EB5C-F1CA-40E8-B59B-1995CA3BE304}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D802EB5C-F1CA-40E8-B59B-1995CA3BE304}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{D802EB5C-F1CA-40E8-B59B-1995CA3BE304}.Release|iPhone.Build.0 = Release|Any CPU
+		{D802EB5C-F1CA-40E8-B59B-1995CA3BE304}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{D802EB5C-F1CA-40E8-B59B-1995CA3BE304}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{794731BB-9BF8-4DC9-BC23-DAAE7F776291}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{794731BB-9BF8-4DC9-BC23-DAAE7F776291}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{794731BB-9BF8-4DC9-BC23-DAAE7F776291}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{794731BB-9BF8-4DC9-BC23-DAAE7F776291}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{794731BB-9BF8-4DC9-BC23-DAAE7F776291}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{794731BB-9BF8-4DC9-BC23-DAAE7F776291}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{794731BB-9BF8-4DC9-BC23-DAAE7F776291}.HockeyApp|Any CPU.ActiveCfg = Debug|Any CPU
+		{794731BB-9BF8-4DC9-BC23-DAAE7F776291}.HockeyApp|Any CPU.Build.0 = Debug|Any CPU
+		{794731BB-9BF8-4DC9-BC23-DAAE7F776291}.HockeyApp|iPhone.ActiveCfg = Debug|Any CPU
+		{794731BB-9BF8-4DC9-BC23-DAAE7F776291}.HockeyApp|iPhone.Build.0 = Debug|Any CPU
+		{794731BB-9BF8-4DC9-BC23-DAAE7F776291}.HockeyApp|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{794731BB-9BF8-4DC9-BC23-DAAE7F776291}.HockeyApp|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{794731BB-9BF8-4DC9-BC23-DAAE7F776291}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{794731BB-9BF8-4DC9-BC23-DAAE7F776291}.Release|Any CPU.Build.0 = Release|Any CPU
+		{794731BB-9BF8-4DC9-BC23-DAAE7F776291}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{794731BB-9BF8-4DC9-BC23-DAAE7F776291}.Release|iPhone.Build.0 = Release|Any CPU
+		{794731BB-9BF8-4DC9-BC23-DAAE7F776291}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{794731BB-9BF8-4DC9-BC23-DAAE7F776291}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{BC2ECA0D-7FDB-4C96-88B8-5E7F88594839}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC2ECA0D-7FDB-4C96-88B8-5E7F88594839}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC2ECA0D-7FDB-4C96-88B8-5E7F88594839}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{BC2ECA0D-7FDB-4C96-88B8-5E7F88594839}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{BC2ECA0D-7FDB-4C96-88B8-5E7F88594839}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{BC2ECA0D-7FDB-4C96-88B8-5E7F88594839}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{BC2ECA0D-7FDB-4C96-88B8-5E7F88594839}.HockeyApp|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC2ECA0D-7FDB-4C96-88B8-5E7F88594839}.HockeyApp|Any CPU.Build.0 = Debug|Any CPU
+		{BC2ECA0D-7FDB-4C96-88B8-5E7F88594839}.HockeyApp|iPhone.ActiveCfg = Debug|Any CPU
+		{BC2ECA0D-7FDB-4C96-88B8-5E7F88594839}.HockeyApp|iPhone.Build.0 = Debug|Any CPU
+		{BC2ECA0D-7FDB-4C96-88B8-5E7F88594839}.HockeyApp|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{BC2ECA0D-7FDB-4C96-88B8-5E7F88594839}.HockeyApp|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{BC2ECA0D-7FDB-4C96-88B8-5E7F88594839}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC2ECA0D-7FDB-4C96-88B8-5E7F88594839}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC2ECA0D-7FDB-4C96-88B8-5E7F88594839}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{BC2ECA0D-7FDB-4C96-88B8-5E7F88594839}.Release|iPhone.Build.0 = Release|Any CPU
+		{BC2ECA0D-7FDB-4C96-88B8-5E7F88594839}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{BC2ECA0D-7FDB-4C96-88B8-5E7F88594839}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
