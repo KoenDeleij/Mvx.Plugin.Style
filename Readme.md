@@ -39,6 +39,10 @@ To add assets you can resolve the asset plugin :
 		//add your fonts here. of course wouldn't actually add them here, but after the plugins are loaded you could.
 	}
 
+To be able to bind directly in your views, you'll have to add the AssetProvider to your viewmodel :
+
+	[MvxInject]
+	public IAssetPlugin AssetProvider { get; set; }
 
 # Colors
 
@@ -48,10 +52,6 @@ To add assets you can resolve the asset plugin :
 	var plugin = Mvx.Resolve<IAssetPlugin>();
 	plugin.AddColor(new MvxColor(0, 139, 178), "BlueDark")
 
-To be able to bind directly in your views, you'll have to add the AssetProvider to your viewmodel :
-
-	[MvxInject]
-	public IAssetPlugin AssetProvider { get; set; }
 
 ## iOS
 
@@ -103,6 +103,8 @@ To be able to access your custom fonts, add the font files to Resources/Fonts.
 You'll also have to add an entry to your Info.plist.
 Add an Array call 'UIAppFonts'.
 For each font, add 1 string entry to the array with the path to your font (in this case it will be "Fonts/Awesome-font.otf"
+
+For all fonts you'll have to fill the FontPlatformName property. iOS doesn't refer to fonts with the actual file name but by a tag. You can find it's name in the FontBook under PostScript Name.
 
 ### UIViewController
 
