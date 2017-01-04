@@ -10,7 +10,7 @@
         <description>Mvvmcross plugin to easily cross style fonts and colors</description>
         <tags>mvvm mvvmcross xamarin monodroid monotouch style fonts</tags>
         <dependencies>
-            <group targetFramework="portable-net45+win+wp80">
+            <group targetFramework="portable-net45+win+wp80+MonoAndroid+Xamarin.iOS10">
                 <dependency id="MvvmCross.Platform" version="4.3.0" />
                 <dependency id="MvvmCross.Core" version="4.3.0" />
                 <dependency id="MvvmCross.Binding" version="4.3.0" />
