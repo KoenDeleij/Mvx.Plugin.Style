@@ -30,12 +30,13 @@ Same as with iOS. You can optionally also add a different lineheight. In some ca
 	}
 	
 ## Cross
-To add assets you could setup assets at loading the plugins
+To add assets you can resolve the asset plugin :
 
 	public override void LoadPlugins(MvvmCross.Platform.Plugins.IMvxPluginManager pluginManager)
 	{
 		base.LoadPlugins(pluginManager);
-		Assets.ConfigureAssets();
+		var plugin = Mvx.Resolve<IAssetPlugin>();
+		//add your fonts here. of course wouldn't actually add them here, but after the plugins are loaded you could.
 	}
 
 
