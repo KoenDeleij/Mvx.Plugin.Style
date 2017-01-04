@@ -33,7 +33,7 @@
     <files>     
 
         <!-- pcl -->
-        <file src="bin/Release/Redhotminute.Mvx.Plugin.Style.dll" target="lib/portable-net45+win+wp80" />
+        <file src="bin/Release/Redhotminute.Mvx.Plugin.Style.dll" target="lib/portable-net45+win+wp80+MonoAndroid+Xamarin.iOS10" />
 
         <!-- droid -->
         <file src="bin/Release/Redhotminute.Mvx.Plugin.Style.dll" target="lib/MonoAndroid" />
