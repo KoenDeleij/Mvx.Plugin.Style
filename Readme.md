@@ -9,7 +9,7 @@
 Override the plugin configuration in your setup to set a fontsize factor. You could, depending on the device, change the overall size factor. 
 
 	protected override IMvxPluginConfiguration 
-		if (plugin == typeof(Redhotminute.Plugin.GoogleTagManager.iOS.Plugin)) {
+		if (plugin == typeof(Redhotminute.Mvx.Plugin.GoogleTagManager.iOS.Plugin)) {
 			return new RedhotminuteStyleConfiguration() {
 				FontSizeFactor = sizeFactor
 			};
@@ -21,13 +21,21 @@ Override the plugin configuration in your setup to set a fontsize factor. You co
 Same as with iOS. You can optionally also add a different lineheight. In some cases older Android devices really lack space. This will help.
 
 	protected override IMvxPluginConfiguration 
-		if (plugin == typeof(Redhotminute.Plugin.Style.Droid.Plugin)) {
+		if (plugin == typeof(Redhotminute.Mvx.Plugin.Style.Droid.Plugin)) {
 			return new RedhotminuteStyleConfiguration() {
 				FontSizeFactor = fontSizeFactor,
 				LineHeightFactor = lineHeightFactor
 			};
 		}
 	}
+	
+If you want to use the MvxFont binding in layout files, you'll need to add these lines of code in the setup :
+
+	protected override MvvmCross.Binding.Droid.MvxAndroidBindingBuilder CreateBindingBuilder() 	{
+		var bindingBuilder = new MvxAndroidStyleBindingBuilder();
+		return bindingBuilder;
+	}
+
 	
 ## Cross
 To add assets you can resolve the asset plugin :
