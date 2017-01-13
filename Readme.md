@@ -1,4 +1,4 @@
-# Redhotminute MvvmCross style Plugin
+# Redhotminute MvvmCross Style Plugin
 
 
 
@@ -9,7 +9,7 @@
 Override the plugin configuration in your setup to set a fontsize factor. You could, depending on the device, change the overall size factor. 
 
 	protected override IMvxPluginConfiguration 
-		if (plugin == typeof(Redhotminute.Mvx.Plugin.GoogleTagManager.iOS.Plugin)) {
+		if (plugin == typeof(Redhotminute.Mvx.Plugin.Style.Touch.Plugin)) {
 			return new RedhotminuteStyleConfiguration() {
 				FontSizeFactor = sizeFactor
 			};
