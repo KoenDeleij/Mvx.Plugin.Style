@@ -59,12 +59,23 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid {
 
 	public class AttributedBoldValueConverter : AttributedTextConverter {
 		private IBaseFont _boldFont;
+		private Font _extendedFont;
+
 		IAssetPlugin _assetPlugin;
 		Context _context;
 
 		public override void SetAttributed(SpannableString converted, int startIndex, int endIndex) {
-			converted.SetSpan(new ForegroundColorSpan(_boldFont.Color.ToAndroidColor()), startIndex, endIndex, SpanTypes.ExclusiveInclusive);
-			converted.SetSpan(new CustomTypefaceSpan("sans-serif",DroidAssetPlugin.GetCachedFont(_boldFont,_context)), startIndex, endIndex, SpanTypes.ExclusiveInclusive);
+			if (_boldFont != null) {
+				//set the text color
+				converted.SetSpan(new ForegroundColorSpan(_boldFont.Color.ToAndroidColor()), startIndex, endIndex, SpanTypes.ExclusiveInclusive);
+
+				if (_extendedFont != null) {
+					//calculate the relative size to the regular font
+					converted.SetSpan(new RelativeSizeSpan(_boldFont.Size / _extendedFont.Size), startIndex, endIndex, SpanTypes.ExclusiveInclusive);
+				}
+				//set the custom typeface
+				converted.SetSpan(new CustomTypefaceSpan("sans-serif", DroidAssetPlugin.GetCachedFont(_boldFont, _context)), startIndex, endIndex, SpanTypes.ExclusiveInclusive);
+			}
 		}
 
 		protected override SpannableString Convert(string value, Type targetType, object parameter, CultureInfo culture) {
@@ -89,13 +100,13 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid {
 			//get the bold font
 			if (font != null) {
 				//if there's a bold font defined, pick that one. if not, return to the given font
-				var extendedFont = (font as Font);
-				if (extendedFont != null) {
-					if (extendedFont.BoldFont != null) {
-						_boldFont = extendedFont.BoldFont;
+				_extendedFont = (font as Font);
+				if (_extendedFont != null) {
+					if (_extendedFont.BoldFont != null) {
+						_boldFont = _extendedFont.BoldFont;
 					}
 					else {
-						_boldFont = extendedFont;
+						_boldFont = _extendedFont;
 					}
 					return CreateAttributedText(value, '*');
 				}

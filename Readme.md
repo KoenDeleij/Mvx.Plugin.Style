@@ -173,3 +173,15 @@ To bind a font within a cell you can use :
 		local:MvxBind="Font Empty,Converter=FontResource,ConverterParameter=H1" />
 
 Note the *Empty* object to bind to. For now you'll just need a string or object thats empty to bind to in your model. To force this, you can use the IStylable interface.
+
+### Bold font
+
+If you want to use the bold font for android, you'll have to use a converter :
+
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		local:MvxBind="AttributedText ViewModelAttributedText,Converter=AttributedBold,ConverterParameter='H1'"
+		local:MvxFont="Font MessageBodyText" />
+
+Note that in this case H1 must have a BoldFont property added.
