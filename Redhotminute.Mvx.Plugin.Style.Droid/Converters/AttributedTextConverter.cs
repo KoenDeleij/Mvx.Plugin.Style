@@ -67,11 +67,12 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid {
 		public override void SetAttributed(SpannableString converted, int startIndex, int endIndex) {
 			if (_boldFont != null) {
 				//set the text color
-				converted.SetSpan(new ForegroundColorSpan(_boldFont.Color.ToAndroidColor()), startIndex, endIndex, SpanTypes.ExclusiveInclusive);
-
+				if (_boldFont.Color != null) {
+					converted.SetSpan(new ForegroundColorSpan(_boldFont.Color.ToAndroidColor()), startIndex, endIndex, SpanTypes.ExclusiveInclusive);
+				}
 				if (_extendedFont != null) {
 					//calculate the relative size to the regular font
-					converted.SetSpan(new RelativeSizeSpan(_boldFont.Size / _extendedFont.Size), startIndex, endIndex, SpanTypes.ExclusiveInclusive);
+					converted.SetSpan(new RelativeSizeSpan((float)_boldFont.Size /(float)_extendedFont.Size), startIndex, endIndex, SpanTypes.ExclusiveInclusive);
 				}
 				//set the custom typeface
 				converted.SetSpan(new CustomTypefaceSpan("sans-serif", DroidAssetPlugin.GetCachedFont(_boldFont, _context)), startIndex, endIndex, SpanTypes.ExclusiveInclusive);
