@@ -182,6 +182,6 @@ If you want to use the bold font for android, you'll have to use a converter :
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		local:MvxBind="AttributedText ViewModelAttributedText,Converter=AttributedBold,ConverterParameter='H1'"
-		local:MvxFont="Font MessageBodyText" />
+		local:MvxFont="Font H1" />
 
 Note that in this case H1 must have a BoldFont property added.
