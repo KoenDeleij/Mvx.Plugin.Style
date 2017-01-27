@@ -94,7 +94,7 @@ For buttons and more advanced styling you can use the Font class
 * **SelectedColor**, *MvxColor* (Font color shown when a button is set to selected. Selected property for iOS, state_selected for Android)
 * **DisabledColor**, *MvxColor* (Font color shown when a button is disabled. Enabled false for iOS, state_enabled false for Android)
 * **LineHeight**, *int* (Only available for labels and textviews. For iOS you'll need to use the AttributedText converter)
-* **Alignment**, *TextAlignment* (Left/Center/Right, you'll get it)
+* **Alignment**, *TextAlignment* (Left/Center/Right/Justified). Note, justified is not supported for Android, and will default to 'Left'
 
 ## Cross
 

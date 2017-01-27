@@ -4,6 +4,7 @@ namespace Redhotminute.Mvx.Plugin.Style {
 		None,
 		Left,
 		Center,
-		Right
+		Right,
+		Justified
 	}
 }
