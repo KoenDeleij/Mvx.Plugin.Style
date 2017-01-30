@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{76D4ED63-4747-43FB-9109-2B05A178F41B}</ProjectGuid>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <UseMSBuildEngine>true</UseMSBuildEngine>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts</RootNamespace>
+    <AssemblyName>Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Josefin_Slab\JosefinSlab-Bold.ttf" />
+    <None Include="Josefin_Slab\JosefinSlab-BoldItalic.ttf" />
+    <None Include="Josefin_Slab\JosefinSlab-Italic.ttf" />
+    <None Include="Josefin_Slab\JosefinSlab-Light.ttf" />
+    <None Include="Josefin_Slab\JosefinSlab-LightItalic.ttf" />
+    <None Include="Josefin_Slab\JosefinSlab-Regular.ttf" />
+    <None Include="Josefin_Slab\JosefinSlab-SemiBold.ttf" />
+    <None Include="Josefin_Slab\JosefinSlab-SemiBoldItalic.ttf" />
+    <None Include="Josefin_Slab\JosefinSlab-Thin.ttf" />
+    <None Include="Josefin_Slab\JosefinSlab-ThinItalic.ttf" />
+    <None Include="Josefin_Slab\OFL.txt" />
+    <None Include="Nunito\Nunito-Black.ttf" />
+    <None Include="Nunito\Nunito-BlackItalic.ttf" />
+    <None Include="Nunito\Nunito-Bold.ttf" />
+    <None Include="Nunito\Nunito-BoldItalic.ttf" />
+    <None Include="Nunito\Nunito-ExtraBold.ttf" />
+    <None Include="Nunito\Nunito-ExtraBoldItalic.ttf" />
+    <None Include="Nunito\Nunito-ExtraLight.ttf" />
+    <None Include="Nunito\Nunito-ExtraLightItalic.ttf" />
+    <None Include="Nunito\Nunito-Italic.ttf" />
+    <None Include="Nunito\Nunito-Light.ttf" />
+    <None Include="Nunito\Nunito-LightItalic.ttf" />
+    <None Include="Nunito\Nunito-Regular.ttf" />
+    <None Include="Nunito\Nunito-SemiBold.ttf" />
+    <None Include="Nunito\Nunito-SemiBoldItalic.ttf" />
+    <None Include="Nunito\OFL.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+</Project>

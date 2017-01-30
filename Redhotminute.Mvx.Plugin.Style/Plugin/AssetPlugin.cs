@@ -58,6 +58,16 @@ namespace Redhotminute.Mvx.Plugin.Style
 			}
 		}
 
+		private Dictionary<string, IBaseFont> _fontsTagged;
+		private Dictionary<string, IBaseFont> FontsTagged {
+			get {
+				if (_fonts == null) {
+					_fonts = new Dictionary<string, IBaseFont>();
+				}
+				return _fonts;
+			}
+		}
+
 		private Dictionary<string, MvxColor> _colors;
 		private Dictionary<string, MvxColor> Colors {
 			get {
@@ -72,17 +82,27 @@ namespace Redhotminute.Mvx.Plugin.Style
 
 		#region IAssetPlugin implementation
 
-		public IBaseFont GetFont (string fontId)
+		public IBaseFont GetFontByName(string id)
 		{
 			IBaseFont font;
-			Fonts.TryGetValue (fontId,out font);
+			Fonts.TryGetValue (id, out font);
 			return font;
 		}
 
-		public IAssetPlugin AddFont(IBaseFont font) {
+		public IBaseFont GetFontByTag(string tag) {
+			IBaseFont font;
+			FontsTagged.TryGetValue(tag, out font);
+			return font;
+		}
+
+		public IAssetPlugin AddFont(IBaseFont font,string tag="") {
 			//convert the filename so the platform would understand this
 			ConvertFontFileNameForPlatform(ref font);
 			Fonts.Add(font.Name, font);
+
+			if (!string.IsNullOrWhiteSpace(tag)) {
+				FontsTagged.Add(tag, font);
+			}
 
 			return this;
 		}

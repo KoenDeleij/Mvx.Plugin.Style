@@ -2,12 +2,30 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-    <TextView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    local:MvxBind="BackgroundColor AssetProvider,Converter=AssetColor,ConverterParameter=Background">
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="unbound text"
-        local:MvxBind="AttributedText AttributedText,Converter=AttributedBold,ConverterParameter='RegularFont'"
-        local:MvxFont="Font RegularFont" />
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/normal_margin"
+        android:paddingRight="@dimen/normal_margin">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                local:MvxBind="Text Header"
+                local:MvxFont="Font H1"
+                android:layout_margin="@dimen/normal_margin" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                local:MvxBind="AttributedText Paragraph1,Converter=AttributedText,ConverterParameter='RegularFont'"
+                local:MvxFont="Font RegularFont"
+                android:layout_margin="@dimen/normal_margin" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

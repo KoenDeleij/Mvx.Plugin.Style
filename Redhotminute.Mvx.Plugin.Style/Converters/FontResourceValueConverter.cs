@@ -28,7 +28,7 @@ namespace Redhotminute.Mvx.Plugin.Style
 			if (value!= null && parameter!= null){
 				try{
 					string fontName = parameter.ToString();
-					var font = plugin.GetFont(fontName);
+					var font = plugin.GetFontByName(fontName);
 					return font;
 				}catch(Exception e){
 					MvvmCross.Platform.Mvx.Trace(MvvmCross.Platform.Platform.MvxTraceLevel.Error, $"Failed to get font {e.Message}");
