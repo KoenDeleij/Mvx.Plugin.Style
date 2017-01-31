@@ -46,6 +46,7 @@
     <Compile Include="Models\Stylable.cs" />
     <Compile Include="Bindings\MvxBindingContextOwnerExtensions.Font.cs" />
     <Compile Include="Models\IBaseFont.cs" />
+    <Compile Include="Helpers\AttributedFontHelper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
@@ -54,6 +55,7 @@
     <Folder Include="Bindings\" />
     <Folder Include="Converters\" />
     <Folder Include="Enums\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MvvmCross.Platform">
