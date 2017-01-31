@@ -139,6 +139,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+    <Folder Include="Resources\Fonts\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -164,76 +165,76 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Josefin_Slab\JosefinSlab-Bold.ttf">
-      <Link>Resources\JosefinSlab-Bold.ttf</Link>
+      <Link>Resources\Fonts\JosefinSlab-Bold.ttf</Link>
     </BundleResource>
     <BundleResource Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Josefin_Slab\JosefinSlab-BoldItalic.ttf">
-      <Link>Resources\JosefinSlab-BoldItalic.ttf</Link>
+      <Link>Resources\Fonts\JosefinSlab-BoldItalic.ttf</Link>
     </BundleResource>
     <BundleResource Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Josefin_Slab\JosefinSlab-Italic.ttf">
-      <Link>Resources\JosefinSlab-Italic.ttf</Link>
+      <Link>Resources\Fonts\JosefinSlab-Italic.ttf</Link>
     </BundleResource>
     <BundleResource Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Josefin_Slab\JosefinSlab-Light.ttf">
-      <Link>Resources\JosefinSlab-Light.ttf</Link>
+      <Link>Resources\Fonts\JosefinSlab-Light.ttf</Link>
     </BundleResource>
     <BundleResource Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Josefin_Slab\JosefinSlab-LightItalic.ttf">
-      <Link>Resources\JosefinSlab-LightItalic.ttf</Link>
+      <Link>Resources\Fonts\JosefinSlab-LightItalic.ttf</Link>
     </BundleResource>
     <BundleResource Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Josefin_Slab\JosefinSlab-Regular.ttf">
-      <Link>Resources\JosefinSlab-Regular.ttf</Link>
+      <Link>Resources\Fonts\JosefinSlab-Regular.ttf</Link>
     </BundleResource>
     <BundleResource Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Josefin_Slab\JosefinSlab-SemiBold.ttf">
-      <Link>Resources\JosefinSlab-SemiBold.ttf</Link>
+      <Link>Resources\Fonts\JosefinSlab-SemiBold.ttf</Link>
     </BundleResource>
     <BundleResource Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Josefin_Slab\JosefinSlab-SemiBoldItalic.ttf">
-      <Link>Resources\JosefinSlab-SemiBoldItalic.ttf</Link>
+      <Link>Resources\Fonts\JosefinSlab-SemiBoldItalic.ttf</Link>
     </BundleResource>
     <BundleResource Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Josefin_Slab\JosefinSlab-Thin.ttf">
-      <Link>Resources\JosefinSlab-Thin.ttf</Link>
+      <Link>Resources\Fonts\JosefinSlab-Thin.ttf</Link>
     </BundleResource>
     <BundleResource Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Josefin_Slab\JosefinSlab-ThinItalic.ttf">
-      <Link>Resources\JosefinSlab-ThinItalic.ttf</Link>
+      <Link>Resources\Fonts\JosefinSlab-ThinItalic.ttf</Link>
     </BundleResource>
     <BundleResource Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Nunito\Nunito-Black.ttf">
-      <Link>Resources\Nunito-Black.ttf</Link>
+      <Link>Resources\Fonts\Nunito-Black.ttf</Link>
     </BundleResource>
     <BundleResource Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Nunito\Nunito-BlackItalic.ttf">
-      <Link>Resources\Nunito-BlackItalic.ttf</Link>
+      <Link>Resources\Fonts\Nunito-BlackItalic.ttf</Link>
     </BundleResource>
     <BundleResource Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Nunito\Nunito-Bold.ttf">
-      <Link>Resources\Nunito-Bold.ttf</Link>
+      <Link>Resources\Fonts\Nunito-Bold.ttf</Link>
     </BundleResource>
     <BundleResource Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Nunito\Nunito-BoldItalic.ttf">
-      <Link>Resources\Nunito-BoldItalic.ttf</Link>
+      <Link>Resources\Fonts\Nunito-BoldItalic.ttf</Link>
     </BundleResource>
     <BundleResource Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Nunito\Nunito-ExtraBold.ttf">
-      <Link>Resources\Nunito-ExtraBold.ttf</Link>
+      <Link>Resources\Fonts\Nunito-ExtraBold.ttf</Link>
     </BundleResource>
     <BundleResource Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Nunito\Nunito-ExtraBoldItalic.ttf">
-      <Link>Resources\Nunito-ExtraBoldItalic.ttf</Link>
+      <Link>Resources\Fonts\Nunito-ExtraBoldItalic.ttf</Link>
     </BundleResource>
     <BundleResource Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Nunito\Nunito-ExtraLight.ttf">
-      <Link>Resources\Nunito-ExtraLight.ttf</Link>
+      <Link>Resources\Fonts\Nunito-ExtraLight.ttf</Link>
     </BundleResource>
     <BundleResource Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Nunito\Nunito-ExtraLightItalic.ttf">
-      <Link>Resources\Nunito-ExtraLightItalic.ttf</Link>
+      <Link>Resources\Fonts\Nunito-ExtraLightItalic.ttf</Link>
     </BundleResource>
     <BundleResource Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Nunito\Nunito-Italic.ttf">
-      <Link>Resources\Nunito-Italic.ttf</Link>
+      <Link>Resources\Fonts\Nunito-Italic.ttf</Link>
     </BundleResource>
     <BundleResource Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Nunito\Nunito-Light.ttf">
-      <Link>Resources\Nunito-Light.ttf</Link>
+      <Link>Resources\Fonts\Nunito-Light.ttf</Link>
     </BundleResource>
     <BundleResource Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Nunito\Nunito-LightItalic.ttf">
-      <Link>Resources\Nunito-LightItalic.ttf</Link>
+      <Link>Resources\Fonts\Nunito-LightItalic.ttf</Link>
     </BundleResource>
     <BundleResource Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Nunito\Nunito-Regular.ttf">
-      <Link>Resources\Nunito-Regular.ttf</Link>
+      <Link>Resources\Fonts\Nunito-Regular.ttf</Link>
     </BundleResource>
     <BundleResource Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Nunito\Nunito-SemiBold.ttf">
-      <Link>Resources\Nunito-SemiBold.ttf</Link>
+      <Link>Resources\Fonts\Nunito-SemiBold.ttf</Link>
     </BundleResource>
     <BundleResource Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Nunito\Nunito-SemiBoldItalic.ttf">
-      <Link>Resources\Nunito-SemiBoldItalic.ttf</Link>
+      <Link>Resources\Fonts\Nunito-SemiBoldItalic.ttf</Link>
     </BundleResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

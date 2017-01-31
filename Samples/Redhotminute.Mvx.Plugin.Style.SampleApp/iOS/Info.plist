@@ -44,5 +44,31 @@
 	</array>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Fonts/JosefinSlab-Light.ttf</string>
+		<string>Fonts/JosefinSlab-Bold.ttf</string>
+		<string>Fonts/JosefinSlab-BoldItalic.ttf</string>
+		<string>Fonts/JosefinSlab-LightItalic.ttf</string>
+		<string>Fonts/JosefinSlab-Regular.ttf</string>
+		<string>Fonts/JosefinSlab-SemiBold.ttf</string>
+		<string>Fonts/JosefinSlab-SemiBoldItalic.ttf</string>
+		<string>Fonts/JosefinSlab-Thin.ttf</string>
+		<string>Fonts/JosefinSlab-ThinItalic.ttf</string>
+		<string>Fonts/Nunito-Black.ttf</string>
+		<string>Fonts/Nunito-BlackItalic.ttf</string>
+		<string>Fonts/Nunito-Bold.ttf</string>
+		<string>Fonts/Nunito-BoldItalic.ttf</string>
+		<string>Fonts/Nunito-ExtraBold.ttf</string>
+		<string>Fonts/Nunito-ExtraBoldItalic.ttf</string>
+		<string>Fonts/Nunito-ExtraLight.ttf</string>
+		<string>Fonts/Nunito-ExtraLightItalic.ttf</string>
+		<string>Fonts/Nunito-Italic.ttf</string>
+		<string>Fonts/Nunito-Light.ttf</string>
+		<string>Fonts/Nunito-LightItalic.ttf</string>
+		<string>Fonts/Nunito-Regular.ttf</string>
+		<string>Fonts/Nunito-SemiBold.ttf</string>
+		<string>Fonts/Nunito-SemiBoldItalic.ttf</string>
+	</array>
 </dict>
 </plist>

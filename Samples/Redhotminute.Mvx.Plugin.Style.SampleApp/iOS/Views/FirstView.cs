@@ -1,6 +1,7 @@
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.iOS.Views;
 using Redhotminute.Mvx.Plugin.Style.SampleApp.ViewModels;
+using UIKit;
 
 namespace Redhotminute.Mvx.Plugin.Style.SampleApp.iOS.Views
 {
@@ -26,8 +27,8 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.iOS.Views
 			set.Bind(HeaderLabel).For(v => v.AttributedText).To(vm => vm.Header).WithConversion("AttributedFontText", "H1");
 			set.Bind(ContentLabel).For(v => v.AttributedText).To(vm => vm.Paragraph1).WithConversion("AttributedFontText", "RegularFont");
 
-			set.Bind(ScrollView).For(v => v.BackgroundColor).To(vm => vm.AssetProvider).WithConversion("AssetColor", "Secondairy");
-            set.Apply();
+			set.Bind(View).For(v => v.BackgroundColor).To(vm => vm.AssetProvider).WithConversion("AssetColor", "Background");
+			set.Apply();
         }
     }
 }

@@ -29,13 +29,13 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="75D-dO-hkx">
-                                    <rect key="frame" x="30" y="30" width="315" height="21"/>
+                                    <rect key="frame" x="44" y="42" width="287" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fvV-d5-xz6">
-                                    <rect key="frame" x="30" y="81" width="315" height="21"/>
+                                    <rect key="frame" x="44" y="93" width="287" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -45,11 +45,11 @@
                             <constraints>
                                 <constraint firstItem="fvV-d5-xz6" firstAttribute="top" secondItem="75D-dO-hkx" secondAttribute="bottom" constant="30" id="409-0z-rP7"/>
                                 <constraint firstItem="fvV-d5-xz6" firstAttribute="leading" secondItem="75D-dO-hkx" secondAttribute="leading" id="7ph-3o-8gi"/>
-                                <constraint firstAttribute="trailing" secondItem="75D-dO-hkx" secondAttribute="trailing" constant="30" id="8Fe-KA-XZL"/>
+                                <constraint firstAttribute="trailing" secondItem="75D-dO-hkx" secondAttribute="trailing" constant="44" id="8Fe-KA-XZL"/>
                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="fvV-d5-xz6" secondAttribute="bottom" constant="30" id="8LP-AA-wFq"/>
-                                <constraint firstItem="75D-dO-hkx" firstAttribute="top" secondItem="KKY-T1-2m7" secondAttribute="top" constant="30" id="gBg-dY-cKj"/>
+                                <constraint firstItem="75D-dO-hkx" firstAttribute="top" secondItem="KKY-T1-2m7" secondAttribute="top" constant="42" id="gBg-dY-cKj"/>
                                 <constraint firstItem="fvV-d5-xz6" firstAttribute="trailing" secondItem="75D-dO-hkx" secondAttribute="trailing" id="kDU-3b-IHe"/>
-                                <constraint firstItem="75D-dO-hkx" firstAttribute="leading" secondItem="KKY-T1-2m7" secondAttribute="leading" constant="30" id="rJi-QJ-2m2"/>
+                                <constraint firstItem="75D-dO-hkx" firstAttribute="leading" secondItem="KKY-T1-2m7" secondAttribute="leading" constant="44" id="rJi-QJ-2m2"/>
                             </constraints>
                         </view>
                     </subviews>
