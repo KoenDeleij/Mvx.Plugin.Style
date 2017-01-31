@@ -33,7 +33,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch
 					//split the text and font definition
 					var values = parameter.ToString().Split(';');
 
-					return assetPlugin.ParseToAttributedText(textProvider.GetText(values[0]), assetPlugin.GetFont(values[1]));
+					return assetPlugin.ParseToAttributedText(textProvider.GetText(values[0]), assetPlugin.GetFontByName(values[1]));
 				}catch(Exception e){
 					MvxBindingTrace.Trace(MvxTraceLevel.Error,
 									  "Problem parsing binding {0}", e.ToLongString());

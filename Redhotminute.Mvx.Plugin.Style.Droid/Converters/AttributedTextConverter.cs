@@ -22,6 +22,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid {
 		protected override SpannableString Convert (string value, Type targetType, object parameter, CultureInfo culture) {
 			//TODO check if a tag on the first elemen works
 			//TODO clean up some code, add unittests
+			//TODO change the binding so the local:Font binding is not necessary
 			try {
 				string fontName = parameter.ToString();
 				if (string.IsNullOrWhiteSpace(fontName)) {
@@ -126,6 +127,19 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid {
 				//set the text color
 				if (taggedFont.Color != null) {
 					converted.SetSpan(new ForegroundColorSpan(taggedFont.Color.ToAndroidColor()), pair.StartIndex, pair.EndIndex, SpanTypes.ExclusiveInclusive);
+				}
+				//set allignmen 
+				if (taggedFont is Font) {
+					Font taggedExtendedFont = taggedFont as Font;
+
+					if (taggedExtendedFont.Alignment != TextAlignment.None) {
+
+						Layout.Alignment alignment = taggedExtendedFont.Alignment == TextAlignment.Center?Layout.Alignment.AlignCenter:Layout.Alignment.AlignNormal;
+
+
+
+						converted.SetSpan(new AlignmentSpanStandard(alignment), pair.StartIndex, pair.EndIndex, SpanTypes.ExclusiveInclusive);
+					}
 				}
 
 				if (_extendedFont != null) {
