@@ -17,7 +17,14 @@ namespace Redhotminute.Mvx.Plugin.Style
 		}
 
 		private object ConvertValue(object value,object parameter,CultureInfo culture) {
-			AssetPlugin plugin = value as AssetPlugin;
+			IAssetPlugin plugin = value as AssetPlugin;
+
+			if (plugin == null) {
+				//try to resolve it. Not ideal but sometimes necessary within simpel cells
+				plugin = MvvmCross.Platform.Mvx.Resolve<IAssetPlugin>();
+
+				MvxBindingTrace.Trace("AssetProvider not available for Color conversion. Resolved it");
+			}
 
 			if (value!= null && parameter!= null){
 				try{
@@ -34,5 +41,6 @@ namespace Redhotminute.Mvx.Plugin.Style
 			return null;
 		}
 	}
+
 }
 
