@@ -3,6 +3,7 @@ using MvvmCross.Platform.Converters;
 using System.Globalization;
 using MvvmCross.Platform.UI;
 using MvvmCross.Platform;
+using MvvmCross.Binding;
 
 namespace Redhotminute.Mvx.Plugin.Style
 {
@@ -34,7 +35,7 @@ namespace Redhotminute.Mvx.Plugin.Style
 						return NativeColor.ToNative(color);
 					}
 				}catch{
-					//TODO some proper error messages
+					MvxBindingTrace.Trace(MvvmCross.Platform.Platform.MvxTraceLevel.Warning, $"Failed to convert color");
 				}
 			}
 
