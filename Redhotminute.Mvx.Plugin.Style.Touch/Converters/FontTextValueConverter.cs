@@ -25,10 +25,9 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch
 
 			if (value!= null && parameter!= null){
 				try{
-					return assetPlugin.ParseToAttributedText(value.ToString(), assetPlugin.GetFont(parameter.ToString()));
+					return assetPlugin.ParseToAttributedText(value.ToString(), assetPlugin.GetFontByName(parameter.ToString()));
 				}catch(Exception e){
-					MvxBindingTrace.Trace(MvxTraceLevel.Error,
-									  "Problem parsing binding {0}", e.ToLongString());
+					MvxBindingTrace.Trace(MvxTraceLevel.Error,"Problem parsing binding {0}", e.ToLongString());
 				}
 			}
 

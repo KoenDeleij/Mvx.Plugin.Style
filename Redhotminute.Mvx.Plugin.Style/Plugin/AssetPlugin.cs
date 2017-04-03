@@ -14,7 +14,7 @@ namespace Redhotminute.Mvx.Plugin.Style
 
 		public AssetPlugin() {
 			_configuration = new RedhotminuteStyleConfiguration() { FontSizeFactor = 1.0f, LineHeightFactor = 1.0f};
-			FontSizeFactor = _configuration.FontSizeFactor;
+			FontSizeFactor = _configuration.FontSizeFactor.Value;
 			LineHeightFactor = _configuration.LineHeightFactor;
 		}
 
@@ -22,8 +22,9 @@ namespace Redhotminute.Mvx.Plugin.Style
 			if (configuration != null) {
 				_configuration = configuration;
 			}
-
-			FontSizeFactor = _configuration.FontSizeFactor;
+			if (_configuration.FontSizeFactor.HasValue) {
+				FontSizeFactor = _configuration.FontSizeFactor.Value;
+			}
 			LineHeightFactor = _configuration.LineHeightFactor;
 		}
 
@@ -58,6 +59,16 @@ namespace Redhotminute.Mvx.Plugin.Style
 			}
 		}
 
+		private Dictionary<string, IBaseFont> _fontsTagged;
+		private Dictionary<string, IBaseFont> FontsTagged {
+			get {
+				if (_fonts == null) {
+					_fonts = new Dictionary<string, IBaseFont>();
+				}
+				return _fonts;
+			}
+		}
+
 		private Dictionary<string, MvxColor> _colors;
 		private Dictionary<string, MvxColor> Colors {
 			get {
@@ -72,17 +83,27 @@ namespace Redhotminute.Mvx.Plugin.Style
 
 		#region IAssetPlugin implementation
 
-		public IBaseFont GetFont (string fontId)
+		public IBaseFont GetFontByName(string id)
 		{
 			IBaseFont font;
-			Fonts.TryGetValue (fontId,out font);
+			Fonts.TryGetValue (id, out font);
 			return font;
 		}
 
-		public IAssetPlugin AddFont(IBaseFont font) {
+		public IBaseFont GetFontByTag(string tag) {
+			IBaseFont font;
+			FontsTagged.TryGetValue(tag, out font);
+			return font;
+		}
+
+		public IAssetPlugin AddFont(IBaseFont font,string tag="") {
 			//convert the filename so the platform would understand this
 			ConvertFontFileNameForPlatform(ref font);
 			Fonts.Add(font.Name, font);
+
+			if (!string.IsNullOrWhiteSpace(tag)) {
+				FontsTagged.Add(tag, font);
+			}
 
 			return this;
 		}

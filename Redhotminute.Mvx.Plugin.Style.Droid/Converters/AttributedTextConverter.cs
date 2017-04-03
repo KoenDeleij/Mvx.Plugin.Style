@@ -6,114 +6,89 @@ using Android.Content;
 using Android.Graphics;
 using Android.Text;
 using Android.Text.Style;
+using MvvmCross.Binding;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Converters;
 using MvvmCross.Platform.Droid.Platform;
 using MvvmCross.Plugins.Color.Droid;
 
 namespace Redhotminute.Mvx.Plugin.Style.Droid {
-	public abstract class AttributedTextConverter : MvxValueConverter<string, SpannableString>, IMvxValueConverter {
-
-		protected override SpannableString Convert(string value, Type targetType, object parameter, CultureInfo culture) {
-			return new SpannableString(value);
-		}
-
-		private List<string> GetAttributedBlocks(string value, char characterToLookFor) {
-			List<string> blocks = value.Split(characterToLookFor).ToList();
-			//if the last item is ending with the character, remove that last empty one
-			blocks.Remove(string.Empty);
-			return blocks;
-		}
-
-		private string GetUnattributedValue(List<string> blocks) {
-			//clean up the format
-			return string.Concat(blocks);
-		}
-
-		protected SpannableString CreateAttributedText(string value, char characterToLookFor) {
-			List<string> blocks = GetAttributedBlocks(value, characterToLookFor);
-			string cleanValue = GetUnattributedValue(blocks);
-
-			SpannableString converted = new SpannableString(cleanValue);
-
-			//for each block, find the index, and set the span
-			List<int> indexes = new List<int>();
-
-			foreach (string block in blocks) {
-				int index = cleanValue.IndexOf(block, StringComparison.Ordinal);
-				indexes.Add(index);
-			}
-			indexes.Add(cleanValue.Length);
-
-			bool attributeSwitch = value[0].Equals(characterToLookFor);
-			for (int i = 0; i < indexes.Count - 1; i++) {
-				if (attributeSwitch) {
-					SetAttributed(converted, indexes[i], indexes[i + 1]);
-				}
-				attributeSwitch = !attributeSwitch;
-			}
-			return converted;
-		}
-		public abstract void SetAttributed(SpannableString converted, int startIndex, int endIndex);
-	}
-
-	public class AttributedBoldValueConverter : AttributedTextConverter {
-		private IBaseFont _boldFont;
-		private Font _extendedFont;
+	public class AttributedTextConverter : MvxValueConverter<string, AttributedStringBaseFontWrapper>, IMvxValueConverter {
 
 		IAssetPlugin _assetPlugin;
+		Font _extendedFont;
 		Context _context;
 
-		public override void SetAttributed(SpannableString converted, int startIndex, int endIndex) {
-			if (_boldFont != null) {
-				//set the text color
-				if (_boldFont.Color != null) {
-					converted.SetSpan(new ForegroundColorSpan(_boldFont.Color.ToAndroidColor()), startIndex, endIndex, SpanTypes.ExclusiveInclusive);
+		protected override AttributedStringBaseFontWrapper Convert (string value, Type targetType, object parameter, CultureInfo culture) {
+			//TODO check if a tag on the first elemen works
+			//TODO clean up some code, add unittests
+			try {
+				string fontName = parameter.ToString();
+				if (string.IsNullOrWhiteSpace(fontName)) {
+					return new AttributedStringBaseFontWrapper() { SpannableString = new SpannableString(value)};
 				}
-				if (_extendedFont != null) {
-					//calculate the relative size to the regular font
-					converted.SetSpan(new RelativeSizeSpan((float)_boldFont.Size /(float)_extendedFont.Size), startIndex, endIndex, SpanTypes.ExclusiveInclusive);
+
+				if (_assetPlugin == null) {
+					_assetPlugin = MvvmCross.Platform.Mvx.Resolve<IAssetPlugin>();
+					_extendedFont = _assetPlugin.GetFontByName(fontName) as Font;
 				}
-				//set the custom typeface
-				converted.SetSpan(new CustomTypefaceSpan("sans-serif", DroidAssetPlugin.GetCachedFont(_boldFont, _context)), startIndex, endIndex, SpanTypes.ExclusiveInclusive);
-			}
-		}
-
-		protected override SpannableString Convert(string value, Type targetType, object parameter, CultureInfo culture) {
-
-			//check if the parameters are filled
-			string fontName = parameter.ToString();
-
-			if (string.IsNullOrWhiteSpace(fontName)) {
-				return new SpannableString(value);
-			}
-
-			if (_assetPlugin == null) {
-				_assetPlugin = MvvmCross.Platform.Mvx.Resolve<IAssetPlugin>();
-			}
-			if (_context == null) {
-				_context = MvvmCross.Platform.Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity.BaseContext;
-			}
-
-			//get the font
-			var font = _assetPlugin.GetFont(fontName);
-
-			//get the bold font
-			if (font != null) {
-				//if there's a bold font defined, pick that one. if not, return to the given font
-				_extendedFont = (font as Font);
-				if (_extendedFont != null) {
-					if (_extendedFont.BoldFont != null) {
-						_boldFont = _extendedFont.BoldFont;
-					}
-					else {
-						_boldFont = _extendedFont;
-					}
-					return CreateAttributedText(value, '*');
+				if (_context == null) {
+					_context = MvvmCross.Platform.Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity.BaseContext;
 				}
-			}
 
+				string cleanText = string.Empty;
+				List<FontIndexPair> blockIndexes = AttributedFontHelper.GetFontTextBlocks(value, fontName, _assetPlugin, out cleanText);
+
+				SpannableString converted = new SpannableString(cleanText);
+
+				foreach (FontIndexPair block in blockIndexes) {
+					SetAttributed(converted, block);
+				}
+
+				return new AttributedStringBaseFontWrapper() { SpannableString = converted , Font = _extendedFont};
+			}
+			catch (Exception e){
+				MvxBindingTrace.Trace(MvvmCross.Platform.Platform.MvxTraceLevel.Error, e.Message);
+			}
 			return null;
 		}
+		/// <summary>
+		/// Set the attributes of a part of the text
+		/// </summary>
+		/// <param name="converted">Converted.</param>
+		/// <param name="pair">Pair.</param>
+		private void SetAttributed(SpannableString converted,FontIndexPair pair) {
+			//get the font by tags
+			var taggedFont =_assetPlugin.GetFontByTag(pair.FontTag);
+
+			if (taggedFont != null) {
+				SetFont(converted, taggedFont, pair.StartIndex, pair.EndIndex);
+			}
+		}
+
+		private void SetFont(SpannableString converted, IBaseFont font,int startIndex,int endIndex) {
+					//set the text color
+			if (font.Color != null) {
+				converted.SetSpan(new ForegroundColorSpan(font.Color.ToAndroidColor()), startIndex, endIndex, SpanTypes.ExclusiveInclusive);
+			}
+			//set allignment
+			if (font is Font) {
+				Font taggedExtendedFont = font as Font;
+
+				if (taggedExtendedFont.Alignment != TextAlignment.None) {
+					Layout.Alignment alignment = taggedExtendedFont.Alignment == TextAlignment.Center ? Layout.Alignment.AlignCenter : Layout.Alignment.AlignNormal;
+					converted.SetSpan(new AlignmentSpanStandard(alignment), startIndex, endIndex, SpanTypes.ExclusiveInclusive);
+				}
+			}
+
+			if (_extendedFont != null) {
+				//calculate the relative size to the regular font
+				converted.SetSpan(new RelativeSizeSpan((float)font.Size / (float)_extendedFont.Size), startIndex, endIndex, SpanTypes.ExclusiveInclusive);
+			}
+			//set the custom typeface
+			converted.SetSpan(new CustomTypefaceSpan("sans-serif", DroidAssetPlugin.GetCachedFont(font, _context)), startIndex, endIndex, SpanTypes.ExclusiveInclusive);
+
+		}
 	}
+
 }

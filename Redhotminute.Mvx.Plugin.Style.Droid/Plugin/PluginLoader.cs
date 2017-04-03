@@ -23,7 +23,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid {
 		private void RegisterValueConverters() {
 			var registry = MvvmCross.Platform.Mvx.Resolve<IMvxValueConverterRegistry>();
 			registry.AddOrOverwriteFrom(typeof(FontResourceValueConverter).GetTypeInfo().Assembly);
-			registry.AddOrOverwriteFrom(typeof(AttributedBoldValueConverter).GetTypeInfo().Assembly);
+			registry.AddOrOverwriteFrom(typeof(AttributedTextConverter).GetTypeInfo().Assembly);
 			registry.AddOrOverwriteFrom(typeof(AssetColorValueConverter).GetTypeInfo().Assembly);
 		}
 

@@ -8,7 +8,7 @@
 
 Override the plugin configuration in your setup to set a fontsize factor. You could, depending on the device, change the overall size factor. 
 
-	protected override IMvxPluginConfiguration 
+	protected override IMvxPluginConfiguration GetPluginConfiguration(Type plugin) { 
 		if (plugin == typeof(Redhotminute.Mvx.Plugin.Style.Touch.Plugin)) {
 			return new RedhotminuteStyleConfiguration() {
 				FontSizeFactor = sizeFactor
@@ -20,7 +20,7 @@ Override the plugin configuration in your setup to set a fontsize factor. You co
 
 Same as with iOS. You can optionally also add a different lineheight. In some cases older Android devices really lack space. This will help.
 
-	protected override MvvmCross.Platform.Plugins.IMvxPluginConfiguration GetPluginConfiguration(System.Type plugin)
+	protected override IMvxPluginConfiguration GetPluginConfiguration(Type plugin)
 		if (plugin == typeof(Redhotminute.Mvx.Plugin.Style.Droid.Plugin)) {
 			return new RedhotminuteStyleConfiguration() {
 				FontSizeFactor = fontSizeFactor,

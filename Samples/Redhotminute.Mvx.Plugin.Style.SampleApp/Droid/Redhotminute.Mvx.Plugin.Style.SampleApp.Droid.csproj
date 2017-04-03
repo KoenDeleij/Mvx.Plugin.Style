@@ -54,9 +54,6 @@
     <Reference Include="MvvmCross.Droid">
       <HintPath>..\packages\MvvmCross.Core.4.4.0\lib\MonoAndroid\MvvmCross.Droid.dll</HintPath>
     </Reference>
-    <Reference Include="MvvmCross.Droid.Shared">
-      <HintPath>..\packages\MvvmCross.Core.4.4.0\lib\MonoAndroid\MvvmCross.Droid.Shared.dll</HintPath>
-    </Reference>
     <Reference Include="MvvmCross.Binding">
       <HintPath>..\packages\MvvmCross.Binding.4.4.0\lib\MonoAndroid\MvvmCross.Binding.dll</HintPath>
     </Reference>
@@ -72,6 +69,42 @@
     </Reference>
     <Reference Include="MvvmCross.Plugins.Color.Droid">
       <HintPath>..\packages\MvvmCross.Plugin.Color.4.4.0\lib\MonoAndroid\MvvmCross.Plugins.Color.Droid.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Droid.Shared">
+      <HintPath>..\packages\MvvmCross.Droid.Shared.4.4.0\lib\MonoAndroid\MvvmCross.Droid.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.Compat">
+      <HintPath>..\packages\Xamarin.Android.Support.Compat.24.2.1\lib\MonoAndroid70\Xamarin.Android.Support.Compat.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.Core.UI">
+      <HintPath>..\packages\Xamarin.Android.Support.Core.UI.24.2.1\lib\MonoAndroid70\Xamarin.Android.Support.Core.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Droid.Support.Core.UI">
+      <HintPath>..\packages\MvvmCross.Droid.Support.Core.UI.4.4.0\lib\MonoAndroid70\MvvmCross.Droid.Support.Core.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.Core.Utils">
+      <HintPath>..\packages\Xamarin.Android.Support.Core.Utils.24.2.1\lib\MonoAndroid70\Xamarin.Android.Support.Core.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.Media.Compat">
+      <HintPath>..\packages\Xamarin.Android.Support.Media.Compat.24.2.1\lib\MonoAndroid70\Xamarin.Android.Support.Media.Compat.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.Fragment">
+      <HintPath>..\packages\Xamarin.Android.Support.Fragment.24.2.1\lib\MonoAndroid70\Xamarin.Android.Support.Fragment.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Droid.Support.Fragment">
+      <HintPath>..\packages\MvvmCross.Droid.Support.Fragment.4.4.0\lib\MonoAndroid70\MvvmCross.Droid.Support.Fragment.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.Vector.Drawable">
+      <HintPath>..\packages\Xamarin.Android.Support.Vector.Drawable.24.2.1\lib\MonoAndroid70\Xamarin.Android.Support.Vector.Drawable.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.Animated.Vector.Drawable">
+      <HintPath>..\packages\Xamarin.Android.Support.Animated.Vector.Drawable.24.2.1\lib\MonoAndroid70\Xamarin.Android.Support.Animated.Vector.Drawable.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.AppCompat">
+      <HintPath>..\packages\Xamarin.Android.Support.v7.AppCompat.24.2.1\lib\MonoAndroid70\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Droid.Support.V7.AppCompat">
+      <HintPath>..\packages\MvvmCross.Droid.Support.V7.AppCompat.4.4.0\lib\MonoAndroid70\MvvmCross.Droid.Support.V7.AppCompat.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -104,7 +137,6 @@
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="packages.config" />
-    <None Include="ToDo-MvvmCross\_ Droid UI.txt" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -117,6 +149,8 @@
     <AndroidResource Include="Resources\layout\SplashScreen.axml" />
     <AndroidResource Include="Resources\layout\FirstView.axml" />
     <AndroidResource Include="Resources\drawable\splash.png" />
+    <AndroidResource Include="Resources\values\Dimens.xml" />
+    <AndroidResource Include="Resources\values\Themes.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Bootstrap\" />
@@ -124,6 +158,79 @@
   <ItemGroup>
     <AndroidAsset Include="Assets\Fonts\OpenSans-Regular.ttf" />
     <AndroidAsset Include="Assets\Fonts\OpenSans-Semibold.ttf" />
+    <AndroidAsset Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Josefin_Slab\JosefinSlab-Bold.ttf">
+      <Link>Assets\Fonts\JosefinSlab-Bold.ttf</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Josefin_Slab\JosefinSlab-BoldItalic.ttf">
+      <Link>Assets\Fonts\JosefinSlab-BoldItalic.ttf</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Josefin_Slab\JosefinSlab-Italic.ttf">
+      <Link>Assets\Fonts\JosefinSlab-Italic.ttf</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Josefin_Slab\JosefinSlab-Light.ttf">
+      <Link>Assets\Fonts\JosefinSlab-Light.ttf</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Josefin_Slab\JosefinSlab-LightItalic.ttf">
+      <Link>Assets\Fonts\JosefinSlab-LightItalic.ttf</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Josefin_Slab\JosefinSlab-Regular.ttf">
+      <Link>Assets\Fonts\JosefinSlab-Regular.ttf</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Josefin_Slab\JosefinSlab-SemiBold.ttf">
+      <Link>Assets\Fonts\JosefinSlab-SemiBold.ttf</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Josefin_Slab\JosefinSlab-SemiBoldItalic.ttf">
+      <Link>Assets\Fonts\JosefinSlab-SemiBoldItalic.ttf</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Josefin_Slab\JosefinSlab-Thin.ttf">
+      <Link>Assets\Fonts\JosefinSlab-Thin.ttf</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Josefin_Slab\JosefinSlab-ThinItalic.ttf">
+      <Link>Assets\Fonts\JosefinSlab-ThinItalic.ttf</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Nunito\Nunito-Black.ttf">
+      <Link>Assets\Fonts\Nunito-Black.ttf</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Nunito\Nunito-BlackItalic.ttf">
+      <Link>Assets\Fonts\Nunito-BlackItalic.ttf</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Nunito\Nunito-Bold.ttf">
+      <Link>Assets\Fonts\Nunito-Bold.ttf</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Nunito\Nunito-BoldItalic.ttf">
+      <Link>Assets\Fonts\Nunito-BoldItalic.ttf</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Nunito\Nunito-ExtraBold.ttf">
+      <Link>Assets\Fonts\Nunito-ExtraBold.ttf</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Nunito\Nunito-ExtraBoldItalic.ttf">
+      <Link>Assets\Fonts\Nunito-ExtraBoldItalic.ttf</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Nunito\Nunito-ExtraLight.ttf">
+      <Link>Assets\Fonts\Nunito-ExtraLight.ttf</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Nunito\Nunito-ExtraLightItalic.ttf">
+      <Link>Assets\Fonts\Nunito-ExtraLightItalic.ttf</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Nunito\Nunito-Italic.ttf">
+      <Link>Assets\Fonts\Nunito-Italic.ttf</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Nunito\Nunito-Light.ttf">
+      <Link>Assets\Fonts\Nunito-Light.ttf</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Nunito\Nunito-LightItalic.ttf">
+      <Link>Assets\Fonts\Nunito-LightItalic.ttf</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Nunito\Nunito-Regular.ttf">
+      <Link>Assets\Fonts\Nunito-Regular.ttf</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Nunito\Nunito-SemiBold.ttf">
+      <Link>Assets\Fonts\Nunito-SemiBold.ttf</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Nunito\Nunito-SemiBoldItalic.ttf">
+      <Link>Assets\Fonts\Nunito-SemiBoldItalic.ttf</Link>
+    </AndroidAsset>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <Import Project="..\packages\Xamarin.Android.Support.Vector.Drawable.24.2.1\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Vector.Drawable.24.2.1\build\Xamarin.Android.Support.Vector.Drawable.targets')" />
 </Project>

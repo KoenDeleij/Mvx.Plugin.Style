@@ -5,11 +5,6 @@ namespace Redhotminute.Mvx.Plugin.Style
 {
 	public class Font : BaseFont
 	{
-		public IBaseFont BoldFont {
-			get;
-			set;
-		}
-
 		public MvxColor SelectedColor {
 			get;
 			set;
