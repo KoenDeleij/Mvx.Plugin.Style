@@ -26,7 +26,6 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.iOS.Views
             var set = this.CreateBindingSet<FirstView, FirstViewModel>();
 			set.Bind(HeaderLabel).For(v => v.AttributedText).To(vm => vm.Header).WithConversion("AttributedFontText", "H1");
 			set.Bind(ContentLabel).For(v => v.AttributedText).To(vm => vm.Paragraph1).WithConversion("AttributedFontText", "RegularFont");
-
 			set.Bind(View).For(v => v.BackgroundColor).To(vm => vm.AssetProvider).WithConversion("AssetColor", "Background");
 			set.Apply();
         }

@@ -75,7 +75,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch
 
 			//add the font
 			stringAttributes.Font = TouchAssetPlugin.GetCachedFont(font);
-
+	
 			//add the color
 			if (font.Color != null) {
 				stringAttributes.ForegroundColor = font.Color.ToNativeColor();

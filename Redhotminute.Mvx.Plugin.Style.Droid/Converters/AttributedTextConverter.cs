@@ -13,20 +13,19 @@ using MvvmCross.Platform.Droid.Platform;
 using MvvmCross.Plugins.Color.Droid;
 
 namespace Redhotminute.Mvx.Plugin.Style.Droid {
-	public class AttributedTextConverter : MvxValueConverter<string, SpannableString>, IMvxValueConverter {
+	public class AttributedTextConverter : MvxValueConverter<string, AttributedStringBaseFontWrapper>, IMvxValueConverter {
 
 		IAssetPlugin _assetPlugin;
 		Font _extendedFont;
 		Context _context;
 
-		protected override SpannableString Convert (string value, Type targetType, object parameter, CultureInfo culture) {
+		protected override AttributedStringBaseFontWrapper Convert (string value, Type targetType, object parameter, CultureInfo culture) {
 			//TODO check if a tag on the first elemen works
 			//TODO clean up some code, add unittests
-			//TODO change the binding so the local:Font binding is not necessary
 			try {
 				string fontName = parameter.ToString();
 				if (string.IsNullOrWhiteSpace(fontName)) {
-					return new SpannableString(value);
+					return new AttributedStringBaseFontWrapper() { SpannableString = new SpannableString(value)};
 				}
 
 				if (_assetPlugin == null) {
@@ -46,7 +45,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid {
 					SetAttributed(converted, block);
 				}
 
-				return converted;
+				return new AttributedStringBaseFontWrapper() { SpannableString = converted , Font = _extendedFont};
 			}
 			catch (Exception e){
 				MvxBindingTrace.Trace(MvvmCross.Platform.Platform.MvxTraceLevel.Error, e.Message);
@@ -63,27 +62,32 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid {
 			var taggedFont =_assetPlugin.GetFontByTag(pair.FontTag);
 
 			if (taggedFont != null) {
-				//set the text color
-				if (taggedFont.Color != null) {
-					converted.SetSpan(new ForegroundColorSpan(taggedFont.Color.ToAndroidColor()), pair.StartIndex, pair.EndIndex, SpanTypes.ExclusiveInclusive);
-				}
-				//set allignmen 
-				if (taggedFont is Font) {
-					Font taggedExtendedFont = taggedFont as Font;
-
-					if (taggedExtendedFont.Alignment != TextAlignment.None) {
-						Layout.Alignment alignment = taggedExtendedFont.Alignment == TextAlignment.Center?Layout.Alignment.AlignCenter:Layout.Alignment.AlignNormal;
-						converted.SetSpan(new AlignmentSpanStandard(alignment), pair.StartIndex, pair.EndIndex, SpanTypes.ExclusiveInclusive);
-					}
-				}
-
-				if (_extendedFont != null) {
-					//calculate the relative size to the regular font
-					converted.SetSpan(new RelativeSizeSpan((float)taggedFont.Size / (float)_extendedFont.Size), pair.StartIndex, pair.EndIndex, SpanTypes.ExclusiveInclusive);
-				}
-				//set the custom typeface
-				converted.SetSpan(new CustomTypefaceSpan("sans-serif", DroidAssetPlugin.GetCachedFont(taggedFont, _context)), pair.StartIndex, pair.EndIndex, SpanTypes.ExclusiveInclusive);
+				SetFont(converted, taggedFont, pair.StartIndex, pair.EndIndex);
 			}
+		}
+
+		private void SetFont(SpannableString converted, IBaseFont font,int startIndex,int endIndex) {
+					//set the text color
+			if (font.Color != null) {
+				converted.SetSpan(new ForegroundColorSpan(font.Color.ToAndroidColor()), startIndex, endIndex, SpanTypes.ExclusiveInclusive);
+			}
+			//set allignment
+			if (font is Font) {
+				Font taggedExtendedFont = font as Font;
+
+				if (taggedExtendedFont.Alignment != TextAlignment.None) {
+					Layout.Alignment alignment = taggedExtendedFont.Alignment == TextAlignment.Center ? Layout.Alignment.AlignCenter : Layout.Alignment.AlignNormal;
+					converted.SetSpan(new AlignmentSpanStandard(alignment), startIndex, endIndex, SpanTypes.ExclusiveInclusive);
+				}
+			}
+
+			if (_extendedFont != null) {
+				//calculate the relative size to the regular font
+				converted.SetSpan(new RelativeSizeSpan((float)font.Size / (float)_extendedFont.Size), startIndex, endIndex, SpanTypes.ExclusiveInclusive);
+			}
+			//set the custom typeface
+			converted.SetSpan(new CustomTypefaceSpan("sans-serif", DroidAssetPlugin.GetCachedFont(font, _context)), startIndex, endIndex, SpanTypes.ExclusiveInclusive);
+
 		}
 	}
 

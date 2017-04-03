@@ -24,7 +24,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 local:MvxBind="AttributedText Paragraph1,Converter=AttributedText,ConverterParameter='RegularFont'"
-                local:MvxFont="Font RegularFont"
                 android:layout_margin="@dimen/normal_margin" />
         </LinearLayout>
     </ScrollView>

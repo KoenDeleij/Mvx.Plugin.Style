@@ -14,7 +14,7 @@ namespace Redhotminute.Mvx.Plugin.Style
 
 		public AssetPlugin() {
 			_configuration = new RedhotminuteStyleConfiguration() { FontSizeFactor = 1.0f, LineHeightFactor = 1.0f};
-			FontSizeFactor = _configuration.FontSizeFactor;
+			FontSizeFactor = _configuration.FontSizeFactor.Value;
 			LineHeightFactor = _configuration.LineHeightFactor;
 		}
 
@@ -22,8 +22,9 @@ namespace Redhotminute.Mvx.Plugin.Style
 			if (configuration != null) {
 				_configuration = configuration;
 			}
-
-			FontSizeFactor = _configuration.FontSizeFactor;
+			if (_configuration.FontSizeFactor.HasValue) {
+				FontSizeFactor = _configuration.FontSizeFactor.Value;
+			}
 			LineHeightFactor = _configuration.LineHeightFactor;
 		}
 

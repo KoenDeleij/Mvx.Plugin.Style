@@ -13,7 +13,8 @@
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
     <AssemblyName>Redhotminute.Mvx.Plugin.Style.Droid</AssemblyName>
-    <TargetFrameworkVersion>v7.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
+    <AndroidTlsProvider></AndroidTlsProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -89,6 +90,7 @@
     <Compile Include="Converters\AttributedTextConverter.cs" />
     <Compile Include="Helpers\CustomTypefaceSpan.cs" />
     <Compile Include="Bindings\TextViewAttributedTargetBinding.cs" />
+    <Compile Include="Helpers\AttributedStringBaseFontWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
