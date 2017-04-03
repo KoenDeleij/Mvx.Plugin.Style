@@ -2,7 +2,7 @@
  <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>Redhotminute.Mvx.Plugin.Style</id>
-        <version>1.0.3</version>
+        <version>1.0.5</version>
         <title>Redhotminute Mvvmcross style plugin</title>
         <authors>Koen Deleij</authors>
         <owners>Redhotminute BV</owners>
@@ -10,7 +10,7 @@
         <description>Mvvmcross plugin to easily cross style fonts and colors</description>
         <tags>mvvm mvvmcross xamarin monodroid monotouch style fonts</tags>
         <dependencies>
-            <group targetFramework="portable-net45+win+wp80+MonoAndroid+Xamarin.iOS10">
+            <group targetFramework="portable-net45+win+wp80+wpa81+MonoAndroid+Xamarin.iOS10">
                 <dependency id="MvvmCross.Platform" version="4.3.0" />
                 <dependency id="MvvmCross.Core" version="4.3.0" />
                 <dependency id="MvvmCross.Binding" version="4.3.0" />
@@ -33,7 +33,7 @@
     <files>     
 
         <!-- pcl -->
-        <file src="bin/Release/Redhotminute.Mvx.Plugin.Style.dll" target="lib/portable-net45+win+wp80+MonoAndroid+Xamarin.iOS10" />
+        <file src="bin/Release/Redhotminute.Mvx.Plugin.Style.dll" target="lib/portable-net45+win+wp80+wpa81+MonoAndroid+Xamarin.iOS10" />
 
         <!-- droid -->
         <file src="bin/Release/Redhotminute.Mvx.Plugin.Style.dll" target="lib/MonoAndroid" />
