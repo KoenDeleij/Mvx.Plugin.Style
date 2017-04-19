@@ -15,7 +15,6 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid {
 												MvxBindingTrace.Warning("Justified binding is not supported on android");break;	
 			}
 
-
 			return flags;
 		}
 	}
