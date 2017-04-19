@@ -45,11 +45,6 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch
 			registry.RegisterCustomBindingFactory<UITextField>("Font", binary => new UITextFieldFontTargetBinding(binary));
 			registry.RegisterCustomBindingFactory<UITextView>("Font", binary => new UITextViewFontTargetBinding(binary));
 		}
-		/*
-		private void RegisterBindingExtensions(IMvxSourceBindingFactoryExtensionHost host)
-		{
-			host.Extensions.Add(new MvxFieldSourceBindingFactoryExtension());
-		}*/
 	}
 }
 
