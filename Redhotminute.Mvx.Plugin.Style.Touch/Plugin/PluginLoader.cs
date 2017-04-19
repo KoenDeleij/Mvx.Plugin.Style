@@ -43,6 +43,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch
 			registry.RegisterCustomBindingFactory<UILabel>("AttributedText", binary => new UILabelAttributedFontTargetBinding(binary));
 			registry.RegisterCustomBindingFactory<UIButton>("Font", binary => new UIButtonFontTargetBinding(binary));
 			registry.RegisterCustomBindingFactory<UITextField>("Font", binary => new UITextFieldFontTargetBinding(binary));
+			registry.RegisterCustomBindingFactory<UITextView>("Font", binary => new UITextViewFontTargetBinding(binary));
 		}
 		/*
 		private void RegisterBindingExtensions(IMvxSourceBindingFactoryExtensionHost host)
