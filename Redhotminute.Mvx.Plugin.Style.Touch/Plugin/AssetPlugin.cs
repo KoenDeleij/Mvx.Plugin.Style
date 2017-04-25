@@ -93,7 +93,12 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch
 
 				//add the lineheight
 				if (extendedFont.LineHeight != 0) {
-					stringAttributes.ParagraphStyle = new NSMutableParagraphStyle() { LineSpacing = GetPlatformLineHeight(font.Size, extendedFont.LineHeight) * 0.5f, LineBreakMode = UILineBreakMode.TailTruncation };
+					if (stringAttributes.ParagraphStyle == null) {
+						stringAttributes.ParagraphStyle = new NSMutableParagraphStyle();
+					}
+
+					stringAttributes.ParagraphStyle.LineSpacing = GetPlatformLineHeight(font.Size, extendedFont.LineHeight) * 0.5f;
+					stringAttributes.ParagraphStyle.LineBreakMode = UILineBreakMode.TailTruncation;
 				}
 			}
 
