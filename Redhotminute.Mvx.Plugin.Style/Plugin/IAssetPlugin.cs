@@ -42,6 +42,11 @@ namespace Redhotminute.Mvx.Plugin.Style
 		/// <param name="tag">Tag.</param>
 		IAssetPlugin AddFont(IBaseFont font,string tag = "");
 
+		/// <summary>
+		/// Loads the json font file exported from Sketch
+		/// </summary>
+		/// <param name="jsonFile">Json file.</param>
+		void LoadJsonFontFile(string jsonFile);
 
 		void ConvertFontFileNameForPlatform(ref IBaseFont font);
 	}

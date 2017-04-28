@@ -119,6 +119,43 @@ namespace Redhotminute.Mvx.Plugin.Style
 			return color;
 		}
 
+		public void LoadJsonFontFile(string jsonFile) {
+			var l = MvvmCross.Platform.Mvx.Resolve<IMvxResourceLoader>();
+			var serializer = MvvmCross.Platform.Mvx.Resolve<IMvxTextSerializer>();
+
+			//load the styles
+			var styles=serializer.DeserializeObject<FontStyles>(l.GetTextResource(jsonFile));
+
+			foreach (Style style in styles.styles) {
+				Font font = new Font();
+
+				//alignment
+				switch (style.alignment) {//ignore alignment 0. default left or override 
+					case 1: font.Alignment = TextAlignment.Right;break;
+					case 2: font.Alignment = TextAlignment.Center;break;
+				}
+
+				//color
+				font.Color = new MvxColor((int)(255*style.color.red),(int)(255*style.color.green),(int)(255*style.color.blue));
+
+				//lineheight
+				if (style.lineHeight != 0) {
+					font.LineHeight = style.lineHeight - style.size;
+				}
+				font.Size = style.size;
+
+				//split the name 
+				string[] name = style.name.Split(',');
+				font.Name = name[0];
+				font.FontFilename = name[1];
+				font.FontPlatformName = style.font;
+
+				this.AddFont(font);
+
+				//TODO how to add tag
+			}
+		}
+
 		#endregion
 	}
 }
