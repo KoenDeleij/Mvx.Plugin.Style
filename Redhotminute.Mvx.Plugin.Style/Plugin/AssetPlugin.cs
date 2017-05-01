@@ -119,7 +119,12 @@ namespace Redhotminute.Mvx.Plugin.Style
 			return color;
 		}
 
-		public void LoadJsonFontFile(string jsonFile) {
+		public void LoadJsonFontFile(string jsonFile,bool clearCurrentFonts = true) {
+			if (clearCurrentFonts) {
+				this.Fonts.Clear();
+				this.FontsTagged.Clear();
+			}
+
 			var l = MvvmCross.Platform.Mvx.Resolve<IMvxResourceLoader>();
 			var serializer = MvvmCross.Platform.Mvx.Resolve<IMvxTextSerializer>();
 

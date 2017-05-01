@@ -150,11 +150,14 @@
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="Resources\Fonts\" />
+    <Folder Include="Views\Cells\" />
+    <Folder Include="Views\Source\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Main.storyboard" />
     <InterfaceDefinition Include="Views\FirstView.xib" />
+    <InterfaceDefinition Include="Views\Cells\StoryCell.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -174,6 +177,11 @@
     <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
     <Compile Include="Bootstrap\ResourceLoaderPluginBootstrap.cs" />
     <Compile Include="Bootstrap\JsonPluginBootstrap.cs" />
+    <Compile Include="Views\Cells\StoryCell.cs" />
+    <Compile Include="Views\Cells\StoryCell.designer.cs">
+      <DependentUpon>StoryCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Source\SimpleTableViewSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Josefin_Slab\JosefinSlab-Bold.ttf">

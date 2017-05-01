@@ -20,6 +20,12 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.iOS.Views
 
 		[Outlet]
 		UIKit.UIScrollView ScrollView { get; set; }
+
+		[Outlet]
+		UIKit.NSLayoutConstraint StoriesHeightConstraint { get; set; }
+
+		[Outlet]
+		UIKit.UITableView StoriesTable { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
@@ -36,6 +42,16 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.iOS.Views
 			if (ScrollView != null) {
 				ScrollView.Dispose ();
 				ScrollView = null;
+			}
+
+			if (StoriesTable != null) {
+				StoriesTable.Dispose ();
+				StoriesTable = null;
+			}
+
+			if (StoriesHeightConstraint != null) {
+				StoriesHeightConstraint.Dispose ();
+				StoriesHeightConstraint = null;
 			}
 		}
 	}
