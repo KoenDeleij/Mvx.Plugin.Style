@@ -1,5 +1,7 @@
 # Redhotminute MvvmCross Style Plugin
 
+TODO
+als je attributedtext gebruikt en je wilt de alignment gebruiken van text, zet label alignment op natural
 
 
 # Initialization
