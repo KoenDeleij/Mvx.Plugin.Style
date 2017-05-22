@@ -30,11 +30,12 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid {
 
 				if (_assetPlugin == null) {
 					_assetPlugin = MvvmCross.Platform.Mvx.Resolve<IAssetPlugin>();
-					_extendedFont = _assetPlugin.GetFontByName(fontName) as Font;
 				}
 				if (_context == null) {
 					_context = MvvmCross.Platform.Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity.BaseContext;
 				}
+
+				_extendedFont = _assetPlugin.GetFontByName(fontName) as Font;
 
 				string cleanText = string.Empty;
 				List<FontIndexPair> blockIndexes = AttributedFontHelper.GetFontTextBlocks(value, fontName, _assetPlugin, out cleanText);
