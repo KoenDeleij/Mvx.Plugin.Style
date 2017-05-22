@@ -27,7 +27,7 @@ namespace Redhotminute.Mvx.Plugin.Style
 				MvxBindingTrace.Trace("AssetProvider not available for Color conversion. Resolved it");
 			}
 
-			if (value!= null && parameter!= null){
+			if (plugin!= null && parameter!= null){
 				try{
 					string colorName = parameter.ToString();
 					var color = plugin.GetColor(colorName);

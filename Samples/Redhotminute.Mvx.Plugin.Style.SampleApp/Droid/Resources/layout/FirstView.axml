@@ -17,13 +17,13 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                local:MvxBind="Text Header"
+                local:MvxBind="Text SelectedStoryTitle"
                 local:MvxFont="Font H1"
                 android:layout_margin="@dimen/normal_margin" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                local:MvxBind="AttributedText Paragraph1,Converter=AttributedText,ConverterParameter='RegularFont'"
+                local:MvxBind="AttributedText SelectedStoryParagraph,Converter=AttributedText,ConverterParameter=Regular"
                 android:layout_margin="@dimen/normal_margin" />
         </LinearLayout>
     </ScrollView>

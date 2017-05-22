@@ -26,9 +26,25 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.iOS.Views
 
 		[Outlet]
 		UIKit.UITableView StoriesTable { get; set; }
+
+		[Outlet]
+		UIKit.UIButton Style1Button { get; set; }
+
+		[Outlet]
+		UIKit.UIButton Style2Button { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (Style1Button != null) {
+				Style1Button.Dispose ();
+				Style1Button = null;
+			}
+
+			if (Style2Button != null) {
+				Style2Button.Dispose ();
+				Style2Button = null;
+			}
+
 			if (ContentLabel != null) {
 				ContentLabel.Dispose ();
 				ContentLabel = null;
@@ -44,14 +60,14 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.iOS.Views
 				ScrollView = null;
 			}
 
-			if (StoriesTable != null) {
-				StoriesTable.Dispose ();
-				StoriesTable = null;
-			}
-
 			if (StoriesHeightConstraint != null) {
 				StoriesHeightConstraint.Dispose ();
 				StoriesHeightConstraint = null;
+			}
+
+			if (StoriesTable != null) {
+				StoriesTable.Dispose ();
+				StoriesTable = null;
 			}
 		}
 	}

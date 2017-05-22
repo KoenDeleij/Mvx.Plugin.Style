@@ -39,17 +39,44 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.iOS.Views
 
 		private void InitializeBinding() {
 			var set = this.CreateBindingSet<FirstView, FirstViewModel>();
+
+			//Style selection
+			this.BindFont(Style1Button, "Regular");
+			set.Bind(Style1Button).For(v => v.Selected).To(vm => vm.Style1Selected);
+			set.Bind(Style1Button).To(vm => vm.ChangeStyleCommand).CommandParameter(0);
+			
+			this.BindFont(Style2Button, "Regular");
+			set.Bind(Style2Button).For(v => v.Selected).To(vm => vm.Style2Selected);
+			set.Bind(Style2Button).To(vm => vm.ChangeStyleCommand).CommandParameter(1);
+
+			set.Bind(this).For(v =>v.UpdateStyles).To(vm => vm.UpdateStyle);
+
+			//Story
 			set.Bind(HeaderLabel).For(v => v.AttributedText).To(vm => vm.SelectedStoryTitle).WithConversion("AttributedFontText", "H1");
 			set.Bind(ContentLabel).For(v => v.AttributedText).To(vm => vm.SelectedStoryParagraph).WithConversion("AttributedFontText", "Regular");
 			set.Bind(View).For(v => v.BackgroundColor).To(vm => vm.AssetProvider).WithConversion("AssetColor", "Background");
+
+			//Story selection
 			set.Bind(_storiesSource).To(vm => vm.Stories);
 			set.Bind(_storiesSource).For(v=>v.SelectionChangedCommand).To(vm => vm.SelectStoryCommand);
 			set.Apply();
 		}
 
+		public bool UpdateStyles {
+			get {
+				return false;
+			}set {
+				if (value) {
+					this.ClearAllBindings();
+					InitializeBinding();
+				}
+			}
+		}
+
 		private void SetupTableSource() {
 			_storiesSource = new SimpleTableViewSource(StoriesTable, typeof(StoryCell),StoryCell.Key,StoriesHeightConstraint);
 			StoriesTable.Source = _storiesSource;
+			StoriesTable.RowHeight = 70;
 			StoriesTable.TranslatesAutoresizingMaskIntoConstraints = false; 
 		}
     }

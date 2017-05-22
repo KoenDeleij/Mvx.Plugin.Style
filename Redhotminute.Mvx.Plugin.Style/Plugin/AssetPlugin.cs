@@ -108,6 +108,12 @@ namespace Redhotminute.Mvx.Plugin.Style
 			return this;
 		}
 
+		public IAssetPlugin ClearFonts() {
+			_fonts = new Dictionary<string, IBaseFont>();
+			_fontsTagged = new Dictionary<string, IBaseFont>();
+			return this;
+		}
+
 		public IAssetPlugin AddColor(MvxColor color, string id) {
 			Colors.Add(id, color);
 			return this;

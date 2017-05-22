@@ -1,6 +1,6 @@
 ﻿using System;
 namespace Redhotminute.Mvx.Plugin.Style.SampleApp {
-	public class Story {
+	public class Story :IStylable{
 		public string Title{
 			get;
 			set;
@@ -12,6 +12,11 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp {
 		}
 
 		public string Paragraph {
+			get;
+			set;
+		}
+
+		public string Empty {
 			get;
 			set;
 		}

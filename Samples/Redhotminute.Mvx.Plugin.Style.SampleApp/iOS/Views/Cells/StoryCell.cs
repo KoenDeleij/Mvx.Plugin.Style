@@ -18,17 +18,26 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.iOS {
 		private void InitializeBindings() {
 			this.DelayBind(() => {
 				var bindingSet = this.CreateBindingSet<StoryCell, Story>();
-				bindingSet.Bind(TitleLabel).For(v => v.AttributedText).To(vm => vm.Title).WithConversion("AttributedFontText", "Regular");
-				bindingSet.Bind(SubtitleLabel).For(v => v.AttributedText).To(vm => vm.Subtitle).WithConversion("AttributedFontText", "Regular");
+				bindingSet.Bind(this).For(v => v.SelectedBackgroundColor).To(vm => vm.Empty).WithConversion("AssetColor", "Primary");
+				bindingSet.Bind(TitleLabel).For(v => v.AttributedText).To(vm => vm.Title).WithConversion("AttributedFontText", "Bold");
+				bindingSet.Bind(SubtitleLabel).For(v => v.AttributedText).To(vm => vm.Subtitle).WithConversion("AttributedFontText", "Italic");
 				bindingSet.Apply();
 			});
 		}
 
+		public UIColor SelectedBackgroundColor {
+			get {
+				return null;
+			}set {
+				UIView v = new UIView();
+				v.BackgroundColor = value;
+				this.SelectedBackgroundView = v;
+			}
+		}
+
 		protected StoryCell(IntPtr handle) : base(handle) {
             InitializeBindings();
-			//UIView v = new UIView();
-			//v.BackgroundColor = UIColor.Clear;
-			//this.SelectedBackgroundView = v;
+            this.BackgroundColor = UIColor.Clear;
 		}
 	}
 }
