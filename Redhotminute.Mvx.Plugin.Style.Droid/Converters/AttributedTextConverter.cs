@@ -42,7 +42,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid {
 				SpannableString converted = new SpannableString(cleanText);
 
 				foreach (FontIndexPair block in blockIndexes) {
-					SetAttributed(converted, block);
+					SetAttributed(converted, block,_extendedFont);
 				}
 
 				return new AttributedStringBaseFontWrapper() { SpannableString = converted , Font = _extendedFont};
@@ -57,12 +57,15 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid {
 		/// </summary>
 		/// <param name="converted">Converted.</param>
 		/// <param name="pair">Pair.</param>
-		private void SetAttributed(SpannableString converted,FontIndexPair pair) {
+		private void SetAttributed(SpannableString converted, FontIndexPair pair, Font fallbackFont) {
 			//get the font by tags
 			var taggedFont =_assetPlugin.GetFontByTag(pair.FontTag);
 
 			if (taggedFont != null) {
 				SetFont(converted, taggedFont, pair.StartIndex, pair.EndIndex);
+			}
+			else if(fallbackFont!= null) {
+				SetFont(converted, fallbackFont, pair.StartIndex, pair.EndIndex);
 			}
 		}
 
