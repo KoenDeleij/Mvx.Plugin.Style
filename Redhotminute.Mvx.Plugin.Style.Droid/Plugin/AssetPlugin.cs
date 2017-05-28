@@ -24,5 +24,10 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid {
 
 			return _fontsCache[font.Name];
 		}
+
+		public override IAssetPlugin ClearFonts() {
+			_fontsCache = new Dictionary<string, Typeface>();
+			return base.ClearFonts();
+		}
 	}
 }

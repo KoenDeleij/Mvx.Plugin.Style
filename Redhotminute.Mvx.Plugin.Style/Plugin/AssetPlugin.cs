@@ -59,13 +59,13 @@ namespace Redhotminute.Mvx.Plugin.Style
 			}
 		}
 
-		private Dictionary<string, IBaseFont> _fontsTagged;
-		private Dictionary<string, IBaseFont> FontsTagged {
+		private Dictionary<string,Dictionary<string,string>> _fontsTagged;
+		private Dictionary<string,Dictionary<string,string>> FontsTagged {
 			get {
-				if (_fonts == null) {
-					_fonts = new Dictionary<string, IBaseFont>();
+				if (_fontsTagged == null) {
+					_fontsTagged = new Dictionary<string,Dictionary<string,string>>();
 				}
-				return _fonts;
+				return _fontsTagged;
 			}
 		}
 
@@ -90,27 +90,59 @@ namespace Redhotminute.Mvx.Plugin.Style
 			return font;
 		}
 
-		public IBaseFont GetFontByTag(string tag) {
-			IBaseFont font;
-			FontsTagged.TryGetValue(tag, out font);
+		public IBaseFont GetFontByTag(string originalFontName,string tag) {
+			Dictionary<string, string> fontTag;
+			string fontName = string.Empty;
+			if (FontsTagged.TryGetValue(originalFontName, out fontTag)) {
+				fontTag.TryGetValue(tag,out fontName);
+			}
+
+			if (string.IsNullOrEmpty(fontName)) {
+				return null;
+			}
+			var font= GetFontByName(fontName);
 			return font;
 		}
 
-		public IAssetPlugin AddFont(IBaseFont font,string tag="") {
+		public IAssetPlugin AddFont(IBaseFont font,List<FontTag> fontTags) {
 			//convert the filename so the platform would understand this
 			ConvertFontFileNameForPlatform(ref font);
 			Fonts.Add(font.Name, font);
 
-			if (!string.IsNullOrWhiteSpace(tag)) {
-				FontsTagged.Add(tag, font);
-			}
+			//for each tag, add a font
+			if (fontTags != null && fontTags.Count > 0) {
+				if (FontsTagged != null) {
+					if (!FontsTagged.ContainsKey(font.Name)) {
+						FontsTagged[font.Name] = new Dictionary<string, string>();
+					}
 
+					foreach (FontTag tag in fontTags) {
+						FontsTagged[font.Name].Add(tag.Tag, tag.OriginalFontName);
+					}
+				}
+
+			}
 			return this;
 		}
 
-		public IAssetPlugin ClearFonts() {
-			_fonts = new Dictionary<string, IBaseFont>();
-			_fontsTagged = new Dictionary<string, IBaseFont>();
+		public IAssetPlugin AddFont(IBaseFont font,FontTag fontTag) {
+			List<FontTag> tags = new List<FontTag>();
+			tags.Add(fontTag);
+			return AddFont(font, tags);
+		}
+
+		public IAssetPlugin AddFont(IBaseFont font) {
+			return AddFont(font, new List<FontTag>());
+		}
+
+		public virtual IAssetPlugin ClearFonts() {
+			_fonts = null;
+			_fontsTagged = null;
+			return this;
+		}
+
+		public virtual IAssetPlugin ClearColors() {
+			_colors = null;
 			return this;
 		}
 

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using MvvmCross.Platform.UI;
 
 namespace Redhotminute.Mvx.Plugin.Style
@@ -16,8 +17,9 @@ namespace Redhotminute.Mvx.Plugin.Style
 		/// Get a font based on a specific tag. This can be used for external sources. for example 'h1' or 'b'
 		/// </summary>
 		/// <returns>The font by tag.</returns>
+		/// <param name="originalFont">The font the tag is linked to</param>
 		/// <param name="tag">Tag.</param>
-		IBaseFont GetFontByTag(string tag);
+		IBaseFont GetFontByTag(string originalFontName,string tag);
 
 		/// <summary>
 		/// Gets a color.
@@ -39,10 +41,16 @@ namespace Redhotminute.Mvx.Plugin.Style
 		/// </summary>
 		/// <returns>The font.</returns>
 		/// <param name="font">Font.</param>
-		/// <param name="tag">Tag.</param>
-		IAssetPlugin AddFont(IBaseFont font,string tag = "");
+		/// <param name="fontTags">Font tags.</param>
+		IAssetPlugin AddFont(IBaseFont font,List<FontTag> fontTags);
+
+		IAssetPlugin AddFont(IBaseFont font,FontTag fontTag);
+
+		IAssetPlugin AddFont(IBaseFont font);
 
 		IAssetPlugin ClearFonts();
+
+		IAssetPlugin ClearColors();
 
 		/// <summary>
 		/// Loads the json font file exported from Sketch

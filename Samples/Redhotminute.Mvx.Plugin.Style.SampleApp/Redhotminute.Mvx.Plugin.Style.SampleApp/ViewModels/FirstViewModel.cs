@@ -15,8 +15,24 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.ViewModels
 		[MvxInject]
 		public IStoryService StoryService { get; set; }
 
+		private const string FontH1 = "H1";
+		private const string FontRegular = "Regular";
+		private const string FontItalic = "Italic";
+		private const string FontBold = "Bold";
+		private const string ColorPrimary = "Primary";
+		private const string ColorSecondairy = "Secondairy";
+		private const string ColorBackground = "Background";
+		List<FontTag> _tags;
+
 		public void Init() {
 			Stories = StoryService.GetStories();
+
+			_tags = new List<FontTag>();
+			_tags.Add(new FontTag(FontItalic, "i"));
+			_tags.Add(new FontTag(FontBold, "b"));
+
+            LoadStyle2();
+
 			SelectStoryCommand = new MvxCommand<Story>((story) => {
 				UpdateStory(story);
 			});
@@ -26,16 +42,40 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.ViewModels
 				Style2Selected = !Style1Selected;
 
 				AssetProvider.ClearFonts();
-				AssetProvider.AddFont(new Font() { Name = "H1", FontFilename = "JosefinSlab-Thin.ttf", FontPlatformName = "JosefinSlab-Thin", Size = 40, Color = AssetProvider.GetColor("Secondairy") })
-			      .AddFont(new Font() { Name = "Italic", FontFilename = "Nunito-Italic.ttf", FontPlatformName = "Nunito-Italic", Size = 13, Color = AssetProvider.GetColor("Primary"), Alignment = TextAlignment.Right }, "i")
-				  .AddFont(new Font() { Name = "Bold", FontFilename = "Nunito-Light.ttf", FontPlatformName = "Nunito-Light", Size = 13, Color = AssetProvider.GetColor("Primary") }, "b")
-				  .AddFont(new Font() { Name = "Regular", FontFilename = "Nunito-Regular.ttf", FontPlatformName = "Nunito-Regular", Size = 13, Color = AssetProvider.GetColor("Secondairy"), LineHeight = 20 });
-
+				AssetProvider.ClearColors();
+				if (Style1Selected) {
+					LoadStyle1();
+				}
+				else {
+					LoadStyle2();
+				}
 
 				UpdateStyle = true;
 			});
+
 			SelectStoryCommand.Execute(Stories.FirstOrDefault());
 			RaisePropertyChanged(() => Stories);
+		}
+
+		private void LoadStyle1() {
+			AssetProvider.AddColor(new MvxColor(42, 74, 99), ColorBackground)
+			             .AddColor(new MvxColor(255, 255, 245), ColorPrimary)
+			             .AddColor(new MvxColor(42, 183, 202), ColorSecondairy);
+			AssetProvider.AddFont(new Font() { Name = FontH1, FontFilename = "JosefinSlab-Thin.ttf", FontPlatformName = "JosefinSlab-Thin", Size = 40, Color = AssetProvider.GetColor(ColorSecondairy) })
+			             .AddFont(new Font() { Name = FontItalic, FontFilename = "Nunito-Italic.ttf", FontPlatformName = "Nunito-Italic", Size = 13, Color = AssetProvider.GetColor(ColorPrimary), Alignment = TextAlignment.Right })
+			             .AddFont(new Font() { Name = FontBold, FontFilename = "Nunito-Light.ttf", FontPlatformName = "Nunito-Light", Size = 13, Color = AssetProvider.GetColor(ColorPrimary) })
+			             .AddFont(new Font() { Name = FontRegular, FontFilename = "Nunito-Regular.ttf", FontPlatformName = "Nunito-Regular", Size = 13, Color = AssetProvider.GetColor(ColorSecondairy),SelectedColor= AssetProvider.GetColor(ColorBackground), LineHeight = 20 },_tags);
+		}
+
+		private void LoadStyle2() {
+			AssetProvider.AddColor(new MvxColor(0, 200, 190), ColorBackground)
+			             .AddColor(new MvxColor(101, 18, 111), ColorPrimary)
+			             .AddColor(new MvxColor(230, 229, 6), ColorSecondairy);
+			AssetProvider.AddFont(new Font() { Name = FontH1, FontFilename = "JosefinSlab-Bold.ttf", FontPlatformName = "JosefinSlab-Bold", Size = 40, LineHeight = 50, Color = AssetProvider.GetColor(ColorSecondairy) })
+			             .AddFont(new Font() { Name = FontItalic, FontFilename = "Nunito-Italic.ttf", FontPlatformName = "Nunito-Italic", Size = 15, Color = AssetProvider.GetColor(ColorSecondairy), Alignment = TextAlignment.Center })
+			             .AddFont(new BaseFont() { Name = FontBold, FontFilename = "Nunito-Bold.ttf", FontPlatformName = "Nunito-Bold", Size = 15, Color = AssetProvider.GetColor(ColorSecondairy) })
+			             .AddFont(new Font() { Name = FontRegular,FontFilename = "Nunito-Regular.ttf", FontPlatformName = "Nunito-Regular", Size = 13, LineHeight = 28, Color = AssetProvider.GetColor(ColorPrimary),SelectedColor= AssetProvider.GetColor(ColorBackground)},_tags);
+				
 		}
 
 		private void UpdateStory(Story story) {

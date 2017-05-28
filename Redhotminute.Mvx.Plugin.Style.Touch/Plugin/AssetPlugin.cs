@@ -59,7 +59,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch
 				foreach (FontIndexPair block in indexPairs) {
 					//get the font for each tag and decorate the text
 					if (!string.IsNullOrEmpty(block.FontTag)) {
-						var tagFont = assetPlugin.GetFontByTag(block.FontTag);
+						var tagFont = assetPlugin.GetFontByTag(font.Name,block.FontTag);
 						tagFont = tagFont == null ? font : tagFont;
 						UIStringAttributes attr = CreateAttributesByFont(tagFont);
 						attributedText.SetAttributes(attr, new NSRange(block.StartIndex, block.EndIndex - block.StartIndex));
@@ -104,6 +104,11 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch
 			}
 
 			return stringAttributes;
+		}
+
+		public override IAssetPlugin ClearFonts() {
+			_fontsCache = new Dictionary<string, UIFont>();
+			return base.ClearFonts();
 		}
 	}
 }
