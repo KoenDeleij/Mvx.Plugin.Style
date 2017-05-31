@@ -24,9 +24,11 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.iOS.Views {
 		protected override UITableViewCell GetOrCreateCellFor(UITableView tableView, NSIndexPath indexPath, object item) {
 			var cell = base.GetOrCreateCellFor(tableView, indexPath, item);
 			cell.UpdateConstraintsIfNeeded();
+			if (cell is IDynamicCell) {
+				(cell as IDynamicCell).ResetBindings();
+			}
 			return cell;
 		}
-
 
 		protected override void CollectionChangedOnCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs args) {
 			base.CollectionChangedOnCollectionChanged(sender, args);

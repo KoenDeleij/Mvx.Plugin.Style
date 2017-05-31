@@ -41,16 +41,14 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch
 		}
 
 		public NSAttributedString ParseToAttributedText(string text, IBaseFont font) {
-			Font extendedFont = font as Font;
-
-			if (extendedFont != null) {
+			if (font != null) {
 				this.ConvertFontFileNameForPlatform(ref font);
 				UIStringAttributes stringAttributes = CreateAttributesByFont(font);
 
 				var assetPlugin = MvvmCross.Platform.Mvx.Resolve<IAssetPlugin>();
 
 				string cleanText = string.Empty;
-				var indexPairs = AttributedFontHelper.GetFontTextBlocks(text, extendedFont.Name, assetPlugin, out cleanText);
+				var indexPairs = AttributedFontHelper.GetFontTextBlocks(text, font.Name, assetPlugin, out cleanText);
 
 				var attributedText = new NSMutableAttributedString(cleanText);
 				attributedText.AddAttributes(stringAttributes, new NSRange(0, cleanText.Length));

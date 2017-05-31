@@ -6,7 +6,7 @@ using MvvmCross.Binding.iOS.Views;
 using UIKit;
 
 namespace Redhotminute.Mvx.Plugin.Style.SampleApp.iOS {
-	public partial class StoryCell : MvxTableViewCell {
+	public partial class StoryCell : MvxTableViewCell ,IDynamicCell{
 		public static readonly NSString Key = new NSString("StoryCell");
 		public static readonly UINib Nib;
 
@@ -14,6 +14,10 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.iOS {
 			Nib = UINib.FromName("StoryCell", NSBundle.MainBundle);
 		}
 
+		public void ResetBindings() {
+			this.BindingContext.ClearAllBindings();
+			this.InitializeBindings();
+		}
 
 		private void InitializeBindings() {
 			this.DelayBind(() => {
@@ -36,7 +40,6 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.iOS {
 		}
 
 		protected StoryCell(IntPtr handle) : base(handle) {
-            InitializeBindings();
             this.BackgroundColor = UIColor.Clear;
 		}
 	}

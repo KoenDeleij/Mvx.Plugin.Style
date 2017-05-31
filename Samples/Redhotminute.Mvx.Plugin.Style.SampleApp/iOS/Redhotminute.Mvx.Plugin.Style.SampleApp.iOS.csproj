@@ -182,6 +182,7 @@
       <DependentUpon>StoryCell.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Source\SimpleTableViewSource.cs" />
+    <Compile Include="Views\Source\IDynamicCell.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Josefin_Slab\JosefinSlab-Bold.ttf">

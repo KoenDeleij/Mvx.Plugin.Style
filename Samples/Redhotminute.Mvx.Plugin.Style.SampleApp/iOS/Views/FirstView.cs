@@ -76,7 +76,7 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.iOS.Views
 		private void SetupTableSource() {
 			_storiesSource = new SimpleTableViewSource(StoriesTable, typeof(StoryCell),StoryCell.Key,StoriesHeightConstraint);
 			StoriesTable.Source = _storiesSource;
-			StoriesTable.RowHeight = 70;
+			StoriesTable.RowHeight = 50;
 			StoriesTable.TranslatesAutoresizingMaskIntoConstraints = false; 
 		}
     }

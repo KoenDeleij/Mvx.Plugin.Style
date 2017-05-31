@@ -29,7 +29,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch
 					label.AttributedText = text;
 				}
 				catch (Exception e) {
-					MvvmCross.Platform.Mvx.Trace(MvvmCross.Platform.Platform.MvxTraceLevel.Error, "Failed to set font+language to UILabel. Check if font exists, has a size and filename, and is added to the plist");
+					MvvmCross.Platform.Mvx.Trace(MvvmCross.Platform.Platform.MvxTraceLevel.Error, "Failed to set font+language to UILabel. Text needs to be an AttributedString.");
 				}
 			}
 		}
