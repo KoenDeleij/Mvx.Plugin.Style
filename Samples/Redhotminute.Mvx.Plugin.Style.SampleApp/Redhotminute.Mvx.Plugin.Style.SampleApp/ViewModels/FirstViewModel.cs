@@ -31,8 +31,6 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.ViewModels
 			_tags.Add(new FontTag(FontItalic, "i"));
 			_tags.Add(new FontTag(FontBold, "b"));
 
-            LoadStyle2();
-
 			SelectStoryCommand = new MvxCommand<Story>((story) => {
 				UpdateStory(story);
 			});
@@ -51,8 +49,10 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.ViewModels
 				}
 
 				UpdateStyle = true;
+				SelectStoryCommand.Execute(this._selectedStory);
 			});
 
+			ChangeStyleCommand.Execute(0);
 			SelectStoryCommand.Execute(Stories.FirstOrDefault());
 			RaisePropertyChanged(() => Stories);
 		}
@@ -79,12 +79,19 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.ViewModels
 		}
 
 		private void UpdateStory(Story story) {
-			_selectedStory = story;
-            RaisePropertyChanged(() => SelectedStoryTitle);
-			RaisePropertyChanged(() => SelectedStoryParagraph);
+			SelectedStory = story;
 		}
 
 		private Story _selectedStory;
+		public Story SelectedStory {
+			get {
+				return _selectedStory;
+			}set {
+                SetProperty(ref _selectedStory, value);
+				RaisePropertyChanged(() => SelectedStoryTitle);
+                RaisePropertyChanged(() => SelectedStoryParagraph);
+			}
+		}
 		public List<Story> Stories {
 			get;
 			internal set;

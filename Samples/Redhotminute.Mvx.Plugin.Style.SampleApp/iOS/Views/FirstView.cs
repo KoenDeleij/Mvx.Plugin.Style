@@ -1,4 +1,5 @@
 using System.Linq;
+using Foundation;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Binding.iOS.Views;
 using MvvmCross.iOS.Views;
@@ -52,6 +53,7 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.iOS.Views
 			set.Bind(this).For(v =>v.UpdateStyles).To(vm => vm.UpdateStyle);
 
 			//Story
+			set.Bind(this).For(v => v.SelectedStory).To(vm => vm.SelectedStory);
 			set.Bind(HeaderLabel).For(v => v.AttributedText).To(vm => vm.SelectedStoryTitle).WithConversion("AttributedFontText", "H1");
 			set.Bind(ContentLabel).For(v => v.AttributedText).To(vm => vm.SelectedStoryParagraph).WithConversion("AttributedFontText", "Regular");
 			set.Bind(View).For(v => v.BackgroundColor).To(vm => vm.AssetProvider).WithConversion("AssetColor", "Background");
@@ -62,11 +64,26 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.iOS.Views
 			set.Apply();
 		}
 
+		public Story SelectedStory {
+			get {
+				return null;
+			}set {
+
+				var stories = _storiesSource.ItemsSource.Cast<Story>().ToList();
+				var index = stories.IndexOf(value);
+				var path = NSIndexPath.FromRowSection((System.nint)index,0);
+				//var path = StoriesTable.IndexPathForSelectedRow;
+				StoriesTable.SelectRow(path, true, UITableViewScrollPosition.Top);
+			}
+		}
+
 		public bool UpdateStyles {
 			get {
 				return false;
 			}set {
 				if (value) {
+					ContentLabel.Text = string.Empty;
+					HeaderLabel.Text = string.Empty;
 					this.ClearAllBindings();
 					InitializeBinding();
 				}
