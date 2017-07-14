@@ -60,8 +60,16 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch
 					//get the font for each tag and decorate the text
 					if (!string.IsNullOrEmpty(block.FontTag)) {
 						var tagFont = assetPlugin.GetFontByTag(block.FontTag);
-						UIStringAttributes attr = CreateAttributesByFont(tagFont);
-						attributedText.SetAttributes(attr, new NSRange(block.StartIndex, block.EndIndex - block.StartIndex));
+
+                        if (tagFont == null)
+                        {
+                            MvvmCross.Platform.Mvx.Trace(MvvmCross.Platform.Platform.MvxTraceLevel.Error, $"Failed to get font by tag {block.FontTag}");
+                        }
+                        else
+                        {
+                            UIStringAttributes attr = CreateAttributesByFont(tagFont);
+                            attributedText.SetAttributes(attr, new NSRange(block.StartIndex, block.EndIndex - block.StartIndex));
+                        }
 					}
 				}
 
