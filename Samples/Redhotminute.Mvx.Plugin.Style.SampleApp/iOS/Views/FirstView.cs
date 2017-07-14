@@ -69,11 +69,11 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.iOS.Views
 				return null;
 			}set {
 
-				var stories = _storiesSource.ItemsSource.Cast<Story>().ToList();
-				var index = stories.IndexOf(value);
-				var path = NSIndexPath.FromRowSection((System.nint)index,0);
+				//var stories = _storiesSource.ItemsSource.Cast<Story>().ToList();
+				//var index = stories.IndexOf(value);
+				//var path = NSIndexPath.FromRowSection((System.nint)index,0);
 				//var path = StoriesTable.IndexPathForSelectedRow;
-				StoriesTable.SelectRow(path, true, UITableViewScrollPosition.Top);
+				//StoriesTable.SelectRow(path, true, UITableViewScrollPosition.Top);
 			}
 		}
 
