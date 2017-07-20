@@ -23,7 +23,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch
 				try {
 					var text = value as NSAttributedString;
 					//override the textalignment in case the view is not natural so that we can use the designer to deside the alignment (what you want in most cases)
-					if (label.TextAlignment != UITextAlignment.Natural) {
+                    if (label.TextAlignment != UITextAlignment.Natural && text.Length>0) {
 						text.EnumerateAttributes(new NSRange(0, text.Length - 1), NSAttributedStringEnumeration.None, new NSAttributedRangeCallback(ResetAlignment));
 					}
 					label.AttributedText = text;
