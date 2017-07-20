@@ -29,12 +29,12 @@ namespace Redhotminute.Mvx.Plugin.Style
 		}
 
 
-		private static float FontSizeFactor {
+		public static float FontSizeFactor {
 			get;
 			set;
 		}
 
-		private static float? LineHeightFactor {
+		public static float? LineHeightFactor {
 			get;
 			set;
 		}
