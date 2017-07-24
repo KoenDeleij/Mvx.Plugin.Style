@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Foundation;
 using MvvmCross.Binding.BindingContext;
@@ -59,23 +60,44 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.iOS.Views
 			set.Bind(View).For(v => v.BackgroundColor).To(vm => vm.AssetProvider).WithConversion("AssetColor", "Background");
 
 			//Story selection
-			set.Bind(_storiesSource).To(vm => vm.Stories);
+            //set.Bind(_storiesSource).To(vm => vm.Stories);
+			set.Bind(this).For(v=>v.Stories).To(vm => vm.Stories);
 			set.Bind(_storiesSource).For(v=>v.SelectionChangedCommand).To(vm => vm.SelectStoryCommand);
 			set.Apply();
 		}
 
+        private List<Story> _stories;
+        public List<Story> Stories
+        {
+            get{
+                return _stories;
+            }
+            set{
+                _stories = value;
+                _storiesSource.ItemsSource = _stories;
+                StoriesTable.ReloadData();
+                SelectStory(_stories, _selectedStory);
+            }
+        }
+
+        private Story _selectedStory;
 		public Story SelectedStory {
 			get {
-				return null;
+				return _selectedStory;
 			}set {
-
-				//var stories = _storiesSource.ItemsSource.Cast<Story>().ToList();
-				//var index = stories.IndexOf(value);
-				//var path = NSIndexPath.FromRowSection((System.nint)index,0);
-				//var path = StoriesTable.IndexPathForSelectedRow;
-				//StoriesTable.SelectRow(path, true, UITableViewScrollPosition.Top);
+                _selectedStory = value;
+				SelectStory(_stories, _selectedStory);
 			}
 		}
+
+        private void SelectStory(List<Story> stories,Story story){
+			if (stories != null)
+			{
+				var index = stories.IndexOf(story);
+				var path = NSIndexPath.FromRowSection((System.nint)index, 0);
+				StoriesTable.SelectRow(path, true, UITableViewScrollPosition.Top);
+			}
+        }
 
 		public bool UpdateStyles {
 			get {

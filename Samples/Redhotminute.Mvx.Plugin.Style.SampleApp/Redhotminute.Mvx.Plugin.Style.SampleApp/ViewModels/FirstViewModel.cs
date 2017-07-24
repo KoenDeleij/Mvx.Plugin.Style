@@ -135,7 +135,8 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.ViewModels
 				_updateStyle = false;
 				return returnVal;
 			}internal set {
-				SetProperty(ref _updateStyle, value);
+                _updateStyle = value;
+                RaisePropertyChanged(()=>UpdateStyle);
 			}
 		}
 
