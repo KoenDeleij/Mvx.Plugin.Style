@@ -20,7 +20,6 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp
 			var plugin = MvvmCross.Platform.Mvx.Resolve<IAssetPlugin>();
 
 			//plugin.LoadJsonFontFile("textstyles.json");
-
 		}
     }
 }

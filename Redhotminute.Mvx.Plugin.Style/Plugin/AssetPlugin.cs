@@ -157,6 +157,7 @@ namespace Redhotminute.Mvx.Plugin.Style
 			return color;
 		}
 
+        /*
 		public void LoadJsonFontFile(string jsonFile,bool clearCurrentFonts = true) {
 			if (clearCurrentFonts) {
 				this.Fonts.Clear();
@@ -197,7 +198,7 @@ namespace Redhotminute.Mvx.Plugin.Style
 
 				//TODO how to add tag
 			}
-		}
+		}*/
 
 		#endregion
 	}

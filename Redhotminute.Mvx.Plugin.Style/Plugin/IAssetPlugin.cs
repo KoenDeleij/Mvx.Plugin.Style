@@ -56,7 +56,7 @@ namespace Redhotminute.Mvx.Plugin.Style
 		/// Loads the json font file exported from Sketch
 		/// </summary>
 		/// <param name="jsonFile">Json file.</param>
-		void LoadJsonFontFile(string jsonFile,bool clearCurrentFonts = true);
+		//void LoadJsonFontFile(string jsonFile,bool clearCurrentFonts = true);
 
 		void ConvertFontFileNameForPlatform(ref IBaseFont font);
 	}
