@@ -2,7 +2,7 @@
  <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>Redhotminute.Mvx.Plugin.Style</id>
-        <version>1.0.5</version>
+        <version>1.0.6</version>
         <title>Redhotminute Mvvmcross style plugin</title>
         <authors>Koen Deleij</authors>
         <owners>Redhotminute BV</owners>
@@ -11,22 +11,24 @@
         <tags>mvvm mvvmcross xamarin monodroid monotouch style fonts</tags>
         <dependencies>
             <group targetFramework="portable-net45+win+wp80+wpa81+MonoAndroid+Xamarin.iOS10">
-                <dependency id="MvvmCross.Platform" version="4.3.0" />
-                <dependency id="MvvmCross.Core" version="4.3.0" />
-                <dependency id="MvvmCross.Binding" version="4.3.0" />
-                <dependency id="MvvmCross.Plugin.Color" version="4.3.0" />
+                <dependency id="MvvmCross.Platform" version="4.4.0" />
+                <dependency id="MvvmCross.Core" version="4.4.0" />
+                <dependency id="MvvmCross.Binding" version="4.4.0" />
+                <dependency id="MvvmCross.Plugin.Color" version="4.4.0" />
+                <dependency id="MvvmCross.Plugin.Json" version="4.4.0" />
+                <dependency id="Newtonsoft.Json" version="9.0.1" />
             </group>
             <group targetFramework="MonoAndroid">
-                <dependency id="MvvmCross.Platform" version="4.3.0" />
-                <dependency id="MvvmCross.Core" version="4.3.0" />
-                <dependency id="MvvmCross.Binding" version="4.3.0" />
-                <dependency id="MvvmCross.Plugin.Color" version="4.3.0" />
+                <dependency id="MvvmCross.Platform" version="4.4.0" />
+                <dependency id="MvvmCross.Core" version="4.4.0" />
+                <dependency id="MvvmCross.Binding" version="4.4.0" />
+                <dependency id="MvvmCross.Plugin.Color" version="4.4.0" />
             </group>
             <group targetFramework="Xamarin.iOS10">
-                <dependency id="MvvmCross.Platform" version="4.3.0" />
-                <dependency id="MvvmCross.Core" version="4.3.0" />
-                <dependency id="MvvmCross.Binding" version="4.3.0" />
-                <dependency id="MvvmCross.Plugin.Color" version="4.3.0" />
+                <dependency id="MvvmCross.Platform" version="4.4.0" />
+                <dependency id="MvvmCross.Core" version="4.4.0" />
+                <dependency id="MvvmCross.Binding" version="4.4.0" />
+                <dependency id="MvvmCross.Plugin.Color" version="4.4.0" />
             </group>
         </dependencies>
     </metadata>
