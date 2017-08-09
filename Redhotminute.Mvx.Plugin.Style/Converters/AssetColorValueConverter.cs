@@ -12,28 +12,30 @@ namespace Redhotminute.Mvx.Plugin.Style
 		private IMvxNativeColor _nativeColor;
 		private IMvxNativeColor NativeColor => _nativeColor ?? (_nativeColor = MvvmCross.Platform.Mvx.Resolve<IMvxNativeColor>());
 
+        private IAssetPlugin _plugin;
 		public override object Convert (object value, Type targetType, object parameter, CultureInfo culture)
 		{
 			return ConvertValue(value, parameter,culture);
 		}
 
 		private object ConvertValue(object value,object parameter,CultureInfo culture) {
-			IAssetPlugin plugin = value as AssetPlugin;
-
-			if (plugin == null) {
+            if (value is IAssetPlugin){
+                _plugin = value as AssetPlugin;
+            }else if(_plugin == null){
 				//try to resolve it. Not ideal but sometimes necessary within simpel cells
-				plugin = MvvmCross.Platform.Mvx.Resolve<IAssetPlugin>();
+				_plugin = MvvmCross.Platform.Mvx.Resolve<IAssetPlugin>();
 
 				MvxBindingTrace.Trace("AssetProvider not available for Color conversion. Resolved it");
 			}
 
-			if (plugin!= null && parameter!= null){
+			if (_plugin != null ){
 				try{
-					string colorName = parameter.ToString();
-					var color = plugin.GetColor(colorName);
-					if (color != null) {
-						return NativeColor.ToNative(color);
-					}
+                    if (parameter != null)
+                    {
+                        return GetColorByName(parameter.ToString());
+                    }else if (value != null && value is string){
+						return GetColorByName(value.ToString());
+                    }
 				}catch{
 					MvxBindingTrace.Trace(MvvmCross.Platform.Platform.MvxTraceLevel.Warning, $"Failed to convert color");
 				}
@@ -41,6 +43,15 @@ namespace Redhotminute.Mvx.Plugin.Style
 
 			return null;
 		}
+
+        private object GetColorByName(string colorName){
+			var color = _plugin.GetColor(colorName);
+			if (color != null)
+			{
+				return NativeColor.ToNative(color);
+			}
+            return null;
+        } 
 	}
 
 }

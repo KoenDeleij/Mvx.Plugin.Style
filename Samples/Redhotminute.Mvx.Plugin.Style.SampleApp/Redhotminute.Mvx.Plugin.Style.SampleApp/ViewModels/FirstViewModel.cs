@@ -22,6 +22,7 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.ViewModels
 		private const string ColorPrimary = "Primary";
 		private const string ColorSecondairy = "Secondairy";
 		private const string ColorBackground = "Background";
+        private const string ColorMarked = "Marked";
 		List<FontTag> _tags;
 
 		public void Init() {
@@ -60,8 +61,10 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.ViewModels
 		private void LoadStyle1() {
 			AssetProvider.AddColor(new MvxColor(42, 74, 99), ColorBackground)
 			             .AddColor(new MvxColor(255, 255, 245), ColorPrimary)
-			             .AddColor(new MvxColor(42, 183, 202), ColorSecondairy);
-			AssetProvider.AddFont(new Font() { Name = FontH1, FontFilename = "JosefinSlab-Thin.ttf", FontPlatformName = "JosefinSlab-Thin", Size = 40, Color = AssetProvider.GetColor(ColorSecondairy) })
+			             .AddColor(new MvxColor(42, 183, 202), ColorSecondairy)
+                         .AddColor(new MvxColor(255, 0, 0), ColorMarked);
+            
+            AssetProvider.AddFont(new Font() { Name = FontH1, FontFilename = "JosefinSlab-Thin.ttf", FontPlatformName = "JosefinSlab-Thin", Size = 40,LineHeight=0, Color = AssetProvider.GetColor(ColorSecondairy) })
 			             .AddFont(new Font() { Name = FontItalic, FontFilename = "Nunito-Italic.ttf", FontPlatformName = "Nunito-Italic", Size = 13, Color = AssetProvider.GetColor(ColorSecondairy), Alignment = TextAlignment.Right })
 			             .AddFont(new Font() { Name = FontBold, FontFilename = "Nunito-Light.ttf", FontPlatformName = "Nunito-Light", Size = 13, Color = AssetProvider.GetColor(ColorSecondairy) })
 			             .AddFont(new Font() { Name = FontRegular, FontFilename = "Nunito-Regular.ttf", FontPlatformName = "Nunito-Regular", Size = 13, Color = AssetProvider.GetColor(ColorPrimary),SelectedColor= AssetProvider.GetColor(ColorBackground), LineHeight = 20 },_tags);
@@ -70,13 +73,21 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.ViewModels
 		private void LoadStyle2() {
 			AssetProvider.AddColor(new MvxColor(0, 200, 190), ColorBackground)
 			             .AddColor(new MvxColor(101, 18, 111), ColorPrimary)
-			             .AddColor(new MvxColor(230, 229, 6), ColorSecondairy);
+			             .AddColor(new MvxColor(230, 229, 6), ColorSecondairy)
+                         .AddColor(new MvxColor(255, 0, 0), ColorMarked);
 			AssetProvider.AddFont(new Font() { Name = FontH1, FontFilename = "JosefinSlab-Bold.ttf", FontPlatformName = "JosefinSlab-Bold", Size = 40, LineHeight = 50, Color = AssetProvider.GetColor(ColorSecondairy) })
 			             .AddFont(new Font() { Name = FontItalic, FontFilename = "Nunito-Italic.ttf", FontPlatformName = "Nunito-Italic", Size = 15, Color = AssetProvider.GetColor(ColorSecondairy), Alignment = TextAlignment.Center })
 			             .AddFont(new BaseFont() { Name = FontBold, FontFilename = "Nunito-Bold.ttf", FontPlatformName = "Nunito-Bold", Size = 15, Color = AssetProvider.GetColor(ColorSecondairy) })
 			             .AddFont(new Font() { Name = FontRegular,FontFilename = "Nunito-Regular.ttf", FontPlatformName = "Nunito-Regular", Size = 13, LineHeight = 28, Color = AssetProvider.GetColor(ColorPrimary),SelectedColor= AssetProvider.GetColor(ColorBackground)},_tags);
 				
 		}
+
+        public string ColorNameBindingTest
+        {
+            get{
+                return ColorMarked;
+            }
+        }
 
 		private void UpdateStory(Story story) {
 			SelectedStory = story;

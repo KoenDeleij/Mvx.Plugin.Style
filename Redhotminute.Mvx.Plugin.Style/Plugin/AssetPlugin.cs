@@ -83,16 +83,50 @@ namespace Redhotminute.Mvx.Plugin.Style
 
 		#region IAssetPlugin implementation
 
+		private bool GetColorFromFontName(ref string fontColor,ref string fontName,string fontAndColor)
+		{
+			if (fontAndColor.Contains(":"))
+			{
+				var elements = fontAndColor.Split(':');
+				if (elements.Length > 1)
+				{
+					fontColor = elements[1];
+                    fontName = elements[0];
+                    return true;
+				}
+            }
+
+            return false;
+		}
+
 		public IBaseFont GetFontByName(string id)
 		{
+            string fontColor = string.Empty;
+            string fontName = string.Empty;
+            bool foundColor = GetColorFromFontName(ref fontColor,ref fontName,id);
+
+            //if a color is set, it's a unique font
 			IBaseFont font;
 			Fonts.TryGetValue (id, out font);
+
+            //if the font is not found, but has a modified color, store it
+            if (font == null && foundColor){
+                IBaseFont fontWithoutColor;
+                Fonts.TryGetValue(fontName, out fontWithoutColor);
+                if (fontWithoutColor != null)
+                {
+                    font = Font.NewFontWithModifiedColor((Font)fontWithoutColor, id, GetColor(fontColor));
+                    AddFont(font);
+                }
+            }
+
 			return font;
 		}
 
 		public IBaseFont GetFontByTag(string originalFontName,string tag) {
 			Dictionary<string, string> fontTag;
 			string fontName = string.Empty;
+
 			if (FontsTagged.TryGetValue(originalFontName, out fontTag)) {
 				fontTag.TryGetValue(tag,out fontName);
 			}

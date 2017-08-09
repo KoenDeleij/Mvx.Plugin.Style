@@ -31,12 +31,6 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.iOS.Views
             base.ViewDidLoad();
 			SetupTableSource();
 			InitializeBinding();
-
-			//TODO remove me, test
-            // this.View.AddGestureRecognizer(new UITapGestureRecognizer((obj) => {
-			//	this.ClearAllBindings();
-			//	InitializeBinding();
-			//}));
         }
 
 		private void InitializeBinding() {
@@ -55,7 +49,24 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.iOS.Views
 
 			//Story
 			set.Bind(this).For(v => v.SelectedStory).To(vm => vm.SelectedStory);
-			set.Bind(HeaderLabel).For(v => v.AttributedText).To(vm => vm.SelectedStoryTitle).WithConversion("AttributedFontText", "H1");
+			
+            //Regular attributed binding
+            set.Bind(HeaderLabel).For(v => v.AttributedText).To(vm => vm.SelectedStoryTitle).WithConversion("AttributedFontText", "H1");
+			
+            //Binding with color override
+            set.Bind(HeaderLabel2).For(v => v.Text).To(vm => vm.SelectedStoryTitle);
+            this.BindFont(HeaderLabel2,"Regular","Marked");
+
+            //Binding with bindable color
+			set.Bind(HeaderLabel3).For(v => v.Text).To(vm => vm.SelectedStoryTitle);
+			this.BindFont(HeaderLabel3, "Regular");
+            set.Bind(HeaderLabel3).For(v=>v.TextColor).To(vm=>vm.ColorNameBindingTest).WithConversion("AssetColor");
+
+            //Binding with color override (different syntax)
+			set.Bind(HeaderLabel4).For(v => v.Text).To(vm => vm.SelectedStoryTitle);
+			this.BindFont(HeaderLabel4, "Regular:Marked");
+
+
 			set.Bind(ContentLabel).For(v => v.AttributedText).To(vm => vm.SelectedStoryParagraph).WithConversion("AttributedFontText", "Regular");
 			set.Bind(View).For(v => v.BackgroundColor).To(vm => vm.AssetProvider).WithConversion("AssetColor", "Background");
 

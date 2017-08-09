@@ -92,7 +92,6 @@ For buttons and more advanced styling you can use the Font class
 
 **Font**
 
-* **BoldFont**, *IBaseFont* (Font used when parts of the bound text are marked to be bold (with *)
 * **SelectedColor**, *MvxColor* (Font color shown when a button is set to selected. Selected property for iOS, state_selected for Android)
 * **DisabledColor**, *MvxColor* (Font color shown when a button is disabled. Enabled false for iOS, state_enabled false for Android)
 * **LineHeight**, *int* (Only available for labels and textviews. For iOS you'll need to use the AttributedText converter)
@@ -104,6 +103,29 @@ For buttons and more advanced styling you can use the Font class
 You can add fonts like this:
 
 	plugin.AddFont(new Font() { Name = "H1", 	FontFilename = "Awesome-font.ttf", FontPlatformName = "Awesome", Size = 16,Color = plugin.GetColor("BlueDark")});
+
+### Setup Tags	
+You can also add tags to the font. When you have a paragraph like so :
+
+    This is a piece of text
+    
+And want to hightlight 'piece' with a different font, you can configure fonts like so.
+##### Define the tags you want the font to listen to :
+
+	List<FontTag> tags = new List<FontTag>();
+	tags(new FontTag(FontItalic, "b"));
+
+
+##### Add the fonts :
+Add the font, and add the tags to the font you want to use as highlight.
+
+	plugin.AddFont(new Font() { Name = "H1", 	FontFilename = "font.ttf", FontPlatformName = "fontname", Size = 16,Color = plugin.GetColor("DefaultColor")});
+	plugin.AddFont(new Font() { Name = "H1_Highlight", 	FontFilename = "font.ttf", FontPlatformName = "fontname", Size = 16,Color = plugin.GetColor("DefaultColor")},tags);	
+
+Your paragraph should look like this :
+
+	This is a <b>piece</b> of text
+	
 	
 ## iOS
 
@@ -147,6 +169,17 @@ For UITableViewCells you can only use :
 
 	bindingSet.Bind(Label).For(v => v.AttributedText).To(vm => vm.Label).WithConversion("AttributedFontText", "H1");
 
+### Override colors
+
+In some cases you would want to override the color of a default font. The color is the only property that can be overriden. In case you want to override the color you can add a color name to the binding
+
+	this.BindFont(Label, "H1","BlueDark");
+	this.BindLanguageFont(Label, "LanguageKey", "H1","BlueDark");
+
+It's also possible to bind the textcolor name. You'll have to add an extra binding for the textcolor only :
+
+	set.Bind(Label).For(v=>v.TextColor).To(vm=>vm.ColorName).WithConversion("AssetColor");
+
 ## Android
 
 ### Setup
@@ -176,14 +209,28 @@ To bind a font within a cell you can use :
 
 Note the *Empty* object to bind to. For now you'll just need a string or object thats empty to bind to in your model. To force this, you can use the IStylable interface.
 
-### Bold font
+### Override colors
 
-If you want to use the bold font for android, you'll have to use a converter :
+In some cases you would want to override the color of a default font. The color is the only property that can be overriden. In case you want to override the color you can add a ':ColorName' to the font name:
+
+#### Lists
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		local:MvxBind="Font Empty,Converter=FontResource,ConverterParameter=H1:BlueDark" />
+
+#### Views
+This also works for the MvxFont tag:
 
 	<TextView
-		android:layout_width="match_parent"
+		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		local:MvxBind="AttributedText ViewModelAttributedText,Converter=AttributedBold,ConverterParameter='H1'"
-		local:MvxFont="Font H1" />
+		local:MvxFont="Font H1:BlueDark" />
 
-Note that in this case H1 must have a BoldFont property added.
+#### Bindable		
+In case you want to bind the color you can use the color name as bindable property (note: not ideal, might replace this with an object to set properties).
+
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		local:MvxBind="Font ColorName,Converter=FontResource,ConverterParameter=H1" />

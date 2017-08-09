@@ -4,7 +4,7 @@ using MvvmCross.Binding;
 using MvvmCross.Platform;
 using MvvmCross.Binding.Bindings;
 using MvvmCross.Binding.Bindings.SourceSteps;
-
+using MvvmCross.Platform.UI;
 
 namespace Redhotminute.Mvx.Plugin.Style
 {
@@ -30,6 +30,14 @@ namespace Redhotminute.Mvx.Plugin.Style
 				Mode = MvxBindingMode.OneTime
 			};
 			owner.AddBinding(target, bindingDescription);
+		}
+
+		public static void BindFont(this IMvxBindingContextOwner owner
+			, object target
+			, string fontName
+            , string color)
+		{
+            BindFont(owner,target, $"{fontName}:{color}");
 		}
 	}
 }

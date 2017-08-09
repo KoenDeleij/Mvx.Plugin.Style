@@ -1,6 +1,6 @@
 // WARNING
 //
-// This file has been generated automatically by Xamarin Studio to store outlets and
+// This file has been generated automatically by Visual Studio to store outlets and
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
@@ -19,6 +19,15 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.iOS.Views
 		UIKit.UILabel HeaderLabel { get; set; }
 
 		[Outlet]
+		UIKit.UILabel HeaderLabel2 { get; set; }
+
+		[Outlet]
+		UIKit.UILabel HeaderLabel3 { get; set; }
+
+		[Outlet]
+		UIKit.UILabel HeaderLabel4 { get; set; }
+
+		[Outlet]
 		UIKit.UIScrollView ScrollView { get; set; }
 
 		[Outlet]
@@ -35,14 +44,19 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.iOS.Views
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (Style1Button != null) {
-				Style1Button.Dispose ();
-				Style1Button = null;
+			if (HeaderLabel4 != null) {
+				HeaderLabel4.Dispose ();
+				HeaderLabel4 = null;
 			}
 
-			if (Style2Button != null) {
-				Style2Button.Dispose ();
-				Style2Button = null;
+			if (HeaderLabel3 != null) {
+				HeaderLabel3.Dispose ();
+				HeaderLabel3 = null;
+			}
+
+			if (HeaderLabel2 != null) {
+				HeaderLabel2.Dispose ();
+				HeaderLabel2 = null;
 			}
 
 			if (ContentLabel != null) {
@@ -68,6 +82,16 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.iOS.Views
 			if (StoriesTable != null) {
 				StoriesTable.Dispose ();
 				StoriesTable = null;
+			}
+
+			if (Style1Button != null) {
+				Style1Button.Dispose ();
+				Style1Button = null;
+			}
+
+			if (Style2Button != null) {
+				Style2Button.Dispose ();
+				Style2Button = null;
 			}
 		}
 	}

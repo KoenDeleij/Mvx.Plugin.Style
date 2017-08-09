@@ -25,9 +25,15 @@ namespace Redhotminute.Mvx.Plugin.Style
 				plugin = (Redhotminute.Mvx.Plugin.Style.AssetPlugin)MvvmCross.Platform.Mvx.Resolve<IAssetPlugin>();
 			}
 
-			if (value!= null && parameter!= null){
+			if (parameter!= null){
 				try{
 					string fontName = parameter.ToString();
+
+                    //if a string is bound, could be a color name, add it
+                    if(value is string && !string.IsNullOrEmpty((string)value)){
+                        fontName = $"{fontName}:{value}";
+                    }
+
 					var font = plugin.GetFontByName(fontName);
 					return font;
 				}catch(Exception e){

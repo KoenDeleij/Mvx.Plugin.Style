@@ -43,6 +43,16 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch {
 			bindingDescription.Mode = MvxBindingMode.OneTime;
 			owner.AddBinding(target, bindingDescription);
 		}
+
+		public static void BindLanguageFont(this IMvxBindingContextOwner owner
+								, object target
+								, string languageId
+								, string fontId
+                                ,string color
+								, string targetPropertyName = null)
+		{
+			
+		}
 	}
 }
 

@@ -39,8 +39,8 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid {
 						label.SetTextColor(font.Color.ToAndroidColor());
 					}
 
-					if (font.LineHeight != 0) {
-						var newLineHeight = DroidAssetPlugin.GetPlatformLineHeight(font.Size, font.LineHeight);
+                    if (font.LineHeight.HasValue) {
+                        var newLineHeight = DroidAssetPlugin.GetPlatformLineHeight(font.Size, font.LineHeight.Value);
 						label.SetLineSpacing(newLineHeight,1.15f);
 					}
 
