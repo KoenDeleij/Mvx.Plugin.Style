@@ -18,7 +18,7 @@ namespace Redhotminute.Mvx.Plugin.Style
 			return ConvertValue(value, parameter);
 		}
 
-		private object ConvertValue(object value,object parameter) {
+		protected object ConvertValue(object value,object parameter) {
 			AssetPlugin plugin = value as AssetPlugin;
 
 			if (plugin == null) {

@@ -65,15 +65,27 @@ To be able to bind directly in your views, you'll have to add the AssetProvider 
 
 ## iOS
 
+#### Fixed color
 	bindingSet.Bind(View).For(v => v.BackgroundColor).To(vm => 	vm.AssetProvider).WithConversion("AssetColor", "BlueDark");
+
+#### Bindable color
+
+	bindingSet.Bind(View).For(v => v.BackgroundColor).To(vm => 	vm.ColorName).WithConversion("AssetColor");
 
 ## Android
 
+#### Fixed color
 	<LinearLayout
     	android:layout_width="match_parent"
     	android:layout_height="match_parent"
 	    local:MvxBind="BackgroundColor AssetProvider,Converter=AssetColor,ConverterParameter=BlueDark" />
 
+#### Bindable color
+	<LinearLayout
+    	android:layout_width="match_parent"
+    	android:layout_height="match_parent"
+	    local:MvxBind="BackgroundColor ColorName,Converter=AssetColor" />
+	    
 # Fonts
 
 ## Features
@@ -173,9 +185,14 @@ For UITableViewCells you can only use :
 
 In some cases you would want to override the color of a default font. The color is the only property that can be overriden. In case you want to override the color you can add a color name to the binding
 
+#### View
 	this.BindFont(Label, "H1","BlueDark");
 	this.BindLanguageFont(Label, "LanguageKey", "H1","BlueDark");
 
+#### Cells
+	set.Bind(Label).For(v => v.AttributedText).To(vm => vm.Text).WithConversion("AttributedFontText", "H1:BlueDark");
+
+#### Bindable
 It's also possible to bind the textcolor name. You'll have to add an extra binding for the textcolor only :
 
 	set.Bind(Label).For(v=>v.TextColor).To(vm=>vm.ColorName).WithConversion("AssetColor");
@@ -205,27 +222,34 @@ To bind a font within a cell you can use :
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center_vertical"
+		local:MvxBind="Font ,Converter=FontResource,ConverterParameter=H1" />
+		
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_vertical"
 		local:MvxBind="Font Empty,Converter=FontResource,ConverterParameter=H1" />
-
-Note the *Empty* object to bind to. For now you'll just need a string or object thats empty to bind to in your model. To force this, you can use the IStylable interface.
+		
+Note that there is no actual property the font binds to. You can bind nothing, or use the *Empty* property you'll get implementing the IStylable interface.
+If you bind a color name it will override the font's color (see override colors)
 
 ### Override colors
 
 In some cases you would want to override the color of a default font. The color is the only property that can be overriden. In case you want to override the color you can add a ':ColorName' to the font name:
 
-#### Lists
-	<TextView
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		local:MvxBind="Font Empty,Converter=FontResource,ConverterParameter=H1:BlueDark" />
-
 #### Views
-This also works for the MvxFont tag:
+This works for the MvxFont tag:
 
 	<TextView
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		local:MvxFont="Font H1:BlueDark" />
+
+#### Cells
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		local:MvxBind="Font ,Converter=FontResource,ConverterParameter=H1:BlueDark" />
 
 #### Bindable		
 In case you want to bind the color you can use the color name as bindable property (note: not ideal, might replace this with an object to set properties).
