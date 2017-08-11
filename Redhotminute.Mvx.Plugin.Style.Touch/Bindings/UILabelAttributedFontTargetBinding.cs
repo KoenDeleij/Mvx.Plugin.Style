@@ -22,6 +22,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch
 			if (value != null) {
 				try {
 					var text = value as NSAttributedString;
+
 					//override the textalignment in case the view is not natural so that we can use the designer to deside the alignment (what you want in most cases)
                     if (label.TextAlignment != UITextAlignment.Natural && text.Length>0) {
 						text.EnumerateAttributes(new NSRange(0, text.Length - 1), NSAttributedStringEnumeration.None, new NSAttributedRangeCallback(ResetAlignment));
@@ -29,7 +30,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch
 					label.AttributedText = text;
 				}
 				catch (Exception e) {
-					MvvmCross.Platform.Mvx.Trace(MvvmCross.Platform.Platform.MvxTraceLevel.Error, "Failed to set font+language to UILabel. Text needs to be an AttributedString.");
+					MvvmCross.Platform.Mvx.Trace(MvvmCross.Platform.Platform.MvxTraceLevel.Error, "Failed to set font+language to UILabel. Binded value is null or not an AttributedString.");
 				}
 			}
 		}
