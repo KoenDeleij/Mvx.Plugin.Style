@@ -43,12 +43,6 @@ namespace Redhotminute.Mvx.Plugin.Style
 			return fontSize * FontSizeFactor;
 		}
 
-		public static float GetPlatformLineHeight(float fontSize,float lineHeight) {
-			float factor = LineHeightFactor.HasValue?LineHeightFactor.Value: FontSizeFactor;
-			return (lineHeight-fontSize) * factor;
-		}
-
-
 		private Dictionary<string,IBaseFont> _fonts;
 		private Dictionary<string,IBaseFont> Fonts {
 			get{

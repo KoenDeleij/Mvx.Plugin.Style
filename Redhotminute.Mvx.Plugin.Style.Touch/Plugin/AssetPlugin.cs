@@ -108,6 +108,12 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch
 			_fontsCache = new Dictionary<string, UIFont>();
 			return base.ClearFonts();
 		}
+
+		public static float GetPlatformLineHeight(float fontSize, float lineHeight)
+		{
+			float factor = LineHeightFactor.HasValue ? LineHeightFactor.Value : FontSizeFactor;
+			return (lineHeight - fontSize) * factor;
+		}
 	}
 }
 

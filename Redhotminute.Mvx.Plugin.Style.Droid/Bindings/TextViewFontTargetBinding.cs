@@ -1,6 +1,8 @@
 using System;
+using Android.Content.Res;
 using Android.Graphics;
 using Android.Text;
+using Android.Util;
 using Android.Widget;
 using MvvmCross.Binding;
 using MvvmCross.Binding.Bindings.Target;
@@ -41,7 +43,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid {
 
                     if (font.LineHeight.HasValue) {
                         var newLineHeight = DroidAssetPlugin.GetPlatformLineHeight(font.Size, font.LineHeight.Value);
-						label.SetLineSpacing(newLineHeight,1.15f);
+                        label.SetLineSpacing(newLineHeight, 1.0f);
 					}
 
 					if (font.Alignment != TextAlignment.None) {

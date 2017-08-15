@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using Android.Content;
+using Android.Content.Res;
 using Android.Graphics;
+using Android.Util;
 
 namespace Redhotminute.Mvx.Plugin.Style.Droid {
 	public class DroidAssetPlugin : AssetPlugin {
@@ -29,5 +31,13 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid {
 			_fontsCache = new Dictionary<string, Typeface>();
 			return base.ClearFonts();
 		}
+
+		public static float GetPlatformLineHeight(float fontSize, float lineHeight)
+		{
+            //0.65 is some factor necessary to make the lineheight match iOS
+            float factor = LineHeightFactor.HasValue ? (LineHeightFactor.Value * 0.6f) : FontSizeFactor;
+            return TypedValue.ApplyDimension(ComplexUnitType.Dip, (lineHeight-(fontSize)) * factor, Resources.System.DisplayMetrics);
+		}
+
 	}
 }
