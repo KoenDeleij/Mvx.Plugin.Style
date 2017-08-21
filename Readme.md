@@ -1,6 +1,9 @@
 # Redhotminute MvvmCross Style Plugin
 
 
+![Alt text](https://github.com/Redhotminute/Redhotminute.Mvx.Plugin.Style/blob/master/Samples/Screenshots/Style1.png?raw=true "Screenshot1" )
+![Alt text](https://github.com/Redhotminute/Redhotminute.Mvx.Plugin.Style/blob/master/Samples/Screenshots/Style2.png?raw=true "Screenshot2" )
+
 # Initialization
 
 ## iOS
