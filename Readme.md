@@ -262,6 +262,7 @@ In case you want to bind the color you can use the color name as bindable proper
 
 		
 ## Next
+ - Unittests
  - Extend the Android sample (same features as iOS)
  - Add language support to the example
  - Support for Sketch font exports.
