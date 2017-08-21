@@ -40,10 +40,17 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.iOS.Views
 			this.BindFont(Style1Button, "Regular");
 			set.Bind(Style1Button).For(v => v.Selected).To(vm => vm.Style1Selected);
 			set.Bind(Style1Button).To(vm => vm.ChangeStyleCommand).CommandParameter(0);
-			
+            //set.Bind(Style1Button).For(v => v.TintColor).To(vm => vm.AssetProvider).WithConversion("AssetColor", "Primary");
+            set.Bind(Style1Button).For(v=>v.Text).To(vm => vm.Style1Text);
+            set.Bind(Style1Button).For(v => v.SelectedBackground).To(vm => vm.AssetProvider).WithConversion("AssetColor", "Secondairy");
+
+
 			this.BindFont(Style2Button, "Regular");
 			set.Bind(Style2Button).For(v => v.Selected).To(vm => vm.Style2Selected);
 			set.Bind(Style2Button).To(vm => vm.ChangeStyleCommand).CommandParameter(1);
+			//set.Bind(Style2Button).For(v => v.TintColor).To(vm => vm.AssetProvider).WithConversion("AssetColor", "Primary");
+            set.Bind(Style2Button).For(v => v.Text).To(vm => vm.Style2Text);
+			set.Bind(Style2Button).For(v => v.SelectedBackground).To(vm => vm.AssetProvider).WithConversion("AssetColor", "Secondairy");
 
 			set.Bind(this).For(v =>v.UpdateStyles).To(vm => vm.UpdateStyle);
 

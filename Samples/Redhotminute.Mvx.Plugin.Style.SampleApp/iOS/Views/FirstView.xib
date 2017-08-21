@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -60,15 +59,15 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Jv-D7-Jdn">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="14v-dj-ctT">
-                                            <rect key="frame" x="44" y="10" width="80" height="30"/>
+                                        <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="14v-dj-ctT" customClass="ColoredButton">
+                                            <rect key="frame" x="44" y="8" width="80" height="34"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="80" id="rWy-NN-ZP1"/>
                                             </constraints>
                                             <state key="normal" title="Button"/>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tuo-Cu-Bhe">
-                                            <rect key="frame" x="144" y="10" width="80" height="30"/>
+                                        <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tuo-Cu-Bhe" customClass="ColoredButton">
+                                            <rect key="frame" x="144" y="8" width="80" height="34"/>
                                             <state key="normal" title="Button"/>
                                         </button>
                                     </subviews>

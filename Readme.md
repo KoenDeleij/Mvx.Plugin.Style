@@ -1,8 +1,5 @@
 # Redhotminute MvvmCross Style Plugin
 
-TODO
-als je attributedtext gebruikt en je wilt de alignment gebruiken van text, zet label alignment op natural
-
 
 # Initialization
 
@@ -107,7 +104,7 @@ For buttons and more advanced styling you can use the Font class
 * **SelectedColor**, *MvxColor* (Font color shown when a button is set to selected. Selected property for iOS, state_selected for Android)
 * **DisabledColor**, *MvxColor* (Font color shown when a button is disabled. Enabled false for iOS, state_enabled false for Android)
 * **LineHeight**, *int* (Only available for labels and textviews. For iOS you'll need to use the AttributedText converter)
-* **Alignment**, *TextAlignment* (Left/Center/Right/Justified). Note, justified is not supported for Android, and will default to 'Left'
+* **Alignment**, *TextAlignment* (Left/Center/Right/Justified). Note, justified is not supported for Android, and will default to 'Left'. If you leave the UILabel alignment to neutral for iOS, it will override with the font allignment. If you specify an alignment the text alignment from the font will be ignored.
 
 ## Cross
 
@@ -258,3 +255,11 @@ In case you want to bind the color you can use the color name as bindable proper
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		local:MvxBind="Font ColorName,Converter=FontResource,ConverterParameter=H1" />
+		
+
+		
+## Next
+ - Extend the Android sample (same features as iOS)
+ - Add language support to the example
+ - Support for Sketch font exports.
+ - Support for online exports of fonts (designers can upload definitions, and the app will change runtime). 		

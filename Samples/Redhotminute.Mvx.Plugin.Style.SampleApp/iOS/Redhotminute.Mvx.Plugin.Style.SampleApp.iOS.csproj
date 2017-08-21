@@ -152,6 +152,7 @@
     <Folder Include="Resources\Fonts\" />
     <Folder Include="Views\Cells\" />
     <Folder Include="Views\Source\" />
+    <Folder Include="Controls\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -183,6 +184,7 @@
     </Compile>
     <Compile Include="Views\Source\SimpleTableViewSource.cs" />
     <Compile Include="Views\Source\IDynamicCell.cs" />
+    <Compile Include="Controls\ColoredButton.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts\Josefin_Slab\JosefinSlab-Bold.ttf">

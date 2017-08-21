@@ -37,10 +37,10 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.iOS.Views
 		UIKit.UITableView StoriesTable { get; set; }
 
 		[Outlet]
-		UIKit.UIButton Style1Button { get; set; }
+        ColoredButton Style1Button { get; set; }
 
 		[Outlet]
-		UIKit.UIButton Style2Button { get; set; }
+		ColoredButton Style2Button { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
