@@ -44,14 +44,14 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch {
 			owner.AddBinding(target, bindingDescription);
 		}
 
-		public static void BindLanguageFont(this IMvxBindingContextOwner owner
+		public static void BindLanguageFontColor(this IMvxBindingContextOwner owner
 								, object target
 								, string languageId
 								, string fontId
-                                ,string color
+                                , string color
 								, string targetPropertyName = null)
 		{
-			
+            BindLanguageFont(owner, target, languageId, $"{fontId}:{color}",targetPropertyName);
 		}
 	}
 }
