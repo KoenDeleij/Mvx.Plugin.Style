@@ -187,8 +187,9 @@ In some cases you would want to override the color of a default font. The color 
 
 #### View
 	this.BindFont(Label, "H1","BlueDark");
-	this.BindLanguageFont(Label, "LanguageKey", "H1","BlueDark");
-
+	this.BindLanguageFontColor(Label, "LanguageKey", "H1","BlueDark");
+	this.BindLanguageFont(Label, "LanguageKey", "H1:BlueDark");
+	
 #### Cells
 	set.Bind(Label).For(v => v.AttributedText).To(vm => vm.Text).WithConversion("AttributedFontText", "H1:BlueDark");
 
