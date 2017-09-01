@@ -1,10 +1,8 @@
-![Alt text](http://appcell-build01.kantoor.tld:8111/app/rest/builds/buildType:RedhotminutePlugins_RedhotminuteMvxStylePluginGit_0Development/statusIcon?raw=true "Status")
-
 # Redhotminute MvvmCross Style Plugin
 
 
-![Alt text](https://github.com/Redhotminute/Redhotminute.Mvx.Plugin.Style/blob/master/Samples/Screenshots/Style1.png?raw=true "Screenshot1" )
-![Alt text](https://github.com/Redhotminute/Redhotminute.Mvx.Plugin.Style/blob/master/Samples/Screenshots/Style2.png?raw=true "Screenshot2" )
+![Alt Screenshot1](https://github.com/Redhotminute/Redhotminute.Mvx.Plugin.Style/blob/master/Samples/Screenshots/Style1.png?raw=true "Screenshot1" )
+![Alt Screenshot2](https://github.com/Redhotminute/Redhotminute.Mvx.Plugin.Style/blob/master/Samples/Screenshots/Style2.png?raw=true "Screenshot2" )
 
 # Initialization
 
