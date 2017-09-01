@@ -1,4 +1,4 @@
-<img src="http://appcell-build01.kantoor.tld:8111/app/rest/builds/buildType:RedhotminutePlugins_RedhotminuteMvxStylePluginGit_0Development/statusIcon"/>
+![Alt text](http://appcell-build01.kantoor.tld:8111/app/rest/builds/buildType:RedhotminutePlugins_RedhotminuteMvxStylePluginGit_0Development/statusIcon?raw=true "Status")
 
 # Redhotminute MvvmCross Style Plugin
 
