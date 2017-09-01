@@ -1,3 +1,5 @@
+<img src="http://appcell-build01.kantoor.tld:8111/app/rest/builds/buildType:RedhotminutePlugins_RedhotminuteMvxStylePluginGit_0Development/statusIcon"/>
+
 # Redhotminute MvvmCross Style Plugin
 
 
@@ -260,6 +262,11 @@ In case you want to bind the color you can use the color name as bindable proper
 		android:layout_height="wrap_content"
 		local:MvxBind="Font ColorName,Converter=FontResource,ConverterParameter=H1" />
 		
+
+
+## NUGET
+
+<a href="https://www.nuget.org/packages/Redhotminute.Mvx.Plugin.Style/">https://www.nuget.org/packages/Redhotminute.Mvx.Plugin.Style/</a>
 
 		
 ## Next
