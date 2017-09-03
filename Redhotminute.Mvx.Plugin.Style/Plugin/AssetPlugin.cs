@@ -8,7 +8,7 @@ using MvvmCross.Binding;
 
 namespace Redhotminute.Mvx.Plugin.Style
 {
-	public abstract class AssetPlugin : IAssetPlugin
+	public class AssetPlugin : IAssetPlugin
 	{
 		RedhotminuteStyleConfiguration _configuration;
 
@@ -73,7 +73,9 @@ namespace Redhotminute.Mvx.Plugin.Style
 			}
 		}
 
-		public abstract void ConvertFontFileNameForPlatform (ref IBaseFont font);
+        public virtual void ConvertFontFileNameForPlatform (ref IBaseFont font){
+            //do nothing
+        }
 
 		#region IAssetPlugin implementation
 
