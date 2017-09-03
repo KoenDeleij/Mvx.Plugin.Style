@@ -31,7 +31,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'UnitTest|AnyCPU' ">
     <Optimize>false</Optimize>
-    <OutputPath>bin\UnitTest</OutputPath>
+    <OutputPath>..\bin\UnitTest</OutputPath>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
