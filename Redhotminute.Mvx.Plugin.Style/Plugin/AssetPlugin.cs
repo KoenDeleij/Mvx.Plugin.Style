@@ -135,6 +135,17 @@ namespace Redhotminute.Mvx.Plugin.Style
 		}
 
 		public IAssetPlugin AddFont(IBaseFont font,List<FontTag> fontTags) {
+            if (string.IsNullOrEmpty(font.Name))
+            {
+                throw new Exception("Added font should have a reference name");
+            }
+
+			if (string.IsNullOrEmpty(font.FontFilename))
+			{
+				throw new Exception("Added font should have a filename");
+			}
+
+
 			//convert the filename so the platform would understand this
 			ConvertFontFileNameForPlatform(ref font);
 			Fonts.Add(font.Name, font);
