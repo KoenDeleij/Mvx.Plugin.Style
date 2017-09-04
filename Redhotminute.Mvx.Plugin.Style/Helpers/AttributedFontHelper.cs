@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Redhotminute.Mvx.Plugin.Style.Plugin;
 
-namespace Redhotminute.Mvx.Plugin.Style {
+namespace Redhotminute.Mvx.Plugin.Style.Helpers {
 	public class AttributedFontHelper {
 		public static List<FontIndexPair> GetFontTextBlocks(string text,string fontName,IAssetPlugin assetPlugin,out string cleanText) {
 			cleanText = string.Empty;

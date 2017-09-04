@@ -1,7 +1,7 @@
 using System;
 using MvvmCross.Platform.UI;
 
-namespace Redhotminute.Mvx.Plugin.Style {
+namespace Redhotminute.Mvx.Plugin.Style.Models {
 	public interface IBaseFont {
 		string FontFilename {
 			get;

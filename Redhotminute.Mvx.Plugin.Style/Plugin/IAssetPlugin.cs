@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using MvvmCross.Platform.UI;
+using Redhotminute.Mvx.Plugin.Style.Models;
 
-namespace Redhotminute.Mvx.Plugin.Style
+namespace Redhotminute.Mvx.Plugin.Style.Plugin
 {
 	public interface IAssetPlugin
 	{
@@ -17,7 +18,7 @@ namespace Redhotminute.Mvx.Plugin.Style
 		/// Get a font based on a specific tag. This can be used for external sources. for example 'h1' or 'b'
 		/// </summary>
 		/// <returns>The font by tag.</returns>
-		/// <param name="originalFont">The font the tag is linked to</param>
+		/// <param name="originalFontName">The font the tag is linked to</param>
 		/// <param name="tag">Tag.</param>
 		IBaseFont GetFontByTag(string originalFontName,string tag);
 

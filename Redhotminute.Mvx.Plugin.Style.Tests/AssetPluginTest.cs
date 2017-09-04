@@ -1,6 +1,8 @@
 ﻿using System;
 using MvvmCross.Test.Core;
 using NUnit.Framework;
+using Redhotminute.Mvx.Plugin.Style.Models;
+using Redhotminute.Mvx.Plugin.Style.Plugin;
 
 namespace Redhotminute.Mvx.Plugin.Style.Tests
 {

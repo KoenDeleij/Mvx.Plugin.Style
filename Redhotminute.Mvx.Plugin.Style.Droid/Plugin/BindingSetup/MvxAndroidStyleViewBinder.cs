@@ -12,14 +12,14 @@ using MvvmCross.Binding.Bindings;
 using MvvmCross.Binding.Droid.Binders;
 using MvvmCross.Platform.Exceptions;
 using MvvmCross.Platform.Platform;
+using Redhotminute.Mvx.Plugin.Style.Binding;
 
-namespace Redhotminute.Mvx.Plugin.Style.Droid {
+namespace Redhotminute.Mvx.Plugin.Style.Droid.BindingSetup {
 	public class MvxAndroidStyleViewBinder :MvxAndroidViewBinder{
 
 		private readonly object _source;
 		public MvxAndroidStyleViewBinder(object source):base(source) {
 			_source = source;
-
 		}
 
 		private int BindingFontId;

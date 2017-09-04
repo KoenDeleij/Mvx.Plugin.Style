@@ -1,12 +1,9 @@
 using System;
-using MvvmCross.Platform;
-using MvvmCross.Platform.Platform;
 using System.Collections.Generic;
-using MvvmCross.Plugins.Color;
 using MvvmCross.Platform.UI;
-using MvvmCross.Binding;
+using Redhotminute.Mvx.Plugin.Style.Models;
 
-namespace Redhotminute.Mvx.Plugin.Style
+namespace Redhotminute.Mvx.Plugin.Style.Plugin
 {
 	public class AssetPlugin : IAssetPlugin
 	{

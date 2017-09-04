@@ -4,8 +4,10 @@ using System.Globalization;
 using MvvmCross.Binding;
 using MvvmCross.Platform.Platform;
 using MvvmCross.Platform.Exceptions;
+using Redhotminute.Mvx.Plugin.Style.Plugin;
+using Redhotminute.Mvx.Plugin.Style.Touch.Plugin;
 
-namespace Redhotminute.Mvx.Plugin.Style.Touch
+namespace Redhotminute.Mvx.Plugin.Style.Touch.Converters
 {
 	public class AttributedFontTextValueConverter : MvxValueConverter {
 		/// <summary>

@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Redhotminute.Mvx.Plugin.Style {
+namespace Redhotminute.Mvx.Plugin.Style.Models {
 	public class FontTag {
 		public FontTag(string originalFontName, string tag) {
 			OriginalFontName = originalFontName;

@@ -2,10 +2,10 @@ using System;
 using MvvmCross.Platform.Converters;
 using System.Globalization;
 using MvvmCross.Platform.UI;
-using MvvmCross.Platform;
 using MvvmCross.Binding;
+using Redhotminute.Mvx.Plugin.Style.Plugin;
 
-namespace Redhotminute.Mvx.Plugin.Style
+namespace Redhotminute.Mvx.Plugin.Style.Converters
 {
 	public class AssetColorValueConverter : MvxValueConverter {
 

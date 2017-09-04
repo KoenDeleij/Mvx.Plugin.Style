@@ -1,15 +1,11 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using MvvmCross.Binding;
 using MvvmCross.Binding.Binders;
 using MvvmCross.Binding.Bindings;
 using MvvmCross.Binding.Parse.Binding;
+using Redhotminute.Mvx.Plugin.Style.Binding;
 
 namespace Redhotminute.Mvx.Plugin.Style {
 	public class MvxBindingDescriptionExtendedParser :MvxBindingDescriptionParser, IMvxBindingDescriptionParser{
-		public MvxBindingDescriptionExtendedParser() {
-		}
 
 		private IMvxFontBindingParser _fontBindingParser;
 

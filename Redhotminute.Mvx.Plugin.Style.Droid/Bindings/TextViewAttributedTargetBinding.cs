@@ -2,8 +2,9 @@ using System;
 using Android.Text;
 using Android.Widget;
 using MvvmCross.Binding;
+using Redhotminute.Mvx.Plugin.Style.Droid.Helpers;
 
-namespace Redhotminute.Mvx.Plugin.Style.Droid {
+namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings {
 	public class TextViewAttributedTargetBinding
 		: TextViewFontTargetBinding {
 

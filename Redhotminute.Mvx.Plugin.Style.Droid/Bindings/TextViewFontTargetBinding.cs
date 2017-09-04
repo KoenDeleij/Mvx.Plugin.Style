@@ -1,17 +1,16 @@
 using System;
-using Android.Content.Res;
 using Android.Graphics;
-using Android.Text;
-using Android.Util;
 using Android.Widget;
 using MvvmCross.Binding;
 using MvvmCross.Binding.Bindings.Target;
-using MvvmCross.Binding.ExtensionMethods;
-using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
 using MvvmCross.Plugins.Color.Droid;
+using Redhotminute.Mvx.Plugin.Style.Droid.Helpers;
+using Redhotminute.Mvx.Plugin.Style.Droid.Plugin;
+using Redhotminute.Mvx.Plugin.Style.Models;
+using Redhotminute.Mvx.Plugin.Style.Plugin;
 
-namespace Redhotminute.Mvx.Plugin.Style.Droid {
+namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings {
 	public class TextViewFontTargetBinding
 		: MvxConvertingTargetBinding {
 

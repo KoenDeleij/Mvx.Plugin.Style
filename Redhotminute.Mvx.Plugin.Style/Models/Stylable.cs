@@ -1,5 +1,5 @@
 using System;
-namespace Redhotminute.Mvx.Plugin.Style {
+namespace Redhotminute.Mvx.Plugin.Style.Models {
 	//Bit of a hack to make it possible to bind fonts in listitems
 	public class Stylable :IStylable {
 		public string Empty {

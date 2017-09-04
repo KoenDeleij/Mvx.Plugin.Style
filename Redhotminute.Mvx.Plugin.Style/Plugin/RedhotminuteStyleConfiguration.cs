@@ -1,4 +1,4 @@
-namespace Redhotminute.Mvx.Plugin.Style {
+namespace Redhotminute.Mvx.Plugin.Style.Plugin {
 	using System;
 	using MvvmCross.Platform.Plugins;
 

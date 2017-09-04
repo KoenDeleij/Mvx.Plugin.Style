@@ -7,7 +7,7 @@ using MvvmCross.Platform;
 using Foundation;
 using MvvmCross.Localization;
 
-namespace Redhotminute.Mvx.Plugin.Style.Touch
+namespace Redhotminute.Mvx.Plugin.Style.Touch.Bindings
 {
 	public class UILabelAttributedFontTargetBinding : BaseStyleBinding<UILabel>
 	{

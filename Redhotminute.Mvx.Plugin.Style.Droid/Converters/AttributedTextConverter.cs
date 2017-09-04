@@ -7,12 +7,16 @@ using Android.Graphics;
 using Android.Text;
 using Android.Text.Style;
 using MvvmCross.Binding;
-using MvvmCross.Platform;
 using MvvmCross.Platform.Converters;
 using MvvmCross.Platform.Droid.Platform;
 using MvvmCross.Plugins.Color.Droid;
+using Redhotminute.Mvx.Plugin.Style.Droid.Helpers;
+using Redhotminute.Mvx.Plugin.Style.Droid.Plugin;
+using Redhotminute.Mvx.Plugin.Style.Helpers;
+using Redhotminute.Mvx.Plugin.Style.Models;
+using Redhotminute.Mvx.Plugin.Style.Plugin;
 
-namespace Redhotminute.Mvx.Plugin.Style.Droid {
+namespace Redhotminute.Mvx.Plugin.Style.Droid.Converters {
 	public class AttributedTextConverter : MvxValueConverter<string, AttributedStringBaseFontWrapper>, IMvxValueConverter {
 
 		IAssetPlugin _assetPlugin;

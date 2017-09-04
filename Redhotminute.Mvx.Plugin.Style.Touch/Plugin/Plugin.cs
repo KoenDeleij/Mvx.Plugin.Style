@@ -1,8 +1,9 @@
 using System;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Plugins;
+using Redhotminute.Mvx.Plugin.Style.Plugin;
 
-namespace Redhotminute.Mvx.Plugin.Style.Touch
+namespace Redhotminute.Mvx.Plugin.Style.Touch.Plugin
 {
 	public class Plugin : IMvxConfigurablePlugin
 	{

@@ -1,11 +1,13 @@
-using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using Foundation;
 using MvvmCross.Plugins.Color.iOS;
+using Redhotminute.Mvx.Plugin.Style.Helpers;
+using Redhotminute.Mvx.Plugin.Style.Models;
+using Redhotminute.Mvx.Plugin.Style.Plugin;
+using Redhotminute.Mvx.Plugin.Style.Touch.Helpers;
 using UIKit;
 
-namespace Redhotminute.Mvx.Plugin.Style.Touch
+namespace Redhotminute.Mvx.Plugin.Style.Touch.Plugin
 {
 	public class TouchAssetPlugin : AssetPlugin {
 		#region implemented abstract members of AssetPlugin

@@ -10,8 +10,11 @@ using MvvmCross.Binding.ExtensionMethods;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
 using MvvmCross.Plugins.Color.Droid;
+using Redhotminute.Mvx.Plugin.Style.Droid.Plugin;
+using Redhotminute.Mvx.Plugin.Style.Models;
+using Redhotminute.Mvx.Plugin.Style.Plugin;
 
-namespace Redhotminute.Mvx.Plugin.Style.Droid {
+namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings {
 	public class ButtonFontTargetBinding
 		: MvxConvertingTargetBinding {
 

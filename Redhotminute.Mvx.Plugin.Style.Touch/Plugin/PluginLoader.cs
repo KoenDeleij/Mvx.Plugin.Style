@@ -5,8 +5,11 @@ using MvvmCross.Binding.Bindings.Target.Construction;
 using MvvmCross.Platform.Converters;
 using System.Reflection;
 using UIKit;
+using Redhotminute.Mvx.Plugin.Style.Converters;
+using Redhotminute.Mvx.Plugin.Style.Touch.Converters;
+using Redhotminute.Mvx.Plugin.Style.Touch.Bindings;
 
-namespace Redhotminute.Mvx.Plugin.Style.Touch
+namespace Redhotminute.Mvx.Plugin.Style.Touch.Plugin
 {
 	public class PluginLoader :IMvxPluginLoader
 	{
