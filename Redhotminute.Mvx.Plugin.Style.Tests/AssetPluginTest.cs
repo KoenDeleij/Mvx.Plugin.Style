@@ -57,6 +57,43 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
 		}
 
 		[Test]
+		public void GettingANonExistingFontReturnsNull()
+		{
+			AssetPlugin plugin = new AssetPlugin();
+			Assert.That(plugin.GetFontByName("H1"), Is.Null);
+		}
+
+		[Test]
+		public void GettingANonExistingColorReturnsNull()
+		{
+			AssetPlugin plugin = new AssetPlugin();
+            Assert.That(plugin.GetColor("H1"), Is.Null);
+		}
+
+		[Test]
+		public void GettingANonExistingFontColorReturnsNull()
+		{
+			AssetPlugin plugin = new AssetPlugin();
+            Assert.That(plugin.GetFontByName("Bananas:H1"), Is.Null);
+		}
+
+		[Test]
+		public void GettingANonExistingFontTagReturnsNull()
+		{
+			AssetPlugin plugin = new AssetPlugin();
+            Assert.That(plugin.GetFontByTag("Banana","a"), Is.Null);
+		}
+
+		[Test]
+		public void GettingANonExistingTagReturnsNull()
+		{
+			AssetPlugin plugin = new AssetPlugin();
+			plugin.AddFont(new BaseFont() { Name = "H1", FontFilename = "H1.otf" }, new FontTag("Bold", "b"));
+
+			Assert.That(plugin.GetFontByTag("H1", "c"), Is.Null);
+		}
+
+		[Test]
 		public void AfterAddingAFontWithTagFontShouldReturnAsTaggedWithTheRightTag()
 		{
 			AssetPlugin plugin = new AssetPlugin();
@@ -145,8 +182,6 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
 		}
 
         //TODO test caching of fonts
-        //TODO test non-existing fonts
-        //TODO test non-existing colors
         //TODO test non-existing font/color combinations
         //TODO test font: and no color behind it (faulty formats with : in the wrong place)
     }
