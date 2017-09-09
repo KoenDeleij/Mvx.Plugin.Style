@@ -111,14 +111,13 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
 		}
 
 		[Test]
-		public void AddingColorToTheFontLookupOverridesTheColor()
+		public void AddingColorToTheBaseFontLookupOverridesTheColor()
 		{
 			AssetPlugin plugin = new AssetPlugin();
 			plugin.AddColor(new MvvmCross.Platform.UI.MvxColor(255, 0, 0), "Red");
             plugin.AddColor(new MvvmCross.Platform.UI.MvxColor(0, 0, 255), "Blue");
             plugin.AddFont(new BaseFont() { Name = "Bold", FontFilename = "Bold.otf",Color=plugin.GetColor("Blue") });
            
-
             Assert.That(plugin.GetFontByName("Bold").Color.R, Is.EqualTo(0));
             Assert.That(plugin.GetFontByName("Bold").Color.G, Is.EqualTo(0));
             Assert.That(plugin.GetFontByName("Bold").Color.B, Is.EqualTo(255));
@@ -126,6 +125,23 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
 			Assert.That(plugin.GetFontByName("Bold:Red").Color.R, Is.EqualTo(255));
             Assert.That(plugin.GetFontByName("Bold:Red").Color.G, Is.EqualTo(0));
             Assert.That(plugin.GetFontByName("Bold:Red").Color.G, Is.EqualTo(0));
+		}
+
+		[Test]
+		public void AddingColorToTheFontLookupOverridesTheColor()
+		{
+			AssetPlugin plugin = new AssetPlugin();
+			plugin.AddColor(new MvvmCross.Platform.UI.MvxColor(255, 0, 0), "Red");
+			plugin.AddColor(new MvvmCross.Platform.UI.MvxColor(0, 0, 255), "Blue");
+			plugin.AddFont(new Font() { Name = "Bold", FontFilename = "Bold.otf", Color = plugin.GetColor("Blue") });
+
+			Assert.That(plugin.GetFontByName("Bold").Color.R, Is.EqualTo(0));
+			Assert.That(plugin.GetFontByName("Bold").Color.G, Is.EqualTo(0));
+			Assert.That(plugin.GetFontByName("Bold").Color.B, Is.EqualTo(255));
+
+			Assert.That(plugin.GetFontByName("Bold:Red").Color.R, Is.EqualTo(255));
+			Assert.That(plugin.GetFontByName("Bold:Red").Color.G, Is.EqualTo(0));
+			Assert.That(plugin.GetFontByName("Bold:Red").Color.G, Is.EqualTo(0));
 		}
 
         //TODO test caching of fonts
