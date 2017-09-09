@@ -108,7 +108,14 @@ namespace Redhotminute.Mvx.Plugin.Style.Plugin
                 Fonts.TryGetValue(fontName, out fontWithoutColor);
                 if (fontWithoutColor != null)
                 {
-                    font = Font.NewFontWithModifiedColor((Font)fontWithoutColor, id, GetColor(fontColor));
+                    if (fontWithoutColor is Font)
+                    {
+                        font = Font.NewFontWithModifiedColor((Font)fontWithoutColor, id, GetColor(fontColor));
+                    }
+                    else if (fontWithoutColor is BaseFont){
+                        font = BaseFont.NewFontWithModifiedColor((BaseFont)fontWithoutColor, id, GetColor(fontColor));
+					}
+
                     AddFont(font);
                 }
             }

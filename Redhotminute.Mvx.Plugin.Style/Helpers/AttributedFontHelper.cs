@@ -45,7 +45,12 @@ namespace Redhotminute.Mvx.Plugin.Style.Helpers {
 						endTag = $"</{tag}>";
 						endTagStartIndex = text.IndexOf(endTag, beginTagEndIndex);
 
-						endTagEndIndex = endTagStartIndex + endTag.Length;
+                        //end tag not found
+                        if (endTagStartIndex ==-1){
+                            throw new Exception($"No matching end tag found in {text}");
+                        }
+
+                        endTagEndIndex = endTagStartIndex + (endTag.Length-1);
 
 						fontTextBlocks.Add(new FontTextPair() { Text = text.Substring(findIndex, beginTagStartIndex - findIndex), FontTag = string.Empty });
 

@@ -68,5 +68,70 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
             Assert.That(plugin.GetFontByTag("H1","b"), Is.Not.Null);
             Assert.That(plugin.GetFontByTag("H1","b").Name, Is.EqualTo("Bold"));
 		}
+
+		[Test]
+		public void ClearingFontsClearsAllFontsAndTags()
+		{
+			AssetPlugin plugin = new AssetPlugin();
+			plugin.AddFont(new BaseFont() { Name = "Bold", FontFilename = "Bold.otf" });
+			plugin.AddFont(new BaseFont() { Name = "H1", FontFilename = "H1.otf" }, new FontTag("Bold", "b"));
+
+			Assert.That(plugin.GetFontByName("H1"), Is.Not.Null);
+			Assert.That(plugin.GetFontByName("Bold"), Is.Not.Null);
+
+            plugin.ClearFonts();
+
+			Assert.That(plugin.GetFontByName("H1"), Is.Null);
+			Assert.That(plugin.GetFontByName("Bold"), Is.Null);
+		}
+
+		[Test]
+		public void AddingColorAddsColor()
+		{
+			AssetPlugin plugin = new AssetPlugin();
+
+            Assert.That(plugin.GetColor("Main"), Is.Null);
+
+            plugin.AddColor(new MvvmCross.Platform.UI.MvxColor(10,0,10),"Main");
+
+            Assert.That(plugin.GetColor("Main"), Is.Not.Null);
+		}
+
+		[Test]
+		public void ClearingColorClearsAllColors()
+		{
+			AssetPlugin plugin = new AssetPlugin();
+			plugin.AddColor(new MvvmCross.Platform.UI.MvxColor(10, 0, 10), "Main");
+
+			Assert.That(plugin.GetColor("Main"), Is.Not.Null);
+
+            plugin.ClearColors();
+
+            Assert.That(plugin.GetColor("Main"), Is.Null);
+		}
+
+		[Test]
+		public void AddingColorToTheFontLookupOverridesTheColor()
+		{
+			AssetPlugin plugin = new AssetPlugin();
+			plugin.AddColor(new MvvmCross.Platform.UI.MvxColor(255, 0, 0), "Red");
+            plugin.AddColor(new MvvmCross.Platform.UI.MvxColor(0, 0, 255), "Blue");
+            plugin.AddFont(new BaseFont() { Name = "Bold", FontFilename = "Bold.otf",Color=plugin.GetColor("Blue") });
+           
+
+            Assert.That(plugin.GetFontByName("Bold").Color.R, Is.EqualTo(0));
+            Assert.That(plugin.GetFontByName("Bold").Color.G, Is.EqualTo(0));
+            Assert.That(plugin.GetFontByName("Bold").Color.B, Is.EqualTo(255));
+
+			Assert.That(plugin.GetFontByName("Bold:Red").Color.R, Is.EqualTo(255));
+            Assert.That(plugin.GetFontByName("Bold:Red").Color.G, Is.EqualTo(0));
+            Assert.That(plugin.GetFontByName("Bold:Red").Color.G, Is.EqualTo(0));
+		}
+
+        //TODO test caching of fonts
+        //TODO test non-existing fonts
+        //TODO test non-existing colors
+        //TODO test non-existing font/color combinations
+        //TODO test font: and no color behind it (faulty formats with : in the wrong place)
     }
 }

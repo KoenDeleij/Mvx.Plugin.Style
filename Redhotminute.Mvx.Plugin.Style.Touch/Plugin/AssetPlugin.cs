@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Foundation;
 using MvvmCross.Plugins.Color.iOS;
@@ -43,30 +44,40 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Plugin
 		}
 
 		public NSAttributedString ParseToAttributedText(string text, IBaseFont font) {
-			if (font != null) {
-				this.ConvertFontFileNameForPlatform(ref font);
-				UIStringAttributes stringAttributes = CreateAttributesByFont(font);
+			try
+			{
+	            if (font != null) {
+					this.ConvertFontFileNameForPlatform(ref font);
+					UIStringAttributes stringAttributes = CreateAttributesByFont(font);
 
-				var assetPlugin = MvvmCross.Platform.Mvx.Resolve<IAssetPlugin>();
+					var assetPlugin = MvvmCross.Platform.Mvx.Resolve<IAssetPlugin>();
 
-				string cleanText = string.Empty;
-				var indexPairs = AttributedFontHelper.GetFontTextBlocks(text, font.Name, assetPlugin, out cleanText);
+					string cleanText = string.Empty;
 
-				var attributedText = new NSMutableAttributedString(cleanText);
-				attributedText.AddAttributes(stringAttributes, new NSRange(0, cleanText.Length));
+	                    var indexPairs = AttributedFontHelper.GetFontTextBlocks(text, font.Name, assetPlugin, out cleanText);
+	                
+						var attributedText = new NSMutableAttributedString(cleanText);
+						attributedText.AddAttributes(stringAttributes, new NSRange(0, cleanText.Length));
 
-				//TODO add caching for same fonttags for the attributes
-				foreach (FontIndexPair block in indexPairs) {
-					//get the font for each tag and decorate the text
-					if (!string.IsNullOrEmpty(block.FontTag)) {
-						var tagFont = assetPlugin.GetFontByTag(font.Name,block.FontTag);
-						tagFont = tagFont == null ? font : tagFont;
-						UIStringAttributes attr = CreateAttributesByFont(tagFont);
-						attributedText.SetAttributes(attr, new NSRange(block.StartIndex, block.EndIndex - block.StartIndex));
-					}
+						//TODO add caching for same fonttags for the attributes
+						foreach (FontIndexPair block in indexPairs) {
+							//get the font for each tag and decorate the text
+							if (!string.IsNullOrEmpty(block.FontTag)) {
+								var tagFont = assetPlugin.GetFontByTag(font.Name,block.FontTag);
+								tagFont = tagFont == null ? font : tagFont;
+								UIStringAttributes attr = CreateAttributesByFont(tagFont);
+								attributedText.SetAttributes(attr, new NSRange(block.StartIndex, block.EndIndex - block.StartIndex));
+							}
+						}
+	                
+
+					return attributedText;
 				}
-
-				return attributedText;
+			}
+			catch (Exception e)
+			{
+                //just return the text as passed if something fails
+                return new NSMutableAttributedString(text);
 			}
 			return null;
 		}

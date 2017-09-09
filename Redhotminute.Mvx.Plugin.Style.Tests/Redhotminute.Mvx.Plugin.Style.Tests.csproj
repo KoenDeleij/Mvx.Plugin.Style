@@ -71,6 +71,7 @@
   <ItemGroup>
     <Compile Include="AssetPluginTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="AttributedFontHelperTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -33,19 +33,23 @@ namespace Redhotminute.Mvx.Plugin.Style.Models
         /// <param name="newId">New identifier.</param>
         /// <param name="newColor">New color.</param>
         public static Font NewFontWithModifiedColor(Font fontWithoutColor,string newId,MvxColor newColor){
+            
             Font font = new Font();
-            font.Name = newId;
-            font.Color = newColor;
-            font.Alignment = fontWithoutColor.Alignment;
-            font.DisabledColor = fontWithoutColor.DisabledColor;
-            font.FontFilename = fontWithoutColor.FontFilename;
-            font.FontPlatformName = fontWithoutColor.FontPlatformName;
-            font.FontPlatformSize = fontWithoutColor.FontPlatformSize;
-            font.LineHeight = fontWithoutColor.LineHeight;
-            font.SelectedColor = fontWithoutColor.SelectedColor;
+            Font fontwOutColor = fontWithoutColor as Font;
+			font.Name = newId;
+			font.Color = newColor;
+			font.FontFilename = fontWithoutColor.FontFilename;
+			font.FontPlatformName = fontWithoutColor.FontPlatformName;
+			font.FontPlatformSize = fontWithoutColor.FontPlatformSize;
+            font.Alignment = fontwOutColor.Alignment;
+            font.DisabledColor = fontwOutColor.DisabledColor;
+            font.LineHeight = fontwOutColor.LineHeight;
+            font.SelectedColor = fontwOutColor.SelectedColor;
             font.Size = fontWithoutColor.Size;
+
             return font;
         }
+
 	}
 }
 
