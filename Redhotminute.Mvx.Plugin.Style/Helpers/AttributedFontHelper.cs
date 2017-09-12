@@ -56,7 +56,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Helpers {
 
 						//from 2 to 3
 						fontTextBlocks.Add(new FontTextPair() { Text = text.Substring(beginTagEndIndex + 1, endTagStartIndex - beginTagEndIndex - 1), FontTag = tag });
-						findIndex = endTagEndIndex;
+						findIndex = endTagEndIndex+1;
 					}
 				}
 				else {

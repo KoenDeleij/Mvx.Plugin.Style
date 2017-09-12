@@ -77,6 +77,23 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
             Assert.Throws(typeof(Exception),()=>AttributedFontHelper.GetFontTextBlocks(text, "H1", plugin, out resultWithoutTags));
 		}
 
+		[Test]
+		public void DoubleTagsShouldBeFormatted()
+		{
+			AssetPlugin plugin = new AssetPlugin();
+			plugin.AddFont(new BaseFont() { Name = "Bold", FontFilename = "Bold.otf" });
+			plugin.AddFont(new BaseFont() { Name = "H1", FontFilename = "H1.otf" }, new FontTag("Bold", "strong"));
+
+			string expectedResultWithoutTags = "TestExclusieve scherpe prijsTest tot";
+			string resultWithoutTags;
+            string text = "Test<strong>Exclusieve scherpe prijs</strong>Test<strong> tot</strong>";
+
+			AttributedFontHelper.GetFontTextBlocks(text, "H1", plugin, out resultWithoutTags);
+		    Assert.That(resultWithoutTags, Is.EqualTo(expectedResultWithoutTags));
+        }
+
+        
+
         //TODO Test no font
         //TODO Test no text
         //TODO Test tags
