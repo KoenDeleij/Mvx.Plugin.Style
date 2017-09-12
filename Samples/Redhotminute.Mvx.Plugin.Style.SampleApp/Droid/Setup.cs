@@ -4,6 +4,8 @@ using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform.Platform;
 using Redhotminute.Mvx.Plugin.Style.Droid;
 using MvvmCross.Platform.IoC;
+using Redhotminute.Mvx.Plugin.Style.Droid.BindingSetup;
+using Redhotminute.Mvx.Plugin.Style.Plugin;
 
 namespace Redhotminute.Mvx.Plugin.Style.SampleApp.Droid
 {
@@ -24,7 +26,7 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.Droid
         }
 
 		protected override MvvmCross.Platform.Plugins.IMvxPluginConfiguration GetPluginConfiguration(System.Type plugin) {
-			if (plugin == typeof(Redhotminute.Mvx.Plugin.Style.Droid.Plugin)) {
+			if (plugin == typeof(Redhotminute.Mvx.Plugin.Style.Droid.Plugin.Plugin)) {
 				return new RedhotminuteStyleConfiguration() {
 					FontSizeFactor = 1.0f,
 					LineHeightFactor = 1.0f

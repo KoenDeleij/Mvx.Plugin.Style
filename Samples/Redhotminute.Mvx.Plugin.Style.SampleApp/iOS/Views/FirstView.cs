@@ -4,10 +4,9 @@ using Foundation;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Binding.iOS.Views;
 using MvvmCross.iOS.Views;
-using MvvmCross.Platform.Platform;
-using MvvmCross.Platform.UI;
 using Redhotminute.Mvx.Plugin.Style.SampleApp.ViewModels;
 using UIKit;
+using Redhotminute.Mvx.Plugin.Style.Binding;
 
 namespace Redhotminute.Mvx.Plugin.Style.SampleApp.iOS.Views
 {

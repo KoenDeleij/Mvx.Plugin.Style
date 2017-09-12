@@ -3,6 +3,8 @@ using System.Linq;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform.IoC;
 using MvvmCross.Platform.UI;
+using Redhotminute.Mvx.Plugin.Style.Models;
+using Redhotminute.Mvx.Plugin.Style.Plugin;
 
 namespace Redhotminute.Mvx.Plugin.Style.SampleApp.ViewModels
 {

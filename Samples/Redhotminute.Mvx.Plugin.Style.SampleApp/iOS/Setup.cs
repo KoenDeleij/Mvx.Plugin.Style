@@ -5,6 +5,7 @@ using MvvmCross.iOS.Views.Presenters;
 using MvvmCross.Platform.IoC;
 using MvvmCross.Platform.Platform;
 using MvvmCross.Platform.Plugins;
+using Redhotminute.Mvx.Plugin.Style.Plugin;
 using UIKit;
 
 namespace Redhotminute.Mvx.Plugin.Style.SampleApp.iOS
@@ -21,7 +22,7 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.iOS
         {
         }
 		protected override IMvxPluginConfiguration GetPluginConfiguration(Type plugin) {
-		    if (plugin == typeof(Redhotminute.Mvx.Plugin.Style.Touch.Plugin)) {
+		    if (plugin == typeof(Redhotminute.Mvx.Plugin.Style.Touch.Plugin.Plugin)) {
 		        return new RedhotminuteStyleConfiguration() {
 					//FontSizeFactor = sizeFactor
 				};
