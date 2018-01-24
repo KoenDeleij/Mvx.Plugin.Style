@@ -41,6 +41,15 @@ namespace Redhotminute.Mvx.Plugin.Style.Helpers {
 						//there's a tag, get the description
 						tag = text.Substring(beginTagStartIndex + 1, beginTagEndIndex - beginTagStartIndex - 1);
 
+                        var tagFont = assetPlugin.GetFontByTag(fontName, tag);
+
+                        if(tagFont==null){
+                            //if the tag is not found, replace any occurence in the text
+                            text = text.Replace($"<{tag}>", string.Empty);
+                            text = text.Replace($"</{tag}>", string.Empty);
+                            continue;
+                        }
+
 						//find the end Index
 						endTag = $"</{tag}>";
 						endTagStartIndex = text.IndexOf(endTag, beginTagEndIndex);
@@ -52,9 +61,12 @@ namespace Redhotminute.Mvx.Plugin.Style.Helpers {
 
                         endTagEndIndex = endTagStartIndex + (endTag.Length-1);
 
-						fontTextBlocks.Add(new FontTextPair() { Text = text.Substring(findIndex, beginTagStartIndex - findIndex), FontTag = string.Empty });
-
-						//from 2 to 3
+                        if (beginTagStartIndex != 0)
+                        {
+                            //in case the first block has no tag, add an empty block
+                            fontTextBlocks.Add(new FontTextPair() { Text = text.Substring(findIndex, beginTagStartIndex - findIndex), FontTag = string.Empty });
+                        }
+						
 						fontTextBlocks.Add(new FontTextPair() { Text = text.Substring(beginTagEndIndex + 1, endTagStartIndex - beginTagEndIndex - 1), FontTag = tag });
 						findIndex = endTagEndIndex+1;
 					}
