@@ -110,7 +110,8 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Plugin
 					}
 
                     stringAttributes.ParagraphStyle.LineSpacing = GetPlatformLineHeight(font.Size, extendedFont.LineHeight.Value) * 0.5f;
-					stringAttributes.ParagraphStyle.LineBreakMode = UILineBreakMode.TailTruncation;
+                    //TODO make the linebreakmode configurable
+                    stringAttributes.ParagraphStyle.LineBreakMode = UILineBreakMode.WordWrap;
 				}
 			}
 
