@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Redhotminute.Mvx.Plugin.Style.Models;
 using Redhotminute.Mvx.Plugin.Style.Plugin;
 
 namespace Redhotminute.Mvx.Plugin.Style.Helpers {
@@ -29,7 +30,9 @@ namespace Redhotminute.Mvx.Plugin.Style.Helpers {
 			bool foundTag = true;
             int previousBeginTag = -1;
 			while (foundTag) {
-                
+
+                FontTag fontTag = null;
+
                 beginTagStartIndex = text.IndexOf('<', findIndex);
 
 				string tag = string.Empty;
@@ -44,7 +47,8 @@ namespace Redhotminute.Mvx.Plugin.Style.Helpers {
 						//there's a tag, get the description
 						tag = text.Substring(beginTagStartIndex + 1, beginTagEndIndex - beginTagStartIndex - 1);
 
-                        var tagFont = assetPlugin.GetFontByTag(fontName, tag);
+
+                        var tagFont = assetPlugin.GetFontByTag(fontName, tag,out fontTag);
 
                         if (tagFont == null)
                         {
@@ -76,10 +80,10 @@ namespace Redhotminute.Mvx.Plugin.Style.Helpers {
                                 startIndex = previousBeginTag;
                             }
                             //in case the first block has no tag, add an empty block
-                            fontTextBlocks.Add(new FontTextPair() { Text = text.Substring(startIndex, beginTagStartIndex - startIndex), FontTag = string.Empty });
+                            fontTextBlocks.Add(new FontTextPair() { Text = text.Substring(startIndex, beginTagStartIndex - startIndex), FontTag = null });
                         }
 						
-						fontTextBlocks.Add(new FontTextPair() { Text = text.Substring(beginTagEndIndex + 1, endTagStartIndex - beginTagEndIndex - 1), FontTag = tag });
+                        fontTextBlocks.Add(new FontTextPair() { Text = text.Substring(beginTagEndIndex + 1, endTagStartIndex - beginTagEndIndex - 1), FontTag = fontTag });
 						findIndex = endTagEndIndex+1;
 					}
 				}
@@ -89,7 +93,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Helpers {
 			}
 			//check if the end tag is the last character, if not add a final block till the end
 			if (endTagEndIndex != text.Length) {
-				fontTextBlocks.Add(new FontTextPair() { Text = text.Substring(endTagEndIndex + 1, text.Length - endTagEndIndex - 1), FontTag = string.Empty });
+                fontTextBlocks.Add(new FontTextPair() { Text = text.Substring(endTagEndIndex + 1, text.Length - endTagEndIndex - 1), FontTag = null });
 			}
 
 			//create a clean text and convert the block fontTag pairs to indexTagPairs do that we know which text we need to decorate without tags present
@@ -110,7 +114,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Helpers {
 
 
 	public class FontTextPair {
-		public string FontTag {
+		public FontTag FontTag {
 			get;
 			set;
 		}
@@ -122,7 +126,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Helpers {
 	}
 
 	public class FontIndexPair {
-		public string FontTag {
+        public FontTag FontTag {
 			get;
 			set;
 		}

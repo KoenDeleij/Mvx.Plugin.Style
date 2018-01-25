@@ -43,7 +43,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Plugin
 			return _fontsCache[font.Name];
 		}
 
-        public NSAttributedString ParseToAttributedText(string text, IBaseFont font, NSAttributedStringDocumentAttributes docAttributes = null) {
+        public NSAttributedString ParseToAttributedText(string text, IBaseFont font) {
 			try
 			{
                 if (font != null)
@@ -57,32 +57,21 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Plugin
 
                     var indexPairs = AttributedFontHelper.GetFontTextBlocks(text, font.Name, assetPlugin, out cleanText);
 
-
-                    NSMutableAttributedString attributedText;
-
-                    if (docAttributes != null)
-                    {
-                        NSError er = null;
-                        var newText = new NSAttributedString(cleanText, docAttributes,ref er);
-                        attributedText = newText.MutableCopy() as NSMutableAttributedString;
-                    }
-                    else{
-                        attributedText = new NSMutableAttributedString(cleanText);
-                    }
-
-					attributedText.AddAttributes(stringAttributes, new NSRange(0, cleanText.Length));
+                    NSMutableAttributedString attributedText = new NSMutableAttributedString(cleanText);
 
 					//TODO add caching for same fonttags for the attributes
 					foreach (FontIndexPair block in indexPairs) {
 						//get the font for each tag and decorate the text
-						if (!string.IsNullOrEmpty(block.FontTag)) {
-							var tagFont = assetPlugin.GetFontByTag(font.Name,block.FontTag);
+                        if (block.FontTag != null && !string.IsNullOrEmpty(block.FontTag.OriginalFontName)) {
+                            FontTag fontTag = null;
+                            var tagFont = assetPlugin.GetFontByTag(font.Name,block.FontTag.Tag,out fontTag);
+
 							tagFont = tagFont == null ? font : tagFont;
-							UIStringAttributes attr = CreateAttributesByFont(tagFont);
+                            UIStringAttributes attr = CreateAttributesByFont(tagFont,fontTag);
 							attributedText.SetAttributes(attr, new NSRange(block.StartIndex, block.EndIndex - block.StartIndex));
 						}
 					}
-	                
+	               
 
 					return attributedText;
 				}
@@ -95,7 +84,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Plugin
 			return null;
 		}
 
-		private UIStringAttributes CreateAttributesByFont(IBaseFont font) {
+        private UIStringAttributes CreateAttributesByFont(IBaseFont font,FontTag tag = null) {
 			UIStringAttributes stringAttributes = new UIStringAttributes { };
 
 			//add the font
@@ -105,6 +94,12 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Plugin
 			if (font.Color != null) {
 				stringAttributes.ForegroundColor = font.Color.ToNativeColor();
 			}
+
+            if(tag != null){
+                if(tag.FontAction == FontTagAction.Link){
+                    stringAttributes.Link = new NSUrl("http://www.google.com");
+                }
+            }
 
 			if (font is Font) {
 				var extendedFont = font as Font;

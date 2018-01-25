@@ -20,7 +20,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Plugin
 		/// <returns>The font by tag.</returns>
 		/// <param name="originalFontName">The font the tag is linked to</param>
 		/// <param name="tag">Tag.</param>
-		IBaseFont GetFontByTag(string originalFontName,string tag);
+		IBaseFont GetFontByTag(string originalFontName,string tag, out FontTag originalTag);
 
 		/// <summary>
 		/// Gets a color.

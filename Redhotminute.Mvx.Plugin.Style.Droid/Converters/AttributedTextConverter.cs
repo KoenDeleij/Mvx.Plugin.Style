@@ -64,7 +64,9 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Converters {
 		/// <param name="pair">Pair.</param>
 		private void SetAttributed(SpannableString converted, FontIndexPair pair, Font fallbackFont) {
             //get the font by tags
-            var taggedFont = _assetPlugin.GetFontByTag(fallbackFont.Name, pair.FontTag);
+
+            FontTag fontTag = null;
+            var taggedFont = _assetPlugin.GetFontByTag(fallbackFont.Name, pair.FontTag.OriginalFontName,out fontTag);
 
 			if (taggedFont != null) {
 				SetFont(converted, taggedFont, pair.StartIndex, pair.EndIndex);
