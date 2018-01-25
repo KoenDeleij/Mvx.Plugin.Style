@@ -27,8 +27,11 @@ namespace Redhotminute.Mvx.Plugin.Style.Helpers {
 
 			//Start searching for tags
 			bool foundTag = true;
+            int previousBeginTag = -1;
 			while (foundTag) {
-				beginTagStartIndex = text.IndexOf('<', findIndex);
+                
+                beginTagStartIndex = text.IndexOf('<', findIndex);
+
 				string tag = string.Empty;
 				string endTag = string.Empty;
 
@@ -43,16 +46,21 @@ namespace Redhotminute.Mvx.Plugin.Style.Helpers {
 
                         var tagFont = assetPlugin.GetFontByTag(fontName, tag);
 
-                        if(tagFont==null){
-                            //if the tag is not found, replace any occurence in the text
-                            text = text.Replace($"<{tag}>", string.Empty);
-                            text = text.Replace($"</{tag}>", string.Empty);
+                        if (tagFont == null)
+                        {
+                            //if the font is not found, let it remain in the text and embed it in another block
+                            int resetIndex = beginTagStartIndex;
+                            if(beginTagStartIndex != 0){
+                                resetIndex = 0;
+                            }
+                            //find the next tag
+                            findIndex = beginTagEndIndex+1;
+                            previousBeginTag = resetIndex;
                             continue;
                         }
 
-						//find the end Index
-						endTag = $"</{tag}>";
-						endTagStartIndex = text.IndexOf(endTag, beginTagEndIndex);
+                        endTag = $"</{tag}>";
+                        endTagStartIndex = text.IndexOf(endTag, beginTagEndIndex);
 
                         //end tag not found
                         if (endTagStartIndex ==-1){
@@ -63,8 +71,12 @@ namespace Redhotminute.Mvx.Plugin.Style.Helpers {
 
                         if (beginTagStartIndex != 0)
                         {
+                            var startIndex = findIndex;
+                            if(previousBeginTag != -1){
+                                startIndex = previousBeginTag;
+                            }
                             //in case the first block has no tag, add an empty block
-                            fontTextBlocks.Add(new FontTextPair() { Text = text.Substring(findIndex, beginTagStartIndex - findIndex), FontTag = string.Empty });
+                            fontTextBlocks.Add(new FontTextPair() { Text = text.Substring(startIndex, beginTagStartIndex - startIndex), FontTag = string.Empty });
                         }
 						
 						fontTextBlocks.Add(new FontTextPair() { Text = text.Substring(beginTagEndIndex + 1, endTagStartIndex - beginTagEndIndex - 1), FontTag = tag });
@@ -92,6 +104,8 @@ namespace Redhotminute.Mvx.Plugin.Style.Helpers {
 
 			return blockIndexes;
 		}
+
+
 	}
 
 

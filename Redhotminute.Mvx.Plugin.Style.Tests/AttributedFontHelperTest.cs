@@ -105,18 +105,29 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
 		}
 
         [Test]
-        public void UnknownTagsShouldBeFiltered()
+        public void UnknownTagsShouldBeIgnored()
         {
             AssetPlugin plugin = new AssetPlugin();
             plugin.AddFont(new BaseFont() { Name = "Bold", FontFilename = "Bold.otf" });
             plugin.AddFont(new BaseFont() { Name = "H1", FontFilename = "H1.otf" }, new FontTag("Bold", "strong"));
 
-            string text = "<p> this is <strong>one <a href='http://www.google.com'>font</a> to rule them all</strong> block </p>";
             string resultWithoutTags;
 
-            var blocks = AttributedFontHelper.GetFontTextBlocks(text, "H1", plugin, out resultWithoutTags);
+            string text = "las <p> this is <strong>one all</strong> block </p>";
 
-            Assert.That(resultWithoutTags, Is.EqualTo(" this is one <a href='http://www.google.com'>font</a> to rule them all block "));
+            var blocks = AttributedFontHelper.GetFontTextBlocks(text, "H1", plugin, out resultWithoutTags);
+            Assert.That(blocks.Count, Is.EqualTo(3));
+            Assert.That(resultWithoutTags, Is.EqualTo("las <p> this is one all block </p>"));
+
+            text = " this is <strong>one <a href='http://www.google.com'>font</a> to rule <a>them</a> all</strong> block ";
+            blocks = AttributedFontHelper.GetFontTextBlocks(text, "H1", plugin, out resultWithoutTags);
+            Assert.That(blocks.Count, Is.EqualTo(3));
+            Assert.That(resultWithoutTags, Is.EqualTo(" this is one <a href='http://www.google.com'>font</a> to rule <a>them</a> all block "));
+
+            text = "<p> this is <strong>one <a href='http://www.google.com'>font</a> to rule <a>them</a> all</strong> block </p>";
+            blocks = AttributedFontHelper.GetFontTextBlocks(text, "H1", plugin, out resultWithoutTags);
+            Assert.That(blocks.Count, Is.EqualTo(3));
+            Assert.That(resultWithoutTags, Is.EqualTo("<p> this is one <a href='http://www.google.com'>font</a> to rule <a>them</a> all block </p>"));
         }
 
         [Test]
