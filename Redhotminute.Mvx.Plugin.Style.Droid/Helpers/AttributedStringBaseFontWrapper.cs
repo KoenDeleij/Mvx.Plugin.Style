@@ -13,5 +13,17 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Helpers {
 			get;
 			set;
 		}
+
+        public bool ContainsClickable
+        {
+            get;
+            set;
+        } = false;
+
+        public IBaseFont ClickableFont
+        {
+            get;
+            set;
+        }
 	}
 }

@@ -11,6 +11,7 @@ using MvvmCross.Platform.Converters;
 using MvvmCross.Platform.Droid.Platform;
 using MvvmCross.Plugins.Color.Droid;
 using Redhotminute.Mvx.Plugin.Style.Droid.Helpers;
+using Redhotminute.Mvx.Plugin.Style.Droid.Helpers.Spans;
 using Redhotminute.Mvx.Plugin.Style.Droid.Plugin;
 using Redhotminute.Mvx.Plugin.Style.Helpers;
 using Redhotminute.Mvx.Plugin.Style.Models;
@@ -22,6 +23,8 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Converters {
 		IAssetPlugin _assetPlugin;
 		Font _extendedFont;
 		Context _context;
+        bool _containsLink = false;
+        IBaseFont _clickableFont;
 
 		protected override AttributedStringBaseFontWrapper Convert (string value, Type targetType, object parameter, CultureInfo culture) {
 			//TODO check if a tag on the first elemen works
@@ -50,7 +53,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Converters {
 					SetAttributed(converted, block,_extendedFont);
 				}
 
-				return new AttributedStringBaseFontWrapper() { SpannableString = converted , Font = _extendedFont};
+				return new AttributedStringBaseFontWrapper() { SpannableString = converted , Font = _extendedFont,ContainsClickable = _containsLink,ClickableFont = _clickableFont};
 			}
 			catch (Exception e){
 				MvxBindingTrace.Trace(MvvmCross.Platform.Platform.MvxTraceLevel.Error, e.Message);
@@ -66,21 +69,35 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Converters {
             //get the font by tags
 
             FontTag fontTag = null;
-            var taggedFont = _assetPlugin.GetFontByTag(fallbackFont.Name, pair.FontTag.OriginalFontName,out fontTag);
+            if (pair.FontTag != null)
+            {
+                var taggedFont = _assetPlugin.GetFontByTag(fallbackFont.Name, pair.FontTag.Tag, out fontTag);
 
-			if (taggedFont != null) {
-				SetFont(converted, taggedFont, pair.StartIndex, pair.EndIndex);
-			}
-			else if(fallbackFont!= null) {
-				SetFont(converted, fallbackFont, pair.StartIndex, pair.EndIndex);
+                if (taggedFont != null)
+                {
+                    SetFont(ref converted, taggedFont, pair.StartIndex, pair.EndIndex,fontTag);
+                    return;
+                }
+            }
+
+			if(fallbackFont!= null) {
+                SetFont(ref converted, fallbackFont, pair.StartIndex, pair.EndIndex,fontTag);
 			}
 		}
 
-		private void SetFont(SpannableString converted, IBaseFont font,int startIndex,int endIndex) {
-					//set the text color
+        private void SetFont(ref SpannableString converted, IBaseFont font,int startIndex,int endIndex,FontTag fontTag) {
+			//set the text color
 			if (font.Color != null) {
 				converted.SetSpan(new ForegroundColorSpan(font.Color.ToAndroidColor()), startIndex, endIndex, SpanTypes.ExclusiveInclusive);
 			}
+
+            if (fontTag != null && fontTag.FontAction == FontTagAction.Link)
+            {
+                converted.SetSpan(new ClickableLinkSpan(){Link="http://www.google.com"}, startIndex, endIndex, SpanTypes.ExclusiveInclusive);
+                _clickableFont = font;
+                _containsLink = true;
+            }
+
 			//set allignment
 			if (font is Font) {
 				Font taggedExtendedFont = font as Font;

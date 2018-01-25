@@ -58,6 +58,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Plugin
                     var indexPairs = AttributedFontHelper.GetFontTextBlocks(text, font.Name, assetPlugin, out cleanText);
 
                     NSMutableAttributedString attributedText = new NSMutableAttributedString(cleanText);
+                    attributedText.AddAttributes(stringAttributes, new NSRange(0, cleanText.Length));
 
 					//TODO add caching for same fonttags for the attributes
 					foreach (FontIndexPair block in indexPairs) {
@@ -98,6 +99,8 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Plugin
             if(tag != null){
                 if(tag.FontAction == FontTagAction.Link){
                     stringAttributes.Link = new NSUrl("http://www.google.com");
+                    stringAttributes.UnderlineStyle = NSUnderlineStyle.Single;
+                    stringAttributes.UnderlineColor = font.Color.ToNativeColor();
                 }
             }
 
