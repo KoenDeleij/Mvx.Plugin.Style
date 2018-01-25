@@ -6,6 +6,7 @@ using MvvmCross.Platform.Platform;
 using MvvmCross.Platform.Exceptions;
 using Redhotminute.Mvx.Plugin.Style.Plugin;
 using Redhotminute.Mvx.Plugin.Style.Touch.Plugin;
+using Foundation;
 
 namespace Redhotminute.Mvx.Plugin.Style.Touch.Converters
 {

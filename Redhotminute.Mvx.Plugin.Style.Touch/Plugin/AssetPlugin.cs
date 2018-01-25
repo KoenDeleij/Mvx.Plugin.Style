@@ -43,32 +43,45 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Plugin
 			return _fontsCache[font.Name];
 		}
 
-		public NSAttributedString ParseToAttributedText(string text, IBaseFont font) {
+        public NSAttributedString ParseToAttributedText(string text, IBaseFont font, NSAttributedStringDocumentAttributes docAttributes = null) {
 			try
 			{
-	            if (font != null) {
-					this.ConvertFontFileNameForPlatform(ref font);
-					UIStringAttributes stringAttributes = CreateAttributesByFont(font);
+                if (font != null)
+                {
+                    this.ConvertFontFileNameForPlatform(ref font);
+                    UIStringAttributes stringAttributes = CreateAttributesByFont(font);
 
-					var assetPlugin = MvvmCross.Platform.Mvx.Resolve<IAssetPlugin>();
+                    var assetPlugin = MvvmCross.Platform.Mvx.Resolve<IAssetPlugin>();
 
-					string cleanText = string.Empty;
+                    string cleanText = string.Empty;
 
-	                    var indexPairs = AttributedFontHelper.GetFontTextBlocks(text, font.Name, assetPlugin, out cleanText);
-	                
-						var attributedText = new NSMutableAttributedString(cleanText);
-						attributedText.AddAttributes(stringAttributes, new NSRange(0, cleanText.Length));
+                    var indexPairs = AttributedFontHelper.GetFontTextBlocks(text, font.Name, assetPlugin, out cleanText);
 
-						//TODO add caching for same fonttags for the attributes
-						foreach (FontIndexPair block in indexPairs) {
-							//get the font for each tag and decorate the text
-							if (!string.IsNullOrEmpty(block.FontTag)) {
-								var tagFont = assetPlugin.GetFontByTag(font.Name,block.FontTag);
-								tagFont = tagFont == null ? font : tagFont;
-								UIStringAttributes attr = CreateAttributesByFont(tagFont);
-								attributedText.SetAttributes(attr, new NSRange(block.StartIndex, block.EndIndex - block.StartIndex));
-							}
+
+                    NSMutableAttributedString attributedText;
+
+                    if (docAttributes != null)
+                    {
+                        NSError er = null;
+                        var newText = new NSAttributedString(cleanText, docAttributes,ref er);
+                        attributedText = newText.MutableCopy() as NSMutableAttributedString;
+                    }
+                    else{
+                        attributedText = new NSMutableAttributedString(cleanText);
+                    }
+
+					attributedText.AddAttributes(stringAttributes, new NSRange(0, cleanText.Length));
+
+					//TODO add caching for same fonttags for the attributes
+					foreach (FontIndexPair block in indexPairs) {
+						//get the font for each tag and decorate the text
+						if (!string.IsNullOrEmpty(block.FontTag)) {
+							var tagFont = assetPlugin.GetFontByTag(font.Name,block.FontTag);
+							tagFont = tagFont == null ? font : tagFont;
+							UIStringAttributes attr = CreateAttributesByFont(tagFont);
+							attributedText.SetAttributes(attr, new NSRange(block.StartIndex, block.EndIndex - block.StartIndex));
 						}
+					}
 	                
 
 					return attributedText;

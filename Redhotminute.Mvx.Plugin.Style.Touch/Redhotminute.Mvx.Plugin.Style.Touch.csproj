@@ -91,9 +91,10 @@
     <Compile Include="Converters\FontLangValueConverter.cs" />
     <Compile Include="Bindings\MvxBindingContextOwnerExtensions.Font.cs" />
     <Compile Include="Bindings\UILabelAttributedFontTargetBinding.cs" />
-    <Compile Include="Converters\FontTextValueConverter.cs" />
+    <Compile Include="Converters\AttributedFontTextValueConverter.cs" />
     <Compile Include="Bindings\UITextFieldFontTargetBinding.cs" />
     <Compile Include="Bindings\UITextViewFontTargetBinding.cs" />
+    <Compile Include="Converters\AttributedFontOptionTextValueConverter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
