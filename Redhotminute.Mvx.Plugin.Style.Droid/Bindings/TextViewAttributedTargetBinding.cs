@@ -1,5 +1,7 @@
 using System;
 using Android.Text;
+using Android.Text.Method;
+using Android.Text.Util;
 using Android.Widget;
 using MvvmCross.Binding;
 using Redhotminute.Mvx.Plugin.Style.Droid.Helpers;
@@ -20,7 +22,18 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings {
 			if (wrapper != null) {
 				//set the base font
 				base.SetValueImpl(target, wrapper.Font);
-				label.TextFormatted = wrapper.SpannableString;
+                spannable = wrapper.SpannableString;
+                if (wrapper.ContainsClickable)
+                {
+                    label.MovementMethod = new LinkMovementMethod();
+                    //Linkify.AddLinks(spannable, MatchOptions.All);
+
+                    if(wrapper.ClickableFont!= null){
+                        label.SetLinkTextColor(new Android.Graphics.Color(wrapper.ClickableFont.Color.R,wrapper.ClickableFont.Color.G,wrapper.ClickableFont.Color.B));
+                    }
+                }
+
+                label.TextFormatted = spannable;
 			}
 			else {
 				spannable = toSet as SpannableString;

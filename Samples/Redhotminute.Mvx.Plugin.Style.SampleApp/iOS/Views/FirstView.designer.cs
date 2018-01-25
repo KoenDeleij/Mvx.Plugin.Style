@@ -16,6 +16,9 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.iOS.Views
 		UIKit.UILabel ContentLabel { get; set; }
 
 		[Outlet]
+		UIKit.UITextView ContentText { get; set; }
+
+		[Outlet]
 		UIKit.UILabel HeaderLabel { get; set; }
 
 		[Outlet]
@@ -37,26 +40,16 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.iOS.Views
 		UIKit.UITableView StoriesTable { get; set; }
 
 		[Outlet]
-        ColoredButton Style1Button { get; set; }
+		Redhotminute.Mvx.Plugin.Style.SampleApp.iOS.Views.ColoredButton Style1Button { get; set; }
 
 		[Outlet]
-		ColoredButton Style2Button { get; set; }
+		Redhotminute.Mvx.Plugin.Style.SampleApp.iOS.Views.ColoredButton Style2Button { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (HeaderLabel4 != null) {
-				HeaderLabel4.Dispose ();
-				HeaderLabel4 = null;
-			}
-
-			if (HeaderLabel3 != null) {
-				HeaderLabel3.Dispose ();
-				HeaderLabel3 = null;
-			}
-
-			if (HeaderLabel2 != null) {
-				HeaderLabel2.Dispose ();
-				HeaderLabel2 = null;
+			if (ContentText != null) {
+				ContentText.Dispose ();
+				ContentText = null;
 			}
 
 			if (ContentLabel != null) {
@@ -67,6 +60,21 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.iOS.Views
 			if (HeaderLabel != null) {
 				HeaderLabel.Dispose ();
 				HeaderLabel = null;
+			}
+
+			if (HeaderLabel2 != null) {
+				HeaderLabel2.Dispose ();
+				HeaderLabel2 = null;
+			}
+
+			if (HeaderLabel3 != null) {
+				HeaderLabel3.Dispose ();
+				HeaderLabel3 = null;
+			}
+
+			if (HeaderLabel4 != null) {
+				HeaderLabel4.Dispose ();
+				HeaderLabel4 = null;
 			}
 
 			if (ScrollView != null) {

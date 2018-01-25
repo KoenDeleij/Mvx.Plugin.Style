@@ -64,6 +64,7 @@
     <Compile Include="Helpers\AttributedFontHelper.cs" />
     <Compile Include="Models\Json\FontStyles.cs" />
     <Compile Include="Models\FontTag.cs" />
+    <Compile Include="Models\FontTagAction.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>

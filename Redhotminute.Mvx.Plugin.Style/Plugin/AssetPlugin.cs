@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using MvvmCross.Platform.UI;
 using Redhotminute.Mvx.Plugin.Style.Models;
 
@@ -50,11 +51,11 @@ namespace Redhotminute.Mvx.Plugin.Style.Plugin
 			}
 		}
 
-		private Dictionary<string,Dictionary<string,string>> _fontsTagged;
-		private Dictionary<string,Dictionary<string,string>> FontsTagged {
+        private Dictionary<string,List<FontTag>> _fontsTagged;
+        private Dictionary<string,List<FontTag>> FontsTagged {
 			get {
 				if (_fontsTagged == null) {
-					_fontsTagged = new Dictionary<string,Dictionary<string,string>>();
+                    _fontsTagged = new Dictionary<string,List<FontTag>>();
 				}
 				return _fontsTagged;
 			}
@@ -123,13 +124,24 @@ namespace Redhotminute.Mvx.Plugin.Style.Plugin
 			return font;
 		}
 
-		public IBaseFont GetFontByTag(string originalFontName,string tag) {
-			Dictionary<string, string> fontTag;
-			string fontName = string.Empty;
+        public IBaseFont GetFontByTag(string originalFontName, string tag)
+        {
+            FontTag nothing;
+            return GetFontByTagWithTag(originalFontName, tag, out nothing);
+        }
 
-			if (FontsTagged.TryGetValue(originalFontName, out fontTag)) {
-				fontTag.TryGetValue(tag,out fontName);
-			}
+        public IBaseFont GetFontByTagWithTag(string originalFontName,string tag, out FontTag originalTag) {
+            List<FontTag> fontTag;
+			string fontName = string.Empty;
+            originalTag = null;
+
+            if (FontsTagged.TryGetValue(originalFontName, out fontTag))
+            {
+                originalTag = fontTag.FirstOrDefault(c => c.Tag.Equals(tag));
+                if(originalTag!= null){
+                    fontName = originalTag.OriginalFontName;
+                }
+            }
 
 			if (string.IsNullOrEmpty(fontName)) {
 				return null;
@@ -158,14 +170,10 @@ namespace Redhotminute.Mvx.Plugin.Style.Plugin
 			if (fontTags != null && fontTags.Count > 0) {
 				if (FontsTagged != null) {
 					if (!FontsTagged.ContainsKey(font.Name)) {
-						FontsTagged[font.Name] = new Dictionary<string, string>();
+                        FontsTagged[font.Name] = new List<FontTag>();
 					}
-
-					foreach (FontTag tag in fontTags) {
-						FontsTagged[font.Name].Add(tag.Tag, tag.OriginalFontName);
-					}
+                    FontsTagged[font.Name].AddRange(fontTags);
 				}
-
 			}
 			return this;
 		}

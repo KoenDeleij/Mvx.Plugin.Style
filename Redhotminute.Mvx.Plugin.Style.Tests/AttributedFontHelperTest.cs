@@ -30,7 +30,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
 
             Assert.That(result.First().StartIndex, Is.EqualTo(0));
             Assert.That(result.First().EndIndex, Is.EqualTo(text.Length));
-            Assert.That(result.First().FontTag, Is.EqualTo(string.Empty));//if the font is not overriden it's not set
+            Assert.That(result.First().FontTag, Is.Null);//if the font is not overriden it's not set
 
             Assert.That(resultWithoutTags, Is.EqualTo(text));
 		}
@@ -51,15 +51,15 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
 
 			Assert.That(result[0].StartIndex, Is.EqualTo(0));
 			Assert.That(result[0].EndIndex, Is.EqualTo(8));
-            Assert.That(result[0].FontTag, Is.EqualTo(string.Empty));
+            Assert.That(result[0].FontTag, Is.Null);
 
 			Assert.That(result[1].StartIndex, Is.EqualTo(8));
 			Assert.That(result[1].EndIndex, Is.EqualTo(11));
-			Assert.That(result[1].FontTag, Is.EqualTo("b"));
+			Assert.That(result[1].FontTag.Tag, Is.EqualTo("b"));
 
 			Assert.That(result[2].StartIndex, Is.EqualTo(11));
             Assert.That(result[2].EndIndex, Is.EqualTo(expectedResultWithoutTags.Length));
-			Assert.That(result[2].FontTag, Is.EqualTo(string.Empty));
+            Assert.That(result[2].FontTag, Is.Null);
 
 			Assert.That(resultWithoutTags, Is.EqualTo(expectedResultWithoutTags));
 		}
@@ -80,11 +80,11 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
 
             Assert.That(result[0].StartIndex, Is.EqualTo(0));
             Assert.That(result[0].EndIndex, Is.EqualTo(3));
-            Assert.That(result[0].FontTag, Is.EqualTo("b"));
+            Assert.That(result[0].FontTag.Tag, Is.EqualTo("b"));
 
             Assert.That(result[1].StartIndex, Is.EqualTo(3));
             Assert.That(result[1].EndIndex, Is.EqualTo(9));
-            Assert.That(result[1].FontTag, Is.EqualTo(string.Empty));
+            Assert.That(result[1].FontTag, Is.Null);
 
             Assert.That(resultWithoutTags, Is.EqualTo(expectedResultWithoutTags));
         }
@@ -128,6 +128,46 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
             blocks = AttributedFontHelper.GetFontTextBlocks(text, "H1", plugin, out resultWithoutTags);
             Assert.That(blocks.Count, Is.EqualTo(3));
             Assert.That(resultWithoutTags, Is.EqualTo("<p> this is one <a href='http://www.google.com'>font</a> to rule <a>them</a> all block </p>"));
+        }
+
+        [Test]
+        public void LinksShouldBeFlattenedAndPropertiesStripped()
+        {
+            AssetPlugin plugin = new AssetPlugin();
+            plugin.AddFont(new BaseFont() { Name = "Bold", FontFilename = "Bold.otf" });
+            plugin.AddFont(new BaseFont() { Name = "H1", FontFilename = "H1.otf" }, new FontTag("Bold", "a",FontTagAction.Link));
+
+            string resultWithoutTags;
+
+            string text = "this is one <a href=http://www.google.com>font</a> to block";
+            var blocks = AttributedFontHelper.GetFontTextBlocks(text, "H1", plugin, out resultWithoutTags);
+            Assert.That(blocks.Count, Is.EqualTo(3));
+
+            Assert.That(blocks[1].TagProperties.Keys.Contains("href"), Is.True);
+            Assert.That(blocks[1].TagProperties.Values.Contains("http://www.google.com"), Is.True);
+
+            Assert.That(blocks[2].TagProperties, Is.Null);
+
+            Assert.That(resultWithoutTags, Is.EqualTo("this is one font to block"));
+        }
+
+        [Test]
+        public void TagsCanContainMultipleAttributes()
+        {
+            AssetPlugin plugin = new AssetPlugin();
+            plugin.AddFont(new BaseFont() { Name = "Bold", FontFilename = "Bold.otf" });
+            plugin.AddFont(new BaseFont() { Name = "H1", FontFilename = "H1.otf" }, new FontTag("Bold", "q"));
+
+            string resultWithoutTags;
+
+            string text = "this is one <q la=1 la2=2>font</q> to block";
+            var blocks = AttributedFontHelper.GetFontTextBlocks(text, "H1", plugin, out resultWithoutTags);
+            Assert.That(blocks.Count, Is.EqualTo(3));
+
+            Assert.That(blocks[1].TagProperties.Keys.Contains("la"), Is.True);
+            Assert.That(blocks[1].TagProperties.Keys.Contains("la2"), Is.True);
+
+            Assert.That(resultWithoutTags, Is.EqualTo("this is one font to block"));
         }
 
         [Test]

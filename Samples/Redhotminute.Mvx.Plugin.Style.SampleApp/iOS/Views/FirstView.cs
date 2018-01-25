@@ -7,6 +7,7 @@ using MvvmCross.iOS.Views;
 using Redhotminute.Mvx.Plugin.Style.SampleApp.ViewModels;
 using UIKit;
 using Redhotminute.Mvx.Plugin.Style.Binding;
+using Redhotminute.Mvx.Plugin.Style.Touch.Converters;
 
 namespace Redhotminute.Mvx.Plugin.Style.SampleApp.iOS.Views
 {
@@ -72,9 +73,9 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.iOS.Views
 			set.Bind(HeaderLabel4).For(v => v.Text).To(vm => vm.SelectedStoryTitle);
 			this.BindFont(HeaderLabel4, "Regular:Marked");
 
+            set.Bind(ContentText).For(v => v.AttributedText).To(vm => vm.SelectedStoryParagraph).WithConversion("AttributedFontText", "Regular");
 
-			set.Bind(ContentLabel).For(v => v.AttributedText).To(vm => vm.SelectedStoryParagraph).WithConversion("AttributedFontText", "Regular");
-			set.Bind(View).For(v => v.BackgroundColor).To(vm => vm.AssetProvider).WithConversion("AssetColor", "Background");
+            set.Bind(View).For(v => v.BackgroundColor).To(vm => vm.AssetProvider).WithConversion("AssetColor", "Background");
 
 			//Story selection
             //set.Bind(_storiesSource).To(vm => vm.Stories);

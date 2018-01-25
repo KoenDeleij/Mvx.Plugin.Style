@@ -7,6 +7,7 @@ using MvvmCross.Platform.Exceptions;
 using Redhotminute.Mvx.Plugin.Style.Plugin;
 using Redhotminute.Mvx.Plugin.Style.Touch.Plugin;
 using Foundation;
+using UIKit;
 
 namespace Redhotminute.Mvx.Plugin.Style.Touch.Converters
 {
@@ -28,7 +29,8 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Converters
 
 			if (value!= null && parameter!= null){
 				try{
-					return assetPlugin.ParseToAttributedText(value.ToString(), assetPlugin.GetFontByName(parameter.ToString()));
+					var text = assetPlugin.ParseToAttributedText(value.ToString(), assetPlugin.GetFontByName(parameter.ToString()));
+                    return text;
 				}catch(Exception e){
 					MvxBindingTrace.Trace(MvxTraceLevel.Error,"Problem parsing binding {0}", e.ToLongString());
 				}

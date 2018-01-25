@@ -94,7 +94,7 @@
     <Compile Include="Converters\AttributedFontTextValueConverter.cs" />
     <Compile Include="Bindings\UITextFieldFontTargetBinding.cs" />
     <Compile Include="Bindings\UITextViewFontTargetBinding.cs" />
-    <Compile Include="Converters\AttributedFontOptionTextValueConverter.cs" />
+    <Compile Include="Bindings\UITextViewAttributedFontTargetBinding.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>

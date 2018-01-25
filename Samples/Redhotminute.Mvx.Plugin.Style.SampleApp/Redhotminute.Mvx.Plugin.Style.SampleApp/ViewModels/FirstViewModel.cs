@@ -33,6 +33,7 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.ViewModels
 			_tags = new List<FontTag>();
 			_tags.Add(new FontTag(FontItalic, "i"));
 			_tags.Add(new FontTag(FontBold, "b"));
+            _tags.Add(new FontTag(FontBold, "a",FontTagAction.Link));
 
 			SelectStoryCommand = new MvxCommand<Story>((story) => {
 				UpdateStory(story);
