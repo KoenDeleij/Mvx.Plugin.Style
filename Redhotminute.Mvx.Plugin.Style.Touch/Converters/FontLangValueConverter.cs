@@ -37,8 +37,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Converters
 
 					return assetPlugin.ParseToAttributedText(textProvider.GetText(values[0]), assetPlugin.GetFontByName(values[1]));
 				}catch(Exception e){
-					MvxBindingTrace.Trace(MvxTraceLevel.Error,
-									  "Problem parsing binding {0}", e.ToLongString());
+					MvxBindingTrace.Trace(MvxTraceLevel.Error,"Problem parsing binding {0}", e.ToLongString());
 				}
 			}
 

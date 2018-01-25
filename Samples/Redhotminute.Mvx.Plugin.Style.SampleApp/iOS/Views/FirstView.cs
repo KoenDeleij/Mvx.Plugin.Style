@@ -74,7 +74,6 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.iOS.Views
 			this.BindFont(HeaderLabel4, "Regular:Marked");
 
             set.Bind(ContentText).For(v => v.AttributedText).To(vm => vm.SelectedStoryParagraph).WithConversion("AttributedFontText", "Regular");
-            set.Bind(ContentText).For(v => v.TintColor).To(vm => vm.AssetProvider).WithConversion("AssetColor", "Marked");
 
             set.Bind(View).For(v => v.BackgroundColor).To(vm => vm.AssetProvider).WithConversion("AssetColor", "Background");
 

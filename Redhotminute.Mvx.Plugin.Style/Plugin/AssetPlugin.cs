@@ -124,7 +124,13 @@ namespace Redhotminute.Mvx.Plugin.Style.Plugin
 			return font;
 		}
 
-        public IBaseFont GetFontByTag(string originalFontName,string tag, out FontTag originalTag) {
+        public IBaseFont GetFontByTag(string originalFontName, string tag)
+        {
+            FontTag nothing;
+            return GetFontByTagWithTag(originalFontName, tag, out nothing);
+        }
+
+        public IBaseFont GetFontByTagWithTag(string originalFontName,string tag, out FontTag originalTag) {
             List<FontTag> fontTag;
 			string fontName = string.Empty;
             originalTag = null;

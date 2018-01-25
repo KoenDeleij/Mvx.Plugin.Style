@@ -29,10 +29,11 @@ namespace Redhotminute.Mvx.Plugin.Style.Helpers {
 			//Start searching for tags
 			bool foundTag = true;
             int previousBeginTag = -1;
+            Dictionary<string, string> tagProperties;
 			while (foundTag) {
 
                 FontTag fontTag = null;
-
+                tagProperties = new Dictionary<string, string>();
                 beginTagStartIndex = text.IndexOf('<', findIndex);
 
 				string tag = string.Empty;
@@ -47,8 +48,25 @@ namespace Redhotminute.Mvx.Plugin.Style.Helpers {
 						//there's a tag, get the description
 						tag = text.Substring(beginTagStartIndex + 1, beginTagEndIndex - beginTagStartIndex - 1);
 
+                        //in case the tag contains an = , for example a href=, split the tag and the attribute
+                        if(tag.Contains("=") && tag.Contains(" ")){
+                            var attrs = tag.Split(' ');
+                            if(attrs.Length >1){
+                                //get the tag
+                                tag = attrs[0];
 
-                        var tagFont = assetPlugin.GetFontByTag(fontName, tag,out fontTag);
+                                //for each attribute
+                                for (int i = 1; i < attrs.Length;i++){
+                                    var splitAttribute = attrs[i].Split('=');
+                                    if(splitAttribute.Length==2)
+                                    {
+                                        tagProperties.Add(splitAttribute[0], splitAttribute[1]);
+                                    }                                    
+                                }
+                            }
+                        }
+
+                        var tagFont = assetPlugin.GetFontByTagWithTag(fontName, tag,out fontTag);
 
                         if (tagFont == null)
                         {
@@ -83,7 +101,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Helpers {
                             fontTextBlocks.Add(new FontTextPair() { Text = text.Substring(startIndex, beginTagStartIndex - startIndex), FontTag = null });
                         }
 						
-                        fontTextBlocks.Add(new FontTextPair() { Text = text.Substring(beginTagEndIndex + 1, endTagStartIndex - beginTagEndIndex - 1), FontTag = fontTag });
+                        fontTextBlocks.Add(new FontTextPair() { Text = text.Substring(beginTagEndIndex + 1, endTagStartIndex - beginTagEndIndex - 1), FontTag = fontTag,TagProperties=tagProperties });
 						findIndex = endTagEndIndex+1;
 					}
 				}
@@ -102,7 +120,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Helpers {
 			int previousIndex = 0;
 			foreach (FontTextPair block in fontTextBlocks) {
 				cleanText = $"{cleanText}{block.Text}";
-				blockIndexes.Add(new FontIndexPair() { FontTag = block.FontTag, StartIndex = previousIndex, EndIndex = cleanText.Length });
+                blockIndexes.Add(new FontIndexPair() { FontTag = block.FontTag, StartIndex = previousIndex, EndIndex = cleanText.Length,TagProperties=block.TagProperties });
 				previousIndex = cleanText.Length;
 			}
 
@@ -113,23 +131,38 @@ namespace Redhotminute.Mvx.Plugin.Style.Helpers {
 	}
 
 
-	public class FontTextPair {
-		public FontTag FontTag {
-			get;
-			set;
-		}
+    public class FontTextPair
+    {
+        public FontTag FontTag
+        {
+            get;
+            set;
+        }
 
-		public string Text {
-			get;
-			set;
-		}
-	}
+        public string Text
+        {
+            get;
+            set;
+        }
+
+        public Dictionary<string, string> TagProperties
+        {
+            get;
+            set;
+        }
+    }
 
 	public class FontIndexPair {
         public FontTag FontTag {
 			get;
 			set;
 		}
+
+        public Dictionary<string, string> TagProperties
+        {
+            get;
+            set;
+        }
 
 		public int StartIndex {
 			get;

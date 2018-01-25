@@ -49,7 +49,6 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Plugin
                 if (font != null)
                 {
                     this.ConvertFontFileNameForPlatform(ref font);
-                    UIStringAttributes stringAttributes = CreateAttributesByFont(font);
 
                     var assetPlugin = MvvmCross.Platform.Mvx.Resolve<IAssetPlugin>();
 
@@ -58,6 +57,8 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Plugin
                     var indexPairs = AttributedFontHelper.GetFontTextBlocks(text, font.Name, assetPlugin, out cleanText);
 
                     NSMutableAttributedString attributedText = new NSMutableAttributedString(cleanText);
+
+                    UIStringAttributes stringAttributes = CreateAttributesByFont(ref attributedText, font);
                     attributedText.AddAttributes(stringAttributes, new NSRange(0, cleanText.Length));
 
 					//TODO add caching for same fonttags for the attributes
@@ -65,15 +66,14 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Plugin
 						//get the font for each tag and decorate the text
                         if (block.FontTag != null && !string.IsNullOrEmpty(block.FontTag.OriginalFontName)) {
                             FontTag fontTag = null;
-                            var tagFont = assetPlugin.GetFontByTag(font.Name,block.FontTag.Tag,out fontTag);
+                            var tagFont = assetPlugin.GetFontByTagWithTag(font.Name,block.FontTag.Tag,out fontTag);
 
 							tagFont = tagFont == null ? font : tagFont;
-                            UIStringAttributes attr = CreateAttributesByFont(tagFont,fontTag);
-							attributedText.SetAttributes(attr, new NSRange(block.StartIndex, block.EndIndex - block.StartIndex));
+                            UIStringAttributes attr = CreateAttributesByFont(ref attributedText,tagFont,block,fontTag);
+                            attributedText.SetAttributes(attr, new NSRange(block.StartIndex, block.EndIndex - block.StartIndex));
 						}
 					}
 	               
-
 					return attributedText;
 				}
 			}
@@ -85,7 +85,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Plugin
 			return null;
 		}
 
-        private UIStringAttributes CreateAttributesByFont(IBaseFont font,FontTag tag = null) {
+        private UIStringAttributes CreateAttributesByFont(ref NSMutableAttributedString text,IBaseFont font,FontIndexPair pair = null,FontTag tag = null) {
 			UIStringAttributes stringAttributes = new UIStringAttributes { };
 
 			//add the font
@@ -96,11 +96,9 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Plugin
 				stringAttributes.ForegroundColor = font.Color.ToNativeColor();
 			}
 
-            if(tag != null){
+            if(pair != null && tag != null){
                 if(tag.FontAction == FontTagAction.Link){
-                    stringAttributes.Link = new NSUrl("http://www.google.com");
-                    stringAttributes.UnderlineStyle = NSUnderlineStyle.Single;
-                    stringAttributes.UnderlineColor = font.Color.ToNativeColor();
+                    CreateLink(ref text,ref stringAttributes,font,pair);
                 }
             }
 
@@ -128,6 +126,23 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Plugin
 
 			return stringAttributes;
 		}
+
+        private void CreateLink(ref NSMutableAttributedString text,ref UIStringAttributes attribute, IBaseFont font, FontIndexPair pair)
+        {
+            //if theres a link property, use that one, if not, use the text itself
+            string link;
+            if (pair.TagProperties != null && pair.TagProperties.ContainsKey("href"))
+            {
+                link = pair.TagProperties.GetValueOrDefault("href");
+            }
+            else
+            {
+                link = text.Value.Substring(pair.StartIndex, pair.EndIndex - pair.StartIndex).Trim();
+            }
+            attribute.Link = new NSUrl(link);
+            attribute.UnderlineStyle = NSUnderlineStyle.Single;
+            attribute.UnderlineColor = font.Color.ToNativeColor();
+        }
 
 		public override IAssetPlugin ClearFonts() {
 			_fontsCache = new Dictionary<string, UIFont>();

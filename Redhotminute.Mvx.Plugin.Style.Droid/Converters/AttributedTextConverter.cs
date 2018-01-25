@@ -71,31 +71,29 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Converters {
             FontTag fontTag = null;
             if (pair.FontTag != null)
             {
-                var taggedFont = _assetPlugin.GetFontByTag(fallbackFont.Name, pair.FontTag.Tag, out fontTag);
+                var taggedFont = _assetPlugin.GetFontByTagWithTag(fallbackFont.Name, pair.FontTag.Tag, out fontTag);
 
                 if (taggedFont != null)
                 {
-                    SetFont(ref converted, taggedFont, pair.StartIndex, pair.EndIndex,fontTag);
+                    SetFont(ref converted, taggedFont, pair,fontTag);
                     return;
                 }
             }
 
 			if(fallbackFont!= null) {
-                SetFont(ref converted, fallbackFont, pair.StartIndex, pair.EndIndex,fontTag);
+                SetFont(ref converted, fallbackFont, pair, fontTag);
 			}
 		}
 
-        private void SetFont(ref SpannableString converted, IBaseFont font,int startIndex,int endIndex,FontTag fontTag) {
+        private void SetFont(ref SpannableString converted, IBaseFont font,FontIndexPair pair,FontTag fontTag) {
 			//set the text color
 			if (font.Color != null) {
-				converted.SetSpan(new ForegroundColorSpan(font.Color.ToAndroidColor()), startIndex, endIndex, SpanTypes.ExclusiveInclusive);
+                converted.SetSpan(new ForegroundColorSpan(font.Color.ToAndroidColor()), pair.StartIndex, pair.EndIndex, SpanTypes.ExclusiveInclusive);
 			}
 
             if (fontTag != null && fontTag.FontAction == FontTagAction.Link)
             {
-                converted.SetSpan(new ClickableLinkSpan(){Link="http://www.google.com"}, startIndex, endIndex, SpanTypes.ExclusiveInclusive);
-                _clickableFont = font;
-                _containsLink = true;
+                CreateLink(ref converted,font,pair);
             }
 
 			//set allignment
@@ -104,18 +102,34 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Converters {
 
 				if (taggedExtendedFont.Alignment != TextAlignment.None) {
 					Layout.Alignment alignment = taggedExtendedFont.Alignment == TextAlignment.Center ? Layout.Alignment.AlignCenter : Layout.Alignment.AlignNormal;
-					converted.SetSpan(new AlignmentSpanStandard(alignment), startIndex, endIndex, SpanTypes.ExclusiveInclusive);
+                    converted.SetSpan(new AlignmentSpanStandard(alignment), pair.StartIndex, pair.EndIndex, SpanTypes.ExclusiveInclusive);
 				}
 			}
 
 			if (_extendedFont != null) {
 				//calculate the relative size to the regular font
-				converted.SetSpan(new RelativeSizeSpan((float)font.Size / (float)_extendedFont.Size), startIndex, endIndex, SpanTypes.ExclusiveInclusive);
+                converted.SetSpan(new RelativeSizeSpan((float)font.Size / (float)_extendedFont.Size), pair.StartIndex, pair.EndIndex, SpanTypes.ExclusiveInclusive);
 			}
 			//set the custom typeface
-			converted.SetSpan(new CustomTypefaceSpan("sans-serif", DroidAssetPlugin.GetCachedFont(font, _context)), startIndex, endIndex, SpanTypes.ExclusiveInclusive);
+            converted.SetSpan(new CustomTypefaceSpan("sans-serif", DroidAssetPlugin.GetCachedFont(font, _context)), pair.StartIndex, pair.EndIndex, SpanTypes.ExclusiveInclusive);
 
 		}
+
+        private void CreateLink(ref SpannableString converted,IBaseFont font, FontIndexPair pair){
+            //if theres a link property, use that one, if not, use the text itself
+            string link;
+            if (pair.TagProperties != null && pair.TagProperties.ContainsKey("href"))
+            {
+                link = pair.TagProperties.GetValueOrDefault("href");
+            }
+            else
+            {
+                link = converted.ToString().Substring(pair.StartIndex, pair.EndIndex - pair.StartIndex).Trim();
+            }
+            converted.SetSpan(new ClickableLinkSpan() { Link = link }, pair.StartIndex, pair.EndIndex, SpanTypes.ExclusiveInclusive);
+            _clickableFont = font;
+            _containsLink = true;
+        }
 	}
 
 }
