@@ -94,7 +94,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Helpers {
 				}
 			}
 			//check if the end tag is the last character, if not add a final block till the end
-			if (endTagEndIndex != text.Length) {
+			if (endTagEndIndex < text.Length-1) {
                 fontTextBlocks.Add(new FontTextPair() { Text = text.Substring(endTagEndIndex + 1, text.Length - endTagEndIndex - 1), FontTag = null });
 			}
 
