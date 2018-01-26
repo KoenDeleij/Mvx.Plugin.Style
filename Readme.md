@@ -137,8 +137,22 @@ Add the font, and add the tags to the font you want to use as highlight.
 Your paragraph should look like this :
 
 	This is a <b>piece</b> of text
+
+##### Links
+
+To support clickable links in your content use :
 	
+	new FontTag(FontItalic, "a",FontTagAction.Link)
+
+Text could look like : 
+
+	This is a <a href="www.google.com">google</a> of text
+	This is a <a href=www.google.com>google</a> of text
+	This is a <a href='www.google.com'>google</a> of text
+	This is a <a>www.google.com</a> of text
 	
+For iOS this is only supported vor UITextViews. Remember to turn off editable and turn on selectable. You don't have to set the detectors.
+
 ## iOS
 
 ### Setup
