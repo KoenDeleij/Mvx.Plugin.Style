@@ -48,23 +48,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Helpers {
 						//there's a tag, get the description
 						tag = text.Substring(beginTagStartIndex + 1, beginTagEndIndex - beginTagStartIndex - 1);
 
-                        //in case the tag contains an = , for example a href=, split the tag and the attribute
-                        if(tag.Contains("=") && tag.Contains(" ")){
-                            var attrs = tag.Split(' ');
-                            if(attrs.Length >1){
-                                //get the tag
-                                tag = attrs[0];
-
-                                //for each attribute
-                                for (int i = 1; i < attrs.Length;i++){
-                                    var splitAttribute = attrs[i].Split('=');
-                                    if(splitAttribute.Length==2)
-                                    {
-                                        tagProperties.Add(splitAttribute[0], splitAttribute[1]);
-                                    }                                    
-                                }
-                            }
-                        }
+                        tagProperties = GetTagProperties(ref tag);
 
                         var tagFont = assetPlugin.GetFontByTagWithTag(fontName, tag,out fontTag);
 
@@ -127,7 +111,39 @@ namespace Redhotminute.Mvx.Plugin.Style.Helpers {
 			return blockIndexes;
 		}
 
+        private static Dictionary<string,string> GetTagProperties(ref string tag){
+            Dictionary<string, string> tagProperties = null;
+            //in case the tag contains an = , for example a href=, split the tag and the attribute
+            if (tag.Contains("=") && tag.Contains(" "))
+            {
+                var attrs = tag.Split(' ');
+                if (attrs.Length > 1)
+                {
+                    //get the tag
+                    tag = attrs[0];
 
+                    //for each attribute
+                    for (int i = 1; i < attrs.Length; i++)
+                    {
+                        var splitAttribute = attrs[i].Split('=');
+                        if (splitAttribute.Length == 2)
+                        {
+                            //strip any quotes or singlequotes
+                            var attrValue = splitAttribute[1];
+                            attrValue = attrValue.Replace("\"", "");
+                            attrValue = attrValue.Replace("'", "");
+
+                            if (tagProperties == null)
+                            {
+                                tagProperties = new Dictionary<string, string>();
+                            }
+                            tagProperties.Add(splitAttribute[0], attrValue);
+                        }
+                    }
+                }
+            }
+            return tagProperties;
+        }
 	}
 
 

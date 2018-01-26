@@ -139,14 +139,87 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
 
             string resultWithoutTags;
 
+            //standard link
             string text = "this is one <a href=http://www.google.com>font</a> to block";
             var blocks = AttributedFontHelper.GetFontTextBlocks(text, "H1", plugin, out resultWithoutTags);
             Assert.That(blocks.Count, Is.EqualTo(3));
 
             Assert.That(blocks[1].TagProperties.Keys.Contains("href"), Is.True);
             Assert.That(blocks[1].TagProperties.Values.Contains("http://www.google.com"), Is.True);
-
             Assert.That(blocks[2].TagProperties, Is.Null);
+
+            Assert.That(resultWithoutTags, Is.EqualTo("this is one font to block"));
+        }
+
+        [Test]
+        public void LinksWithoutHrefShouldBeFlattenedAndPropertiesStripped()
+        {
+            AssetPlugin plugin = new AssetPlugin();
+            plugin.AddFont(new BaseFont() { Name = "Bold", FontFilename = "Bold.otf" });
+            plugin.AddFont(new BaseFont() { Name = "H1", FontFilename = "H1.otf" }, new FontTag("Bold", "a", FontTagAction.Link));
+
+            string resultWithoutTags;
+
+            //link without attributes 
+            var text = "this is one <a>http://www.google.com</a> to block";
+            var blocks = AttributedFontHelper.GetFontTextBlocks(text, "H1", plugin, out resultWithoutTags);
+            Assert.That(blocks.Count, Is.EqualTo(3));
+
+            Assert.That(blocks[1].TagProperties, Is.Null);
+            Assert.That(blocks[1].FontTag.FontAction, Is.EqualTo(FontTagAction.Link));
+
+            Assert.That(resultWithoutTags, Is.EqualTo("this is one http://www.google.com to block"));
+        }
+
+        [Test]
+        public void LinksWithQuotesShouldBeFlattenedAndPropertiesStripped()
+        {
+            AssetPlugin plugin = new AssetPlugin();
+            plugin.AddFont(new BaseFont() { Name = "Bold", FontFilename = "Bold.otf" });
+            plugin.AddFont(new BaseFont() { Name = "H1", FontFilename = "H1.otf" }, new FontTag("Bold", "a", FontTagAction.Link));
+
+            string resultWithoutTags;
+
+            //link with quotes 
+            string text = "this is one <a href='http://www.google.com'>font</a> to block";
+            var blocks = AttributedFontHelper.GetFontTextBlocks(text, "H1", plugin, out resultWithoutTags);
+            Assert.That(blocks.Count, Is.EqualTo(3));
+
+            Assert.That(blocks[1].TagProperties.Keys.Contains("href"), Is.True);
+            Assert.That(blocks[1].TagProperties.Values.Contains("http://www.google.com"), Is.True);
+            Assert.That(blocks[1].FontTag.FontAction, Is.EqualTo(FontTagAction.Link));
+
+            Assert.That(resultWithoutTags, Is.EqualTo("this is one font to block"));
+
+            //link with double quotes 
+            text = "this is one <a href=\"http://www.google.com\">font</a> to block";
+            blocks = AttributedFontHelper.GetFontTextBlocks(text, "H1", plugin, out resultWithoutTags);
+            Assert.That(blocks.Count, Is.EqualTo(3));
+
+            Assert.That(blocks[1].TagProperties.Keys.Contains("href"), Is.True);
+            Assert.That(blocks[1].TagProperties.Values.Contains("http://www.google.com"), Is.True);
+            Assert.That(blocks[1].FontTag.FontAction, Is.EqualTo(FontTagAction.Link));
+
+            Assert.That(resultWithoutTags, Is.EqualTo("this is one font to block"));
+        }
+
+        [Test]
+        public void LinksSlashAtEndAreResolvedLikeAnyLink()
+        {
+            AssetPlugin plugin = new AssetPlugin();
+            plugin.AddFont(new BaseFont() { Name = "Bold", FontFilename = "Bold.otf" });
+            plugin.AddFont(new BaseFont() { Name = "H1", FontFilename = "H1.otf" }, new FontTag("Bold", "a", FontTagAction.Link));
+
+            string resultWithoutTags;
+
+            //link with quotes 
+            string text = "this is one <a href='http://www.google.com/maps/'>font</a> to block";
+            var blocks = AttributedFontHelper.GetFontTextBlocks(text, "H1", plugin, out resultWithoutTags);
+            Assert.That(blocks.Count, Is.EqualTo(3));
+
+            Assert.That(blocks[1].TagProperties.Keys.Contains("href"), Is.True);
+            Assert.That(blocks[1].TagProperties.Values.Contains("http://www.google.com/maps/"), Is.True);
+            Assert.That(blocks[1].FontTag.FontAction, Is.EqualTo(FontTagAction.Link));
 
             Assert.That(resultWithoutTags, Is.EqualTo("this is one font to block"));
         }
