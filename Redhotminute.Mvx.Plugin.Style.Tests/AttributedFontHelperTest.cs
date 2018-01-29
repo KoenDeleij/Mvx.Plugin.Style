@@ -126,6 +126,13 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
             Assert.That(blocks.Count, Is.EqualTo(2));
             Assert.That(resultWithoutTags, Is.EqualTo("las this is <p>one all</p> block"));
 
+            text = "las <p>lala</p><p>lala</p> test <strong>this is <p>one all</p> block</strong>";
+
+            blocks = AttributedFontHelper.GetFontTextBlocks(text, "H1", plugin, out resultWithoutTags);
+            Assert.That(blocks.Count, Is.EqualTo(2));
+            Assert.That(resultWithoutTags, Is.EqualTo("las <p>lala</p><p>lala</p> test this is <p>one all</p> block"));
+
+
             text = " this is <strong>one <a href='http://www.google.com'>font</a> to rule <a>them</a> all</strong> block ";
             blocks = AttributedFontHelper.GetFontTextBlocks(text, "H1", plugin, out resultWithoutTags);
             Assert.That(blocks.Count, Is.EqualTo(3));

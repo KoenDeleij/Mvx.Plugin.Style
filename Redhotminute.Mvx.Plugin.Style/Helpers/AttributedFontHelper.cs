@@ -46,8 +46,8 @@ namespace Redhotminute.Mvx.Plugin.Style.Helpers {
             //Start searching for tags
             bool foundTag = true;
             int previousBeginTag = -1;
-            bool skipBeginUpdate = false;
             Dictionary<string, string> tagProperties;
+            bool skippedUnknownTag = false;
             while (foundTag)
             {
 
@@ -55,7 +55,6 @@ namespace Redhotminute.Mvx.Plugin.Style.Helpers {
                 tagProperties = new Dictionary<string, string>();
 
                 //find the end of the tag
- 
                 beginTagStartIndex = text.IndexOf('<', findIndex);
 
                 string tag = string.Empty;
@@ -63,7 +62,6 @@ namespace Redhotminute.Mvx.Plugin.Style.Helpers {
 
                 if (beginTagStartIndex != -1)
                 {
-
                     beginTagEndIndex = text.IndexOf('>', beginTagStartIndex);
 
                     if (beginTagEndIndex != -1)
@@ -83,7 +81,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Helpers {
                                 previousBeginTag = 0;
                             }
                             findIndex = beginTagEndIndex + 1;
-                            skipBeginUpdate = true;
+                            skippedUnknownTag = true;
                             continue;
                         }
 
@@ -101,7 +99,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Helpers {
                         if (beginTagStartIndex != 0)
                         {
                             var startIndex = findIndex;
-                            if (previousBeginTag != -1)
+                            if (skippedUnknownTag)
                             {
                                 startIndex = previousBeginTag;
                             }
@@ -118,6 +116,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Helpers {
                     foundTag = false;
                 }
 
+                skippedUnknownTag = false;
                 previousBeginTag = beginTagStartIndex;
             }
 
