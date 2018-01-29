@@ -125,24 +125,29 @@ namespace Redhotminute.Mvx.Plugin.Style.Helpers {
                     //for each attribute
                     for (int i = 1; i < attrs.Length; i++)
                     {
-                        var splitAttribute = attrs[i].Split('=');
-                        if (splitAttribute.Length == 2)
+                        if (tagProperties == null)
                         {
-                            //strip any quotes or singlequotes
-                            var attrValue = splitAttribute[1];
-                            attrValue = attrValue.Replace("\"", "");
-                            attrValue = attrValue.Replace("'", "");
-
-                            if (tagProperties == null)
-                            {
-                                tagProperties = new Dictionary<string, string>();
-                            }
-                            tagProperties.Add(splitAttribute[0], attrValue);
+                            tagProperties = new Dictionary<string, string>();
                         }
+                        var attributePair = GetKeyValueFromPropertyTag(attrs[i]);
+                        tagProperties.Add(attributePair.Key,attributePair.Value);
                     }
                 }
             }
             return tagProperties;
+        }
+
+        private static KeyValuePair<string,string> GetKeyValueFromPropertyTag(string keyValueProperty){
+            var indexOfFirstEqual = keyValueProperty.IndexOf('=');
+            //Strip the first and last part
+            var attrKey = keyValueProperty.Substring(0, indexOfFirstEqual);
+            var attrValue = keyValueProperty.Substring(indexOfFirstEqual + 1, keyValueProperty.Length - (indexOfFirstEqual + 1));
+
+            //Strip the quotes for the actual value
+            attrValue = attrValue.Replace("\"", "");
+            attrValue = attrValue.Replace("'", "");
+
+           return new KeyValuePair<string, string>(attrKey, attrValue);
         }
 	}
 

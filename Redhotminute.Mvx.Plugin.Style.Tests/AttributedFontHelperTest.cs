@@ -204,6 +204,51 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
         }
 
         [Test]
+        public void LinksWithEqualSignShouldBeParsedAsFull()
+        {
+            AssetPlugin plugin = new AssetPlugin();
+            plugin.AddFont(new BaseFont() { Name = "Bold", FontFilename = "Bold.otf" });
+            plugin.AddFont(new BaseFont() { Name = "H1", FontFilename = "H1.otf" }, new FontTag("Bold", "a", FontTagAction.Link));
+
+            string resultWithoutTags;
+
+            //link with quotes 
+            string text = "this is one <a href='http://www.google.com/maps/la=3'>font</a> to block";
+            var blocks = AttributedFontHelper.GetFontTextBlocks(text, "H1", plugin, out resultWithoutTags);
+            Assert.That(blocks.Count, Is.EqualTo(3));
+
+            Assert.That(blocks[1].TagProperties.Keys.Contains("href"), Is.True);
+            Assert.That(blocks[1].TagProperties.Values.Contains("http://www.google.com/maps/la=3"), Is.True);
+            Assert.That(blocks[1].FontTag.FontAction, Is.EqualTo(FontTagAction.Link));
+
+            Assert.That(resultWithoutTags, Is.EqualTo("this is one font to block"));
+        }
+
+
+        [Test]
+        public void LinkWithPlusAndMinosPropertiesAreParsedAsFull()
+        {
+            AssetPlugin plugin = new AssetPlugin();
+            plugin.AddFont(new BaseFont() { Name = "Bold", FontFilename = "Bold.otf" });
+            plugin.AddFont(new BaseFont() { Name = "H1", FontFilename = "H1.otf" }, new FontTag("Bold", "a", FontTagAction.Link));
+
+            string resultWithoutTags;
+
+            //link with quotes 
+            string text = "this is one <a href='https://itunes.apple.com/cz/app/skoda-media-services/id420627875?mt=8&utm_source=32449-Importers&utm_medium=email&utm_term=1908124336&utm_content=iOS&utm_campaign=Modern+and+intuitive:+SKODA+Media+Services+app+featuring+a+new+design+and+additional+functions-2'>fiets</a> to block";
+            var blocks = AttributedFontHelper.GetFontTextBlocks(text, "H1", plugin, out resultWithoutTags);
+            Assert.That(blocks.Count, Is.EqualTo(3));
+
+            Assert.That(blocks[1].TagProperties.Keys.Contains("href"), Is.True);
+            Assert.That(blocks[1].TagProperties.Values.Contains("https://itunes.apple.com/cz/app/skoda-media-services/id420627875?mt=8&utm_source=32449-Importers&utm_medium=email&utm_term=1908124336&utm_content=iOS&utm_campaign=Modern+and+intuitive:+SKODA+Media+Services+app+featuring+a+new+design+and+additional+functions-2"), Is.True);
+            Assert.That(blocks[1].FontTag.FontAction, Is.EqualTo(FontTagAction.Link));
+
+            Assert.That(resultWithoutTags, Is.EqualTo("this is one fiets to block"));
+        }
+
+
+        //
+        [Test]
         public void LinksSlashAtEndAreResolvedLikeAnyLink()
         {
             AssetPlugin plugin = new AssetPlugin();
