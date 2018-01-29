@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using MvvmCross.Test.Core;
 using NUnit.Framework;
@@ -119,6 +120,12 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
             Assert.That(blocks.Count, Is.EqualTo(3));
             Assert.That(resultWithoutTags, Is.EqualTo("las <p> this is one all block </p>"));
 
+            text = "las <strong>this is <p>one all</p> block</strong>";
+
+            blocks = AttributedFontHelper.GetFontTextBlocks(text, "H1", plugin, out resultWithoutTags);
+            Assert.That(blocks.Count, Is.EqualTo(2));
+            Assert.That(resultWithoutTags, Is.EqualTo("las this is <p>one all</p> block"));
+
             text = " this is <strong>one <a href='http://www.google.com'>font</a> to rule <a>them</a> all</strong> block ";
             blocks = AttributedFontHelper.GetFontTextBlocks(text, "H1", plugin, out resultWithoutTags);
             Assert.That(blocks.Count, Is.EqualTo(3));
@@ -129,7 +136,28 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
             Assert.That(blocks.Count, Is.EqualTo(3));
             Assert.That(resultWithoutTags, Is.EqualTo("<p> this is one <a href='http://www.google.com'>font</a> to rule <a>them</a> all block </p>"));
         }
+        /*
+        [Test]
+        public void TagsWithinTagsShouldResultInFlatListWithAllG()
+        {
+            AssetPlugin plugin = new AssetPlugin();
+            plugin.AddFont(new BaseFont() { Name = "Bold", FontFilename = "Bold.otf" });
 
+            List<FontTag> tags = new List<FontTag>();
+            tags.Add(new FontTag("Bold", "strong"));
+            tags.Add(new FontTag("Bold", "a", FontTagAction.Link));
+
+            plugin.AddFont(new BaseFont() { Name = "H1", FontFilename = "H1.otf" },tags );
+
+            string resultWithoutTags;
+
+            string text = "las <strong> this is <a href='http://www.google.com'>one all</a> block </strong>";
+
+            var blocks = AttributedFontHelper.GetFontTextBlocks(text, "H1", plugin, out resultWithoutTags);
+            Assert.That(blocks.Count, Is.EqualTo(3));
+            Assert.That(resultWithoutTags, Is.EqualTo("las this is one all block "));
+        }
+*/
         [Test]
         public void LinksShouldBeFlattenedAndPropertiesStripped()
         {

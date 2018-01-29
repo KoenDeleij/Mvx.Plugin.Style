@@ -12,56 +12,78 @@ namespace Redhotminute.Mvx.Plugin.Style.Helpers {
 				return null;
 			}
 
-			//this is a sample <h1>text and</h1> it ends here <h2>more stuff</h2>
-			//0				   1  2        3   4
+            //this is a sample <h1>text and</h1> it ends here <h2>more stuff</h2>
+            //0				   1  2        3   4
 
-			//find the first text
-			int findIndex = 0;
+            var fontTextBlocks = IterateThroughTags(assetPlugin, text, fontName);
 
-			List<FontTextPair> fontTextBlocks = new List<FontTextPair>();
+            //create a clean text and convert the block fontTag pairs to indexTagPairs do that we know which text we need to decorate without tags present
+            List<FontIndexPair> blockIndexes = new List<FontIndexPair>();
 
-			int beginTagStartIndex = -1;
-			int beginTagEndIndex = -1;
+            int previousIndex = 0;
+            foreach (FontTextPair block in fontTextBlocks)
+            {
+                cleanText = $"{cleanText}{block.Text}";
+                blockIndexes.Add(new FontIndexPair() { FontTag = block.FontTag, StartIndex = previousIndex, EndIndex = cleanText.Length, TagProperties = block.TagProperties });
+                previousIndex = cleanText.Length;
+            }
 
-			int endTagStartIndex = -1;
-			int endTagEndIndex = -1;
+            return blockIndexes;
+		}
 
-			//Start searching for tags
-			bool foundTag = true;
+        private static List<FontTextPair> IterateThroughTags(IAssetPlugin assetPlugin,string text,string fontName){
+            //find the first text
+            int findIndex = 0;
+
+            List<FontTextPair> fontTextBlocks = new List<FontTextPair>();
+
+            int beginTagStartIndex = -1;
+            int beginTagEndIndex = -1;
+
+            int endTagStartIndex = -1;
+            int endTagEndIndex = -1;
+
+            //Start searching for tags
+            bool foundTag = true;
             int previousBeginTag = -1;
+            bool skipBeginUpdate = false;
             Dictionary<string, string> tagProperties;
-			while (foundTag) {
+            while (foundTag)
+            {
 
                 FontTag fontTag = null;
                 tagProperties = new Dictionary<string, string>();
+
+                //find the end of the tag
+ 
                 beginTagStartIndex = text.IndexOf('<', findIndex);
 
-				string tag = string.Empty;
-				string endTag = string.Empty;
+                string tag = string.Empty;
+                string endTag = string.Empty;
 
-				if (beginTagStartIndex != -1) {
-					//find the end of the tag
-					beginTagEndIndex = text.IndexOf('>', beginTagStartIndex);
+                if (beginTagStartIndex != -1)
+                {
 
-					if (beginTagEndIndex != -1) {
+                    beginTagEndIndex = text.IndexOf('>', beginTagStartIndex);
 
-						//there's a tag, get the description
-						tag = text.Substring(beginTagStartIndex + 1, beginTagEndIndex - beginTagStartIndex - 1);
+                    if (beginTagEndIndex != -1)
+                    {
+                        //there's a tag, get the description
+                        tag = text.Substring(beginTagStartIndex + 1, beginTagEndIndex - beginTagStartIndex - 1);
 
                         tagProperties = GetTagProperties(ref tag);
 
-                        var tagFont = assetPlugin.GetFontByTagWithTag(fontName, tag,out fontTag);
+                        var tagFont = assetPlugin.GetFontByTagWithTag(fontName, tag, out fontTag);
 
                         if (tagFont == null)
                         {
                             //if the font is not found, let it remain in the text and embed it in another block
-                            int resetIndex = beginTagStartIndex;
-                            if(beginTagStartIndex != 0){
-                                resetIndex = 0;
+                            //beginTagStartIndex = previousBeginTag;
+                            if(findIndex == 0){
+                                previousBeginTag = 0;
                             }
-                            //find the next tag
-                            findIndex = beginTagEndIndex+1;
-                            previousBeginTag = resetIndex;
+                            findIndex = beginTagEndIndex + 1;
+                            skipBeginUpdate = true;
                             continue;
                         }
 
@@ -69,47 +91,44 @@ namespace Redhotminute.Mvx.Plugin.Style.Helpers {
                         endTagStartIndex = text.IndexOf(endTag, beginTagEndIndex);
 
                         //end tag not found
-                        if (endTagStartIndex ==-1){
+                        if (endTagStartIndex == -1)
+                        {
                             throw new Exception($"No matching end tag found in {text}");
                         }
 
-                        endTagEndIndex = endTagStartIndex + (endTag.Length-1);
+                        endTagEndIndex = endTagStartIndex + (endTag.Length - 1);
 
                         if (beginTagStartIndex != 0)
                         {
                             var startIndex = findIndex;
-                            if(previousBeginTag != -1){
+                            if (previousBeginTag != -1)
+                            {
                                 startIndex = previousBeginTag;
                             }
                             //in case the first block has no tag, add an empty block
                             fontTextBlocks.Add(new FontTextPair() { Text = text.Substring(startIndex, beginTagStartIndex - startIndex), FontTag = null });
                         }
-						
-                        fontTextBlocks.Add(new FontTextPair() { Text = text.Substring(beginTagEndIndex + 1, endTagStartIndex - beginTagEndIndex - 1), FontTag = fontTag,TagProperties=tagProperties });
-						findIndex = endTagEndIndex+1;
-					}
-				}
-				else {
-					foundTag = false;
-				}
-			}
-			//check if the end tag is the last character, if not add a final block till the end
-			if (endTagEndIndex < text.Length-1) {
+
+                        fontTextBlocks.Add(new FontTextPair() { Text = text.Substring(beginTagEndIndex + 1, endTagStartIndex - beginTagEndIndex - 1), FontTag = fontTag, TagProperties = tagProperties });
+                        findIndex = endTagEndIndex + 1;
+                    }
+                }
+                else
+                {
+                    foundTag = false;
+                }
+
+                previousBeginTag = beginTagStartIndex;
+            }
+
+            //check if the end tag is the last character, if not add a final block till the end
+            if (endTagEndIndex < text.Length - 1)
+            {
                 fontTextBlocks.Add(new FontTextPair() { Text = text.Substring(endTagEndIndex + 1, text.Length - endTagEndIndex - 1), FontTag = null });
-			}
+            }
 
-			//create a clean text and convert the block fontTag pairs to indexTagPairs do that we know which text we need to decorate without tags present
-			List<FontIndexPair> blockIndexes = new List<FontIndexPair>();
-
-			int previousIndex = 0;
-			foreach (FontTextPair block in fontTextBlocks) {
-				cleanText = $"{cleanText}{block.Text}";
-                blockIndexes.Add(new FontIndexPair() { FontTag = block.FontTag, StartIndex = previousIndex, EndIndex = cleanText.Length,TagProperties=block.TagProperties });
-				previousIndex = cleanText.Length;
-			}
-
-			return blockIndexes;
-		}
+            return fontTextBlocks;
+        }
 
         private static Dictionary<string,string> GetTagProperties(ref string tag){
             Dictionary<string, string> tagProperties = null;
