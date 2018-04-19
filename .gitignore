@@ -8,3 +8,4 @@ Samples/Redhotminute.Mvx.Plugin.Style.SampleApp/Redhotminute.Mvx.Plugin.Style.Sa
 Samples/Redhotminute.Mvx.Plugin.Style.SampleApp/Redhotminute.Mvx.Plugin.Style.Tests/obj
 *.user
 Redhotminute.Mvx.Plugin.Style.Tests/obj
+UserPrefs.xml

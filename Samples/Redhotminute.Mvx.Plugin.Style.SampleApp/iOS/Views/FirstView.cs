@@ -57,6 +57,10 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.iOS.Views
 			//Story
 			set.Bind(this).For(v => v.SelectedStory).To(vm => vm.SelectedStory);
 			
+            //HeightTest
+            set.Bind(HeightTest1).For(v => v.AttributedText).To(vm => vm.TestEnters).WithConversion("AttributedFontText", "Regular");
+            set.Bind(HeightTest2).For(v => v.AttributedText).To(vm => vm.TestEnters).WithConversion("AttributedFontText", "RegularSmall");
+
             //Regular attributed binding
             set.Bind(HeaderLabel).For(v => v.AttributedText).To(vm => vm.SelectedStoryTitle).WithConversion("AttributedFontText", "H1");
 			

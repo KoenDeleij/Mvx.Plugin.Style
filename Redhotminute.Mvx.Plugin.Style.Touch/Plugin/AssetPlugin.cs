@@ -118,10 +118,9 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Plugin
 						stringAttributes.ParagraphStyle = new NSMutableParagraphStyle();
 					}
 
-                    stringAttributes.ParagraphStyle.LineSpacing = GetPlatformLineHeight(font.Size, extendedFont.LineHeight.Value) * 0.5f;
-                    //TODO make the linebreakmode configurable
+                    stringAttributes.ParagraphStyle.LineSpacing = GetPlatformLineHeight(font.Size, extendedFont.LineHeight.Value);
                     stringAttributes.ParagraphStyle.LineBreakMode = UILineBreakMode.WordWrap;
-				}
+                }
 			}
 
 			return stringAttributes;
@@ -152,7 +151,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Plugin
 		public static float GetPlatformLineHeight(float fontSize, float lineHeight)
 		{
 			float factor = LineHeightFactor.HasValue ? LineHeightFactor.Value : FontSizeFactor;
-			return (lineHeight - fontSize) * factor;
+            return (lineHeight-18)*factor;
 		}
 	}
 }

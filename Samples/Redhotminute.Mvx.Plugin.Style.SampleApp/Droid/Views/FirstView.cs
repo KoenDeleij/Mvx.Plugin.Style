@@ -18,7 +18,7 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.Droid.Views
         {
             base.OnCreate(bundle);
 
-            SetContentView(Resource.Layout.FirstView);
+            SetContentView(Resource.Layout.FirstView); 
         }
     }
 }
