@@ -107,6 +107,7 @@ For buttons and more advanced styling you can use the Font class
 * **SelectedColor**, *MvxColor* (Font color shown when a button is set to selected. Selected property for iOS, state_selected for Android)
 * **DisabledColor**, *MvxColor* (Font color shown when a button is disabled. Enabled false for iOS, state_enabled false for Android)
 * **LineHeight**, *int* (Only available for labels and textviews. For iOS you'll need to use the AttributedText converter)
+* **LineHeightMultiplier**, *float* Usefull for multiplying the space between lines in comparison to other Textviews
 * **Alignment**, *TextAlignment* (Left/Center/Right/Justified). Note, justified is not supported for Android, and will default to 'Left'. If you leave the UILabel alignment to neutral for iOS, it will override with the font allignment. If you specify an alignment the text alignment from the font will be ignored.
 
 ## Cross
@@ -152,6 +153,13 @@ Text could look like :
 	This is a <a>www.google.com</a> of text
 	
 For iOS this is only supported vor UITextViews. Remember to turn off editable and turn on selectable. You don't have to set the detectors.
+
+##### LineHeight/Multiplier
+
+If you want 2 fonts to allign, you could do the following :
+
+	plugin.AddFont(new Font() { Name = "H1", FontFilename = "f.ttf", FontPlatformName = "f", Size = 20});
+	plugin.AddFont(new Font() { Name = "H2", FontFilename = "f2.ttf", FontPlatformName = "f2", Size = 10,LineHeightMultiplier=2.0f});
 
 ## iOS
 

@@ -104,23 +104,22 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Plugin
 
 			if (font is Font) {
 				var extendedFont = font as Font;
+
+                if (stringAttributes.ParagraphStyle == null)
+                {
+                    stringAttributes.ParagraphStyle = new NSMutableParagraphStyle();
+                }
+
 				if (extendedFont.Alignment != TextAlignment.None) {
 					UITextAlignment alignment = extendedFont.ToNativeAlignment();
-					if (stringAttributes.ParagraphStyle == null) {
-						stringAttributes.ParagraphStyle = new NSMutableParagraphStyle();
-					}
 					stringAttributes.ParagraphStyle.Alignment = alignment;
 				}
 
 				//add the lineheight
-                if (extendedFont.LineHeight.HasValue) {
-					if (stringAttributes.ParagraphStyle == null) {
-						stringAttributes.ParagraphStyle = new NSMutableParagraphStyle();
-					}
+                stringAttributes.ParagraphStyle.LineSpacing = extendedFont.LineHeight.HasValue?GetPlatformLineHeight(font.Size, extendedFont.LineHeight.Value):font.Size;
+                stringAttributes.ParagraphStyle.LineBreakMode = UILineBreakMode.WordWrap;
 
-                    stringAttributes.ParagraphStyle.LineSpacing = GetPlatformLineHeight(font.Size, extendedFont.LineHeight.Value);
-                    stringAttributes.ParagraphStyle.LineBreakMode = UILineBreakMode.WordWrap;
-                }
+                stringAttributes.ParagraphStyle.LineHeightMultiple = extendedFont.LineHeightMultiplier.HasValue?((float)extendedFont.LineHeightMultiplier.Value*1.37f):0f;
 			}
 
 			return stringAttributes;
@@ -151,7 +150,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Plugin
 		public static float GetPlatformLineHeight(float fontSize, float lineHeight)
 		{
 			float factor = LineHeightFactor.HasValue ? LineHeightFactor.Value : FontSizeFactor;
-            return (lineHeight-18)*factor;
+            return (lineHeight*factor);//-fontSize
 		}
 	}
 }

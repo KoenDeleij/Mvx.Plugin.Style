@@ -72,9 +72,9 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.ViewModels
             AssetProvider.AddFont(new Font() { Name = FontH1, FontFilename = "JosefinSlab-Thin.ttf", FontPlatformName = "JosefinSlab-Thin", Size = 40,LineHeight=20, Color = AssetProvider.GetColor(ColorSecondairy) })
 			             .AddFont(new Font() { Name = FontItalic, FontFilename = "Nunito-Italic.ttf", FontPlatformName = "Nunito-Italic", Size = 13, Color = AssetProvider.GetColor(ColorSecondairy), Alignment = TextAlignment.Right })
 			             .AddFont(new Font() { Name = FontBold, FontFilename = "Nunito-Light.ttf", FontPlatformName = "Nunito-Light", Size = 13, Color = AssetProvider.GetColor(ColorSecondairy) })
-                         .AddFont(new Font() { Name = FontRegular, FontFilename = "Nunito-Regular.ttf", FontPlatformName = "Nunito-Regular", Size = 13, LineHeight = 18, Color = AssetProvider.GetColor(ColorPrimary),SelectedColor= AssetProvider.GetColor(ColorBackground), },_tags)//10 13
-                         .AddFont(new Font() { Name = FontRegularSmall, FontFilename = "Nunito-Regular.ttf", FontPlatformName = "Nunito-Regular", Size = 10, LineHeight = 22,Color = AssetProvider.GetColor(ColorPrimary), SelectedColor = AssetProvider.GetColor(ColorBackground) }, _tags);//10 23
-		}
+                         .AddFont(new Font() { Name = FontRegular, FontFilename = "Nunito-Regular.ttf", FontPlatformName = "Nunito-Regular", Size = 14, Color = AssetProvider.GetColor(ColorPrimary),SelectedColor= AssetProvider.GetColor(ColorBackground), },_tags)//10 13
+                         .AddFont(new Font() { Name = FontRegularSmall, FontFilename = "Nunito-Regular.ttf", FontPlatformName = "Nunito-Regular", Size = 7, LineHeightMultiplier = 2.0f,Color = AssetProvider.GetColor(ColorPrimary), SelectedColor = AssetProvider.GetColor(ColorBackground) }, _tags);//10 23
+		}                               
 
 		private void LoadStyle2() {
 			AssetProvider.AddColor(new MvxColor(0, 200, 190), ColorBackground)
@@ -120,7 +120,7 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.ViewModels
 			}
 		}
 
-        public string TestEnters => $"test{Environment.NewLine}test{Environment.NewLine}test";
+        public string TestEnters => $"LLYYPL{Environment.NewLine}LYYPL{Environment.NewLine}LYYP";
 
 		public string SelectedStoryParagraph {
 			get {

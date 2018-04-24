@@ -20,6 +20,12 @@ namespace Redhotminute.Mvx.Plugin.Style.Models
 			set;
 		}
 
+        public float? LineHeightMultiplier
+        {
+            get;
+            set;
+        }
+
 		public TextAlignment Alignment {
 			get;
 			set;

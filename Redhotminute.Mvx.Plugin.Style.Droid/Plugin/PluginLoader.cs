@@ -20,7 +20,6 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Plugin {
 
 			MvvmCross.Platform.Mvx.CallbackWhenRegistered<IMvxValueConverterRegistry>(RegisterValueConverters);
 			MvvmCross.Platform.Mvx.CallbackWhenRegistered<IMvxTargetBindingFactoryRegistry>(RegisterCustomBinding);
-
 			MvvmCross.Platform.Mvx.RegisterSingleton<IMvxFontBindingParser>(new MvxFontBindingParser());
 		}
 

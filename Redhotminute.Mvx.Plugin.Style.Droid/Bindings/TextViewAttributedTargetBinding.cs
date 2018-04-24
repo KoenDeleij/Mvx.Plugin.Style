@@ -26,7 +26,6 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings {
                 if (wrapper.ContainsClickable)
                 {
                     label.MovementMethod = new LinkMovementMethod();
-                    //Linkify.AddLinks(spannable, MatchOptions.All);
 
                     if(wrapper.ClickableFont!= null){
                         label.SetLinkTextColor(new Android.Graphics.Color(wrapper.ClickableFont.Color.R,wrapper.ClickableFont.Color.G,wrapper.ClickableFont.Color.B));

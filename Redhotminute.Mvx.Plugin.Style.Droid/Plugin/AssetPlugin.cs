@@ -36,9 +36,11 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Plugin {
 
 		public static float GetPlatformLineHeight(float fontSize, float lineHeight)
 		{
-            //0.65 is some factor necessary to make the lineheight match iOS
-            float factor = LineHeightFactor.HasValue ? (LineHeightFactor.Value * 0.6f) : FontSizeFactor;
-            return TypedValue.ApplyDimension(ComplexUnitType.Dip, (lineHeight-(fontSize)) * factor, Resources.System.DisplayMetrics);
+            float factor = LineHeightFactor.HasValue ? (LineHeightFactor.Value) : FontSizeFactor;
+
+            //float newLineHeight = (lineHeight * factor) - fontSize;
+            var t = TypedValue.ApplyDimension(ComplexUnitType.Dip, ((lineHeight+ fontSize) * factor)  , Resources.System.DisplayMetrics);//- (fontSize)
+            return t;
 		}
 
 	}

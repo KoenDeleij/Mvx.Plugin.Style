@@ -31,10 +31,10 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.iOS.Views
 		UIKit.UILabel HeaderLabel4 { get; set; }
 
 		[Outlet]
-		UIKit.UILabel HeightTest1 { get; set; }
+		UIKit.UITextView HeightTest1 { get; set; }
 
 		[Outlet]
-		UIKit.UILabel HeightTest2 { get; set; }
+		UIKit.UITextView HeightTest2 { get; set; }
 
 		[Outlet]
 		UIKit.UIScrollView ScrollView { get; set; }
@@ -53,14 +53,14 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.iOS.Views
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (HeightTest2 != null) {
-				HeightTest2.Dispose ();
-				HeightTest2 = null;
-			}
-
 			if (HeightTest1 != null) {
 				HeightTest1.Dispose ();
 				HeightTest1 = null;
+			}
+
+			if (HeightTest2 != null) {
+				HeightTest2.Dispose ();
+				HeightTest2 = null;
 			}
 
 			if (ContentLabel != null) {
