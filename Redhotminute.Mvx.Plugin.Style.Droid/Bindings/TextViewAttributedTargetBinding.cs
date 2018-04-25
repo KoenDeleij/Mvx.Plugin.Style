@@ -46,11 +46,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings {
 
 		public override MvxBindingMode DefaultMode => MvxBindingMode.OneWay;
 
-		public override Type TargetType {
-			get {
-				return typeof(SpannableString);
-			}
-		}
+		public override Type TargetType => typeof(SpannableString);
 	}
 }
 

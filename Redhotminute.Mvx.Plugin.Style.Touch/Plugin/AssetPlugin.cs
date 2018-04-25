@@ -116,10 +116,10 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Plugin
 				}
 
 				//add the lineheight
-                stringAttributes.ParagraphStyle.LineSpacing = extendedFont.LineHeight.HasValue?GetPlatformLineHeight(font.Size, extendedFont.LineHeight.Value):font.Size;
+                stringAttributes.ParagraphStyle.LineSpacing = extendedFont.LineHeight.HasValue?GetPlatformLineHeight(font.Size, extendedFont.LineHeight.Value):font.Size/3;
                 stringAttributes.ParagraphStyle.LineBreakMode = UILineBreakMode.WordWrap;
 
-                stringAttributes.ParagraphStyle.LineHeightMultiple = extendedFont.LineHeightMultiplier.HasValue?((float)extendedFont.LineHeightMultiplier.Value*1.37f):0f;
+                stringAttributes.ParagraphStyle.LineHeightMultiple = extendedFont.LineHeightMultiplier.HasValue?((float)extendedFont.LineHeightMultiplier.Value*1.20f):0f;//TODO figure out what this value actually does
 			}
 
 			return stringAttributes;
