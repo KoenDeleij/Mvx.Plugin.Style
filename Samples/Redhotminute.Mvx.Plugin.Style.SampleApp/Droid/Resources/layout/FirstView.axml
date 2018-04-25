@@ -25,7 +25,6 @@
                     local:MvxFont="Font Regular"/>
                 <TextView
                     android:layout_width="70dp"
-                    android:lineSpacingMultiplier="2"
                     android:layout_height="wrap_content"
                     local:MvxBind="Text TestEnters"
                     local:MvxFont="Font RegularSmall"/>

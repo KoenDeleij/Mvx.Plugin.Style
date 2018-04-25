@@ -42,8 +42,10 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings {
 						label.SetTextColor(font.Color.ToAndroidColor());
 					}
 
-                    var lineHeight = font.LineHeight.HasValue?DroidAssetPlugin.GetPlatformLineHeight(font.Size, font.LineHeight.Value):(float)(label.TextSize*1.5f);
-                    var lineSpacingMultiplier = font.LineHeightMultiplier.HasValue ? (font.LineHeightMultiplier.Value-1)*1.37f : 0;
+                    var lineHeight = font.LineHeight.HasValue?DroidAssetPlugin.GetPlatformLineHeight(font.Size, font.LineHeight.Value):(float)(label.TextSize);
+
+
+                    var lineSpacingMultiplier = font.LineHeightMultiplier.HasValue ? (font.LineHeightMultiplier.Value) : 1;
 
                     label.SetLineSpacing(lineHeight, lineSpacingMultiplier);
   				

@@ -119,7 +119,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Plugin
                 stringAttributes.ParagraphStyle.LineSpacing = extendedFont.LineHeight.HasValue?GetPlatformLineHeight(font.Size, extendedFont.LineHeight.Value):font.Size/3;
                 stringAttributes.ParagraphStyle.LineBreakMode = UILineBreakMode.WordWrap;
 
-                stringAttributes.ParagraphStyle.LineHeightMultiple = extendedFont.LineHeightMultiplier.HasValue?((float)extendedFont.LineHeightMultiplier.Value*1.20f):0f;//TODO figure out what this value actually does
+                stringAttributes.ParagraphStyle.LineHeightMultiple = extendedFont.LineHeightMultiplier.HasValue?(float)extendedFont.LineHeightMultiplier.Value:0f;//TODO figure out what this value actually does
 			}
 
 			return stringAttributes;
@@ -150,7 +150,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Plugin
 		public static float GetPlatformLineHeight(float fontSize, float lineHeight)
 		{
 			float factor = LineHeightFactor.HasValue ? LineHeightFactor.Value : FontSizeFactor;
-            return (lineHeight*factor);//-fontSize
+            return ((lineHeight- fontSize)*factor);
 		}
 	}
 }
