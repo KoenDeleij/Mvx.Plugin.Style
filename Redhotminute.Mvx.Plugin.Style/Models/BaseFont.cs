@@ -35,18 +35,18 @@ namespace Redhotminute.Mvx.Plugin.Style.Models
 			set;
 		}
 
-		public static BaseFont NewFontWithModifiedColor(BaseFont fontWithoutColor, string newId, MvxColor newColor)
-		{
-			BaseFont font = new BaseFont();
-			Font fontwOutColor = fontWithoutColor as Font;
-			font.Name = newId;
-			font.Color = newColor;
-			font.FontFilename = fontWithoutColor.FontFilename;
-			font.FontPlatformName = fontWithoutColor.FontPlatformName;
-			font.FontPlatformSize = fontWithoutColor.FontPlatformSize;
-			font.Size = fontWithoutColor.Size;
-			return font;
-		}
+        public static TFont CopyFont<TRefFont, TFont>(TRefFont font, string newId) where TRefFont : BaseFont where TFont : BaseFont, new()
+        {
+            TFont newFont = new TFont();
+            newFont.Name = newId;
+            newFont.FontFilename = font.FontFilename;
+            newFont.FontPlatformName = font.FontPlatformName;
+            newFont.FontPlatformSize = font.FontPlatformSize;
+            newFont.Color = font.Color;
+            newFont.Size = font.Size;
+
+            return newFont;
+        }
 	}
 }
 

@@ -40,7 +40,7 @@
 			<TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                local:MvxBind="Text SelectedStoryTitle;Font SelectedStoryTitle,Converter=FontResource,ConverterParameter=Regular:Marked"
+                local:MvxBind="Text SelectedStoryTitle;Font ,Converter=FontResource,ConverterParameter=Regular:Marked"
                 android:layout_marginLeft="@dimen/normal_margin" />
 			<!--Regular binding + color override-->
 			<TextView

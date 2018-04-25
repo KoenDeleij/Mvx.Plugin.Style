@@ -42,5 +42,13 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Plugin {
             //return TypedValue.ApplyDimension(ComplexUnitType.Dip, ((lineHeight) * factor)  , Resources.System.DisplayMetrics);
 		}
 
+        public override bool CanAddFont(IBaseFont font)
+        {
+            if (font is iOSFont)
+            {
+                return false;
+            }
+            return base.CanAddFont(font);
+        }
 	}
 }

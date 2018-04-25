@@ -31,31 +31,23 @@ namespace Redhotminute.Mvx.Plugin.Style.Models
 			set;
 		}
 
-        /// <summary>
-        /// Creates a new font and tag for color modifications
-        /// </summary>
-        /// <returns>The font with modified color.</returns>
-        /// <param name="fontWithoutColor">Font without color.</param>
-        /// <param name="newId">New identifier.</param>
-        /// <param name="newColor">New color.</param>
-        public static Font NewFontWithModifiedColor(Font fontWithoutColor,string newId,MvxColor newColor){
-            
-            Font font = new Font();
-            Font fontwOutColor = fontWithoutColor as Font;
-			font.Name = newId;
-			font.Color = newColor;
-			font.FontFilename = fontWithoutColor.FontFilename;
-			font.FontPlatformName = fontWithoutColor.FontPlatformName;
-			font.FontPlatformSize = fontWithoutColor.FontPlatformSize;
-            font.Alignment = fontwOutColor.Alignment;
-            font.DisabledColor = fontwOutColor.DisabledColor;
-            font.LineHeight = fontwOutColor.LineHeight;
-            font.SelectedColor = fontwOutColor.SelectedColor;
-            font.Size = fontWithoutColor.Size;
+        public static TFont CopyFont<TRefFont, TFont>(TRefFont font, string newId) where TRefFont : Font where TFont : Font, new()
+        {
+            TFont newFont = new TFont();
+            newFont.Name = newId;
+            newFont.FontFilename = font.FontFilename;
+            newFont.FontPlatformName = font.FontPlatformName;
+            newFont.FontPlatformSize = font.FontPlatformSize;
+            newFont.Alignment = font.Alignment;
+            newFont.Color = font.Color;
+            newFont.DisabledColor = font.DisabledColor;
+            newFont.LineHeight = font.LineHeight;
+            newFont.LineHeightMultiplier = font.LineHeightMultiplier;
+            newFont.SelectedColor = font.SelectedColor;
+            newFont.Size = font.Size;
 
-            return font;
+            return newFont;
         }
-
 	}
 }
 

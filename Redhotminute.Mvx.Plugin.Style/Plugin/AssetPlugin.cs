@@ -6,7 +6,7 @@ using Redhotminute.Mvx.Plugin.Style.Models;
 
 namespace Redhotminute.Mvx.Plugin.Style.Plugin
 {
-	public class AssetPlugin : IAssetPlugin
+	public abstract class AssetPlugin : IAssetPlugin
 	{
 		RedhotminuteStyleConfiguration _configuration;
 
@@ -71,8 +71,20 @@ namespace Redhotminute.Mvx.Plugin.Style.Plugin
 			}
 		}
 
-        public virtual void ConvertFontFileNameForPlatform (ref IBaseFont font){
-            //do nothing
+        public abstract void ConvertFontFileNameForPlatform(ref IBaseFont font);
+
+        public virtual bool CanAddFont(IBaseFont font){
+            if (string.IsNullOrEmpty(font.Name))
+            {
+                throw new Exception("Added font should have a reference name");
+            }
+
+            if (string.IsNullOrEmpty(font.FontFilename))
+            {
+                throw new Exception("Added font should have a filename");
+            }
+
+            return true;
         }
 
 		#region IAssetPlugin implementation
@@ -111,10 +123,13 @@ namespace Redhotminute.Mvx.Plugin.Style.Plugin
                 {
                     if (fontWithoutColor is Font)
                     {
-                        font = Font.NewFontWithModifiedColor((Font)fontWithoutColor, id, GetColor(fontColor));
+                        font = Font.CopyFont<Font, Font>((Font)fontWithoutColor, id);
+                        font.Color = GetColor(fontColor);
                     }
-                    else if (fontWithoutColor is BaseFont){
-                        font = BaseFont.NewFontWithModifiedColor((BaseFont)fontWithoutColor, id, GetColor(fontColor));
+                    else if (fontWithoutColor is BaseFont)
+                    {
+                        font = BaseFont.CopyFont<Font, Font>((Font)fontWithoutColor, id);
+                        font.Color = GetColor(fontColor);
 					}
 
                     AddFont(font);
@@ -151,16 +166,9 @@ namespace Redhotminute.Mvx.Plugin.Style.Plugin
 		}
 
 		public IAssetPlugin AddFont(IBaseFont font,List<FontTag> fontTags) {
-            if (string.IsNullOrEmpty(font.Name))
-            {
-                throw new Exception("Added font should have a reference name");
+            if (!CanAddFont(font)){
+                return this;
             }
-
-			if (string.IsNullOrEmpty(font.FontFilename))
-			{
-				throw new Exception("Added font should have a filename");
-			}
-
 
 			//convert the filename so the platform would understand this
 			ConvertFontFileNameForPlatform(ref font);

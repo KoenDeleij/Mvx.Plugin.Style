@@ -22,8 +22,6 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.BindingSetup {
 			_source = source;
 		}
 
-		private int BindingFontId;
-
 		public override void BindView(View view, Context context, IAttributeSet attrs) {
 			
 			using (
@@ -40,9 +38,6 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.BindingSetup {
 					}
 				}
 				typedArray.Recycle();
-
-				//check the rest of the attributes
-				//TODO check if we can do this more optimal
 				base.BindView(view, context, attrs);
 			}
 		}
@@ -51,10 +46,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.BindingSetup {
 			try {
 				var bindingText = typedArray.GetString(attributeId);
 				var newBindings = (this.Binder as MvxFromTextExtendedBinder).FontBind(this._source, view, bindingText);
-				//IMvxBindingContextOwner bindableContext = context as IMvxBindingContextOwner;
-				//bindableContext.BindFont(view, bindingText);
 				StoreBindings(view, newBindings);
-				//TODO we might be able to store the bindings (check parent)
 			}
 			catch (Exception exception) {
 				MvxBindingTrace.Trace(MvxTraceLevel.Error, "Exception thrown during the view font binding {0}",exception.ToLongString());

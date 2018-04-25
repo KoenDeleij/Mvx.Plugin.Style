@@ -13,7 +13,6 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.Droid.Views
     [Activity]
     public class FirstView : MvxAppCompatActivity
     {
-        TextView _contentTextField;
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);

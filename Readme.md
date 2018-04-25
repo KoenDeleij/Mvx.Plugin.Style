@@ -110,6 +110,12 @@ For buttons and more advanced styling you can use the Font class
 * **LineHeightMultiplier**, *float* Usefull for multiplying the space between lines in comparison to other Textviews
 * **Alignment**, *TextAlignment* (Left/Center/Right/Justified). Note, justified is not supported for Android, and will default to 'Left'. If you leave the UILabel alignment to neutral for iOS, it will override with the font allignment. If you specify an alignment the text alignment from the font will be ignored.
 
+
+**IOSFont/AndroidFont**
+
+In case you want to use fonts specifically for iOS or Android, use the IOSFont or AndroidFont.
+This can be particullary handy if you want modified multipliers or different fonts because of rendering issues.
+
 ## Cross
 
 ### Setup
@@ -133,11 +139,20 @@ And want to hightlight 'piece' with a different font, you can configure fonts li
 Add the font, and add the tags to the font you want to use as highlight.
 
 	plugin.AddFont(new Font() { Name = "H1", 	FontFilename = "font.ttf", FontPlatformName = "fontname", Size = 16,Color = plugin.GetColor("DefaultColor")});
-	plugin.AddFont(new Font() { Name = "H1_Highlight", 	FontFilename = "font.ttf", FontPlatformName = "fontname", Size = 16,Color = plugin.GetColor("DefaultColor")},tags);	
+	plugin.AddFont(new IOSFont() { Name = "H1_Highlight", 	FontFilename = "font.ttf", FontPlatformName = "fontname", Size = 16,Color = plugin.GetColor("DefaultColor")},tags);	
 
 Your paragraph should look like this :
 
 	This is a <b>piece</b> of text
+	
+##### Duplicate fonts
+
+	Fonts.CopyFont<TRefFont,TFont>(TRefFont font,string fontId)
+	
+
+Example : 
+
+	var regularFontAndroid = Font.CopyFont<iOSFont,AndroidFont>(regularFontiOS, "Regular");
 
 ##### Links
 

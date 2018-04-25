@@ -152,6 +152,14 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Plugin
 			float factor = LineHeightFactor.HasValue ? LineHeightFactor.Value : FontSizeFactor;
             return ((lineHeight- fontSize)*factor);
 		}
+
+		public override bool CanAddFont(IBaseFont font)
+		{
+            if(font is AndroidFont){
+                return false;
+            }
+            return base.CanAddFont(font);
+		}
 	}
 }
 
