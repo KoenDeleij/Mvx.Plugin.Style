@@ -38,9 +38,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Plugin {
 		{
             float factor = LineHeightFactor.HasValue ? (LineHeightFactor.Value) : FontSizeFactor;
 
-            //float newLineHeight = (lineHeight * factor) - fontSize;
-            var t = TypedValue.ApplyDimension(ComplexUnitType.Dip, ((lineHeight+ fontSize) * factor)  , Resources.System.DisplayMetrics);//- (fontSize)
-            return t;
+            return TypedValue.ApplyDimension(ComplexUnitType.Dip, ((lineHeight+ fontSize) * factor)  , Resources.System.DisplayMetrics);
 		}
 
 	}
