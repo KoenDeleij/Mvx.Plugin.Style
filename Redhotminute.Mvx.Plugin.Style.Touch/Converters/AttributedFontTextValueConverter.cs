@@ -29,6 +29,11 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Converters
 
 			if (value!= null && parameter!= null){
 				try{
+                    var stringValue = value.ToString();
+                    if (string.IsNullOrWhiteSpace(stringValue))
+                    {
+                        return string.Empty;
+                    }
 					var text = assetPlugin.ParseToAttributedText(value.ToString(), assetPlugin.GetFontByName(parameter.ToString()));
                     return text;
 				}catch(Exception e){
