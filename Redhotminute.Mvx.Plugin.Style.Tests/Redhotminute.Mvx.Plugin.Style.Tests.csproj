@@ -75,6 +75,7 @@
     <Compile Include="Helpers\TestAssetPlugin.cs" />
     <Compile Include="Converters\FontConverterTests.cs" />
     <Compile Include="Converters\AssetColorValueConverterTest.cs" />
+    <Compile Include="Models\FontTester.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -88,6 +89,7 @@
   <ItemGroup>
     <Folder Include="Helpers\" />
     <Folder Include="Converters\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

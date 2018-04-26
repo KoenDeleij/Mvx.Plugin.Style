@@ -35,6 +35,24 @@ namespace Redhotminute.Mvx.Plugin.Style.Models
 			set;
 		}
 
+        public BaseFont SetColor(MvxColor color)
+        {
+            this.Color = color;
+            return this;
+        }
+
+        public BaseFont SetName(string name)
+        {
+            this.Name = name;
+            return this;
+        }
+
+        public BaseFont SetSize(int size)
+        {
+            this.Size = size;
+            return this;
+        }
+
         public static TFont CopyFont<TRefFont, TFont>(TRefFont font, string newId) where TRefFont : BaseFont where TFont : BaseFont, new()
         {
             TFont newFont = new TFont();

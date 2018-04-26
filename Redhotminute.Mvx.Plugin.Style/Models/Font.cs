@@ -31,6 +31,35 @@ namespace Redhotminute.Mvx.Plugin.Style.Models
 			set;
 		}
 
+        public Font SetLineHeightMultiPlier(float multiplier){
+            this.LineHeightMultiplier = multiplier;
+            return this;
+        }
+
+        public Font SetAlignment(TextAlignment alignment)
+        {
+            this.Alignment = alignment;
+            return this;
+        }
+
+        public Font SetLineHeight(int lineHeight)
+        {
+            this.LineHeight = lineHeight;
+            return this;
+        }
+
+        public Font SetSelectedColor(MvxColor color)
+        {
+            this.SelectedColor = color;
+            return this;
+        }
+
+        public Font SetDisabledColor(MvxColor color)
+        {
+            this.DisabledColor = color;
+            return this;
+        }
+
         public static TFont CopyFont<TRefFont, TFont>(TRefFont font, string newId) where TRefFont : Font where TFont : Font, new()
         {
             TFont newFont = new TFont();

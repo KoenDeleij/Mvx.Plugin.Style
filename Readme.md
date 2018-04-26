@@ -153,6 +153,10 @@ Your paragraph should look like this :
 Example : 
 
 	var regularFontAndroid = Font.CopyFont<iOSFont,AndroidFont>(regularFontiOS, "Regular");
+	
+To easily modify the fonts you can use setters :
+
+	var regularFontAndroid = (AndroidFont)Font.CopyFont<iOSFont,AndroidFont>(regularFontiOS, "Regular").SetLineHeight(20.0f);
 
 ##### Links
 
