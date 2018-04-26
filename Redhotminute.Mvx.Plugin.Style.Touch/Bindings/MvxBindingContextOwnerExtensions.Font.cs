@@ -6,7 +6,7 @@ using MvvmCross.Binding.Bindings;
 using MvvmCross.Binding.Bindings.SourceSteps;
 using UIKit;
 
-namespace Redhotminute.Mvx.Plugin.Style.Touch {
+namespace Redhotminute.Mvx.Plugin.Style.Touch.Bindings {
 	/// <summary>
 	/// This extension is added because iOS cannot have certain properties be passed by the font only
 	/// For example a lineheight has to be set from an attributed text, while for android, the font itself contains the definition of lineheight

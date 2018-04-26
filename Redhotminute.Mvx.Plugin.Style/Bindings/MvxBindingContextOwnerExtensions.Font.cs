@@ -6,7 +6,7 @@ using MvvmCross.Binding.Bindings;
 using MvvmCross.Binding.Bindings.SourceSteps;
 using MvvmCross.Platform.UI;
 
-namespace Redhotminute.Mvx.Plugin.Style
+namespace Redhotminute.Mvx.Plugin.Style.Binding
 {
 	public static class MvxFontBindingContextOwnerExtensions
 	{

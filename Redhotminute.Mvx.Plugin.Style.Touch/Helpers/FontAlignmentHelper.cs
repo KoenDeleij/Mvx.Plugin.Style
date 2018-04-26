@@ -1,7 +1,8 @@
 using System;
+using Redhotminute.Mvx.Plugin.Style.Models;
 using UIKit;
 
-namespace Redhotminute.Mvx.Plugin.Style.Touch {
+namespace Redhotminute.Mvx.Plugin.Style.Touch.Helpers {
 	public static class FontAlignmentHelper {
 		public static UITextAlignment ToNativeAlignment(this Font font) {
 

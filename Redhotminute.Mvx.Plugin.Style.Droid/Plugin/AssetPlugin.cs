@@ -4,8 +4,10 @@ using Android.Content;
 using Android.Content.Res;
 using Android.Graphics;
 using Android.Util;
+using Redhotminute.Mvx.Plugin.Style.Models;
+using Redhotminute.Mvx.Plugin.Style.Plugin;
 
-namespace Redhotminute.Mvx.Plugin.Style.Droid {
+namespace Redhotminute.Mvx.Plugin.Style.Droid.Plugin {
 	public class DroidAssetPlugin : AssetPlugin {
 		#region implemented abstract members of AssetPlugin
 
@@ -34,10 +36,19 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid {
 
 		public static float GetPlatformLineHeight(float fontSize, float lineHeight)
 		{
-            //0.65 is some factor necessary to make the lineheight match iOS
-            float factor = LineHeightFactor.HasValue ? (LineHeightFactor.Value * 0.6f) : FontSizeFactor;
-            return TypedValue.ApplyDimension(ComplexUnitType.Dip, (lineHeight-(fontSize)) * factor, Resources.System.DisplayMetrics);
+            float factor = LineHeightFactor.HasValue ? (LineHeightFactor.Value) : FontSizeFactor;
+
+            return (lineHeight-fontSize) * factor  ;
+            //return TypedValue.ApplyDimension(ComplexUnitType.Dip, ((lineHeight) * factor)  , Resources.System.DisplayMetrics);
 		}
 
+        public override bool CanAddFont(IBaseFont font)
+        {
+            if (font is iOSFont)
+            {
+                return false;
+            }
+            return base.CanAddFont(font);
+        }
 	}
 }

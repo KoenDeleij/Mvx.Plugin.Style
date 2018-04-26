@@ -1,7 +1,8 @@
 using System;
 using MvvmCross.Platform.Plugins;
+using Redhotminute.Mvx.Plugin.Style.Plugin;
 
-namespace Redhotminute.Mvx.Plugin.Style.Droid
+namespace Redhotminute.Mvx.Plugin.Style.Droid.Plugin
 {
 	public class Plugin : IMvxConfigurablePlugin
 	{

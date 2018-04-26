@@ -5,8 +5,12 @@ using MvvmCross.Binding.Bindings.Target.Construction;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Converters;
 using MvvmCross.Platform.Plugins;
+using Redhotminute.Mvx.Plugin.Style.Binding;
+using Redhotminute.Mvx.Plugin.Style.Converters;
+using Redhotminute.Mvx.Plugin.Style.Droid.Bindings;
+using Redhotminute.Mvx.Plugin.Style.Droid.Converters;
 
-namespace Redhotminute.Mvx.Plugin.Style.Droid {
+namespace Redhotminute.Mvx.Plugin.Style.Droid.Plugin {
 	public class PluginLoader : IMvxPluginLoader {
 		public static readonly PluginLoader Instance = new PluginLoader();
 
@@ -16,7 +20,6 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid {
 
 			MvvmCross.Platform.Mvx.CallbackWhenRegistered<IMvxValueConverterRegistry>(RegisterValueConverters);
 			MvvmCross.Platform.Mvx.CallbackWhenRegistered<IMvxTargetBindingFactoryRegistry>(RegisterCustomBinding);
-
 			MvvmCross.Platform.Mvx.RegisterSingleton<IMvxFontBindingParser>(new MvxFontBindingParser());
 		}
 

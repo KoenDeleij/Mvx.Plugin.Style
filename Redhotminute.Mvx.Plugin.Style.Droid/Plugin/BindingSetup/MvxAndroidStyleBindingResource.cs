@@ -6,7 +6,7 @@ using MvvmCross.Platform.Core;
 using MvvmCross.Platform.Exceptions;
 using MvvmCross.Platform.Platform;
 
-namespace Redhotminute.Mvx.Plugin.Style.Droid {
+namespace Redhotminute.Mvx.Plugin.Style.Droid.BindingSetup {
 	//TODO find a better way to extend the MvxAndroidBindingResource
 public class MvxAndroidStyleBindingResource
 		: MvxSingleton<IMvxAndroidBindingResource>

@@ -1,9 +1,9 @@
 using System;
 using MvvmCross.Platform.Converters;
 using System.Globalization;
+using Redhotminute.Mvx.Plugin.Style.Plugin;
 
-
-namespace Redhotminute.Mvx.Plugin.Style
+namespace Redhotminute.Mvx.Plugin.Style.Converters
 {
 	public class FontResourceValueConverter : MvxValueConverter {
 		/// <summary>
@@ -22,7 +22,7 @@ namespace Redhotminute.Mvx.Plugin.Style
 			AssetPlugin plugin = value as AssetPlugin;
 
 			if (plugin == null) {
-				plugin = (Redhotminute.Mvx.Plugin.Style.AssetPlugin)MvvmCross.Platform.Mvx.Resolve<IAssetPlugin>();
+				plugin = (AssetPlugin)MvvmCross.Platform.Mvx.Resolve<IAssetPlugin>();
 			}
 
 			if (parameter!= null){

@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using Foundation;
 using MvvmCross.Plugins.Color.iOS;
+using Redhotminute.Mvx.Plugin.Style.Helpers;
+using Redhotminute.Mvx.Plugin.Style.Models;
+using Redhotminute.Mvx.Plugin.Style.Plugin;
+using Redhotminute.Mvx.Plugin.Style.Touch.Helpers;
 using UIKit;
 
-namespace Redhotminute.Mvx.Plugin.Style.Touch
+namespace Redhotminute.Mvx.Plugin.Style.Touch.Plugin
 {
 	public class TouchAssetPlugin : AssetPlugin {
 		#region implemented abstract members of AssetPlugin
@@ -40,36 +43,49 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch
 			return _fontsCache[font.Name];
 		}
 
-		public NSAttributedString ParseToAttributedText(string text, IBaseFont font) {
-			if (font != null) {
-				this.ConvertFontFileNameForPlatform(ref font);
-				UIStringAttributes stringAttributes = CreateAttributesByFont(font);
+        public NSAttributedString ParseToAttributedText(string text, IBaseFont font) {
+			try
+			{
+                if (font != null)
+                {
+                    this.ConvertFontFileNameForPlatform(ref font);
 
-				var assetPlugin = MvvmCross.Platform.Mvx.Resolve<IAssetPlugin>();
+                    var assetPlugin = MvvmCross.Platform.Mvx.Resolve<IAssetPlugin>();
 
-				string cleanText = string.Empty;
-				var indexPairs = AttributedFontHelper.GetFontTextBlocks(text, font.Name, assetPlugin, out cleanText);
+                    string cleanText = string.Empty;
 
-				var attributedText = new NSMutableAttributedString(cleanText);
-				attributedText.AddAttributes(stringAttributes, new NSRange(0, cleanText.Length));
+                    var indexPairs = AttributedFontHelper.GetFontTextBlocks(text, font.Name, assetPlugin, out cleanText);
 
-				//TODO add caching for same fonttags for the attributes
-				foreach (FontIndexPair block in indexPairs) {
-					//get the font for each tag and decorate the text
-					if (!string.IsNullOrEmpty(block.FontTag)) {
-						var tagFont = assetPlugin.GetFontByTag(font.Name,block.FontTag);
-						tagFont = tagFont == null ? font : tagFont;
-						UIStringAttributes attr = CreateAttributesByFont(tagFont);
-						attributedText.SetAttributes(attr, new NSRange(block.StartIndex, block.EndIndex - block.StartIndex));
+                    NSMutableAttributedString attributedText = new NSMutableAttributedString(cleanText);
+
+                    UIStringAttributes stringAttributes = CreateAttributesByFont(ref attributedText, font);
+                    attributedText.AddAttributes(stringAttributes, new NSRange(0, cleanText.Length));
+
+					//TODO add caching for same fonttags for the attributes
+					foreach (FontIndexPair block in indexPairs) {
+						//get the font for each tag and decorate the text
+                        if (block.FontTag != null && !string.IsNullOrEmpty(block.FontTag.OriginalFontName)) {
+                            FontTag fontTag = null;
+                            var tagFont = assetPlugin.GetFontByTagWithTag(font.Name,block.FontTag.Tag,out fontTag);
+
+							tagFont = tagFont == null ? font : tagFont;
+                            UIStringAttributes attr = CreateAttributesByFont(ref attributedText,tagFont,block,fontTag);
+                            attributedText.SetAttributes(attr, new NSRange(block.StartIndex, block.EndIndex - block.StartIndex));
+						}
 					}
+	               
+					return attributedText;
 				}
-
-				return attributedText;
+			}
+			catch (Exception e)
+			{
+                //just return the text as passed if something fails
+                return new NSMutableAttributedString(text);
 			}
 			return null;
 		}
 
-		private UIStringAttributes CreateAttributesByFont(IBaseFont font) {
+        private UIStringAttributes CreateAttributesByFont(ref NSMutableAttributedString text,IBaseFont font,FontIndexPair pair = null,FontTag tag = null) {
 			UIStringAttributes stringAttributes = new UIStringAttributes { };
 
 			//add the font
@@ -80,29 +96,51 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch
 				stringAttributes.ForegroundColor = font.Color.ToNativeColor();
 			}
 
+            if(pair != null && tag != null){
+                if(tag.FontAction == FontTagAction.Link){
+                    CreateLink(ref text,ref stringAttributes,font,pair);
+                }
+            }
+
 			if (font is Font) {
 				var extendedFont = font as Font;
+
+                if (stringAttributes.ParagraphStyle == null)
+                {
+                    stringAttributes.ParagraphStyle = new NSMutableParagraphStyle();
+                }
+
 				if (extendedFont.Alignment != TextAlignment.None) {
 					UITextAlignment alignment = extendedFont.ToNativeAlignment();
-					if (stringAttributes.ParagraphStyle == null) {
-						stringAttributes.ParagraphStyle = new NSMutableParagraphStyle();
-					}
 					stringAttributes.ParagraphStyle.Alignment = alignment;
 				}
 
 				//add the lineheight
-                if (extendedFont.LineHeight.HasValue) {
-					if (stringAttributes.ParagraphStyle == null) {
-						stringAttributes.ParagraphStyle = new NSMutableParagraphStyle();
-					}
+                stringAttributes.ParagraphStyle.LineSpacing = extendedFont.LineHeight.HasValue?GetPlatformLineHeight(font.Size, extendedFont.LineHeight.Value):font.Size/3;
+                stringAttributes.ParagraphStyle.LineBreakMode = UILineBreakMode.WordWrap;
 
-                    stringAttributes.ParagraphStyle.LineSpacing = GetPlatformLineHeight(font.Size, extendedFont.LineHeight.Value) * 0.5f;
-					stringAttributes.ParagraphStyle.LineBreakMode = UILineBreakMode.TailTruncation;
-				}
+                stringAttributes.ParagraphStyle.LineHeightMultiple = extendedFont.LineHeightMultiplier.HasValue?(float)extendedFont.LineHeightMultiplier.Value:0f;//TODO figure out what this value actually does
 			}
 
 			return stringAttributes;
 		}
+
+        private void CreateLink(ref NSMutableAttributedString text,ref UIStringAttributes attribute, IBaseFont font, FontIndexPair pair)
+        {
+            //if theres a link property, use that one, if not, use the text itself
+            string link;
+            if (pair.TagProperties != null && pair.TagProperties.ContainsKey("href"))
+            {
+                link = pair.TagProperties.GetValueOrDefault("href");
+            }
+            else
+            {
+                link = text.Value.Substring(pair.StartIndex, pair.EndIndex - pair.StartIndex).Trim();
+            }
+            attribute.Link = new NSUrl(link);
+            attribute.UnderlineStyle = NSUnderlineStyle.Single;
+            attribute.UnderlineColor = font.Color.ToNativeColor();
+        }
 
 		public override IAssetPlugin ClearFonts() {
 			_fontsCache = new Dictionary<string, UIFont>();
@@ -112,7 +150,15 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch
 		public static float GetPlatformLineHeight(float fontSize, float lineHeight)
 		{
 			float factor = LineHeightFactor.HasValue ? LineHeightFactor.Value : FontSizeFactor;
-			return (lineHeight - fontSize) * factor;
+            return ((lineHeight- fontSize)*factor);
+		}
+
+		public override bool CanAddFont(IBaseFont font)
+		{
+            if(font is AndroidFont){
+                return false;
+            }
+            return base.CanAddFont(font);
 		}
 	}
 }

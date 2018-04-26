@@ -4,7 +4,7 @@ using MvvmCross.Binding;
 using MvvmCross.Binding.Binders;
 using MvvmCross.Binding.Bindings;
 
-namespace Redhotminute.Mvx.Plugin.Style {
+namespace Redhotminute.Mvx.Plugin.Style.Binding {
 	public class MvxFromTextExtendedBinder :MvxFromTextBinder {
 		public IEnumerable<IMvxUpdateableBinding> FontBind(object source, object target, string bindingText) {
 			

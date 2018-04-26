@@ -14,6 +14,21 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    local:MvxBind="Text TestEnters" 
+                    local:MvxFont="Font Regular"/>
+                <TextView
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    local:MvxBind="Text TestEnters"
+                    local:MvxFont="Font RegularSmall"/>
+            </LinearLayout>
 			<!--regular binding-->
             <TextView
                 android:layout_width="match_parent"
@@ -21,12 +36,11 @@
                 local:MvxBind="Text SelectedStoryTitle"
                 local:MvxFont="Font H1"
                 android:layout_margin="@dimen/normal_margin" />
-			-->
 			<!--List binding (with converter) + color override-->
 			<TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                local:MvxBind="Text SelectedStoryTitle;Font SelectedStoryTitle,Converter=FontResource,ConverterParameter=Regular:Marked"
+                local:MvxBind="Text SelectedStoryTitle;Font ,Converter=FontResource,ConverterParameter=Regular:Marked"
                 android:layout_marginLeft="@dimen/normal_margin" />
 			<!--Regular binding + color override-->
 			<TextView
@@ -43,10 +57,11 @@
                 android:layout_marginLeft="@dimen/normal_margin" />
 			<!--Attributed binding-->
             <TextView
+                android:id="@+id/contentText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                local:MvxBind="AttributedText SelectedStoryParagraph,Converter=AttributedText,ConverterParameter=Regular"
-                android:layout_margin="@dimen/normal_margin" />
+                android:layout_margin="@dimen/normal_margin" 
+                local:MvxBind="AttributedText SelectedStoryParagraph,Converter=AttributedText,ConverterParameter=Regular"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

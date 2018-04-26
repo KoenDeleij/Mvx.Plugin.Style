@@ -5,7 +5,7 @@ using MvvmCross.Binding.Bindings.Target;
 using MvvmCross.Plugins.Color.iOS;
 using MvvmCross.Platform;
 
-namespace Redhotminute.Mvx.Plugin.Style.Touch {
+namespace Redhotminute.Mvx.Plugin.Style.Touch.Bindings {
 	public class BaseStyleBinding<T> : MvxConvertingTargetBinding {
 		protected T TypedTarget {
 			get { return (T)Target; }

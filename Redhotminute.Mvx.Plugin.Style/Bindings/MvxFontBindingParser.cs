@@ -1,5 +1,5 @@
 using System;
-namespace Redhotminute.Mvx.Plugin.Style {
+namespace Redhotminute.Mvx.Plugin.Style.Binding {
 	using MvvmCross.Binding;
 	using MvvmCross.Binding.Parse.Binding;
 	using MvvmCross.Platform.Exceptions;

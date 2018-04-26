@@ -1,8 +1,9 @@
 using System;
 using Android.Views;
 using MvvmCross.Binding;
+using Redhotminute.Mvx.Plugin.Style.Models;
 
-namespace Redhotminute.Mvx.Plugin.Style.Droid {
+namespace Redhotminute.Mvx.Plugin.Style.Droid.Helpers {
 	public static class FontAlignmentHelper {
 		public static GravityFlags ToNativeAlignment(this Font font) {
 			GravityFlags flags = GravityFlags.Left;

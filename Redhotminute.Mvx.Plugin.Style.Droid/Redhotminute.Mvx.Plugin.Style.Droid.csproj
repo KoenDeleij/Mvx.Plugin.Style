@@ -13,7 +13,7 @@
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
     <AssemblyName>Redhotminute.Mvx.Plugin.Style.Droid</AssemblyName>
-    <TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <AndroidTlsProvider></AndroidTlsProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -35,6 +35,11 @@
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
     <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'UnitTest|AnyCPU' ">
+    <Optimize>false</Optimize>
+    <OutputPath>bin\UnitTest</OutputPath>
+    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -91,6 +96,7 @@
     <Compile Include="Helpers\CustomTypefaceSpan.cs" />
     <Compile Include="Bindings\TextViewAttributedTargetBinding.cs" />
     <Compile Include="Helpers\AttributedStringBaseFontWrapper.cs" />
+    <Compile Include="Helpers\Spans\ClickableLinkSpan.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -102,6 +108,7 @@
     <Folder Include="Resources\values\" />
     <Folder Include="Helpers\" />
     <Folder Include="Converters\" />
+    <Folder Include="Helpers\Spans\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\MvxExtendedBindingAttributes.xml" />

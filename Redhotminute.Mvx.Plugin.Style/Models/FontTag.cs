@@ -1,9 +1,10 @@
 ﻿using System;
-namespace Redhotminute.Mvx.Plugin.Style {
+namespace Redhotminute.Mvx.Plugin.Style.Models {
 	public class FontTag {
-		public FontTag(string originalFontName, string tag) {
+        public FontTag(string originalFontName, string tag,FontTagAction action = FontTagAction.Text) {
 			OriginalFontName = originalFontName;
 			Tag = tag;
+            FontAction = action;
 		}
 		public string OriginalFontName {
 			get;
@@ -14,5 +15,11 @@ namespace Redhotminute.Mvx.Plugin.Style {
 			get;
 			set;
 		}
+
+        public FontTagAction FontAction
+        {
+            get;
+            set;
+        }
 	}
 }

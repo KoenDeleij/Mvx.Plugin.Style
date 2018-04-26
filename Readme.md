@@ -107,7 +107,14 @@ For buttons and more advanced styling you can use the Font class
 * **SelectedColor**, *MvxColor* (Font color shown when a button is set to selected. Selected property for iOS, state_selected for Android)
 * **DisabledColor**, *MvxColor* (Font color shown when a button is disabled. Enabled false for iOS, state_enabled false for Android)
 * **LineHeight**, *int* (Only available for labels and textviews. For iOS you'll need to use the AttributedText converter)
+* **LineHeightMultiplier**, *float* Usefull for multiplying the space between lines in comparison to other Textviews
 * **Alignment**, *TextAlignment* (Left/Center/Right/Justified). Note, justified is not supported for Android, and will default to 'Left'. If you leave the UILabel alignment to neutral for iOS, it will override with the font allignment. If you specify an alignment the text alignment from the font will be ignored.
+
+
+**IOSFont/AndroidFont**
+
+In case you want to use fonts specifically for iOS or Android, use the IOSFont or AndroidFont.
+This can be particullary handy if you want modified multipliers or different fonts because of rendering issues.
 
 ## Cross
 
@@ -132,13 +139,43 @@ And want to hightlight 'piece' with a different font, you can configure fonts li
 Add the font, and add the tags to the font you want to use as highlight.
 
 	plugin.AddFont(new Font() { Name = "H1", 	FontFilename = "font.ttf", FontPlatformName = "fontname", Size = 16,Color = plugin.GetColor("DefaultColor")});
-	plugin.AddFont(new Font() { Name = "H1_Highlight", 	FontFilename = "font.ttf", FontPlatformName = "fontname", Size = 16,Color = plugin.GetColor("DefaultColor")},tags);	
+	plugin.AddFont(new IOSFont() { Name = "H1_Highlight", 	FontFilename = "font.ttf", FontPlatformName = "fontname", Size = 16,Color = plugin.GetColor("DefaultColor")},tags);	
 
 Your paragraph should look like this :
 
 	This is a <b>piece</b> of text
 	
+##### Duplicate fonts
+
+	Fonts.CopyFont<TRefFont,TFont>(TRefFont font,string fontId)
 	
+
+Example : 
+
+	var regularFontAndroid = Font.CopyFont<iOSFont,AndroidFont>(regularFontiOS, "Regular");
+
+##### Links
+
+To support clickable links in your content use :
+	
+	new FontTag(FontItalic, "a",FontTagAction.Link)
+
+Text could look like : 
+
+	This is a <a href="www.google.com">google</a> of text
+	This is a <a href=www.google.com>google</a> of text
+	This is a <a href='www.google.com'>google</a> of text
+	This is a <a>www.google.com</a> of text
+	
+For iOS this is only supported vor UITextViews. Remember to turn off editable and turn on selectable. You don't have to set the detectors.
+
+##### LineHeight/Multiplier
+
+If you want 2 fonts to allign, you could do the following :
+
+	plugin.AddFont(new Font() { Name = "H1", FontFilename = "f.ttf", FontPlatformName = "f", Size = 20});
+	plugin.AddFont(new Font() { Name = "H2", FontFilename = "f2.ttf", FontPlatformName = "f2", Size = 10,LineHeightMultiplier=2.0f});
+
 ## iOS
 
 ### Setup

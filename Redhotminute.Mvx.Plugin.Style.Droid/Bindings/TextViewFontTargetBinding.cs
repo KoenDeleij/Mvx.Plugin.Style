@@ -1,17 +1,16 @@
 using System;
-using Android.Content.Res;
 using Android.Graphics;
-using Android.Text;
-using Android.Util;
 using Android.Widget;
 using MvvmCross.Binding;
 using MvvmCross.Binding.Bindings.Target;
-using MvvmCross.Binding.ExtensionMethods;
-using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
 using MvvmCross.Plugins.Color.Droid;
+using Redhotminute.Mvx.Plugin.Style.Droid.Helpers;
+using Redhotminute.Mvx.Plugin.Style.Droid.Plugin;
+using Redhotminute.Mvx.Plugin.Style.Models;
+using Redhotminute.Mvx.Plugin.Style.Plugin;
 
-namespace Redhotminute.Mvx.Plugin.Style.Droid {
+namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings {
 	public class TextViewFontTargetBinding
 		: MvxConvertingTargetBinding {
 
@@ -31,21 +30,25 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid {
 			if (font != null) {
 				try {
 					Typeface droidFont = DroidAssetPlugin.GetCachedFont(font,label.Context);
+                    label.SetIncludeFontPadding(false);
 					label.SetTypeface(droidFont, new TypefaceStyle());
 
 					if (font.Size != default(int)) {
-						label.SetTextSize(Android.Util.ComplexUnitType.Dip, AssetPlugin.GetPlatformFontSize(font.Size));
+                        float fontSize = AssetPlugin.GetPlatformFontSize(font.Size);
+                        label.SetTextSize(Android.Util.ComplexUnitType.Dip,fontSize);
 					}
 
 					if (font.Color != null) {
 						label.SetTextColor(font.Color.ToAndroidColor());
 					}
 
-                    if (font.LineHeight.HasValue) {
-                        var newLineHeight = DroidAssetPlugin.GetPlatformLineHeight(font.Size, font.LineHeight.Value);
-                        label.SetLineSpacing(newLineHeight, 1.0f);
-					}
+                    var lineHeight = font.LineHeight.HasValue?DroidAssetPlugin.GetPlatformLineHeight(font.Size, font.LineHeight.Value):(float)(label.TextSize);
 
+
+                    var lineSpacingMultiplier = font.LineHeightMultiplier.HasValue ? (font.LineHeightMultiplier.Value) : 1;
+
+                    label.SetLineSpacing(lineHeight, lineSpacingMultiplier);
+  				
 					if (font.Alignment != TextAlignment.None) {
 						label.Gravity = font.ToNativeAlignment();
 					}
@@ -58,11 +61,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid {
 
 		public override MvxBindingMode DefaultMode => MvxBindingMode.OneWay;
 
-		public override Type TargetType {
-			get {
-				return typeof(Font);
-			}
-		}
+		public override Type TargetType => typeof(Font);
 	}
 }
 

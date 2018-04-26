@@ -3,7 +3,7 @@ using Android.Graphics;
 using Android.Text;
 using Android.Text.Style;
 
-namespace Redhotminute.Mvx.Plugin.Style.Droid {
+namespace Redhotminute.Mvx.Plugin.Style.Droid.Helpers {
 	public class CustomTypefaceSpan :TypefaceSpan{
 		private Typeface _newType;
 

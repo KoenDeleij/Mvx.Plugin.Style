@@ -1,9 +1,12 @@
 using System;
 using Android.Text;
+using Android.Text.Method;
+using Android.Text.Util;
 using Android.Widget;
 using MvvmCross.Binding;
+using Redhotminute.Mvx.Plugin.Style.Droid.Helpers;
 
-namespace Redhotminute.Mvx.Plugin.Style.Droid {
+namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings {
 	public class TextViewAttributedTargetBinding
 		: TextViewFontTargetBinding {
 
@@ -19,7 +22,17 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid {
 			if (wrapper != null) {
 				//set the base font
 				base.SetValueImpl(target, wrapper.Font);
-				label.TextFormatted = wrapper.SpannableString;
+                spannable = wrapper.SpannableString;
+                if (wrapper.ContainsClickable)
+                {
+                    label.MovementMethod = new LinkMovementMethod();
+
+                    if(wrapper.ClickableFont!= null){
+                        label.SetLinkTextColor(new Android.Graphics.Color(wrapper.ClickableFont.Color.R,wrapper.ClickableFont.Color.G,wrapper.ClickableFont.Color.B));
+                    }
+                }
+
+                label.TextFormatted = spannable;
 			}
 			else {
 				spannable = toSet as SpannableString;
@@ -33,11 +46,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid {
 
 		public override MvxBindingMode DefaultMode => MvxBindingMode.OneWay;
 
-		public override Type TargetType {
-			get {
-				return typeof(SpannableString);
-			}
-		}
+		public override Type TargetType => typeof(SpannableString);
 	}
 }
 

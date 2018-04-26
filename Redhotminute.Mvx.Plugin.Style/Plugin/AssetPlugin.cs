@@ -1,12 +1,10 @@
 using System;
-using MvvmCross.Platform;
-using MvvmCross.Platform.Platform;
 using System.Collections.Generic;
-using MvvmCross.Plugins.Color;
+using System.Linq;
 using MvvmCross.Platform.UI;
-using MvvmCross.Binding;
+using Redhotminute.Mvx.Plugin.Style.Models;
 
-namespace Redhotminute.Mvx.Plugin.Style
+namespace Redhotminute.Mvx.Plugin.Style.Plugin
 {
 	public abstract class AssetPlugin : IAssetPlugin
 	{
@@ -53,11 +51,11 @@ namespace Redhotminute.Mvx.Plugin.Style
 			}
 		}
 
-		private Dictionary<string,Dictionary<string,string>> _fontsTagged;
-		private Dictionary<string,Dictionary<string,string>> FontsTagged {
+        private Dictionary<string,List<FontTag>> _fontsTagged;
+        private Dictionary<string,List<FontTag>> FontsTagged {
 			get {
 				if (_fontsTagged == null) {
-					_fontsTagged = new Dictionary<string,Dictionary<string,string>>();
+                    _fontsTagged = new Dictionary<string,List<FontTag>>();
 				}
 				return _fontsTagged;
 			}
@@ -73,35 +71,56 @@ namespace Redhotminute.Mvx.Plugin.Style
 			}
 		}
 
-		public abstract void ConvertFontFileNameForPlatform (ref IBaseFont font);
+        public abstract void ConvertFontFileNameForPlatform(ref IBaseFont font);
+
+        public virtual bool CanAddFont(IBaseFont font){
+            if (string.IsNullOrEmpty(font.Name))
+            {
+                throw new Exception("Added font should have a reference name");
+            }
+
+            if (string.IsNullOrEmpty(font.FontFilename))
+            {
+                throw new Exception("Added font should have a filename");
+            }
+
+            return true;
+        }
 
 		#region IAssetPlugin implementation
 
-		private bool GetColorFromFontName(ref string fontColor,ref string fontName,string fontAndColor)
+        private bool GetColorFromFontName(ref string fontColor,ref string fontName,string fontAndColor)
 		{
 			if (fontAndColor.Contains(":"))
 			{
 				var elements = fontAndColor.Split(':');
-				if (elements.Length > 1)
+                if (elements.Length > 1)
 				{
-					fontColor = elements[1];
                     fontName = elements[0];
-                    return true;
 				}
+
+                if(!string.IsNullOrWhiteSpace(elements[1])){
+                    fontColor = elements[1];
+                    return true;
+                }    
+            }else{
+                fontName = fontAndColor;
             }
 
             return false;
 		}
 
-		public IBaseFont GetFontByName(string id)
+		public IBaseFont GetFontByName(string fontAndColorId)
 		{
             string fontColor = string.Empty;
             string fontName = string.Empty;
-            bool foundColor = GetColorFromFontName(ref fontColor,ref fontName,id);
+            bool foundColor = GetColorFromFontName(ref fontColor,ref fontName,fontAndColorId);
+
+            string combinedFontId = foundColor ? fontAndColorId : fontName;
 
             //if a color is set, it's a unique font
 			IBaseFont font;
-			Fonts.TryGetValue (id, out font);
+            Fonts.TryGetValue(combinedFontId, out font);
 
             //if the font is not found, but has a modified color, store it
             if (font == null && foundColor){
@@ -109,7 +128,17 @@ namespace Redhotminute.Mvx.Plugin.Style
                 Fonts.TryGetValue(fontName, out fontWithoutColor);
                 if (fontWithoutColor != null)
                 {
-                    font = Font.NewFontWithModifiedColor((Font)fontWithoutColor, id, GetColor(fontColor));
+                    if (fontWithoutColor is Font)
+                    {
+                        font = Font.CopyFont<Font, Font>((Font)fontWithoutColor, combinedFontId);
+                        font.Color = GetColor(fontColor);
+                    }
+                    else if (fontWithoutColor is BaseFont)
+                    {
+                        font = BaseFont.CopyFont<BaseFont, BaseFont>((BaseFont)fontWithoutColor, combinedFontId);
+                        font.Color = GetColor(fontColor);
+					}
+
                     AddFont(font);
                 }
             }
@@ -117,13 +146,24 @@ namespace Redhotminute.Mvx.Plugin.Style
 			return font;
 		}
 
-		public IBaseFont GetFontByTag(string originalFontName,string tag) {
-			Dictionary<string, string> fontTag;
-			string fontName = string.Empty;
+        public IBaseFont GetFontByTag(string originalFontName, string tag)
+        {
+            FontTag nothing;
+            return GetFontByTagWithTag(originalFontName, tag, out nothing);
+        }
 
-			if (FontsTagged.TryGetValue(originalFontName, out fontTag)) {
-				fontTag.TryGetValue(tag,out fontName);
-			}
+        public IBaseFont GetFontByTagWithTag(string originalFontName,string tag, out FontTag originalTag) {
+            List<FontTag> fontTag;
+			string fontName = string.Empty;
+            originalTag = null;
+
+            if (FontsTagged.TryGetValue(originalFontName, out fontTag))
+            {
+                originalTag = fontTag.FirstOrDefault(c => c.Tag.Equals(tag));
+                if(originalTag!= null){
+                    fontName = originalTag.OriginalFontName;
+                }
+            }
 
 			if (string.IsNullOrEmpty(fontName)) {
 				return null;
@@ -133,6 +173,10 @@ namespace Redhotminute.Mvx.Plugin.Style
 		}
 
 		public IAssetPlugin AddFont(IBaseFont font,List<FontTag> fontTags) {
+            if (!CanAddFont(font)){
+                return this;
+            }
+
 			//convert the filename so the platform would understand this
 			ConvertFontFileNameForPlatform(ref font);
 			Fonts.Add(font.Name, font);
@@ -141,14 +185,10 @@ namespace Redhotminute.Mvx.Plugin.Style
 			if (fontTags != null && fontTags.Count > 0) {
 				if (FontsTagged != null) {
 					if (!FontsTagged.ContainsKey(font.Name)) {
-						FontsTagged[font.Name] = new Dictionary<string, string>();
+                        FontsTagged[font.Name] = new List<FontTag>();
 					}
-
-					foreach (FontTag tag in fontTags) {
-						FontsTagged[font.Name].Add(tag.Tag, tag.OriginalFontName);
-					}
+                    FontsTagged[font.Name].AddRange(fontTags);
 				}
-
 			}
 			return this;
 		}

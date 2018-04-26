@@ -5,8 +5,9 @@ using MvvmCross.Binding.Parse.Binding;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Droid.Platform;
 using MvvmCross.Platform;
+using Redhotminute.Mvx.Plugin.Style.Binding;
 
-namespace Redhotminute.Mvx.Plugin.Style.Droid {
+namespace Redhotminute.Mvx.Plugin.Style.Droid.BindingSetup {
 	public class MvxAndroidStyleBindingBuilder : MvxAndroidBindingBuilder {
 
 		//NOTE registering the custom bindings can be moved from plugin to this setup
