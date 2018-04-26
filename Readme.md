@@ -305,8 +305,6 @@ In case you want to bind the color you can use the color name as bindable proper
 
 		
 ## Next
- - Unittests
- - Extend the Android sample (same features as iOS)
- - Add language support to the example
+
  - Support for Sketch font exports.
  - Support for online exports of fonts (designers can upload definitions, and the app will change runtime). 		

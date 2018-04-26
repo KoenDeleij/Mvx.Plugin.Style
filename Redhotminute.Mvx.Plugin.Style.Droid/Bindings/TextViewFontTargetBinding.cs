@@ -33,17 +33,19 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings {
                     label.SetIncludeFontPadding(false);
 					label.SetTypeface(droidFont, new TypefaceStyle());
 
+                    float fontSize;
 					if (font.Size != default(int)) {
-                        float fontSize = AssetPlugin.GetPlatformFontSize(font.Size);
+                        fontSize = AssetPlugin.GetPlatformFontSize(font.Size);
                         label.SetTextSize(Android.Util.ComplexUnitType.Dip,fontSize);
-					}
+                    }else{
+                        fontSize = label.TextSize;
+                    }
 
 					if (font.Color != null) {
 						label.SetTextColor(font.Color.ToAndroidColor());
 					}
 
-                    var lineHeight = font.LineHeight.HasValue?DroidAssetPlugin.GetPlatformLineHeight(font.Size, font.LineHeight.Value):(float)(label.TextSize);
-
+                    var lineHeight = font.LineHeight.HasValue?DroidAssetPlugin.GetPlatformLineHeight(font.Size, font.LineHeight.Value):(float)(fontSize);
 
                     var lineSpacingMultiplier = font.LineHeightMultiplier.HasValue ? (font.LineHeightMultiplier.Value) : 1;
 
