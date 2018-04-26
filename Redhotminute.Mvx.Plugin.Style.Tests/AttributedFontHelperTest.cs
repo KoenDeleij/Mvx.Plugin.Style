@@ -6,6 +6,7 @@ using NUnit.Framework;
 using Redhotminute.Mvx.Plugin.Style.Helpers;
 using Redhotminute.Mvx.Plugin.Style.Models;
 using Redhotminute.Mvx.Plugin.Style.Plugin;
+using Redhotminute.Mvx.Plugin.Style.Tests.Helpers;
 
 namespace Redhotminute.Mvx.Plugin.Style.Tests
 {
@@ -20,7 +21,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
 		[Test]
 		public void NoTagTextShouldResultInOneBlock()
 		{
-			AssetPlugin plugin = new AssetPlugin();
+            AssetPlugin plugin = new TestAssetPlugin();
 			plugin.AddFont(new BaseFont() { Name = "Bold", FontFilename = "Bold.otf" });
 
             string text = "this is one block";
@@ -39,7 +40,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
 		[Test]
 		public void OneTagInTheMiddleShouldResultInThreeBlocks()
 		{
-			AssetPlugin plugin = new AssetPlugin();
+            AssetPlugin plugin = new TestAssetPlugin();
 			plugin.AddFont(new BaseFont() { Name = "Bold", FontFilename = "Bold.otf" });
 			plugin.AddFont(new BaseFont() { Name = "H1", FontFilename = "H1.otf" }, new FontTag("Bold", "b"));
 
@@ -68,7 +69,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
         [Test]
         public void BeginningWithATagShouldHaveBeginTag()
         {
-            AssetPlugin plugin = new AssetPlugin();
+            AssetPlugin plugin = new TestAssetPlugin();
             plugin.AddFont(new BaseFont() { Name = "Bold", FontFilename = "Bold.otf" });
             plugin.AddFont(new BaseFont() { Name = "H1", FontFilename = "H1.otf" }, new FontTag("Bold", "b"));
 
@@ -93,7 +94,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
 		[Test]
 		public void UnregisteredFontTagsShouldBeIgnored()
 		{
-			AssetPlugin plugin = new AssetPlugin();
+            AssetPlugin plugin = new TestAssetPlugin();
 			plugin.AddFont(new BaseFont() { Name = "Bold", FontFilename = "Bold.otf" });
 			plugin.AddFont(new BaseFont() { Name = "H1", FontFilename = "H1.otf" }, new FontTag("Bold", "strong"));
 
@@ -108,7 +109,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
         [Test]
         public void UnknownTagsShouldBeIgnored()
         {
-            AssetPlugin plugin = new AssetPlugin();
+            AssetPlugin plugin = new TestAssetPlugin();
             plugin.AddFont(new BaseFont() { Name = "Bold", FontFilename = "Bold.otf" });
             plugin.AddFont(new BaseFont() { Name = "H1", FontFilename = "H1.otf" }, new FontTag("Bold", "strong"));
 
@@ -168,7 +169,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
         [Test]
         public void LinksShouldBeFlattenedAndPropertiesStripped()
         {
-            AssetPlugin plugin = new AssetPlugin();
+            AssetPlugin plugin = new TestAssetPlugin();
             plugin.AddFont(new BaseFont() { Name = "Bold", FontFilename = "Bold.otf" });
             plugin.AddFont(new BaseFont() { Name = "H1", FontFilename = "H1.otf" }, new FontTag("Bold", "a",FontTagAction.Link));
 
@@ -189,7 +190,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
         [Test]
         public void LinksWithoutHrefShouldBeFlattenedAndPropertiesStripped()
         {
-            AssetPlugin plugin = new AssetPlugin();
+            AssetPlugin plugin = new TestAssetPlugin();
             plugin.AddFont(new BaseFont() { Name = "Bold", FontFilename = "Bold.otf" });
             plugin.AddFont(new BaseFont() { Name = "H1", FontFilename = "H1.otf" }, new FontTag("Bold", "a", FontTagAction.Link));
 
@@ -209,7 +210,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
         [Test]
         public void LinksWithQuotesShouldBeFlattenedAndPropertiesStripped()
         {
-            AssetPlugin plugin = new AssetPlugin();
+            AssetPlugin plugin = new TestAssetPlugin();
             plugin.AddFont(new BaseFont() { Name = "Bold", FontFilename = "Bold.otf" });
             plugin.AddFont(new BaseFont() { Name = "H1", FontFilename = "H1.otf" }, new FontTag("Bold", "a", FontTagAction.Link));
 
@@ -241,7 +242,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
         [Test]
         public void LinksWithEqualSignShouldBeParsedAsFull()
         {
-            AssetPlugin plugin = new AssetPlugin();
+            AssetPlugin plugin = new TestAssetPlugin();
             plugin.AddFont(new BaseFont() { Name = "Bold", FontFilename = "Bold.otf" });
             plugin.AddFont(new BaseFont() { Name = "H1", FontFilename = "H1.otf" }, new FontTag("Bold", "a", FontTagAction.Link));
 
@@ -263,7 +264,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
         [Test]
         public void LinkWithPlusAndMinosPropertiesAreParsedAsFull()
         {
-            AssetPlugin plugin = new AssetPlugin();
+            AssetPlugin plugin = new TestAssetPlugin();
             plugin.AddFont(new BaseFont() { Name = "Bold", FontFilename = "Bold.otf" });
             plugin.AddFont(new BaseFont() { Name = "H1", FontFilename = "H1.otf" }, new FontTag("Bold", "a", FontTagAction.Link));
 
@@ -286,7 +287,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
         [Test]
         public void LinksSlashAtEndAreResolvedLikeAnyLink()
         {
-            AssetPlugin plugin = new AssetPlugin();
+            AssetPlugin plugin = new TestAssetPlugin();
             plugin.AddFont(new BaseFont() { Name = "Bold", FontFilename = "Bold.otf" });
             plugin.AddFont(new BaseFont() { Name = "H1", FontFilename = "H1.otf" }, new FontTag("Bold", "a", FontTagAction.Link));
 
@@ -307,7 +308,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
         [Test]
         public void TagsCanContainMultipleAttributes()
         {
-            AssetPlugin plugin = new AssetPlugin();
+            AssetPlugin plugin = new TestAssetPlugin();
             plugin.AddFont(new BaseFont() { Name = "Bold", FontFilename = "Bold.otf" });
             plugin.AddFont(new BaseFont() { Name = "H1", FontFilename = "H1.otf" }, new FontTag("Bold", "q"));
 
@@ -326,7 +327,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
         [Test]
         public void TagWithoutClosingTagShould()
         {
-            AssetPlugin plugin = new AssetPlugin();
+            AssetPlugin plugin = new TestAssetPlugin();
             plugin.AddFont(new BaseFont() { Name = "Bold", FontFilename = "Bold.otf" });
             plugin.AddFont(new BaseFont() { Name = "H1", FontFilename = "H1.otf" }, new FontTag("Bold", "b"));
 
@@ -339,7 +340,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
 		[Test]
 		public void DoubleTagsShouldBeFormatted()
 		{
-			AssetPlugin plugin = new AssetPlugin();
+            AssetPlugin plugin = new TestAssetPlugin();
 			plugin.AddFont(new BaseFont() { Name = "Bold", FontFilename = "Bold.otf" });
 			plugin.AddFont(new BaseFont() { Name = "H1", FontFilename = "H1.otf" }, new FontTag("Bold", "strong"));
 

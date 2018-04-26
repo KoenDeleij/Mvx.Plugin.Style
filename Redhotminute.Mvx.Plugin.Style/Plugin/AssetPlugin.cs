@@ -89,31 +89,38 @@ namespace Redhotminute.Mvx.Plugin.Style.Plugin
 
 		#region IAssetPlugin implementation
 
-		private bool GetColorFromFontName(ref string fontColor,ref string fontName,string fontAndColor)
+        private bool GetColorFromFontName(ref string fontColor,ref string fontName,string fontAndColor)
 		{
 			if (fontAndColor.Contains(":"))
 			{
 				var elements = fontAndColor.Split(':');
-				if (elements.Length > 1)
+                if (elements.Length > 1)
 				{
-					fontColor = elements[1];
                     fontName = elements[0];
-                    return true;
 				}
+
+                if(!string.IsNullOrWhiteSpace(elements[1])){
+                    fontColor = elements[1];
+                    return true;
+                }    
+            }else{
+                fontName = fontAndColor;
             }
 
             return false;
 		}
 
-		public IBaseFont GetFontByName(string id)
+		public IBaseFont GetFontByName(string fontAndColorId)
 		{
             string fontColor = string.Empty;
             string fontName = string.Empty;
-            bool foundColor = GetColorFromFontName(ref fontColor,ref fontName,id);
+            bool foundColor = GetColorFromFontName(ref fontColor,ref fontName,fontAndColorId);
+
+            string combinedFontId = foundColor ? fontAndColorId : fontName;
 
             //if a color is set, it's a unique font
 			IBaseFont font;
-			Fonts.TryGetValue (id, out font);
+            Fonts.TryGetValue(combinedFontId, out font);
 
             //if the font is not found, but has a modified color, store it
             if (font == null && foundColor){
@@ -123,12 +130,12 @@ namespace Redhotminute.Mvx.Plugin.Style.Plugin
                 {
                     if (fontWithoutColor is Font)
                     {
-                        font = Font.CopyFont<Font, Font>((Font)fontWithoutColor, id);
+                        font = Font.CopyFont<Font, Font>((Font)fontWithoutColor, combinedFontId);
                         font.Color = GetColor(fontColor);
                     }
                     else if (fontWithoutColor is BaseFont)
                     {
-                        font = BaseFont.CopyFont<Font, Font>((Font)fontWithoutColor, id);
+                        font = BaseFont.CopyFont<BaseFont, BaseFont>((BaseFont)fontWithoutColor, combinedFontId);
                         font.Color = GetColor(fontColor);
 					}
 
