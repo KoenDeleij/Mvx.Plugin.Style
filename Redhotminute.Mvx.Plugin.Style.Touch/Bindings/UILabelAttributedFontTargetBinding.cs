@@ -21,10 +21,12 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Bindings
 			var label = (UILabel)target;
             if (value == null)
             {
+                label.AttributedText = new NSAttributedString();
                 return;
             }
 
-			try {
+			try 
+            {
 				var text = value as NSAttributedString;
 
                 if(text == null){
@@ -38,7 +40,8 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Bindings
 				}
 				label.AttributedText = text;
 			}
-			catch (Exception e) {
+			catch (Exception e) 
+            {
 				MvvmCross.Platform.Mvx.Trace(MvvmCross.Platform.Platform.MvxTraceLevel.Error, "Failed to set font+language to UILabel. Binded value is null or not an AttributedString.");
 			}
 			

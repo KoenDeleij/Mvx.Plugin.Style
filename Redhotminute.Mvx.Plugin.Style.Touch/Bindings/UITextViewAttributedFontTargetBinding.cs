@@ -14,8 +14,9 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Bindings
         protected override void SetValueImpl(object target, object value)
         {
             var textView = (UITextView)target;
-            if (value != null)
+            if (value == null)
             {
+                textView.AttributedText = new NSAttributedString();
                 return;
             }
 
