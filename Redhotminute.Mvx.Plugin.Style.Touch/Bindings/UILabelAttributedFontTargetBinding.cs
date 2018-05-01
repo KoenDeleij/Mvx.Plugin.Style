@@ -28,6 +28,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Bindings
 				var text = value as NSAttributedString;
 
                 if(text == null){
+                    label.AttributedText = new NSAttributedString();
                     return;
                 }
 
