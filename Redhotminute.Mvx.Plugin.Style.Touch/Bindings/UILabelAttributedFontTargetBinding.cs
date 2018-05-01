@@ -19,20 +19,28 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Bindings
 		protected override void SetValueImpl(object target, object value)
 		{
 			var label = (UILabel)target;
-			if (value != null) {
-				try {
-					var text = value as NSAttributedString;
+            if (value == null)
+            {
+                return;
+            }
 
-					//override the textalignment in case the view is not natural so that we can use the designer to deside the alignment (what you want in most cases)
-                    if (label.TextAlignment != UITextAlignment.Natural && text.Length>0) {
-						text.EnumerateAttributes(new NSRange(0, text.Length - 1), NSAttributedStringEnumeration.None, new NSAttributedRangeCallback(ResetAlignment));
-					}
-					label.AttributedText = text;
+			try {
+				var text = value as NSAttributedString;
+
+                if(text == null){
+                    return;
+                }
+
+				//override the textalignment in case the view is not natural so that we can use the designer to deside the alignment (what you want in most cases)
+                if (label.TextAlignment != UITextAlignment.Natural && text.Length > 0) {
+					text.EnumerateAttributes(new NSRange(0, text.Length - 1), NSAttributedStringEnumeration.None, new NSAttributedRangeCallback(ResetAlignment));
 				}
-				catch (Exception e) {
-					MvvmCross.Platform.Mvx.Trace(MvvmCross.Platform.Platform.MvxTraceLevel.Error, "Failed to set font+language to UILabel. Binded value is null or not an AttributedString.");
-				}
+				label.AttributedText = text;
 			}
+			catch (Exception e) {
+				MvvmCross.Platform.Mvx.Trace(MvvmCross.Platform.Platform.MvxTraceLevel.Error, "Failed to set font+language to UILabel. Binded value is null or not an AttributedString.");
+			}
+			
 		}
 
 		private void ResetAlignment(NSDictionary dic, NSRange range, ref bool stop) {
