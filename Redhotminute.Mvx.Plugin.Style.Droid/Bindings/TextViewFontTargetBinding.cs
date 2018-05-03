@@ -51,7 +51,9 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings {
 
                     var lineHeight = DroidAssetPlugin.GetPlatformLineHeight(font.Size, font.LineHeight);
 
-                    var lineSpacingMultiplier = font.LineHeightMultiplier.HasValue ? (font.LineHeightMultiplier.Value) : 1;
+                    var multiplierFactor = AssetPlugin.LineHeightFactor ?? 1;
+
+                    var lineSpacingMultiplier = font.LineHeightMultiplier.HasValue ? (font.LineHeightMultiplier.Value*multiplierFactor) : 1;
 
                     label.SetLineSpacing(lineHeight, lineSpacingMultiplier);
   				
