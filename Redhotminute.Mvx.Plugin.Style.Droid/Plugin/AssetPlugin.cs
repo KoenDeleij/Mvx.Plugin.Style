@@ -34,12 +34,15 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Plugin {
 			return base.ClearFonts();
 		}
 
-		public static float GetPlatformLineHeight(float fontSize, float lineHeight)
+		public static float GetPlatformLineHeight(float fontSize, float? lineHeight)
 		{
-            float factor = LineHeightFactor.HasValue ? (LineHeightFactor.Value) : FontSizeFactor;
+            float lineHeightFactor = LineHeightFactor.HasValue ? (LineHeightFactor.Value) : FontSizeFactor;
 
-            return (lineHeight-fontSize) * factor  ;
-            //return TypedValue.ApplyDimension(ComplexUnitType.Dip, ((lineHeight) * factor)  , Resources.System.DisplayMetrics);
+            //lineHeight
+            var newLineHeight = (lineHeight.HasValue?lineHeight.Value:(fontSize))*lineHeightFactor;
+            var currentFontSize = fontSize * FontSizeFactor;
+
+            return (newLineHeight - currentFontSize);
 		}
 
         public override bool CanAddFont(IBaseFont font)

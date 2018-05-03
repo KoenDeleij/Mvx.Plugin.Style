@@ -49,7 +49,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings {
 						label.SetTextColor(font.Color.ToAndroidColor());
 					}
 
-                    var lineHeight = font.LineHeight.HasValue?DroidAssetPlugin.GetPlatformLineHeight(font.Size, font.LineHeight.Value):0;
+                    var lineHeight = DroidAssetPlugin.GetPlatformLineHeight(font.Size, font.LineHeight);
 
                     var lineSpacingMultiplier = font.LineHeightMultiplier.HasValue ? (font.LineHeightMultiplier.Value) : 1;
 

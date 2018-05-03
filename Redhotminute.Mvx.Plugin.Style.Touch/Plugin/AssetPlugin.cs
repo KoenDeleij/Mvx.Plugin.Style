@@ -116,10 +116,10 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Plugin
 				}
 
 				//add the lineheight
-                stringAttributes.ParagraphStyle.LineSpacing = extendedFont.LineHeight.HasValue?GetPlatformLineHeight(font.Size, extendedFont.LineHeight.Value):font.Size/3;
+                stringAttributes.ParagraphStyle.LineSpacing = GetPlatformLineHeight(font.Size, extendedFont.LineHeight);
                 stringAttributes.ParagraphStyle.LineBreakMode = UILineBreakMode.WordWrap;
 
-                stringAttributes.ParagraphStyle.LineHeightMultiple = extendedFont.LineHeightMultiplier.HasValue?(float)extendedFont.LineHeightMultiplier.Value:0f;//TODO figure out what this value actually does
+                stringAttributes.ParagraphStyle.LineHeightMultiple = extendedFont.LineHeightMultiplier.HasValue?(float)extendedFont.LineHeightMultiplier.Value:0f;
 			}
 
 			return stringAttributes;
@@ -147,11 +147,16 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Plugin
 			return base.ClearFonts();
 		}
 
-		public static float GetPlatformLineHeight(float fontSize, float lineHeight)
-		{
-			float factor = LineHeightFactor.HasValue ? LineHeightFactor.Value : FontSizeFactor;
-            return ((lineHeight- fontSize)*factor);
-		}
+        public static float GetPlatformLineHeight(float fontSize, float? lineHeight)
+        {
+            float lineHeightFactor = LineHeightFactor.HasValue ? (LineHeightFactor.Value) : FontSizeFactor;
+
+            //lineHeight
+            var newLineHeight = (lineHeight.HasValue ? lineHeight.Value : (fontSize / 3)) * lineHeightFactor;
+            var currentFontSize = fontSize * FontSizeFactor;
+
+            return (newLineHeight - currentFontSize);
+        }
 
 		public override bool CanAddFont(IBaseFont font)
 		{

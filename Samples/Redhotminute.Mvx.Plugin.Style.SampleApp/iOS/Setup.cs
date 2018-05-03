@@ -23,8 +23,10 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.iOS
         }
 		protected override IMvxPluginConfiguration GetPluginConfiguration(Type plugin) {
 		    if (plugin == typeof(Redhotminute.Mvx.Plugin.Style.Touch.Plugin.Plugin)) {
-		        return new RedhotminuteStyleConfiguration() {
-					//FontSizeFactor = sizeFactor
+                return new RedhotminuteStyleConfiguration()
+                {
+                    FontSizeFactor = 1.0f,
+                    LineHeightFactor = 1.0f
 				};
 			}
 			return base.GetPluginConfiguration(plugin);
