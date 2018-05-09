@@ -35,14 +35,9 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Plugin {
 		}
 
 		public static float GetPlatformLineHeight(float fontSize, float? lineHeight)
-		{
-            //float lineHeightFactor = LineHeightFactor.HasValue ? (LineHeightFactor.Value) : FontSizeFactor;
-
-            //lineHeight
-			var newLineHeight = (lineHeight.HasValue?lineHeight.Value:(fontSize));//*lineHeightFactor;
-            var currentFontSize = fontSize * FontSizeFactor;
-
-            return (newLineHeight - currentFontSize);
+		{         
+			var newLineHeight = (lineHeight.HasValue?lineHeight.Value:(fontSize));         
+			return (newLineHeight-fontSize);
 		}
 
         public override bool CanAddFont(IBaseFont font)

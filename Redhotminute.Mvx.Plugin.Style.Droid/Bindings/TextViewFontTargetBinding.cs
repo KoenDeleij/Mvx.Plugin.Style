@@ -48,13 +48,13 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings {
 						label.SetTextColor(font.Color.ToAndroidColor());
 					}
 
-                    var lineHeight = DroidAssetPlugin.GetPlatformLineHeight(font.Size, font.LineHeight);
+					var multiplierFactor = AssetPlugin.LineHeightFactor ?? 1;
 
-                    var multiplierFactor = AssetPlugin.LineHeightFactor ?? 1;
+					var lineHeight = DroidAssetPlugin.GetPlatformLineHeight(font.Size, font.LineHeight* multiplierFactor);
+               
+					var lineSpacingMultiplier = font.LineHeightMultiplier.HasValue ? font.LineHeightMultiplier.Value : 1;
 
-					var lineSpacingMultiplier = multiplierFactor*(font.LineHeightMultiplier.HasValue ? font.LineHeightMultiplier.Value : 1);
-
-                    label.SetLineSpacing(lineHeight, lineSpacingMultiplier);
+					label.SetLineSpacing(lineHeight, lineSpacingMultiplier);
   				
 					if (font.Alignment != TextAlignment.None) {
 						label.Gravity = font.ToNativeAlignment();
