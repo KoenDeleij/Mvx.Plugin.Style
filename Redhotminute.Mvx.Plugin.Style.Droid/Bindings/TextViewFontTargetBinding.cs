@@ -34,7 +34,6 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings {
 			if (font != null) {
 				try {
 					Typeface droidFont = DroidAssetPlugin.GetCachedFont(font,label.Context);
-                    label.SetIncludeFontPadding(false);
 					label.SetTypeface(droidFont, new TypefaceStyle());
 
                     float fontSize;
