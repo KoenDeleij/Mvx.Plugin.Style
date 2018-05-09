@@ -36,10 +36,10 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Plugin {
 
 		public static float GetPlatformLineHeight(float fontSize, float? lineHeight)
 		{
-            float lineHeightFactor = LineHeightFactor.HasValue ? (LineHeightFactor.Value) : FontSizeFactor;
+            //float lineHeightFactor = LineHeightFactor.HasValue ? (LineHeightFactor.Value) : FontSizeFactor;
 
             //lineHeight
-            var newLineHeight = (lineHeight.HasValue?lineHeight.Value:(fontSize))*lineHeightFactor;
+			var newLineHeight = (lineHeight.HasValue?lineHeight.Value:(fontSize));//*lineHeightFactor;
             var currentFontSize = fontSize * FontSizeFactor;
 
             return (newLineHeight - currentFontSize);

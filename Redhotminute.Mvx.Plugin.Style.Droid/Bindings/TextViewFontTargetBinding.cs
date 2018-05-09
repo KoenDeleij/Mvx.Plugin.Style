@@ -52,7 +52,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings {
 
                     var multiplierFactor = AssetPlugin.LineHeightFactor ?? 1;
 
-                    var lineSpacingMultiplier = font.LineHeightMultiplier.HasValue ? (font.LineHeightMultiplier.Value*multiplierFactor) : 1;
+					var lineSpacingMultiplier = multiplierFactor*(font.LineHeightMultiplier.HasValue ? font.LineHeightMultiplier.Value : 1);
 
                     label.SetLineSpacing(lineHeight, lineSpacingMultiplier);
   				

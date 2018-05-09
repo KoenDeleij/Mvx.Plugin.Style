@@ -89,7 +89,7 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.ViewModels
                          .AddColor(new MvxColor(101, 18, 111), ColorPrimary)
                          .AddColor(new MvxColor(230, 229, 6), ColorSecondairy)
                          .AddColor(new MvxColor(101, 18, 111), ColorMarked);
-            AssetProvider.AddFont(new Font() { Name = FontH1, FontFilename = "JosefinSlab-Bold.ttf", FontPlatformName = "JosefinSlab-Bold", Size = 40, LineHeight = 50, Color = AssetProvider.GetColor(ColorSecondairy) })
+			AssetProvider.AddFont(new Font() { Name = FontH1, FontFilename = "JosefinSlab-Bold.ttf", FontPlatformName = "JosefinSlab-Bold", Size = 40, LineHeight = 50,LineHeightMultiplier=1.0f, Color = AssetProvider.GetColor(ColorSecondairy) })
                          .AddFont(new Font() { Name = FontItalic, FontFilename = "Nunito-Italic.ttf", FontPlatformName = "Nunito-Italic", Size = 15, Color = AssetProvider.GetColor(ColorSecondairy), Alignment = TextAlignment.Center })
                          .AddFont(new BaseFont() { Name = FontBold, FontFilename = "Nunito-Bold.ttf", FontPlatformName = "Nunito-Bold", Size = 15, Color = AssetProvider.GetColor(ColorSecondairy) })
                          .AddFont(new Font() { Name = FontRegular,FontFilename = "Nunito-Regular.ttf", FontPlatformName = "Nunito-Regular", Size = 13, LineHeight = 28, Color = AssetProvider.GetColor(ColorPrimary),SelectedColor= AssetProvider.GetColor(ColorBackground)},_tags)
