@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
 using Foundation;
+using MvvmCross.Binding;
+using MvvmCross.Platform.Exceptions;
+using MvvmCross.Platform.Platform;
 using MvvmCross.Plugins.Color.iOS;
 using Redhotminute.Mvx.Plugin.Style.Helpers;
 using Redhotminute.Mvx.Plugin.Style.Models;
@@ -137,7 +140,12 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Plugin
             {
                 link = text.Value.Substring(pair.StartIndex, pair.EndIndex - pair.StartIndex).Trim();
             }
-            attribute.Link = new NSUrl(link);
+            try
+            {
+                attribute.Link = new NSUrl(link);
+            }catch (Exception e){
+                MvxBindingTrace.Trace(MvxTraceLevel.Error, $"Cannot convert {link} to url", e.ToLongString());
+            }
             attribute.UnderlineStyle = NSUnderlineStyle.Single;
             attribute.UnderlineColor = font.Color.ToNativeColor();
         }
