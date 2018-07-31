@@ -3,7 +3,7 @@ using Redhotminute.Mvx.Plugin.Style.Models;
 using UIKit;
 
 namespace Redhotminute.Mvx.Plugin.Style.Touch.Helpers {
-	public static class FontAlignmentHelper {
+	public static class FontHelpers {
 		public static UITextAlignment ToNativeAlignment(this Font font) {
 
 			switch (font.Alignment) {
@@ -14,5 +14,16 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Helpers {
 			}
 			return UITextAlignment.Left;
 		}
+
+        public static UILineBreakMode ToNativeLineBreakMode(this Font font)
+        {
+            switch (font.LineBreakMode)
+            {
+                case LineBreakMode.None: return UILineBreakMode.WordWrap;
+                case LineBreakMode.TruncateTail: return UILineBreakMode.TailTruncation;
+                case LineBreakMode.WordWrap: return UILineBreakMode.WordWrap;
+            }
+            return UILineBreakMode.WordWrap;
+        }
 	}
 }

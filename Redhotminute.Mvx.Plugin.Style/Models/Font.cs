@@ -31,6 +31,12 @@ namespace Redhotminute.Mvx.Plugin.Style.Models
 			set;
 		}
 
+        public LineBreakMode LineBreakMode
+        {
+            get;
+            set;
+        } = LineBreakMode.None;
+
         public Font SetLineHeightMultiPlier(float multiplier){
             this.LineHeightMultiplier = multiplier;
             return this;

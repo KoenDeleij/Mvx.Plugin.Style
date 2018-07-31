@@ -67,6 +67,7 @@
     <Compile Include="Models\FontTagAction.cs" />
     <Compile Include="Models\iOSFont.cs" />
     <Compile Include="Models\AndroidFont.cs" />
+    <Compile Include="Enums\LineBreakMode.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>

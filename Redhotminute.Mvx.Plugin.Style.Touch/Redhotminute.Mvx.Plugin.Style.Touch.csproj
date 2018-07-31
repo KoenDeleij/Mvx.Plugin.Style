@@ -87,7 +87,7 @@
     <Compile Include="Bootstrap\ColorPluginBootstrap.cs" />
     <Compile Include="Bindings\UIButtonFontTargetBinding.cs" />
     <Compile Include="Bindings\BaseStyleBinding.cs" />
-    <Compile Include="Helpers\FontAlignmentHelper.cs" />
+    <Compile Include="Helpers\FontHelpers.cs" />
     <Compile Include="Converters\FontLangValueConverter.cs" />
     <Compile Include="Bindings\MvxBindingContextOwnerExtensions.Font.cs" />
     <Compile Include="Bindings\UILabelAttributedFontTargetBinding.cs" />
