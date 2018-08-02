@@ -13,42 +13,51 @@ using UIKit;
 
 namespace Redhotminute.Mvx.Plugin.Style.Touch.Plugin
 {
-	public class TouchAssetPlugin : AssetPlugin {
-		#region implemented abstract members of AssetPlugin
+    public class TouchAssetPlugin : AssetPlugin
+    {
+        #region implemented abstract members of AssetPlugin
 
-		public override void ConvertFontFileNameForPlatform(ref IBaseFont font) {
-			//if the fontplatformname is already set, just use that one
-			if (string.IsNullOrWhiteSpace(font.FontPlatformName)) {
-				font.FontPlatformName = RemoveFontExtension(font.FontFilename);
-			}
-		}
+        public override void ConvertFontFileNameForPlatform(ref IBaseFont font)
+        {
+            //if the fontplatformname is already set, just use that one
+            if (string.IsNullOrWhiteSpace(font.FontPlatformName))
+            {
+                font.FontPlatformName = RemoveFontExtension(font.FontFilename);
+            }
+        }
 
-		private string RemoveFontExtension(string fontFileName) {
-			if (string.IsNullOrWhiteSpace(fontFileName)) {
-				return string.Empty;
-			}
-			return fontFileName.Substring(0, fontFileName.IndexOf('.')).Replace("-", " ");
-		}
+        private string RemoveFontExtension(string fontFileName)
+        {
+            if (string.IsNullOrWhiteSpace(fontFileName))
+            {
+                return string.Empty;
+            }
+            return fontFileName.Substring(0, fontFileName.IndexOf('.')).Replace("-", " ");
+        }
 
-		#endregion
+        #endregion
 
-		private static Dictionary<string, UIFont> _fontsCache = new Dictionary<string, UIFont>();
-		//TODO generic possible?
-		public static UIFont GetCachedFont(IBaseFont font) {
-			if (!_fontsCache.ContainsKey(font.Name)) {
-				if (font.Size == default(int)) {
-					font.Size = 16;
-				}
-				_fontsCache[font.Name] = UIFont.FromName(font.FontPlatformName, AssetPlugin.GetPlatformFontSize(font.Size));
+        private static Dictionary<string, UIFont> _fontsCache = new Dictionary<string, UIFont>();
+        //TODO generic possible?
+        public static UIFont GetCachedFont(IBaseFont font)
+        {
+            if (!_fontsCache.ContainsKey(font.Name))
+            {
+                if (font.Size == default(int))
+                {
+                    font.Size = 16;
+                }
+                _fontsCache[font.Name] = UIFont.FromName(font.FontPlatformName, AssetPlugin.GetPlatformFontSize(font.Size));
 
-			}
+            }
 
-			return _fontsCache[font.Name];
-		}
+            return _fontsCache[font.Name];
+        }
 
-        public NSAttributedString ParseToAttributedText(string text, IBaseFont font) {
-			try
-			{
+        public NSAttributedString ParseToAttributedText(string text, IBaseFont font)
+        {
+            try
+            {
                 if (font != null)
                 {
                     this.ConvertFontFileNameForPlatform(ref font);
@@ -64,72 +73,80 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Plugin
                     UIStringAttributes stringAttributes = CreateAttributesByFont(ref attributedText, font);
                     attributedText.AddAttributes(stringAttributes, new NSRange(0, cleanText.Length));
 
-					//TODO add caching for same fonttags for the attributes
-					foreach (FontIndexPair block in indexPairs) {
-						//get the font for each tag and decorate the text
-                        if (block.FontTag != null && !string.IsNullOrEmpty(block.FontTag.OriginalFontName)) {
+                    //TODO add caching for same fonttags for the attributes
+                    foreach (FontIndexPair block in indexPairs)
+                    {
+                        //get the font for each tag and decorate the text
+                        if (block.FontTag != null && !string.IsNullOrEmpty(block.FontTag.OriginalFontName))
+                        {
                             FontTag fontTag = null;
-                            var tagFont = assetPlugin.GetFontByTagWithTag(font.Name,block.FontTag.Tag,out fontTag);
+                            var tagFont = assetPlugin.GetFontByTagWithTag(font.Name, block.FontTag.Tag, out fontTag);
 
-							tagFont = tagFont == null ? font : tagFont;
-                            UIStringAttributes attr = CreateAttributesByFont(ref attributedText,tagFont,block,fontTag);
+                            tagFont = tagFont == null ? font : tagFont;
+                            UIStringAttributes attr = CreateAttributesByFont(ref attributedText, tagFont, block, fontTag);
                             attributedText.SetAttributes(attr, new NSRange(block.StartIndex, block.EndIndex - block.StartIndex));
-						}
-					}
-	               
-					return attributedText;
-				}
-			}
-			catch (Exception e)
-			{
+                        }
+                    }
+
+                    return attributedText;
+                }
+            }
+            catch (Exception e)
+            {
                 //just return the text as passed if something fails
                 return new NSMutableAttributedString(text);
-			}
-			return null;
-		}
+            }
+            return null;
+        }
 
-        private UIStringAttributes CreateAttributesByFont(ref NSMutableAttributedString text,IBaseFont font,FontIndexPair pair = null,FontTag tag = null) {
-			UIStringAttributes stringAttributes = new UIStringAttributes { };
+        private UIStringAttributes CreateAttributesByFont(ref NSMutableAttributedString text, IBaseFont font, FontIndexPair pair = null, FontTag tag = null)
+        {
+            UIStringAttributes stringAttributes = new UIStringAttributes { };
 
-			//add the font
-			stringAttributes.Font = TouchAssetPlugin.GetCachedFont(font);
-	
-			//add the color
-			if (font.Color != null) {
-				stringAttributes.ForegroundColor = font.Color.ToNativeColor();
-			}
+            //add the font
+            stringAttributes.Font = TouchAssetPlugin.GetCachedFont(font);
 
-            if(pair != null && tag != null){
-                if(tag.FontAction == FontTagAction.Link){
-                    CreateLink(ref text,ref stringAttributes,font,pair);
+            //add the color
+            if (font.GetColor() != null)
+            {
+                stringAttributes.ForegroundColor = font.GetColor().ToNativeColor();
+            }
+
+            if (pair != null && tag != null)
+            {
+                if (tag.FontAction == FontTagAction.Link)
+                {
+                    CreateLink(ref text, ref stringAttributes, font, pair);
                 }
             }
 
-			if (font is Font) {
-				var extendedFont = font as Font;
+            if (font is Font)
+            {
+                var extendedFont = font as Font;
 
                 if (stringAttributes.ParagraphStyle == null)
                 {
                     stringAttributes.ParagraphStyle = new NSMutableParagraphStyle();
                 }
 
-				if (extendedFont.Alignment != TextAlignment.None) {
-					UITextAlignment alignment = extendedFont.ToNativeAlignment();
-					stringAttributes.ParagraphStyle.Alignment = alignment;
-				}
+                if (extendedFont.Alignment != TextAlignment.None)
+                {
+                    UITextAlignment alignment = extendedFont.ToNativeAlignment();
+                    stringAttributes.ParagraphStyle.Alignment = alignment;
+                }
 
-				//add the lineheight
+                //add the lineheight
                 stringAttributes.ParagraphStyle.LineSpacing = GetPlatformLineHeight(font.Size, extendedFont.LineHeight);
 
                 stringAttributes.ParagraphStyle.LineBreakMode = extendedFont.ToNativeLineBreakMode();
 
-                stringAttributes.ParagraphStyle.LineHeightMultiple = extendedFont.LineHeightMultiplier.HasValue?(float)extendedFont.LineHeightMultiplier.Value:0f;
-			}
+                stringAttributes.ParagraphStyle.LineHeightMultiple = extendedFont.LineHeightMultiplier.HasValue ? (float)extendedFont.LineHeightMultiplier.Value : 0f;
+            }
 
-			return stringAttributes;
-		}
+            return stringAttributes;
+        }
 
-        private void CreateLink(ref NSMutableAttributedString text,ref UIStringAttributes attribute, IBaseFont font, FontIndexPair pair)
+        private void CreateLink(ref NSMutableAttributedString text, ref UIStringAttributes attribute, IBaseFont font, FontIndexPair pair)
         {
             //if theres a link property, use that one, if not, use the text itself
             string link;
@@ -144,17 +161,20 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Plugin
             try
             {
                 attribute.Link = new NSUrl(link);
-            }catch (Exception e){
+            }
+            catch (Exception e)
+            {
                 MvxBindingTrace.Trace(MvxTraceLevel.Error, $"Cannot convert {link} to url", e.ToLongString());
             }
             attribute.UnderlineStyle = NSUnderlineStyle.Single;
-            attribute.UnderlineColor = font.Color.ToNativeColor();
+            attribute.UnderlineColor = font.GetColor().ToNativeColor();
         }
 
-		public override IAssetPlugin ClearFonts() {
-			_fontsCache = new Dictionary<string, UIFont>();
-			return base.ClearFonts();
-		}
+        public override IAssetPlugin ClearFonts()
+        {
+            _fontsCache = new Dictionary<string, UIFont>();
+            return base.ClearFonts();
+        }
 
         public static float GetPlatformLineHeight(float fontSize, float? lineHeight)
         {
@@ -167,13 +187,14 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Plugin
             return (newLineHeight - currentFontSize);
         }
 
-		public override bool CanAddFont(IBaseFont font)
-		{
-            if(font is AndroidFont){
+        public override bool CanAddFont(IBaseFont font)
+        {
+            if (font is AndroidFont)
+            {
                 return false;
             }
             return base.CanAddFont(font);
-		}
-	}
+        }
+    }
 }
 

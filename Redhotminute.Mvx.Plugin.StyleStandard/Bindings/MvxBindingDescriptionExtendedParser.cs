@@ -11,7 +11,7 @@ namespace Redhotminute.Mvx.Plugin.Style {
 
 		protected IMvxFontBindingParser FontBindingParser {
 			get {
-				this._fontBindingParser = this._fontBindingParser ?? MvvmCross.Platform.Mvx.Resolve<IMvxFontBindingParser>();
+				this._fontBindingParser = this._fontBindingParser ?? Mvx.Resolve<IMvxFontBindingParser>();
 				return this._fontBindingParser;
 			}
 		}

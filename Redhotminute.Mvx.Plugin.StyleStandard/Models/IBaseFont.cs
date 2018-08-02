@@ -1,8 +1,8 @@
-using System;
-using MvvmCross.Platform.UI;
+using MvvmCross.UI;
 
-namespace Redhotminute.Mvx.Plugin.Style.Models {
-	public interface IBaseFont {
+namespace Redhotminute.Mvx.Plugin.Style.Models
+{
+    public interface IBaseFont {
 		string FontFilename {
 			get;
 			set;

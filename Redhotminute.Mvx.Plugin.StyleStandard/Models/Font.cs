@@ -1,9 +1,8 @@
-using System;
-using MvvmCross.Platform.UI;
+using MvvmCross.UI;
 
 namespace Redhotminute.Mvx.Plugin.Style.Models
 {
-	public class Font : BaseFont
+    public class Font : BaseFont
 	{
 		public MvxColor SelectedColor {
 			get;

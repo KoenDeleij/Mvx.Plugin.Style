@@ -1,14 +1,11 @@
-using System;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Binding;
-using MvvmCross.Platform;
 using MvvmCross.Binding.Bindings;
 using MvvmCross.Binding.Bindings.SourceSteps;
-using MvvmCross.Platform.UI;
 
 namespace Redhotminute.Mvx.Plugin.Style.Binding
 {
-	public static class MvxFontBindingContextOwnerExtensions
+    public static class MvxFontBindingContextOwnerExtensions
 	{
 		public static void BindFont(this IMvxBindingContextOwner owner
 			, object target
