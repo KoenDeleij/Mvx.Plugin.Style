@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Redhotminute.Mvx.Plugin.Sty
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Redhotminute.Mvx.Plugin.Style.Tests", "Redhotminute.Mvx.Plugin.Style.Tests\Redhotminute.Mvx.Plugin.Style.Tests.csproj", "{6D782E0E-13A4-4BB7-A811-C35481787D98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Redhotminute.Mvx.Plugin.Style", "Redhotminute.Mvx.Plugin.StyleStandard\Redhotminute.Mvx.Plugin.Style.csproj", "{ACE083A6-2143-41C5-A7EA-6B3FB34D9395}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Redhotminute.Mvx.Plugin.Style", "Redhotminute.Mvx.Plugin.Style\Redhotminute.Mvx.Plugin.Style.csproj", "{ACE083A6-2143-41C5-A7EA-6B3FB34D9395}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

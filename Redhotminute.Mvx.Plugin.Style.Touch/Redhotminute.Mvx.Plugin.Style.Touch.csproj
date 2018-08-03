@@ -78,8 +78,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Redhotminute.Mvx.Plugin.StyleStandard\Redhotminute.Mvx.Plugin.Style.csproj">
-      <Project>{792B6422-F69B-4574-8CCE-DFF2243A33C0}</Project>
+    <ProjectReference Include="..\Redhotminute.Mvx.Plugin.Style\Redhotminute.Mvx.Plugin.Style.csproj">
+      <Project>{DCF6D754-5A9D-4855-9D48-9779B78EFA5D}</Project>
       <Name>Redhotminute.Mvx.Plugin.Style</Name>
     </ProjectReference>
   </ItemGroup>

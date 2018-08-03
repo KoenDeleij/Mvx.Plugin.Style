@@ -1,7 +1,6 @@
 
 using MvvmCross.IoC;
 using MvvmCross.ViewModels;
-using Redhotminute.Mvx.Plugin.Style.Plugin;
 
 namespace Redhotminute.Mvx.Plugin.Style.SampleApp
 {

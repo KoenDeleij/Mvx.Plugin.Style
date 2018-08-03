@@ -1,11 +1,6 @@
 using Android.App;
 using Android.OS;
-using Android.Text.Method;
-using Android.Widget;
-using MvvmCross.Binding.BindingContext;
 using MvvmCross.Droid.Support.V7.AppCompat;
-using MvvmCross.Platforms.Android.Views;
-using Redhotminute.Mvx.Plugin.Style.Droid.Helpers;
 using Redhotminute.Mvx.Plugin.Style.SampleApp.ViewModels;
 
 namespace Redhotminute.Mvx.Plugin.Style.SampleApp.Droid.Views
