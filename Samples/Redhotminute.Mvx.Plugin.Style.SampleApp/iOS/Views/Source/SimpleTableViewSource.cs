@@ -1,9 +1,9 @@
 using System;
 using Foundation;
-using MvvmCross.Binding.iOS.Views;
 using UIKit;
 using System.Linq;
-using MvvmCross.Binding.ExtensionMethods;
+using MvvmCross.Platforms.Ios.Binding.Views;
+using MvvmCross.Binding.Extensions;
 
 namespace Redhotminute.Mvx.Plugin.Style.SampleApp.iOS.Views {
 	/// <summary>

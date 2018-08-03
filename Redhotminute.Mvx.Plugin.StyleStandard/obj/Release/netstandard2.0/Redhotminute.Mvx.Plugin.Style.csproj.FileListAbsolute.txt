@@ -1,0 +1,3 @@
+/Users/koen.deleij/repositories/Redhotminute-Plugin-Style/Redhotminute.Mvx.Plugin.StyleStandard/obj/Release/netstandard2.0/Redhotminute.Mvx.Plugin.Style.csproj.CoreCompileInputs.cache
+/Users/koen.deleij/repositories/Redhotminute-Plugin-Style/Redhotminute.Mvx.Plugin.StyleStandard/obj/Release/netstandard2.0/Redhotminute.Mvx.Plugin.Style.AssemblyInfoInputs.cache
+/Users/koen.deleij/repositories/Redhotminute-Plugin-Style/Redhotminute.Mvx.Plugin.StyleStandard/obj/Release/netstandard2.0/Redhotminute.Mvx.Plugin.Style.AssemblyInfo.cs

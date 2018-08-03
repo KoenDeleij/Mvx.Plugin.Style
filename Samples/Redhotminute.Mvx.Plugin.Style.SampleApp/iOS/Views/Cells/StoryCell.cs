@@ -2,7 +2,7 @@
 
 using Foundation;
 using MvvmCross.Binding.BindingContext;
-using MvvmCross.Binding.iOS.Views;
+using MvvmCross.Platforms.Ios.Binding.Views;
 using UIKit;
 
 namespace Redhotminute.Mvx.Plugin.Style.SampleApp.iOS {

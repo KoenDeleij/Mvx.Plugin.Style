@@ -81,15 +81,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Redhotminute.Mvx.Plugin.Style\Redhotminute.Mvx.Plugin.Style.csproj">
-      <Project>{BC2ECA0D-7FDB-4C96-88B8-5E7F88594839}</Project>
-      <Name>Redhotminute.Mvx.Plugin.Style</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Helpers\" />
     <Folder Include="Converters\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Redhotminute.Mvx.Plugin.StyleStandard\Redhotminute.Mvx.Plugin.Style.csproj">
+      <Project>{ACE083A6-2143-41C5-A7EA-6B3FB34D9395}</Project>
+      <Name>Redhotminute.Mvx.Plugin.Style</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

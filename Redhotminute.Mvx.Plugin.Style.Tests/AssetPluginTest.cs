@@ -219,7 +219,6 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
             Assert.Throws<Exception>(() => plugin.AddFont(new Font() { FontFilename = "Bold.otf", Color = plugin.GetColor("Red") }));
         }
 
-
         //TODO test caching of fonts
         //TODO test non-existing font/color combinations
     }

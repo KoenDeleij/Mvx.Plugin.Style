@@ -2,8 +2,8 @@ using System;
 using UIKit;
 using MvvmCross.Binding;
 using MvvmCross.Binding.Bindings.Target;
-using MvvmCross.Plugins.Color.iOS;
-using MvvmCross.Platform;
+using MvvmCross.Plugin.Color.Platforms.Ios;
+using MvvmCross;
 
 namespace Redhotminute.Mvx.Plugin.Style.Touch.Bindings {
 	public class BaseStyleBinding<T> : MvxConvertingTargetBinding {

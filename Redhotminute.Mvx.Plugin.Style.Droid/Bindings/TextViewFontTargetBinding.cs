@@ -7,12 +7,13 @@ using Android.Util;
 using Android.Widget;
 using MvvmCross.Binding;
 using MvvmCross.Binding.Bindings.Target;
-using MvvmCross.Platform.Platform;
-using MvvmCross.Plugins.Color.Droid;
+using MvvmCross;
 using Redhotminute.Mvx.Plugin.Style.Droid.Helpers;
 using Redhotminute.Mvx.Plugin.Style.Droid.Plugin;
 using Redhotminute.Mvx.Plugin.Style.Models;
 using Redhotminute.Mvx.Plugin.Style.Plugin;
+using MvvmCross.Logging;
+using MvvmCross.Plugin.Color.Platforms.Android;
 
 namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings {
 	public class TextViewFontTargetBinding
@@ -23,7 +24,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings {
 		public TextViewFontTargetBinding(TextView target)
 			: base(target) {
 			if (target == null) {
-				MvxBindingTrace.Trace(MvxTraceLevel.Error, "Error - textview is null in TextViewFontTargetBinding");
+                MvxBindingLog.Instance.Error("Error - textview is null in TextViewFontTargetBinding");
 				return;
 			}
 		}
@@ -45,7 +46,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings {
                     }
 
 					if (font.Color != null) {
-						label.SetTextColor(font.Color.ToAndroidColor());
+						label.SetTextColor(font.Color.ToNativeColor());
 					}
 
 					var multiplierFactor = AssetPlugin.LineHeightFactor ?? 1;
@@ -61,7 +62,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings {
 					}
 				}
 				catch (Exception e) {
-					MvvmCross.Platform.Mvx.Trace(MvvmCross.Platform.Platform.MvxTraceLevel.Error, "Failed to set font to Textview. Check if font exists, has a size and filename");
+                    MvxBindingLog.Instance.Error("Failed to set font to Textview. Check if font exists, has a size and filename");
 				}
 			}
 		}

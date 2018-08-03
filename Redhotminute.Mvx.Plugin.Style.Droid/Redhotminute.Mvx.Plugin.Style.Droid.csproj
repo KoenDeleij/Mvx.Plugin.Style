@@ -46,45 +46,20 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
-    <Reference Include="MvvmCross.Platform">
-      <HintPath>..\packages\MvvmCross.Platform.4.4.0\lib\MonoAndroid\MvvmCross.Platform.dll</HintPath>
-    </Reference>
-    <Reference Include="MvvmCross.Platform.Droid">
-      <HintPath>..\packages\MvvmCross.Platform.4.4.0\lib\MonoAndroid\MvvmCross.Platform.Droid.dll</HintPath>
-    </Reference>
-    <Reference Include="MvvmCross.Core">
-      <HintPath>..\packages\MvvmCross.Core.4.4.0\lib\MonoAndroid\MvvmCross.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="MvvmCross.Droid">
-      <HintPath>..\packages\MvvmCross.Core.4.4.0\lib\MonoAndroid\MvvmCross.Droid.dll</HintPath>
-    </Reference>
-    <Reference Include="MvvmCross.Droid.Shared">
-      <HintPath>..\packages\MvvmCross.Core.4.4.0\lib\MonoAndroid\MvvmCross.Droid.Shared.dll</HintPath>
-    </Reference>
-    <Reference Include="MvvmCross.Binding">
-      <HintPath>..\packages\MvvmCross.Binding.4.4.0\lib\MonoAndroid\MvvmCross.Binding.dll</HintPath>
-    </Reference>
-    <Reference Include="MvvmCross.Binding.Droid">
-      <HintPath>..\packages\MvvmCross.Binding.4.4.0\lib\MonoAndroid\MvvmCross.Binding.Droid.dll</HintPath>
-    </Reference>
-    <Reference Include="MvvmCross.Localization">
-      <HintPath>..\packages\MvvmCross.Binding.4.4.0\lib\MonoAndroid\MvvmCross.Localization.dll</HintPath>
-    </Reference>
     <Reference Include="Mono.Android.Export" />
-    <Reference Include="MvvmCross.Plugins.Color">
-      <HintPath>..\packages\MvvmCross.Plugin.Color.4.4.0\lib\MonoAndroid\MvvmCross.Plugins.Color.dll</HintPath>
+    <Reference Include="MvvmCross">
+      <HintPath>..\packages\MvvmCross.6.0.1\lib\monoandroid81\MvvmCross.dll</HintPath>
     </Reference>
-    <Reference Include="MvvmCross.Plugins.Color.Droid">
-      <HintPath>..\packages\MvvmCross.Plugin.Color.4.4.0\lib\MonoAndroid\MvvmCross.Plugins.Color.Droid.dll</HintPath>
+    <Reference Include="Java.Interop" />
+    <Reference Include="MvvmCross.Plugin.Color">
+      <HintPath>..\packages\MvvmCross.Plugin.Color.6.0.1\lib\monoandroid81\MvvmCross.Plugin.Color.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Plugin\AssetPlugin.cs" />
     <Compile Include="Plugin\Plugin.cs" />
-    <Compile Include="Plugin\PluginLoader.cs" />
     <Compile Include="Bindings\TextViewFontTargetBinding.cs" />
-    <Compile Include="Bootstrap\ColorPluginBootstrap.cs" />
     <Compile Include="Plugin\BindingSetup\MvxAndroidStyleBindingBuilder.cs" />
     <Compile Include="Plugin\BindingSetup\MvxAndroidStyleViewBinderFactory.cs" />
     <Compile Include="Plugin\BindingSetup\MvxAndroidStyleViewBinder.cs" />
@@ -97,9 +72,7 @@
     <Compile Include="Bindings\TextViewAttributedTargetBinding.cs" />
     <Compile Include="Helpers\AttributedStringBaseFontWrapper.cs" />
     <Compile Include="Helpers\Spans\ClickableLinkSpan.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <Compile Include="Plugin\MvxPluginLog.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Plugin\" />
@@ -114,8 +87,15 @@
     <AndroidResource Include="Resources\values\MvxExtendedBindingAttributes.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Redhotminute.Mvx.Plugin.Style\Redhotminute.Mvx.Plugin.Style.csproj">
-      <Project>{BC2ECA0D-7FDB-4C96-88B8-5E7F88594839}</Project>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Redhotminute.Mvx.Plugin.StyleStandard\Redhotminute.Mvx.Plugin.Style.csproj">
+      <Project>{792B6422-F69B-4574-8CCE-DFF2243A33C0}</Project>
+      <Name>Redhotminute.Mvx.Plugin.Style</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Redhotminute.Mvx.Plugin.StyleStandard\Redhotminute.Mvx.Plugin.Style.csproj">
+      <Project>{792B6422-F69B-4574-8CCE-DFF2243A33C0}</Project>
       <Name>Redhotminute.Mvx.Plugin.Style</Name>
     </ProjectReference>
   </ItemGroup>

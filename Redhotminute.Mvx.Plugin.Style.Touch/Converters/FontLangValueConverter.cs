@@ -1,13 +1,13 @@
 using System;
-using MvvmCross.Platform.Converters;
+using MvvmCross.Converters;
 using System.Globalization;
 using MvvmCross.Localization;
 using Foundation;
 using MvvmCross.Binding;
-using MvvmCross.Platform.Platform;
-using MvvmCross.Platform.Exceptions;
+using MvvmCross;
+using MvvmCross.Exceptions;
 using UIKit;
-using MvvmCross.Plugins.Color.iOS;
+using MvvmCross.Plugin.Color.Platforms.Ios;
 using Redhotminute.Mvx.Plugin.Style.Touch.Plugin;
 using Redhotminute.Mvx.Plugin.Style.Plugin;
 
@@ -28,7 +28,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Converters
 
 		private object ConvertValue(object value,object parameter) {
 			IMvxLanguageBinder textProvider = value as IMvxLanguageBinder;
-			TouchAssetPlugin assetPlugin = MvvmCross.Platform.Mvx.Resolve<IAssetPlugin>() as TouchAssetPlugin;
+			TouchAssetPlugin assetPlugin = MvvmCross.Mvx.Resolve<IAssetPlugin>() as TouchAssetPlugin;
 
 			if (value!= null && parameter!= null){
 				try{
@@ -37,7 +37,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Converters
 
 					return assetPlugin.ParseToAttributedText(textProvider.GetText(values[0]), assetPlugin.GetFontByName(values[1]));
 				}catch(Exception e){
-					MvxBindingTrace.Trace(MvxTraceLevel.Error,"Problem parsing binding {0}", e.ToLongString());
+                    MvxBindingLog.Error("Problem parsing binding {0}", e.ToLongString());
 				}
 			}
 

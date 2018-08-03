@@ -1,7 +1,7 @@
 using System;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Binding;
-using MvvmCross.Platform;
+using MvvmCross;
 using MvvmCross.Binding.Bindings;
 using MvvmCross.Binding.Bindings.SourceSteps;
 using UIKit;
@@ -24,7 +24,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Bindings {
 										, string languageId
 										, string fontId
 		                                ,string targetPropertyName = null) {
-			var converter = MvvmCross.Platform.Core.MvxSingleton<IMvxBindingSingletonCache>.Instance.ValueConverterLookup.Find("FontLang");
+			var converter = MvvmCross.Base.MvxSingleton<IMvxBindingSingletonCache>.Instance.ValueConverterLookup.Find("FontLang");
 
 			var bindingDescription = new MvxBindingDescription();
 			if (!string.IsNullOrEmpty(targetPropertyName)) {

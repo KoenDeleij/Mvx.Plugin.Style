@@ -9,13 +9,13 @@ using MvvmCross.Binding;
 using MvvmCross.Binding.Binders;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Binding.Bindings;
-using MvvmCross.Binding.Droid.Binders;
-using MvvmCross.Platform.Exceptions;
-using MvvmCross.Platform.Platform;
-using Redhotminute.Mvx.Plugin.Style.Binding;
+using MvvmCross.Exceptions;
+using MvvmCross.Logging;
+using MvvmCross.Platforms.Android.Binding.Binders;
+using Redhotminute.Mvx.Plugin.Style.Bindings;
 
 namespace Redhotminute.Mvx.Plugin.Style.Droid.BindingSetup {
-	public class MvxAndroidStyleViewBinder :MvxAndroidViewBinder{
+	public class MvxAndroidStyleViewBinder : MvxAndroidViewBinder{
 
 		private readonly object _source;
 		public MvxAndroidStyleViewBinder(object source):base(source) {
@@ -49,7 +49,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.BindingSetup {
 				StoreBindings(view, newBindings);
 			}
 			catch (Exception exception) {
-				MvxBindingTrace.Trace(MvxTraceLevel.Error, "Exception thrown during the view font binding {0}",exception.ToLongString());
+                MvxBindingLog.Instance.Error(exception, "Exception thrown during the view font binding {0}",exception.ToLongString());
 				throw;
 			}
 		}
