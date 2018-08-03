@@ -1,6 +1,7 @@
 using System;
 using System.Globalization;
 using MvvmCross.Converters;
+using MvvmCross.Logging;
 using MvvmCross.UI;
 using Redhotminute.Mvx.Plugin.Style.Plugin;
 
@@ -9,7 +10,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Converters
     public class AssetColorValueConverter : MvxValueConverter {
 
 		private IMvxNativeColor _nativeColor;
-		private IMvxNativeColor NativeColor => _nativeColor ?? (_nativeColor = Mvx.Resolve<IMvxNativeColor>());
+        private IMvxNativeColor NativeColor => _nativeColor ?? (_nativeColor = MvvmCross.Mvx.Resolve<IMvxNativeColor>());
 
         private IAssetPlugin _plugin;
 		public override object Convert (object value, Type targetType, object parameter, CultureInfo culture)
@@ -22,9 +23,9 @@ namespace Redhotminute.Mvx.Plugin.Style.Converters
                 _plugin = value as AssetPlugin;
             }else if(_plugin == null){
 				//try to resolve it. Not ideal but sometimes necessary within simpel cells
-				_plugin = Mvx.Resolve<IAssetPlugin>();
+                _plugin = MvvmCross.Mvx.Resolve<IAssetPlugin>();
 
-				MvxBindingTrace.Trace("AssetProvider not available for Color conversion. Resolved it");
+                MvxPluginLog.Instance.Trace("AssetProvider not available for Color conversion. Resolved it");
 			}
 
 			if (_plugin != null ){
@@ -36,7 +37,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Converters
 						return GetColorByName(value.ToString());
                     }
 				}catch{
-					MvxBindingTrace.Trace(MvvmCross.Platform.Platform.MvxTraceLevel.Warning, $"Failed to convert color");
+                    MvxPluginLog.Instance.Warn($"Failed to convert '{(parameter?.ToString() ?? value?.ToString())}' into a color");
 				}
 			}
 

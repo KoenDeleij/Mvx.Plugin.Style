@@ -1,9 +1,9 @@
 using System;
-using MvvmCross.Platform.Converters;
+using MvvmCross.Converters;
 using System.Globalization;
 using MvvmCross.Binding;
-using MvvmCross.Platform.Platform;
-using MvvmCross.Platform.Exceptions;
+using MvvmCross;
+using MvvmCross.Exceptions;
 using Redhotminute.Mvx.Plugin.Style.Plugin;
 using Redhotminute.Mvx.Plugin.Style.Touch.Plugin;
 using Foundation;
@@ -25,7 +25,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Converters
 		}
 
 		private object ConvertValue(object value,object parameter) {
-			TouchAssetPlugin assetPlugin = MvvmCross.Platform.Mvx.Resolve<IAssetPlugin>() as TouchAssetPlugin;
+			TouchAssetPlugin assetPlugin = MvvmCross.Mvx.Resolve<IAssetPlugin>() as TouchAssetPlugin;
 
 			if (value!= null && parameter!= null){
 				try{
@@ -37,7 +37,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Converters
 					var text = assetPlugin.ParseToAttributedText(value.ToString(), assetPlugin.GetFontByName(parameter.ToString()));
                     return text;
 				}catch(Exception e){
-					MvxBindingTrace.Trace(MvxTraceLevel.Error,"Problem parsing binding {0}", e.ToLongString());
+                    MvxBindingLog.Error("Problem parsing binding {0}", e.ToLongString());
 				}
 			}
 

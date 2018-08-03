@@ -2,9 +2,10 @@ using System;
 using System.Collections.Generic;
 using Foundation;
 using MvvmCross.Binding;
-using MvvmCross.Platform.Exceptions;
-using MvvmCross.Platform.Platform;
-using MvvmCross.Plugins.Color.iOS;
+using MvvmCross.Exceptions;
+using MvvmCross.Logging;
+using MvvmCross.Plugin;
+using MvvmCross.Plugin.Color.Platforms.Ios;
 using Redhotminute.Mvx.Plugin.Style.Helpers;
 using Redhotminute.Mvx.Plugin.Style.Models;
 using Redhotminute.Mvx.Plugin.Style.Plugin;
@@ -13,6 +14,7 @@ using UIKit;
 
 namespace Redhotminute.Mvx.Plugin.Style.Touch.Plugin
 {
+
     public class TouchAssetPlugin : AssetPlugin
     {
         #region implemented abstract members of AssetPlugin
@@ -62,7 +64,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Plugin
                 {
                     this.ConvertFontFileNameForPlatform(ref font);
 
-                    var assetPlugin = MvvmCross.Platform.Mvx.Resolve<IAssetPlugin>();
+                    var assetPlugin = MvvmCross.Mvx.Resolve<IAssetPlugin>();
 
                     string cleanText = string.Empty;
 
@@ -107,9 +109,9 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Plugin
             stringAttributes.Font = TouchAssetPlugin.GetCachedFont(font);
 
             //add the color
-            if (font.GetColor() != null)
+            if (font.Color != null)
             {
-                stringAttributes.ForegroundColor = font.GetColor().ToNativeColor();
+                stringAttributes.ForegroundColor = font.Color.ToNativeColor();
             }
 
             if (pair != null && tag != null)
@@ -164,10 +166,10 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Plugin
             }
             catch (Exception e)
             {
-                MvxBindingTrace.Trace(MvxTraceLevel.Error, $"Cannot convert {link} to url", e.ToLongString());
+                MvxBindingLog.Instance.Error($"Cannot convert {link} to url", e.ToLongString());
             }
             attribute.UnderlineStyle = NSUnderlineStyle.Single;
-            attribute.UnderlineColor = font.GetColor().ToNativeColor();
+            attribute.UnderlineColor = font.Color.ToNativeColor();
         }
 
         public override IAssetPlugin ClearFonts()

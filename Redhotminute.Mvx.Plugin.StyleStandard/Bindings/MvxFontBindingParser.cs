@@ -1,4 +1,4 @@
-namespace Redhotminute.Mvx.Plugin.Style.Binding
+namespace Redhotminute.Mvx.Plugin.Style.Bindings
 {
     using MvvmCross.Binding;
     using MvvmCross.Binding.Parse.Binding;

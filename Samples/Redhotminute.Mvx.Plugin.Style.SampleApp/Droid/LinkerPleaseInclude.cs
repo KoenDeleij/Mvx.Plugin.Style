@@ -68,9 +68,9 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.Droid
             command.CanExecuteChanged += (s, e) => { if (command.CanExecute(null)) command.Execute(null); };
         }
         
-        public void Include(MvvmCross.Platform.IoC.MvxPropertyInjector injector)
+        public void Include(MvvmCross.IoC.MvxPropertyInjector injector)
         {
-            injector = new MvvmCross.Platform.IoC.MvxPropertyInjector ();
+            injector = new MvvmCross.IoC.MvxPropertyInjector ();
         } 
 
         public void Include(System.ComponentModel.INotifyPropertyChanged changed)

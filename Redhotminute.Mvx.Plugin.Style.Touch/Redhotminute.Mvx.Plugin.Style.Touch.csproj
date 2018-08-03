@@ -62,7 +62,6 @@
     <Compile Include="Bindings\UILabelFontTargetBinding.cs" />
     <Compile Include="Plugin\AssetPlugin.cs" />
     <Compile Include="Plugin\Plugin.cs" />
-    <Compile Include="Plugin\PluginLoader.cs" />
     <Compile Include="Bindings\UIButtonFontTargetBinding.cs" />
     <Compile Include="Bindings\BaseStyleBinding.cs" />
     <Compile Include="Helpers\FontHelpers.cs" />
@@ -80,7 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Redhotminute.Mvx.Plugin.StyleStandard\Redhotminute.Mvx.Plugin.Style.csproj">
-      <Project>{ACE083A6-2143-41C5-A7EA-6B3FB34D9395}</Project>
+      <Project>{792B6422-F69B-4574-8CCE-DFF2243A33C0}</Project>
       <Name>Redhotminute.Mvx.Plugin.Style</Name>
     </ProjectReference>
   </ItemGroup>

@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MvvmCross.Commands;
-using MvvmCross.IoC;
-using MvvmCross.UI;
-using MvvmCross.ViewModels;
+using MvvmCross.Core.ViewModels;
+using MvvmCross.Platform.IoC;
+using MvvmCross.Platform.UI;
 using Redhotminute.Mvx.Plugin.Style.Models;
 using Redhotminute.Mvx.Plugin.Style.Plugin;
 
@@ -31,7 +30,7 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.ViewModels
         private const string ColorMarked = "Marked";
         List<FontTag> _tags;
 
-        public override void Prepare() {
+        public void Init() {
             Stories = StoryService.GetStories();
 
             _tags = new List<FontTag>();
@@ -63,8 +62,6 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.ViewModels
             ChangeStyleCommand.Execute(0);
             SelectStoryCommand.Execute(Stories.FirstOrDefault());
             RaisePropertyChanged(() => Stories);
-
-            base.Prepare();
         }
 
         private void LoadStyle1() {

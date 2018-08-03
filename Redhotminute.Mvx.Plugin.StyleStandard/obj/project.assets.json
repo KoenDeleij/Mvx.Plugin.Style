@@ -215,31 +215,33 @@
     ]
   },
   "packageFolders": {
-    "/Users/koen.deleij/.nuget/packages/": {},
+    "/Users/jelle/.nuget/packages/": {},
     "/usr/local/share/dotnet/sdk/NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/koen.deleij/repositories/Redhotminute-Plugin-Style/Redhotminute.Mvx.Plugin.StyleStandard/Redhotminute.Mvx.Plugin.Style.csproj",
+      "projectUniqueName": "/Users/jelle/Documents/git/Redhotminute.Mvx.Plugin.Style/Redhotminute.Mvx.Plugin.StyleStandard/Redhotminute.Mvx.Plugin.Style.csproj",
       "projectName": "Redhotminute.Mvx.Plugin.Style",
-      "projectPath": "/Users/koen.deleij/repositories/Redhotminute-Plugin-Style/Redhotminute.Mvx.Plugin.StyleStandard/Redhotminute.Mvx.Plugin.Style.csproj",
-      "packagesPath": "/Users/koen.deleij/.nuget/packages/",
-      "outputPath": "/Users/koen.deleij/repositories/Redhotminute-Plugin-Style/Redhotminute.Mvx.Plugin.StyleStandard/obj",
+      "projectPath": "/Users/jelle/Documents/git/Redhotminute.Mvx.Plugin.Style/Redhotminute.Mvx.Plugin.StyleStandard/Redhotminute.Mvx.Plugin.Style.csproj",
+      "packagesPath": "/Users/jelle/.nuget/packages/",
+      "outputPath": "/Users/jelle/Documents/git/Redhotminute.Mvx.Plugin.Style/Redhotminute.Mvx.Plugin.StyleStandard/obj",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "/Users/koen.deleij/repositories/Redhotminute-Plugin-Style/nuget.config",
-        "/Users/koen.deleij/.config/NuGet/NuGet.Config"
+        "/Users/jelle/Documents/git/Redhotminute.Mvx.Plugin.Style/nuget.config",
+        "/Users/jelle/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netstandard2.0"
       ],
       "sources": {
-        "http://rhm-p-repo01.kantoor.tld:8081/repository/nuget-rhm-mobile/": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "/Users/jelle/Downloads/objc-automatic-master/bindings/packages-good": {},
+        "http://nuget.grapecity.com/nuget": {},
+        "https://bankmobilelabs.pkgs.visualstudio.com/_packaging/bankmobile-packagefeed/nuget/v3/index.json": {},
+        "https://www.nuget.org/api/v2/": {}
       },
       "frameworks": {
         "netstandard2.0": {

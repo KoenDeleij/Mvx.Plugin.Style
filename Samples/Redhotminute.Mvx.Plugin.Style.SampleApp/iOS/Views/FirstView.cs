@@ -2,12 +2,12 @@ using System.Collections.Generic;
 using System.Linq;
 using Foundation;
 using MvvmCross.Binding.BindingContext;
-using MvvmCross.Binding.iOS.Views;
-using MvvmCross.iOS.Views;
 using Redhotminute.Mvx.Plugin.Style.SampleApp.ViewModels;
 using UIKit;
-using Redhotminute.Mvx.Plugin.Style.Binding;
 using Redhotminute.Mvx.Plugin.Style.Touch.Converters;
+using MvvmCross.Platforms.Ios.Views;
+using MvvmCross.Platforms.Ios.Binding.Views;
+using Redhotminute.Mvx.Plugin.Style.Bindings;
 
 namespace Redhotminute.Mvx.Plugin.Style.SampleApp.iOS.Views
 {

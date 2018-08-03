@@ -6,10 +6,8 @@ using Android.Text;
 using Android.Widget;
 using MvvmCross.Binding;
 using MvvmCross.Binding.Bindings.Target;
-using MvvmCross.Binding.ExtensionMethods;
-using MvvmCross.Platform;
-using MvvmCross.Platform.Platform;
-using MvvmCross.Plugins.Color.Droid;
+using MvvmCross.Logging;
+using MvvmCross.Plugin.Color.Platforms.Android;
 using Redhotminute.Mvx.Plugin.Style.Droid.Plugin;
 using Redhotminute.Mvx.Plugin.Style.Models;
 using Redhotminute.Mvx.Plugin.Style.Plugin;
@@ -23,7 +21,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings {
 		public ButtonFontTargetBinding(Button target)
 			: base(target) {
 			if (target == null) {
-				MvxBindingTrace.Trace(MvxTraceLevel.Error, "Error - button is null in ButtonFontTargetBinding");
+                MvxBindingLog.Instance.Error("Error - button is null in ButtonFontTargetBinding");
 				return;
 			}
 		}
@@ -75,12 +73,12 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings {
 							button.SetTextColor(new ColorStateList(states.ToArray(), colors.ToArray()));
 						}
 						else {
-							button.SetTextColor(font.Color.ToAndroidColor());
+							button.SetTextColor(font.Color.ToNativeColor());
 						}
 					}
 				}
 				catch (Exception e) {
-					MvvmCross.Platform.Mvx.Trace(MvvmCross.Platform.Platform.MvxTraceLevel.Error, "Failed to set font to Button. Check if font exists, has a size and filename");
+                    MvxBindingLog.Instance.Error("Failed to set font to Button. Check if font exists, has a size and filename");
 				}
 			}
 		}

@@ -1,5 +1,5 @@
 using System;
-using MvvmCross.Binding.Droid.Binders;
+using MvvmCross.Platforms.Android.Binding.Binders;
 
 namespace Redhotminute.Mvx.Plugin.Style.Droid.BindingSetup {
 	public class MvxAndroidStyleViewBinderFactory : IMvxAndroidViewBinderFactory {
