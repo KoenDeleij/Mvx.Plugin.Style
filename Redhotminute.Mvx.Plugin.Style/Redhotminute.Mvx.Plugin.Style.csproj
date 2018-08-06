@@ -14,9 +14,14 @@
         
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
-
+    
+    <ItemGroup Condition=" '$(TargetFramework)' == 'MonoAndroid80' ">
+        <BuildOutputInPackage Include="$(OutputPath)\Redhotminute.Mvx.Plugin.Style.Droid.dll" />
+    </ItemGroup>
+    
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType></DebugType>
+    <OutputPath>bin\Release\</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Sample|AnyCPU' ">
     <IntermediateOutputPath>obj\Sample</IntermediateOutputPath>
