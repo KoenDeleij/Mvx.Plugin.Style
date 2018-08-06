@@ -1,7 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;Xamarin.iOS10;MonoAndroid80</TargetFrameworks>
+    <Authors>Koen Deleij</Authors>
+    <Company>Redhotminute BV</Company>
+    <Product>Redhotminute.Mvx.Plugin.Style</Product>
+    <PackageVersion>1.0.0</PackageVersion>
+    <Summary>Basic plugin for using the Specification Pattern with Linq</Summary>
+    <Description>Mvvmcross plugin to easily cross style fonts and colors</Description>
+    <PackageProjectUrl>https://github.com/Redhotminute/Redhotminute.Mvx.Plugin.Style</PackageProjectUrl>
+    <PackageTags>mvvm mvvmcross xamarin monodroid monotouch style fonts</PackageTags>
+    <RepositoryUrl>https://github.com/Redhotminute/Redhotminute.Mvx.Plugin.Style</RepositoryUrl>
+        
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -30,5 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MvvmCross" Version="6.0.1" />
+    <PackageReference Include="MSBuild.Sdk.Extras" Version="1.5.4" />
   </ItemGroup>
+  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
 </Project>

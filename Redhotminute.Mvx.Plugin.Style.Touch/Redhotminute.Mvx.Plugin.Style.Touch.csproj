@@ -90,7 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Redhotminute.Mvx.Plugin.Style\Redhotminute.Mvx.Plugin.Style.csproj">
-      <Project>{ACE083A6-2143-41C5-A7EA-6B3FB34D9395}</Project>
+      <Project>{4A355044-681E-4F4D-9C0A-6F30BBFFC1A8}</Project>
       <Name>Redhotminute.Mvx.Plugin.Style</Name>
     </ProjectReference>
   </ItemGroup>
