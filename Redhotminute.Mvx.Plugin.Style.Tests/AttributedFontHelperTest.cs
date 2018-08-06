@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using FluentAssertions;
 using MvvmCross.Tests;
 using Redhotminute.Mvx.Plugin.Style.Helpers;
@@ -29,37 +30,37 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
 
             resultWithoutTags.Should().Be(text);
 		}
-        /*
-		[Test]
+
+		[Fact]
 		public void OneTagInTheMiddleShouldResultInThreeBlocks()
 		{
             AssetPlugin plugin = new TestAssetPlugin();
 			plugin.AddFont(new BaseFont() { Name = "Bold", FontFilename = "Bold.otf" });
-			plugin.AddFont(new BaseFont() { Name = "H1", FontFilename = "H1.otf" }, new FontTag("Bold", "b"));
+            plugin.AddFont(new BaseFont() { Name = "H1", FontFilename = "H1.otf" }, new FontTag("Bold", "b"));
 
             string expectedResultWithoutTags = "this is one block";
 			string text = "this is <b>one</b> block";
 			string resultWithoutTags;
 			var result = AttributedFontHelper.GetFontTextBlocks(text, "H1", plugin, out resultWithoutTags);
 
-			Assert.That(result.Count, Is.EqualTo(3));
+			result.Count.Should().Be(3);
 
-			Assert.That(result[0].StartIndex, Is.EqualTo(0));
-			Assert.That(result[0].EndIndex, Is.EqualTo(8));
-            Assert.That(result[0].FontTag, Is.Null);
+			result[0].StartIndex.Should().Be(0);
+			result[0].EndIndex.Should().Be(8);
+            result[0].FontTag.Should().BeNull();
 
-			Assert.That(result[1].StartIndex, Is.EqualTo(8));
-			Assert.That(result[1].EndIndex, Is.EqualTo(11));
-			Assert.That(result[1].FontTag.Tag, Is.EqualTo("b"));
+			result[1].StartIndex.Should().Be(8);
+			result[1].EndIndex.Should().Be(11);
+			result[1].FontTag.Tag.Should().Be("b");
 
-			Assert.That(result[2].StartIndex, Is.EqualTo(11));
-            Assert.That(result[2].EndIndex, Is.EqualTo(expectedResultWithoutTags.Length));
-            Assert.That(result[2].FontTag, Is.Null);
+			result[2].StartIndex.Should().Be(11);
+            result[2].EndIndex.Should().Be(expectedResultWithoutTags.Length);
+            result[2].FontTag.Should().BeNull();
 
-			Assert.That(resultWithoutTags, Is.EqualTo(expectedResultWithoutTags));
+			resultWithoutTags.Should().Be(expectedResultWithoutTags);
 		}
 
-        [Test]
+        [Fact]
         public void BeginningWithATagShouldHaveBeginTag()
         {
             AssetPlugin plugin = new TestAssetPlugin();
@@ -71,35 +72,35 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
             string resultWithoutTags;
             var result = AttributedFontHelper.GetFontTextBlocks(text, "H1", plugin, out resultWithoutTags);
 
-            Assert.That(result.Count, Is.EqualTo(2));
+            result.Count.Should().Be(2);
 
-            Assert.That(result[0].StartIndex, Is.EqualTo(0));
-            Assert.That(result[0].EndIndex, Is.EqualTo(3));
-            Assert.That(result[0].FontTag.Tag, Is.EqualTo("b"));
+            result[0].StartIndex.Should().Be(0);
+            result[0].EndIndex.Should().Be(3);
+            result[0].FontTag.Tag.Should().Be("b");
 
-            Assert.That(result[1].StartIndex, Is.EqualTo(3));
-            Assert.That(result[1].EndIndex, Is.EqualTo(9));
-            Assert.That(result[1].FontTag, Is.Null);
+            result[1].StartIndex.Should().Be(3);
+            result[1].EndIndex.Should().Be(9);
+            result[1].FontTag.Should().BeNull();
 
-            Assert.That(resultWithoutTags, Is.EqualTo(expectedResultWithoutTags));
+            resultWithoutTags.Should().Be(expectedResultWithoutTags);
         }
 
-		[Test]
+		[Fact]
 		public void UnregisteredFontTagsShouldBeIgnored()
 		{
             AssetPlugin plugin = new TestAssetPlugin();
 			plugin.AddFont(new BaseFont() { Name = "Bold", FontFilename = "Bold.otf" });
-			plugin.AddFont(new BaseFont() { Name = "H1", FontFilename = "H1.otf" }, new FontTag("Bold", "strong"));
+            plugin.AddFont(new BaseFont() { Name = "H1", FontFilename = "H1.otf" }, new FontTag("Bold", "strong"));
 
             string text = "this is <strong>one <a href='http://www.google.com'>font</a> to rule them all</strong> block";
 			string resultWithoutTags;
 
             AttributedFontHelper.GetFontTextBlocks(text, "H1", plugin, out resultWithoutTags);
 
-            Assert.That(resultWithoutTags,Is.EqualTo("this is one <a href='http://www.google.com'>font</a> to rule them all block"));
+            resultWithoutTags.Should().Be("this is one <a href='http://www.google.com'>font</a> to rule them all block");
 		}
 
-        [Test]
+        [Fact]
         public void UnknownTagsShouldBeIgnored()
         {
             AssetPlugin plugin = new TestAssetPlugin();
@@ -111,34 +112,34 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
             string text = "las <p> this is <strong>one all</strong> block </p>";
 
             var blocks = AttributedFontHelper.GetFontTextBlocks(text, "H1", plugin, out resultWithoutTags);
-            Assert.That(blocks.Count, Is.EqualTo(3));
-            Assert.That(resultWithoutTags, Is.EqualTo("las <p> this is one all block </p>"));
+            blocks.Count.Should().Be(3);
+            resultWithoutTags.Should().Be("las <p> this is one all block </p>");
 
             text = "las <strong>this is <p>one all</p> block</strong>";
 
             blocks = AttributedFontHelper.GetFontTextBlocks(text, "H1", plugin, out resultWithoutTags);
-            Assert.That(blocks.Count, Is.EqualTo(2));
-            Assert.That(resultWithoutTags, Is.EqualTo("las this is <p>one all</p> block"));
+            blocks.Count.Should().Be(2);
+            resultWithoutTags.Should().Be("las this is <p>one all</p> block");
 
             text = "las <p>lala</p><p>lala</p> test <strong>this is <p>one all</p> block</strong>";
 
             blocks = AttributedFontHelper.GetFontTextBlocks(text, "H1", plugin, out resultWithoutTags);
-            Assert.That(blocks.Count, Is.EqualTo(2));
-            Assert.That(resultWithoutTags, Is.EqualTo("las <p>lala</p><p>lala</p> test this is <p>one all</p> block"));
+            blocks.Count.Should().Be(2);
+            resultWithoutTags.Should().Be("las <p>lala</p><p>lala</p> test this is <p>one all</p> block");
 
 
             text = " this is <strong>one <a href='http://www.google.com'>font</a> to rule <a>them</a> all</strong> block ";
             blocks = AttributedFontHelper.GetFontTextBlocks(text, "H1", plugin, out resultWithoutTags);
-            Assert.That(blocks.Count, Is.EqualTo(3));
-            Assert.That(resultWithoutTags, Is.EqualTo(" this is one <a href='http://www.google.com'>font</a> to rule <a>them</a> all block "));
+            blocks.Count.Should().Be(3);
+            resultWithoutTags.Should().Be(" this is one <a href='http://www.google.com'>font</a> to rule <a>them</a> all block ");
 
             text = "<p> this is <strong>one <a href='http://www.google.com'>font</a> to rule <a>them</a> all</strong> block </p>";
             blocks = AttributedFontHelper.GetFontTextBlocks(text, "H1", plugin, out resultWithoutTags);
-            Assert.That(blocks.Count, Is.EqualTo(3));
-            Assert.That(resultWithoutTags, Is.EqualTo("<p> this is one <a href='http://www.google.com'>font</a> to rule <a>them</a> all block </p>"));
+            blocks.Count.Should().Be(3);
+            resultWithoutTags.Should().Be("<p> this is one <a href='http://www.google.com'>font</a> to rule <a>them</a> all block </p>");
         }
 
-        [Test]
+        [Fact]
         public void LinksShouldBeFlattenedAndPropertiesStripped()
         {
             AssetPlugin plugin = new TestAssetPlugin();
@@ -150,16 +151,16 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
             //standard link
             string text = "this is one <a href=http://www.google.com>font</a> to block";
             var blocks = AttributedFontHelper.GetFontTextBlocks(text, "H1", plugin, out resultWithoutTags);
-            Assert.That(blocks.Count, Is.EqualTo(3));
+            blocks.Count.Should().Be(3);
 
-            Assert.That(blocks[1].TagProperties.Keys.Contains("href"), Is.True);
-            Assert.That(blocks[1].TagProperties.Values.Contains("http://www.google.com"), Is.True);
-            Assert.That(blocks[2].TagProperties, Is.Null);
+            blocks[1].TagProperties.Keys.Contains("href").Should().BeTrue();
+            blocks[1].TagProperties.Values.Contains("http://www.google.com").Should().BeTrue();
+            blocks[2].TagProperties.Should().BeNull();
 
-            Assert.That(resultWithoutTags, Is.EqualTo("this is one font to block"));
+            resultWithoutTags.Should().Be("this is one font to block");
         }
 
-        [Test]
+        [Fact]
         public void LinksWithoutHrefShouldBeFlattenedAndPropertiesStripped()
         {
             AssetPlugin plugin = new TestAssetPlugin();
@@ -171,15 +172,15 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
             //link without attributes 
             var text = "this is one <a>http://www.google.com</a> to block";
             var blocks = AttributedFontHelper.GetFontTextBlocks(text, "H1", plugin, out resultWithoutTags);
-            Assert.That(blocks.Count, Is.EqualTo(3));
+            blocks.Count.Should().Be(3);
 
-            Assert.That(blocks[1].TagProperties, Is.Null);
-            Assert.That(blocks[1].FontTag.FontAction, Is.EqualTo(FontTagAction.Link));
+            blocks[1].TagProperties.Should().BeNull();
+            blocks[1].FontTag.FontAction.Should().Be(FontTagAction.Link);
 
-            Assert.That(resultWithoutTags, Is.EqualTo("this is one http://www.google.com to block"));
+            resultWithoutTags.Should().Be("this is one http://www.google.com to block");
         }
 
-        [Test]
+        [Fact]
         public void LinksWithQuotesShouldBeFlattenedAndPropertiesStripped()
         {
             AssetPlugin plugin = new TestAssetPlugin();
@@ -191,27 +192,27 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
             //link with quotes 
             string text = "this is one <a href='http://www.google.com'>font</a> to block";
             var blocks = AttributedFontHelper.GetFontTextBlocks(text, "H1", plugin, out resultWithoutTags);
-            Assert.That(blocks.Count, Is.EqualTo(3));
+            blocks.Count.Should().Be(3);
 
-            Assert.That(blocks[1].TagProperties.Keys.Contains("href"), Is.True);
-            Assert.That(blocks[1].TagProperties.Values.Contains("http://www.google.com"), Is.True);
-            Assert.That(blocks[1].FontTag.FontAction, Is.EqualTo(FontTagAction.Link));
+            blocks[1].TagProperties.Keys.Contains("href").Should().BeTrue();
+            blocks[1].TagProperties.Values.Contains("http://www.google.com").Should().BeTrue();
+            blocks[1].FontTag.FontAction.Should().Be(FontTagAction.Link);
 
-            Assert.That(resultWithoutTags, Is.EqualTo("this is one font to block"));
+            resultWithoutTags.Should().Be("this is one font to block");
 
             //link with double quotes 
             text = "this is one <a href=\"http://www.google.com\">font</a> to block";
             blocks = AttributedFontHelper.GetFontTextBlocks(text, "H1", plugin, out resultWithoutTags);
-            Assert.That(blocks.Count, Is.EqualTo(3));
+            blocks.Count.Should().Be(3);
 
-            Assert.That(blocks[1].TagProperties.Keys.Contains("href"), Is.True);
-            Assert.That(blocks[1].TagProperties.Values.Contains("http://www.google.com"), Is.True);
-            Assert.That(blocks[1].FontTag.FontAction, Is.EqualTo(FontTagAction.Link));
+            blocks[1].TagProperties.Keys.Contains("href").Should().BeTrue();
+            blocks[1].TagProperties.Values.Contains("http://www.google.com").Should().BeTrue();
+            blocks[1].FontTag.FontAction.Should().Be(FontTagAction.Link);
 
-            Assert.That(resultWithoutTags, Is.EqualTo("this is one font to block"));
+            resultWithoutTags.Should().Be("this is one font to block");
         }
 
-        [Test]
+        [Fact]
         public void LinksWithEqualSignShouldBeParsedAsFull()
         {
             AssetPlugin plugin = new TestAssetPlugin();
@@ -223,17 +224,17 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
             //link with quotes 
             string text = "this is one <a href='http://www.google.com/maps/la=3'>font</a> to block";
             var blocks = AttributedFontHelper.GetFontTextBlocks(text, "H1", plugin, out resultWithoutTags);
-            Assert.That(blocks.Count, Is.EqualTo(3));
+            blocks.Count.Should().Be(3);
 
-            Assert.That(blocks[1].TagProperties.Keys.Contains("href"), Is.True);
-            Assert.That(blocks[1].TagProperties.Values.Contains("http://www.google.com/maps/la=3"), Is.True);
-            Assert.That(blocks[1].FontTag.FontAction, Is.EqualTo(FontTagAction.Link));
+            blocks[1].TagProperties.Keys.Contains("href").Should().BeTrue();
+            blocks[1].TagProperties.Values.Contains("http://www.google.com/maps/la=3").Should().BeTrue();
+            blocks[1].FontTag.FontAction.Should().Be(FontTagAction.Link);
 
-            Assert.That(resultWithoutTags, Is.EqualTo("this is one font to block"));
+            resultWithoutTags.Should().Be("this is one font to block");
         }
 
 
-        [Test]
+        [Fact]
         public void LinkWithPlusAndMinosPropertiesAreParsedAsFull()
         {
             AssetPlugin plugin = new TestAssetPlugin();
@@ -245,18 +246,18 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
             //link with quotes 
             string text = "this is one <a href='https://itunes.apple.com/cz/app/skoda-media-services/id420627875?mt=8&utm_source=32449-Importers&utm_medium=email&utm_term=1908124336&utm_content=iOS&utm_campaign=Modern+and+intuitive:+SKODA+Media+Services+app+featuring+a+new+design+and+additional+functions-2'>fiets</a> to block";
             var blocks = AttributedFontHelper.GetFontTextBlocks(text, "H1", plugin, out resultWithoutTags);
-            Assert.That(blocks.Count, Is.EqualTo(3));
+            blocks.Count.Should().Be(3);
 
-            Assert.That(blocks[1].TagProperties.Keys.Contains("href"), Is.True);
-            Assert.That(blocks[1].TagProperties.Values.Contains("https://itunes.apple.com/cz/app/skoda-media-services/id420627875?mt=8&utm_source=32449-Importers&utm_medium=email&utm_term=1908124336&utm_content=iOS&utm_campaign=Modern+and+intuitive:+SKODA+Media+Services+app+featuring+a+new+design+and+additional+functions-2"), Is.True);
-            Assert.That(blocks[1].FontTag.FontAction, Is.EqualTo(FontTagAction.Link));
+            blocks[1].TagProperties.Keys.Contains("href").Should().BeTrue();
+            blocks[1].TagProperties.Values.Contains("https://itunes.apple.com/cz/app/skoda-media-services/id420627875?mt=8&utm_source=32449-Importers&utm_medium=email&utm_term=1908124336&utm_content=iOS&utm_campaign=Modern+and+intuitive:+SKODA+Media+Services+app+featuring+a+new+design+and+additional+functions-2").Should().BeTrue();
+            blocks[1].FontTag.FontAction.Should().Be(FontTagAction.Link);
 
-            Assert.That(resultWithoutTags, Is.EqualTo("this is one fiets to block"));
+            resultWithoutTags.Should().Be("this is one fiets to block");
         }
 
 
         //
-        [Test]
+        [Fact]
         public void LinksSlashAtEndAreResolvedLikeAnyLink()
         {
             AssetPlugin plugin = new TestAssetPlugin();
@@ -268,16 +269,16 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
             //link with quotes 
             string text = "this is one <a href='http://www.google.com/maps/'>font</a> to block";
             var blocks = AttributedFontHelper.GetFontTextBlocks(text, "H1", plugin, out resultWithoutTags);
-            Assert.That(blocks.Count, Is.EqualTo(3));
+            blocks.Count.Should().Be(3);
 
-            Assert.That(blocks[1].TagProperties.Keys.Contains("href"), Is.True);
-            Assert.That(blocks[1].TagProperties.Values.Contains("http://www.google.com/maps/"), Is.True);
-            Assert.That(blocks[1].FontTag.FontAction, Is.EqualTo(FontTagAction.Link));
+            blocks[1].TagProperties.Keys.Contains("href").Should().BeTrue();
+            blocks[1].TagProperties.Values.Contains("http://www.google.com/maps/").Should().BeTrue();
+            blocks[1].FontTag.FontAction.Should().Be(FontTagAction.Link);
 
-            Assert.That(resultWithoutTags, Is.EqualTo("this is one font to block"));
+            resultWithoutTags.Should().Be("this is one font to block");
         }
 
-        [Test]
+        [Fact]
         public void TagsCanContainMultipleAttributes()
         {
             AssetPlugin plugin = new TestAssetPlugin();
@@ -288,15 +289,15 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
 
             string text = "this is one <q la=1 la2=2>font</q> to block";
             var blocks = AttributedFontHelper.GetFontTextBlocks(text, "H1", plugin, out resultWithoutTags);
-            Assert.That(blocks.Count, Is.EqualTo(3));
+            blocks.Count.Should().Be(3);
 
-            Assert.That(blocks[1].TagProperties.Keys.Contains("la"), Is.True);
-            Assert.That(blocks[1].TagProperties.Keys.Contains("la2"), Is.True);
+            blocks[1].TagProperties.Keys.Contains("la").Should().BeTrue();
+            blocks[1].TagProperties.Keys.Contains("la2").Should().BeTrue();
 
-            Assert.That(resultWithoutTags, Is.EqualTo("this is one font to block"));
+            resultWithoutTags.Should().Be("this is one font to block");
         }
 
-        [Test]
+        [Fact]
         public void TagWithoutClosingTagShould()
         {
             AssetPlugin plugin = new TestAssetPlugin();
@@ -309,22 +310,20 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
             Assert.Throws(typeof(Exception), () => AttributedFontHelper.GetFontTextBlocks(text, "H1", plugin, out resultWithoutTags));
         }
 
-		[Test]
+		[Fact]
 		public void DoubleTagsShouldBeFormatted()
 		{
             AssetPlugin plugin = new TestAssetPlugin();
 			plugin.AddFont(new BaseFont() { Name = "Bold", FontFilename = "Bold.otf" });
-			plugin.AddFont(new BaseFont() { Name = "H1", FontFilename = "H1.otf" }, new FontTag("Bold", "strong"));
+            plugin.AddFont(new BaseFont() { Name = "H1", FontFilename = "H1.otf" }, new FontTag("Bold", "strong"));
 
 			string expectedResultWithoutTags = "TestExclusieve scherpe prijsTest tot";
 			string resultWithoutTags;
             string text = "Test<strong>Exclusieve scherpe prijs</strong>Test<strong> tot</strong>";
 
 			AttributedFontHelper.GetFontTextBlocks(text, "H1", plugin, out resultWithoutTags);
-		    Assert.That(resultWithoutTags, Is.EqualTo(expectedResultWithoutTags));
+		    resultWithoutTags.Should().Be(expectedResultWithoutTags);
         }
-
-        */
 
         //TODO Test no font
         //TODO Test no text

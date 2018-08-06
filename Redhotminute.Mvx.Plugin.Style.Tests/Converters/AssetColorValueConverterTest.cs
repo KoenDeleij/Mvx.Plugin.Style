@@ -8,20 +8,13 @@ using Xunit;
 
 namespace Redhotminute.Mvx.Plugin.Style.Tests.Converters
 {
-    public class AssetColorValueConverterTest : MvxIoCSupportingTest
+    public class AssetColorValueConverterTest : IClassFixture<CustomTestFixture>
     {
-        private AssetPlugin _plugin;
-        //private Font _fontToAdd;
+        private readonly CustomTestFixture _fixture;
 
-
-        public AssetColorValueConverterTest(){
-            base.Setup();
-
-            _plugin = new TestAssetPlugin();
-            _plugin.AddColor(new MvxColor(255, 0, 0), "Red");
-            _plugin.AddColor(new MvxColor(0, 0, 255), "Blue");
-
-            Ioc.RegisterSingleton<IAssetPlugin>(_plugin);
+        public AssetColorValueConverterTest(CustomTestFixture fixture)
+        {
+            _fixture = fixture;
         }
 
         [Fact]
@@ -35,7 +28,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests.Converters
         public void IfNoPluginIsPassedItsResolved()
         {
             AssetColorValueConverter conv = new AssetColorValueConverter();
-            var font = conv.Convert(_plugin, typeof(MvxColor), "Red", null);
+            var font = conv.Convert(_fixture.Ioc.Resolve<IAssetPlugin>(), typeof(MvxColor), "Red", null);
             font.Should().BeNull();
         }
 
@@ -43,7 +36,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests.Converters
         public void IfColorIsNotFoundReturnNull()
         {
             AssetColorValueConverter conv = new AssetColorValueConverter();
-            var font = conv.Convert(_plugin, typeof(MvxColor), "11", null);
+            var font = conv.Convert(_fixture.Ioc.Resolve<IAssetPlugin>(), typeof(MvxColor), "11", null);
             font.Should().BeNull();
         }
     }

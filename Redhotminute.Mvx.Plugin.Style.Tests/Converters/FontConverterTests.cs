@@ -10,22 +10,13 @@ using Xunit;
 namespace Redhotminute.Mvx.Plugin.Style.Tests.Converters
 {
 
-    public class FontConverterTests : MvxIoCSupportingTest
+    public class FontConverterTests : IClassFixture<CustomTestFixture>
     {
-        private AssetPlugin _plugin;
-        private Font _fontToAdd;
+        private readonly CustomTestFixture _fixture;
 
-        public FontConverterTests(){
-            base.Setup();
-
-            _plugin = new TestAssetPlugin();
-            _plugin.AddColor(new MvxColor(255, 0, 0), "Red");
-            _plugin.AddColor(new MvxColor(0, 0, 255), "Blue");
-
-            _fontToAdd = new Font() { Name = "Bold", FontFilename = "Bold.otf", Color = _plugin.GetColor("Blue") };
-            _plugin.AddFont(_fontToAdd);
-
-            Ioc.RegisterSingleton<IAssetPlugin>(_plugin);
+        public FontConverterTests(CustomTestFixture fixture)
+        {
+            _fixture = fixture;
         }
 
         [Fact]
@@ -39,9 +30,10 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests.Converters
         public void ConverterConvertsFontNameToFontObject()
         {
             FontResourceValueConverter conv = new FontResourceValueConverter();
-            var font = conv.Convert(_plugin, typeof(Font), "Bold", null);
 
-            font.Should().Be(_fontToAdd);
+            var font = conv.Convert(_fixture.Ioc.Resolve<IAssetPlugin>(), typeof(Font), "Bold", null);
+
+            font.Should().Be(_fixture.FontToAdd);
         }
 
         [Fact]
@@ -49,14 +41,14 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests.Converters
         {
             FontResourceValueConverter conv = new FontResourceValueConverter();
             var font = conv.Convert(null, typeof(Font), "Bold", null);
-            font.Should().Be(_fontToAdd);
+            font.Should().Be(_fixture.FontToAdd);
         }
 
         [Fact]
         public void IfNoPluginIsPassedItsResolved()
         {
             FontResourceValueConverter conv = new FontResourceValueConverter();
-            var font = conv.Convert(_plugin, typeof(Font), "", null);
+            var font = conv.Convert(_fixture.Ioc.Resolve<IAssetPlugin>(), typeof(Font), "", null);
             font.Should().BeNull();
         }
 
@@ -64,7 +56,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests.Converters
         public void IfFontIsNotFoundReturnNull()
         {
             FontResourceValueConverter conv = new FontResourceValueConverter();
-            var font = conv.Convert(_plugin, typeof(Font), "11", null);
+            var font = conv.Convert(_fixture.Ioc.Resolve<IAssetPlugin>(), typeof(Font), "11", null);
             font.Should().BeNull();
         }
 
