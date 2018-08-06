@@ -16,7 +16,10 @@
   </PropertyGroup>
     
     <ItemGroup Condition=" '$(TargetFramework)' == 'MonoAndroid80' ">
-        <BuildOutputInPackage Include="$(OutputPath)\Redhotminute.Mvx.Plugin.Style.Droid.dll" />
+        <BuildOutputInPackage Include="../bin/Release/Redhotminute.Mvx.Plugin.Style.Droid.dll" />
+    </ItemGroup>
+    <ItemGroup Condition=" '$(TargetFramework)' == 'Xamarin.iOS10' ">
+        <BuildOutputInPackage Include="../bin/Release/Redhotminute.Mvx.Plugin.Style.Touch.dll" />
     </ItemGroup>
     
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
