@@ -14,13 +14,22 @@
         
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
+
+    <PropertyGroup>
+        <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);IncludeP2PAssets</TargetsForTfmSpecificBuildOutput>
+    </PropertyGroup>
+    <Target Name="IncludeP2PAssets">
+        <ItemGroup Condition=" '$(TargetFramework)' == 'MonoAndroid80' ">
+            <BuildOutputInPackage Include="..\bin\$(Configuration)\Redhotminute.Mvx.Plugin.Style.Droid.dll" />
+        </ItemGroup>
+    </Target>
     
-    <PropertyGroup Condition=" '$(TargetFramework)' == 'MonoAndroid80' ">
+   <!-- <PropertyGroup Condition=" '$(TargetFramework)' == 'MonoAndroid80' ">
         <BuildOutputInPackage Include="..\bin\$(Configuration)\Redhotminute.Mvx.Plugin.Style.Droid.dll" />
     </PropertyGroup>
     <PropertyGroup Condition=" '$(TargetFramework)' == 'Xamarin.iOS10' ">
         <BuildOutputInPackage Include="..\bin\$(Configuration)\Redhotminute.Mvx.Plugin.Style.Touch.dll" />
-    </PropertyGroup>
+    </PropertyGroup>-->
     
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType></DebugType>
