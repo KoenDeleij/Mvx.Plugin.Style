@@ -41,17 +41,15 @@
     <NoWarn></NoWarn>
     <NoStdLib>false</NoStdLib>
   </PropertyGroup>
-  <ItemGroup><ItemGroup>
+
+<ItemGroup>
     <Folder Include="Bindings\" />
     <Folder Include="Converters\" />
     <Folder Include="Enums\" />
     <Folder Include="Helpers\" />
     <Folder Include="Models\" />
     <Folder Include="Plugin\" />
-  </ItemGroup>
-    <Compile Remove="Class1.cs" />
-    <Compile Remove="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
+</ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="MvvmCross" Version="6.0.1" />
