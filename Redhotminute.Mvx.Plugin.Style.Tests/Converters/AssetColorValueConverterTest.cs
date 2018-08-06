@@ -1,21 +1,20 @@
-﻿using MvvmCross.Tests;
+﻿using FluentAssertions;
+using MvvmCross.Tests;
 using MvvmCross.UI;
-using NUnit.Framework;
 using Redhotminute.Mvx.Plugin.Style.Converters;
 using Redhotminute.Mvx.Plugin.Style.Plugin;
 using Redhotminute.Mvx.Plugin.Style.Tests.Helpers;
+using Xunit;
 
 namespace Redhotminute.Mvx.Plugin.Style.Tests.Converters
 {
-    [TestFixture]
     public class AssetColorValueConverterTest : MvxIoCSupportingTest
     {
         private AssetPlugin _plugin;
         //private Font _fontToAdd;
 
-        [SetUp]
-        public void Init()
-        {
+
+        public AssetColorValueConverterTest(){
             base.Setup();
 
             _plugin = new TestAssetPlugin();
@@ -25,27 +24,27 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests.Converters
             Ioc.RegisterSingleton<IAssetPlugin>(_plugin);
         }
 
-        [Test]
+        [Fact]
         public void ShouldConstruct()
         {
             AssetColorValueConverter conv = new AssetColorValueConverter();
-            Assert.That(conv, Is.Not.Null);
+            conv.Should().NotBeNull();
         }
 
-        [Test]
+        [Fact]
         public void IfNoPluginIsPassedItsResolved()
         {
             AssetColorValueConverter conv = new AssetColorValueConverter();
             var font = conv.Convert(_plugin, typeof(MvxColor), "Red", null);
-            Assert.That(font, Is.Null);
+            font.Should().BeNull();
         }
 
-        [Test]
+        [Fact]
         public void IfColorIsNotFoundReturnNull()
         {
             AssetColorValueConverter conv = new AssetColorValueConverter();
             var font = conv.Convert(_plugin, typeof(MvxColor), "11", null);
-            Assert.That(font, Is.Null);
+            font.Should().BeNull();
         }
     }
 }

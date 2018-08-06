@@ -1,23 +1,17 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
+using FluentAssertions;
 using MvvmCross.Tests;
-using NUnit.Framework;
 using Redhotminute.Mvx.Plugin.Style.Helpers;
 using Redhotminute.Mvx.Plugin.Style.Models;
 using Redhotminute.Mvx.Plugin.Style.Plugin;
 using Redhotminute.Mvx.Plugin.Style.Tests.Helpers;
+using Xunit;
 
 namespace Redhotminute.Mvx.Plugin.Style.Tests
 {
     public class AttributedFontHelperTest : MvxIoCSupportingTest
     {
-		[SetUp]
-		public void Init()
-		{
-			base.Setup();
-		}
-
-		[Test]
+		[Fact]
 		public void NoTagTextShouldResultInOneBlock()
 		{
             AssetPlugin plugin = new TestAssetPlugin();
@@ -27,15 +21,15 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
             string resultWithoutTags;
 			var result = AttributedFontHelper.GetFontTextBlocks(text, "Bold",plugin,out resultWithoutTags);
 
-            Assert.That(result.Count,Is.EqualTo(1));
+            result.Count.Should().Be(1);
 
-            Assert.That(result.First().StartIndex, Is.EqualTo(0));
-            Assert.That(result.First().EndIndex, Is.EqualTo(text.Length));
-            Assert.That(result.First().FontTag, Is.Null);//if the font is not overriden it's not set
+            result.First().StartIndex.Should().Be(0);
+            result.First().EndIndex.Should().Be(text.Length);
+            result.First().FontTag.Should().BeNull();//if the font is not overriden it's not set
 
-            Assert.That(resultWithoutTags, Is.EqualTo(text));
+            resultWithoutTags.Should().Be(text);
 		}
-
+        /*
 		[Test]
 		public void OneTagInTheMiddleShouldResultInThreeBlocks()
 		{
@@ -143,28 +137,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
             Assert.That(blocks.Count, Is.EqualTo(3));
             Assert.That(resultWithoutTags, Is.EqualTo("<p> this is one <a href='http://www.google.com'>font</a> to rule <a>them</a> all block </p>"));
         }
-        /*
-        [Test]
-        public void TagsWithinTagsShouldResultInFlatListWithAllG()
-        {
-            AssetPlugin plugin = new AssetPlugin();
-            plugin.AddFont(new BaseFont() { Name = "Bold", FontFilename = "Bold.otf" });
 
-            List<FontTag> tags = new List<FontTag>();
-            tags.Add(new FontTag("Bold", "strong"));
-            tags.Add(new FontTag("Bold", "a", FontTagAction.Link));
-
-            plugin.AddFont(new BaseFont() { Name = "H1", FontFilename = "H1.otf" },tags );
-
-            string resultWithoutTags;
-
-            string text = "las <strong> this is <a href='http://www.google.com'>one all</a> block </strong>";
-
-            var blocks = AttributedFontHelper.GetFontTextBlocks(text, "H1", plugin, out resultWithoutTags);
-            Assert.That(blocks.Count, Is.EqualTo(3));
-            Assert.That(resultWithoutTags, Is.EqualTo("las this is one all block "));
-        }
-*/
         [Test]
         public void LinksShouldBeFlattenedAndPropertiesStripped()
         {
@@ -351,7 +324,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
 		    Assert.That(resultWithoutTags, Is.EqualTo(expectedResultWithoutTags));
         }
 
-        
+        */
 
         //TODO Test no font
         //TODO Test no text

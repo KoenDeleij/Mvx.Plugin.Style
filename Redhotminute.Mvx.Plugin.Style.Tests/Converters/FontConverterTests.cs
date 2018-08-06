@@ -1,22 +1,21 @@
-﻿using MvvmCross.Tests;
+﻿using FluentAssertions;
+using MvvmCross.Tests;
 using MvvmCross.UI;
-using NUnit.Framework;
 using Redhotminute.Mvx.Plugin.Style.Converters;
 using Redhotminute.Mvx.Plugin.Style.Models;
 using Redhotminute.Mvx.Plugin.Style.Plugin;
 using Redhotminute.Mvx.Plugin.Style.Tests.Helpers;
+using Xunit;
 
 namespace Redhotminute.Mvx.Plugin.Style.Tests.Converters
 {
-    [TestFixture]
+
     public class FontConverterTests : MvxIoCSupportingTest
     {
         private AssetPlugin _plugin;
         private Font _fontToAdd;
 
-        [SetUp]
-        public void Init()
-        {
+        public FontConverterTests(){
             base.Setup();
 
             _plugin = new TestAssetPlugin();
@@ -29,53 +28,53 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests.Converters
             Ioc.RegisterSingleton<IAssetPlugin>(_plugin);
         }
 
-        [Test]
+        [Fact]
         public void ShouldConstruct()
         {
             FontResourceValueConverter conv = new FontResourceValueConverter();
-            Assert.That(conv, Is.Not.Null);
+            conv.Should().NotBeNull();
         }
 
-        [Test]
+        [Fact]
         public void ConverterConvertsFontNameToFontObject()
         {
             FontResourceValueConverter conv = new FontResourceValueConverter();
             var font = conv.Convert(_plugin, typeof(Font), "Bold", null);
 
-            Assert.That(font, Is.EqualTo(_fontToAdd));
+            font.Should().Be(_fontToAdd);
         }
 
-        [Test]
+        [Fact]
         public void IfNoFontNameIsGivenReturnNull()
         {
             FontResourceValueConverter conv = new FontResourceValueConverter();
             var font = conv.Convert(null, typeof(Font), "Bold", null);
-            Assert.That(font, Is.EqualTo(_fontToAdd));
+            font.Should().Be(_fontToAdd);
         }
 
-        [Test]
+        [Fact]
         public void IfNoPluginIsPassedItsResolved()
         {
             FontResourceValueConverter conv = new FontResourceValueConverter();
             var font = conv.Convert(_plugin, typeof(Font), "", null);
-            Assert.That(font, Is.Null);
+            font.Should().BeNull();
         }
 
-        [Test]
+        [Fact]
         public void IfFontIsNotFoundReturnNull()
         {
             FontResourceValueConverter conv = new FontResourceValueConverter();
             var font = conv.Convert(_plugin, typeof(Font), "11", null);
-            Assert.That(font, Is.Null);
+            font.Should().BeNull();
         }
 
-        [Test]
+        [Fact]
         public void IfParameterIsStringCombineItToCreateFontColorCombo()
         {
             FontResourceValueConverter conv = new FontResourceValueConverter();
             var font = conv.Convert("Blue", typeof(Font), "Bold", null) as Font;
 
-            Assert.That(font.Color.B,Is.EqualTo(255));
+            font.Color.B.Should().Be(255);
         }
     }
 }
