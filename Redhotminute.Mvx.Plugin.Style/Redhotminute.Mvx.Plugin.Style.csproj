@@ -16,20 +16,17 @@
   </PropertyGroup>
 
     <PropertyGroup>
-        <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);IncludeP2PAssets</TargetsForTfmSpecificBuildOutput>
+        <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);IncludePlatformSpecificDlls</TargetsForTfmSpecificBuildOutput>
     </PropertyGroup>
-    <Target Name="IncludeP2PAssets">
+    
+    <Target Name="IncludePlatformSpecificDlls">
         <ItemGroup Condition=" '$(TargetFramework)' == 'MonoAndroid80' ">
             <BuildOutputInPackage Include="..\bin\$(Configuration)\Redhotminute.Mvx.Plugin.Style.Droid.dll" />
         </ItemGroup>
+        <ItemGroup Condition=" '$(TargetFramework)' == 'Xamarin.iOS10' ">
+            <BuildOutputInPackage Include="..\bin\$(Configuration)\Redhotminute.Mvx.Plugin.Style.Touch.dll" />
+        </ItemGroup>
     </Target>
-    
-   <!-- <PropertyGroup Condition=" '$(TargetFramework)' == 'MonoAndroid80' ">
-        <BuildOutputInPackage Include="..\bin\$(Configuration)\Redhotminute.Mvx.Plugin.Style.Droid.dll" />
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(TargetFramework)' == 'Xamarin.iOS10' ">
-        <BuildOutputInPackage Include="..\bin\$(Configuration)\Redhotminute.Mvx.Plugin.Style.Touch.dll" />
-    </PropertyGroup>-->
     
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType></DebugType>
@@ -44,11 +41,7 @@
     <NoWarn></NoWarn>
     <NoStdLib>false</NoStdLib>
   </PropertyGroup>
-  <ItemGroup>
-    <Compile Remove="Class1.cs" />
-    <Compile Remove="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
+  <ItemGroup><ItemGroup>
     <Folder Include="Bindings\" />
     <Folder Include="Converters\" />
     <Folder Include="Enums\" />
@@ -56,6 +49,10 @@
     <Folder Include="Models\" />
     <Folder Include="Plugin\" />
   </ItemGroup>
+    <Compile Remove="Class1.cs" />
+    <Compile Remove="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="MvvmCross" Version="6.0.1" />
     <PackageReference Include="MvvmCross.Plugin.Color" Version="6.0.1" />
