@@ -16,10 +16,10 @@
   </PropertyGroup>
     
     <PropertyGroup Condition=" '$(TargetFramework)' == 'MonoAndroid80' ">
-        <BuildOutputInPackage Include="../bin/Release/Redhotminute.Mvx.Plugin.Style.Droid.dll" />
+        <BuildOutputInPackage Include="..\bin\$(Configuration)\Redhotminute.Mvx.Plugin.Style.Droid.dll" />
     </PropertyGroup>
     <PropertyGroup Condition=" '$(TargetFramework)' == 'Xamarin.iOS10' ">
-        <BuildOutputInPackage Include="../bin/Release/Redhotminute.Mvx.Plugin.Style.Touch.dll" />
+        <BuildOutputInPackage Include="..\bin\$(Configuration)\Redhotminute.Mvx.Plugin.Style.Touch.dll" />
     </PropertyGroup>
     
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MvvmCross" Version="6.0.1" />
+    <PackageReference Include="MvvmCross.Plugin.Color" Version="6.0.1" />
     <PackageReference Include="MSBuild.Sdk.Extras" Version="1.5.4" />
   </ItemGroup>
   <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
