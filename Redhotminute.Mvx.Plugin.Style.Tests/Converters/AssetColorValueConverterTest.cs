@@ -1,9 +1,7 @@
-﻿using System;
-using MvvmCross.Platform.UI;
-using MvvmCross.Test.Core;
+﻿using MvvmCross.Tests;
+using MvvmCross.UI;
 using NUnit.Framework;
 using Redhotminute.Mvx.Plugin.Style.Converters;
-using Redhotminute.Mvx.Plugin.Style.Models;
 using Redhotminute.Mvx.Plugin.Style.Plugin;
 using Redhotminute.Mvx.Plugin.Style.Tests.Helpers;
 
@@ -21,8 +19,8 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests.Converters
             base.Setup();
 
             _plugin = new TestAssetPlugin();
-            _plugin.AddColor(new MvvmCross.Platform.UI.MvxColor(255, 0, 0), "Red");
-            _plugin.AddColor(new MvvmCross.Platform.UI.MvxColor(0, 0, 255), "Blue");
+            _plugin.AddColor(new MvxColor(255, 0, 0), "Red");
+            _plugin.AddColor(new MvxColor(0, 0, 255), "Blue");
 
             Ioc.RegisterSingleton<IAssetPlugin>(_plugin);
         }

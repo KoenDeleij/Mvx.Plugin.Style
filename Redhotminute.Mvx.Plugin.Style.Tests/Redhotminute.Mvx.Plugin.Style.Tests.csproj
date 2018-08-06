@@ -43,15 +43,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="MvvmCross.Platform">
-      <HintPath>..\packages\MvvmCross.Platform.4.4.0\lib\net45\MvvmCross.Platform.dll</HintPath>
-    </Reference>
-    <Reference Include="MvvmCross.Platform.Wpf">
-      <HintPath>..\packages\MvvmCross.Platform.4.4.0\lib\net45\MvvmCross.Platform.Wpf.dll</HintPath>
-    </Reference>
-    <Reference Include="MvvmCross.Test.Core">
-      <HintPath>..\packages\MvvmCross.Tests.4.4.0\lib\net45\MvvmCross.Test.Core.dll</HintPath>
-    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.3.8.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
@@ -61,11 +52,15 @@
     <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.7.99\lib\net45\Moq.dll</HintPath>
     </Reference>
-    <Reference Include="MvvmCross.Core">
-      <HintPath>..\packages\MvvmCross.Core.4.4.0\lib\net45\MvvmCross.Core.dll</HintPath>
+    <Reference Include="System.Console">
+      <HintPath>..\packages\System.Console.4.3.0\lib\net46\System.Console.dll</HintPath>
     </Reference>
-    <Reference Include="MvvmCross.Wpf">
-      <HintPath>..\packages\MvvmCross.Core.4.4.0\lib\net45\MvvmCross.Wpf.dll</HintPath>
+    <Reference Include="mscorlib" />
+    <Reference Include="MvvmCross">
+      <HintPath>..\packages\MvvmCross.6.0.1\lib\net461\MvvmCross.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Tests">
+      <HintPath>..\packages\MvvmCross.Tests.6.0.1\lib\netstandard2.0\MvvmCross.Tests.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -86,7 +81,7 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Redhotminute.Mvx.Plugin.StyleStandard\Redhotminute.Mvx.Plugin.Style.csproj">
+    <ProjectReference Include="..\Redhotminute.Mvx.Plugin.Style\Redhotminute.Mvx.Plugin.Style.csproj">
       <Project>{ACE083A6-2143-41C5-A7EA-6B3FB34D9395}</Project>
       <Name>Redhotminute.Mvx.Plugin.Style</Name>
     </ProjectReference>

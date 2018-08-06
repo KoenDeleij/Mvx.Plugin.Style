@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using MvvmCross.Test.Core;
+using MvvmCross.Tests;
 using NUnit.Framework;
 using Redhotminute.Mvx.Plugin.Style.Helpers;
 using Redhotminute.Mvx.Plugin.Style.Models;
