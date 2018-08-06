@@ -178,8 +178,8 @@ Global
 		{9769D7D2-AD41-4EE7-AF33-50E1546C0999}.Release|iPhone.Build.0 = Release|Any CPU
 		{9769D7D2-AD41-4EE7-AF33-50E1546C0999}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{9769D7D2-AD41-4EE7-AF33-50E1546C0999}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
-		{9769D7D2-AD41-4EE7-AF33-50E1546C0999}.UnitTest|Any CPU.ActiveCfg = Release|Any CPU
-		{9769D7D2-AD41-4EE7-AF33-50E1546C0999}.UnitTest|Any CPU.Build.0 = Release|Any CPU
+		{9769D7D2-AD41-4EE7-AF33-50E1546C0999}.UnitTest|Any CPU.ActiveCfg = UnitTest|Any CPU
+		{9769D7D2-AD41-4EE7-AF33-50E1546C0999}.UnitTest|Any CPU.Build.0 = UnitTest|Any CPU
 		{9769D7D2-AD41-4EE7-AF33-50E1546C0999}.Sample|Any CPU.ActiveCfg = Release|Any CPU
 		{9769D7D2-AD41-4EE7-AF33-50E1546C0999}.Sample|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
