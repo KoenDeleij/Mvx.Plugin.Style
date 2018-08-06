@@ -42,6 +42,11 @@
     <DefineConstants>DEBUG</DefineConstants>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Sample|AnyCPU' ">
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Sample</OutputPath>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Castle.Core">

@@ -38,6 +38,15 @@
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Sample|AnyCPU' ">
+    <DebugType></DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Sample</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <JavaMaximumHeapSize></JavaMaximumHeapSize>
+    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
+    <AndroidSupportedAbis>arm64-v8a;armeabi;armeabi-v7a;x86</AndroidSupportedAbis>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
@@ -122,7 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp\Redhotminute.Mvx.Plugin.Style.SampleApp.csproj">
-      <Project>{9F5286E5-6264-4071-93D1-B516A77A0BA5}</Project>
+      <Project>{2C4924EC-F433-40B5-B803-1CAB89D5ACA6}</Project>
       <Name>Redhotminute.Mvx.Plugin.Style.SampleApp</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Redhotminute.Mvx.Plugin.Style.Droid\Redhotminute.Mvx.Plugin.Style.Droid.csproj">
@@ -130,7 +139,7 @@
       <Name>Redhotminute.Mvx.Plugin.Style.Droid</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Redhotminute.Mvx.Plugin.Style\Redhotminute.Mvx.Plugin.Style.csproj">
-      <Project>{DCF6D754-5A9D-4855-9D48-9779B78EFA5D}</Project>
+      <Project>{ACE083A6-2143-41C5-A7EA-6B3FB34D9395}</Project>
       <Name>Redhotminute.Mvx.Plugin.Style</Name>
     </ProjectReference>
   </ItemGroup>
