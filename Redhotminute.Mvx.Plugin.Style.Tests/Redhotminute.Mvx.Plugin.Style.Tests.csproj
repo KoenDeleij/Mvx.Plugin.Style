@@ -5,7 +5,29 @@
 
     <IsPackable>false</IsPackable>
   </PropertyGroup>
-
+    
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <LangVersion>7.1</LangVersion>
+    <NoStdLib>false</NoStdLib>
+  </PropertyGroup>
+  <PropertyGroup>
+  <SonarQubeExclude>true</SonarQubeExclude>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'UnitTest|AnyCPU' ">
+    <IntermediateOutputPath>obj\UnitTest</IntermediateOutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>portable</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\UnitTest</OutputPath>
+    <DefineConstants>DEBUG;UNITTEST;NETCOREAPP2_0</DefineConstants>
+    <NoWarn>1701;1702;1705</NoWarn>
+    <NoStdLib>false</NoStdLib>
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <LangVersion>7.1</LangVersion>
+    <NoStdLib>false</NoStdLib>
+  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0-preview-20170628-02" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
