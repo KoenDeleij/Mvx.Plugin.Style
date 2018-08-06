@@ -60,9 +60,7 @@ Global
 		{794731BB-9BF8-4DC9-BC23-DAAE7F776291}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{794731BB-9BF8-4DC9-BC23-DAAE7F776291}.Release|Any CPU.Build.0 = Release|Any CPU
 		{794731BB-9BF8-4DC9-BC23-DAAE7F776291}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{794731BB-9BF8-4DC9-BC23-DAAE7F776291}.Release|iPhone.Build.0 = Release|Any CPU
 		{794731BB-9BF8-4DC9-BC23-DAAE7F776291}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{794731BB-9BF8-4DC9-BC23-DAAE7F776291}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{794731BB-9BF8-4DC9-BC23-DAAE7F776291}.UnitTest|Any CPU.ActiveCfg = UnitTest|Any CPU
 		{794731BB-9BF8-4DC9-BC23-DAAE7F776291}.Sample|Any CPU.ActiveCfg = Sample|Any CPU
 		{794731BB-9BF8-4DC9-BC23-DAAE7F776291}.Sample|Any CPU.Build.0 = Sample|Any CPU
@@ -80,6 +78,8 @@ Global
 		{6D782E0E-13A4-4BB7-A811-C35481787D98}.UnitTest|Any CPU.Build.0 = UnitTest|Any CPU
 		{6D782E0E-13A4-4BB7-A811-C35481787D98}.Sample|Any CPU.ActiveCfg = Sample|Any CPU
 		{6D782E0E-13A4-4BB7-A811-C35481787D98}.Sample|Any CPU.Build.0 = Sample|Any CPU
+		{6D782E0E-13A4-4BB7-A811-C35481787D98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D782E0E-13A4-4BB7-A811-C35481787D98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACE083A6-2143-41C5-A7EA-6B3FB34D9395}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{ACE083A6-2143-41C5-A7EA-6B3FB34D9395}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACE083A6-2143-41C5-A7EA-6B3FB34D9395}.Debug|iPhone.ActiveCfg = Debug|Any CPU
@@ -134,9 +134,7 @@ Global
 		{C71D238A-DCA2-4834-937D-BE77F70D2258}.HockeyApp|iPhoneSimulator.Build.0 = Debug|Any CPU
 		{C71D238A-DCA2-4834-937D-BE77F70D2258}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C71D238A-DCA2-4834-937D-BE77F70D2258}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{C71D238A-DCA2-4834-937D-BE77F70D2258}.Release|iPhone.Build.0 = Release|Any CPU
 		{C71D238A-DCA2-4834-937D-BE77F70D2258}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{C71D238A-DCA2-4834-937D-BE77F70D2258}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{C71D238A-DCA2-4834-937D-BE77F70D2258}.UnitTest|Any CPU.ActiveCfg = Release|Any CPU
 		{C71D238A-DCA2-4834-937D-BE77F70D2258}.Sample|Any CPU.ActiveCfg = Sample|Any CPU
 		{C71D238A-DCA2-4834-937D-BE77F70D2258}.Sample|Any CPU.Build.0 = Sample|Any CPU
