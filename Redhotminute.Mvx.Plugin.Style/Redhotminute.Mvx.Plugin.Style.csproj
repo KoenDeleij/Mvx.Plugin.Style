@@ -1,17 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;Xamarin.iOS10;MonoAndroid80</TargetFrameworks>
     <Authors>Koen Deleij</Authors>
     <Company>Redhotminute BV</Company>
     <Product>Redhotminute.Mvx.Plugin.Style</Product>
+       <!-- 
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+    -->
+    <TargetFrameworks>netstandard2.0;Xamarin.iOS10;MonoAndroid80</TargetFrameworks>
     <PackageVersion>1.0.0</PackageVersion>
     <Summary>Basic plugin for using the Specification Pattern with Linq</Summary>
     <Description>Mvvmcross plugin to easily cross style fonts and colors</Description>
     <PackageProjectUrl>https://github.com/Redhotminute/Redhotminute.Mvx.Plugin.Style</PackageProjectUrl>
     <PackageTags>mvvm mvvmcross xamarin monodroid monotouch style fonts</PackageTags>
     <RepositoryUrl>https://github.com/Redhotminute/Redhotminute.Mvx.Plugin.Style</RepositoryUrl>
-        
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
@@ -42,6 +45,24 @@
     <NoStdLib>false</NoStdLib>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Sample|iPhoneSimulator' ">
+    <IntermediateOutputPath>obj\iPhoneSimulator\Sample</IntermediateOutputPath>
+    <DebugType></DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Sample</OutputPath>
+    <DefineConstants></DefineConstants>
+    <NoWarn></NoWarn>
+    <NoStdLib>false</NoStdLib>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Sample|iPhone' ">
+    <IntermediateOutputPath>obj\iPhone\Sample</IntermediateOutputPath>
+    <DebugType></DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Sample</OutputPath>
+    <DefineConstants></DefineConstants>
+    <NoWarn></NoWarn>
+    <NoStdLib>false</NoStdLib>
+  </PropertyGroup>
 <ItemGroup>
     <Folder Include="Bindings\" />
     <Folder Include="Converters\" />

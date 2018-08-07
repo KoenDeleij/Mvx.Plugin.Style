@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\MSBuild.Sdk.Extras.1.5.4\build\MSBuild.Sdk.Extras.props" Condition="Exists('..\packages\MSBuild.Sdk.Extras.1.5.4\build\MSBuild.Sdk.Extras.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
@@ -11,6 +12,25 @@
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchProfiling>true</MtouchProfiling>
+    <IOSDebuggerPort>48012</IOSDebuggerPort>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Sample|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -78,6 +98,27 @@
     <MtouchTlsProvider>Default</MtouchTlsProvider>
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Sample|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <DeviceSpecificBuild>true</DeviceSpecificBuild>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchProfiling>true</MtouchProfiling>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Sample|AnyCPU' ">
     <Optimize>false</Optimize>
     <OutputPath>bin\Sample</OutputPath>
@@ -95,23 +136,22 @@
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
     <Reference Include="MvvmCross">
-      <HintPath>..\..\..\packages\MvvmCross.6.0.1\lib\xamarinios10\MvvmCross.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.6.0.1\lib\xamarinios10\MvvmCross.dll</HintPath>
     </Reference>
     <Reference Include="MvvmCross.Plugin.Color">
-      <HintPath>..\..\..\packages\MvvmCross.Plugin.Color.6.0.1\lib\xamarinios10\MvvmCross.Plugin.Color.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Plugin.Color.6.0.1\lib\xamarinios10\MvvmCross.Plugin.Color.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\packages\Newtonsoft.Json.11.0.2\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Redhotminute.Mvx.Plugin.Style">
+      <HintPath>..\packages\Redhotminute.Mvx.Plugin.Style.2.0.0-beta19\lib\xamarinios10\Redhotminute.Mvx.Plugin.Style.dll</HintPath>
+    </Reference>
+    <Reference Include="Redhotminute.Mvx.Plugin.Style.Touch">
+      <HintPath>..\packages\Redhotminute.Mvx.Plugin.Style.2.0.0-beta19\lib\xamarinios10\Redhotminute.Mvx.Plugin.Style.Touch.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Redhotminute.Mvx.Plugin.Style.Touch\Redhotminute.Mvx.Plugin.Style.Touch.csproj">
-      <Project>{D802EB5C-F1CA-40E8-B59B-1995CA3BE304}</Project>
-      <Name>Redhotminute.Mvx.Plugin.Style.Touch</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Redhotminute.Mvx.Plugin.Style\Redhotminute.Mvx.Plugin.Style.csproj">
-      <Project>{4A355044-681E-4F4D-9C0A-6F30BBFFC1A8}</Project>
-      <Name>Redhotminute.Mvx.Plugin.Style</Name>
+    <ProjectReference Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp\Redhotminute.Mvx.Plugin.Style.SampleApp.csproj">
+      <Project>{3A092654-2D35-44E8-B46C-DB8688F3FA5D}</Project>
+      <Name>Redhotminute.Mvx.Plugin.Style.SampleApp</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -227,4 +267,5 @@
     <BundleResource Include="Resources\textstyles.json" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <Import Project="..\packages\MSBuild.Sdk.Extras.1.5.4\build\MSBuild.Sdk.Extras.targets" Condition="Exists('..\packages\MSBuild.Sdk.Extras.1.5.4\build\MSBuild.Sdk.Extras.targets')" />
 </Project>
