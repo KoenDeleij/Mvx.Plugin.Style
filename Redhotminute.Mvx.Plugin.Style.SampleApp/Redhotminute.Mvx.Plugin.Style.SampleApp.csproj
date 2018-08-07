@@ -38,6 +38,8 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MvvmCross" Version="6.0.1" />
-    <PackageReference Include="Redhotminute.Mvx.Plugin.Style" Version="2.0.0-beta19" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Redhotminute.Mvx.Plugin.Style\Redhotminute.Mvx.Plugin.Style.csproj" />
   </ItemGroup>
 </Project>

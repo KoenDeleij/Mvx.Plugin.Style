@@ -141,17 +141,19 @@
     <Reference Include="MvvmCross.Plugin.Color">
       <HintPath>..\packages\MvvmCross.Plugin.Color.6.0.1\lib\xamarinios10\MvvmCross.Plugin.Color.dll</HintPath>
     </Reference>
-    <Reference Include="Redhotminute.Mvx.Plugin.Style">
-      <HintPath>..\packages\Redhotminute.Mvx.Plugin.Style.2.0.0-beta19\lib\xamarinios10\Redhotminute.Mvx.Plugin.Style.dll</HintPath>
-    </Reference>
-    <Reference Include="Redhotminute.Mvx.Plugin.Style.Touch">
-      <HintPath>..\packages\Redhotminute.Mvx.Plugin.Style.2.0.0-beta19\lib\xamarinios10\Redhotminute.Mvx.Plugin.Style.Touch.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp\Redhotminute.Mvx.Plugin.Style.SampleApp.csproj">
       <Project>{3A092654-2D35-44E8-B46C-DB8688F3FA5D}</Project>
       <Name>Redhotminute.Mvx.Plugin.Style.SampleApp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Redhotminute.Mvx.Plugin.Style\Redhotminute.Mvx.Plugin.Style.csproj">
+      <Project>{4A355044-681E-4F4D-9C0A-6F30BBFFC1A8}</Project>
+      <Name>Redhotminute.Mvx.Plugin.Style</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Redhotminute.Mvx.Plugin.Style.Touch\Redhotminute.Mvx.Plugin.Style.Touch.csproj">
+      <Project>{D802EB5C-F1CA-40E8-B59B-1995CA3BE304}</Project>
+      <Name>Redhotminute.Mvx.Plugin.Style.Touch</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
