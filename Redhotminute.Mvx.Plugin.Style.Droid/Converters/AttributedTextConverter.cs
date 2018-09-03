@@ -28,12 +28,13 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Converters {
         IBaseFont _clickableFont;
 
 		protected override AttributedStringBaseFontWrapper Convert (string value, Type targetType, object parameter, CultureInfo culture) {
-			//TODO check if a tag on the first elemen works
-			//TODO clean up some code, add unittests
+            if(parameter == null){
+                return DefaultWrapper(value);
+            }
 			try {
 				string fontName = parameter.ToString();
 				if (string.IsNullOrWhiteSpace(fontName)) {
-					return new AttributedStringBaseFontWrapper() { SpannableString = new SpannableString(value)};
+                    return DefaultWrapper(value);
 				}
 
 				if (_assetPlugin == null) {
@@ -59,8 +60,13 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Converters {
 			catch (Exception e){
                 MvxBindingLog.Instance.Error(e.Message);
 			}
-			return null;
-		}
+
+            return DefaultWrapper(value);
+        }
+
+        private AttributedStringBaseFontWrapper DefaultWrapper(string value) =>
+            new AttributedStringBaseFontWrapper() { SpannableString = new SpannableString(value) };
+
 		/// <summary>
 		/// Set the attributes of a part of the text
 		/// </summary>
