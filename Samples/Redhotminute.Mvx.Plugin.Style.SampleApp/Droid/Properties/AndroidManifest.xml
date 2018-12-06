@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="rhm.mvx.styleplugin.redhotminute_mvx_plugin_style_sampleapp">
 	<uses-sdk android:minSdkVersion="17" />
-	<application android:label="Redhotminute.Mvx.Plugin.Style.SampleApp" android:theme="@style/BaseTheme" ></application>
+	<application android:label="Redhotminute.Mvx.Plugin.Style.SampleApp" android:theme="@style/BaseTheme"></application>
 </manifest>

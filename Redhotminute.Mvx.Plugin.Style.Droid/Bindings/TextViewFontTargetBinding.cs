@@ -1,9 +1,7 @@
 
 
 using System;
-using Android.Content.Res;
 using Android.Graphics;
-using Android.Util;
 using Android.Widget;
 using MvvmCross.Binding;
 using MvvmCross.Binding.Bindings.Target;
@@ -14,8 +12,9 @@ using Redhotminute.Mvx.Plugin.Style.Droid.Plugin;
 using Redhotminute.Mvx.Plugin.Style.Models;
 using Redhotminute.Mvx.Plugin.Style.Plugin;
 
-namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings {
-	public class TextViewFontTargetBinding
+namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings
+{
+    public class TextViewFontTargetBinding
 		: MvxConvertingTargetBinding {
 
 		protected TextView tv => Target as TextView;
@@ -60,7 +59,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings {
 						label.Gravity = font.ToNativeAlignment();
 					}
 				}
-				catch (Exception e) {
+				catch {
 					MvvmCross.Platform.Mvx.Trace(MvvmCross.Platform.Platform.MvxTraceLevel.Error, "Failed to set font to Textview. Check if font exists, has a size and filename");
 				}
 			}

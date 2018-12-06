@@ -6,6 +6,7 @@ using Redhotminute.Mvx.Plugin.Style.Droid;
 using MvvmCross.Platform.IoC;
 using Redhotminute.Mvx.Plugin.Style.Droid.BindingSetup;
 using Redhotminute.Mvx.Plugin.Style.Plugin;
+using MvvmCross.Binding;
 
 namespace Redhotminute.Mvx.Plugin.Style.SampleApp.Droid
 {
@@ -26,7 +27,7 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.Droid
         }
 
 		protected override MvvmCross.Platform.Plugins.IMvxPluginConfiguration GetPluginConfiguration(System.Type plugin) {
-			if (plugin == typeof(Redhotminute.Mvx.Plugin.Style.Droid.Plugin.Plugin)) {
+			if (plugin == typeof(Style.Droid.Plugin.Plugin)) {
 				return new RedhotminuteStyleConfiguration() {
 					FontSizeFactor = 1.0f,
 					LineHeightFactor = 1.0f
@@ -35,13 +36,15 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.Droid
 
 			return base.GetPluginConfiguration(plugin);
 		}
-
+        /*
 		protected override MvvmCross.Binding.Droid.MvxAndroidBindingBuilder CreateBindingBuilder() {
 			var bindingBuilder = new MvxAndroidStyleBindingBuilder();
 			return bindingBuilder;
 		}
+        */
+        protected override MvxBindingBuilder CreateBindingBuilder() => new MvxAndroidStyleBindingBuilder();
 
-		protected override IMvxIocOptions CreateIocOptions() {
+        protected override IMvxIocOptions CreateIocOptions() {
 			return new MvxIocOptions() {
 				PropertyInjectorOptions = MvxPropertyInjectorOptions.MvxInject
 			};

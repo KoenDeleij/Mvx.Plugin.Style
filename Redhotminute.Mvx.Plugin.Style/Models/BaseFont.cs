@@ -55,13 +55,15 @@ namespace Redhotminute.Mvx.Plugin.Style.Models
 
         public static TFont CopyFont<TRefFont, TFont>(TRefFont font, string newId) where TRefFont : BaseFont where TFont : BaseFont, new()
         {
-            TFont newFont = new TFont();
-            newFont.Name = newId;
-            newFont.FontFilename = font.FontFilename;
-            newFont.FontPlatformName = font.FontPlatformName;
-            newFont.FontPlatformSize = font.FontPlatformSize;
-            newFont.Color = font.Color;
-            newFont.Size = font.Size;
+            TFont newFont = new TFont
+            {
+                Name = newId,
+                FontFilename = font.FontFilename,
+                FontPlatformName = font.FontPlatformName,
+                FontPlatformSize = font.FontPlatformSize,
+                Color = font.Color,
+                Size = font.Size
+            };
 
             return newFont;
         }
