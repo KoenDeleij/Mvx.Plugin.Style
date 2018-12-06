@@ -1,12 +1,12 @@
 using System;
 using UIKit;
-using MvvmCross.Plugins.Color.iOS;
 using Redhotminute.Mvx.Plugin.Style.Models;
 using Redhotminute.Mvx.Plugin.Style.Touch.Plugin;
+using MvvmCross.Plugins.Color.iOS;
 
 namespace Redhotminute.Mvx.Plugin.Style.Touch.Bindings
 {
-	public class UIButtonFontTargetBinding : BaseStyleBinding<UIButton>
+    public class UIButtonFontTargetBinding : BaseStyleBinding<UIButton>
 	{
 		public UIButtonFontTargetBinding(UIButton target)
 			: base(target)

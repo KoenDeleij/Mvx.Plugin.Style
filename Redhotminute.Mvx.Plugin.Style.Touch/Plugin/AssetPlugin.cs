@@ -13,7 +13,7 @@ using UIKit;
 
 namespace Redhotminute.Mvx.Plugin.Style.Touch.Plugin
 {
-	public class TouchAssetPlugin : AssetPlugin {
+    public class TouchAssetPlugin : AssetPlugin {
 		#region implemented abstract members of AssetPlugin
 
 		public override void ConvertFontFileNameForPlatform(ref IBaseFont font) {

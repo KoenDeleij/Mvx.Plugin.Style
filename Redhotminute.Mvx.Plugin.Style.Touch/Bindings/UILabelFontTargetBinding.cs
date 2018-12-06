@@ -1,16 +1,13 @@
 using System;
 using UIKit;
-using MvvmCross.Binding;
-using MvvmCross.Binding.Bindings.Target;
-using MvvmCross.Plugins.Color.iOS;
-using MvvmCross.Platform;
 using Redhotminute.Mvx.Plugin.Style.Models;
 using Redhotminute.Mvx.Plugin.Style.Touch.Plugin;
 using Redhotminute.Mvx.Plugin.Style.Touch.Helpers;
+using MvvmCross.Plugins.Color.iOS;
 
 namespace Redhotminute.Mvx.Plugin.Style.Touch.Bindings
 {
-	public class UILabelFontTargetBinding : BaseStyleBinding<UILabel>
+    public class UILabelFontTargetBinding : BaseStyleBinding<UILabel>
 	{
 		public UILabelFontTargetBinding(UILabel target)
 			: base(target)

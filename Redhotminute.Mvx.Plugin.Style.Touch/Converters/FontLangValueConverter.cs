@@ -2,18 +2,15 @@ using System;
 using MvvmCross.Platform.Converters;
 using System.Globalization;
 using MvvmCross.Localization;
-using Foundation;
 using MvvmCross.Binding;
 using MvvmCross.Platform.Platform;
 using MvvmCross.Platform.Exceptions;
-using UIKit;
-using MvvmCross.Plugins.Color.iOS;
 using Redhotminute.Mvx.Plugin.Style.Touch.Plugin;
 using Redhotminute.Mvx.Plugin.Style.Plugin;
 
 namespace Redhotminute.Mvx.Plugin.Style.Touch.Converters
 {
-	public class FontLangValueConverter : MvxValueConverter {
+    public class FontLangValueConverter : MvxValueConverter {
 		/// <summary>
 		/// Convert the specified value, targetType, parameter and culture.
 		/// </summary>

@@ -1,13 +1,13 @@
 using System;
 using UIKit;
-using MvvmCross.Plugins.Color.iOS;
 using Redhotminute.Mvx.Plugin.Style.Touch.Plugin;
 using Redhotminute.Mvx.Plugin.Style.Models;
 using Redhotminute.Mvx.Plugin.Style.Touch.Helpers;
+using MvvmCross.Plugins.Color.iOS;
 
 namespace Redhotminute.Mvx.Plugin.Style.Touch.Bindings
 {
-	public class UITextViewFontTargetBinding : BaseStyleBinding<UITextView>
+    public class UITextViewFontTargetBinding : BaseStyleBinding<UITextView>
 	{
 		public UITextViewFontTargetBinding(UITextView target)
 			: base(target)
