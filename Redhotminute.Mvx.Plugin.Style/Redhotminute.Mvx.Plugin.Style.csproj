@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;Xamarin.iOS10;MonoAndroid80</TargetFrameworks>
-    <!--<TargetFrameworks>Xamarin.iOS10;netstandard2.0</TargetFrameworks>-->
+    <!--<TargetFramework>Xamarin.iOS10</TargetFramework>-->
     <Authors>Koen Deleij</Authors>
     <Company>Redhotminute BV</Company>
     <Product>Redhotminute.Mvx.Plugin.Style</Product>
@@ -12,7 +12,7 @@
     <PackageProjectUrl>https://github.com/Redhotminute/Redhotminute.Mvx.Plugin.Style</PackageProjectUrl>
     <PackageTags>mvvm mvvmcross xamarin monodroid monotouch style fonts</PackageTags>
     <RepositoryUrl>https://github.com/Redhotminute/Redhotminute.Mvx.Plugin.Style</RepositoryUrl>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 <ItemGroup>
     <Folder Include="Bindings\" />
