@@ -38,10 +38,10 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Converters {
 				}
 
 				if (_assetPlugin == null) {
-					_assetPlugin = MvvmCross.Mvx.Resolve<IAssetPlugin>();
+					_assetPlugin = MvvmCross.Mvx.IoCProvider.Resolve<IAssetPlugin>();
 				}
 				if (_context == null) {
-					_context = MvvmCross.Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity.BaseContext;
+					_context = MvvmCross.Mvx.IoCProvider.Resolve<IMvxAndroidCurrentTopActivity>().Activity.BaseContext;
 				}
 
 				_extendedFont = _assetPlugin.GetFontByName(fontName) as Font;

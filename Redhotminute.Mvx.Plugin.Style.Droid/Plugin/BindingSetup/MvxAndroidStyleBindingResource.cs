@@ -21,7 +21,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.BindingSetup {
 
         private MvxAndroidStyleBindingResource()
         {
-            var finder = MvvmCross.Mvx.Resolve<IMvxAppResourceTypeFinder>();
+            var finder = MvvmCross.Mvx.IoCProvider.Resolve<IMvxAppResourceTypeFinder>();
             var resourceType = finder.Find();
             try
             {

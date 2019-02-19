@@ -10,7 +10,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Bindings {
 
 		protected IMvxFontBindingParser FontBindingParser {
 			get {
-				this._fontBindingParser = this._fontBindingParser ?? MvvmCross.Mvx.Resolve<IMvxFontBindingParser>();
+				this._fontBindingParser = this._fontBindingParser ?? MvvmCross.Mvx.IoCProvider.Resolve<IMvxFontBindingParser>();
 				return this._fontBindingParser;
 			}
 		}

@@ -10,7 +10,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Converters
     public class AssetColorValueConverter : MvxValueConverter {
 
 		private IMvxNativeColor _nativeColor;
-        private IMvxNativeColor NativeColor => _nativeColor ?? (_nativeColor = MvvmCross.Mvx.Resolve<IMvxNativeColor>());
+        private IMvxNativeColor NativeColor => _nativeColor ?? (_nativeColor = MvvmCross.Mvx.IoCProvider.Resolve<IMvxNativeColor>());
 
         private IAssetPlugin _plugin;
 		public override object Convert (object value, Type targetType, object parameter, CultureInfo culture)
@@ -18,25 +18,36 @@ namespace Redhotminute.Mvx.Plugin.Style.Converters
 			return ConvertValue(value, parameter,culture);
 		}
 
-		private object ConvertValue(object value,object parameter,CultureInfo culture) {
-            if (value is IAssetPlugin){
+		private object ConvertValue(object value,object parameter,CultureInfo culture) 
+        {
+            if (value is IAssetPlugin)
+            {
                 _plugin = value as AssetPlugin;
-            }else if(_plugin == null){
+            }
+            else if(_plugin == null)
+            {
 				//try to resolve it. Not ideal but sometimes necessary within simpel cells
-                _plugin = MvvmCross.Mvx.Resolve<IAssetPlugin>();
+                _plugin = MvvmCross.Mvx.IoCProvider.Resolve<IAssetPlugin>();
 
                 MvxPluginLog.Instance.Trace("AssetProvider not available for Color conversion. Resolved it");
 			}
 
-			if (_plugin != null ){
-				try{
+			if (_plugin != null )
+            {
+				try
+                {
                     if (parameter != null)
                     {
                         return GetColorByName(parameter.ToString());
-                    }else if (value != null && value is string){
+                    }
+
+                    if (value != null && value is string)
+                    {
 						return GetColorByName(value.ToString());
                     }
-				}catch{
+				}
+                catch
+                {
                     MvxPluginLog.Instance.Warn($"Failed to convert '{(parameter?.ToString() ?? value?.ToString())}' into a color");
 				}
 			}
@@ -44,7 +55,8 @@ namespace Redhotminute.Mvx.Plugin.Style.Converters
 			return null;
 		}
 
-        private object GetColorByName(string colorName){
+        private object GetColorByName(string colorName)
+        {
 			var color = _plugin.GetColor(colorName);
 			if (color != null)
 			{

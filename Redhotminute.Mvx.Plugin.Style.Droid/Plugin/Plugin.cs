@@ -23,11 +23,11 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Plugin
         {
             var instance = new DroidAssetPlugin();
             instance.Setup(configuration);
-            MvvmCross.Mvx.RegisterSingleton<IAssetPlugin>(instance);
+            MvvmCross.Mvx.IoCProvider.RegisterSingleton<IAssetPlugin>(instance);
 
-            MvvmCross.Mvx.CallbackWhenRegistered<IMvxValueConverterRegistry>(RegisterValueConverters);
-            MvvmCross.Mvx.CallbackWhenRegistered<IMvxTargetBindingFactoryRegistry>(RegisterCustomBinding);
-            MvvmCross.Mvx.RegisterSingleton<IMvxFontBindingParser>(new MvxFontBindingParser());
+            MvvmCross.Mvx.IoCProvider.CallbackWhenRegistered<IMvxValueConverterRegistry>(RegisterValueConverters);
+            MvvmCross.Mvx.IoCProvider.CallbackWhenRegistered<IMvxTargetBindingFactoryRegistry>(RegisterCustomBinding);
+            MvvmCross.Mvx.IoCProvider.RegisterSingleton<IMvxFontBindingParser>(new MvxFontBindingParser());
         }
 
         public void Configure(IMvxPluginConfiguration configuration)
@@ -40,7 +40,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Plugin
 
         private void RegisterValueConverters()
         {
-            var registry = MvvmCross.Mvx.Resolve<IMvxValueConverterRegistry>();
+            var registry = MvvmCross.Mvx.IoCProvider.Resolve<IMvxValueConverterRegistry>();
             registry.AddOrOverwriteFrom(typeof(FontResourceValueConverter).GetTypeInfo().Assembly);
             registry.AddOrOverwriteFrom(typeof(AttributedTextConverter).GetTypeInfo().Assembly);
             registry.AddOrOverwriteFrom(typeof(AssetColorValueConverter).GetTypeInfo().Assembly);
@@ -48,7 +48,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Plugin
 
         private void RegisterCustomBinding()
         {
-            var registry = MvvmCross.Mvx.Resolve<IMvxTargetBindingFactoryRegistry>();
+            var registry = MvvmCross.Mvx.IoCProvider.Resolve<IMvxTargetBindingFactoryRegistry>();
             registry.RegisterCustomBindingFactory<TextView>("AttributedText", textView => new TextViewAttributedTargetBinding(textView));
             registry.RegisterCustomBindingFactory<TextView>("Font", textView => new TextViewFontTargetBinding(textView));
             registry.RegisterCustomBindingFactory<EditText>("Font", textView => new TextViewFontTargetBinding(textView));

@@ -22,7 +22,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Helpers.Spans
                 Intent i = new Intent(Intent.ActionView);
                 i.SetData(Android.Net.Uri.Parse(url));
 
-                var top = MvvmCross.Mvx.Resolve<IMvxAndroidCurrentTopActivity>();
+                var top = MvvmCross.Mvx.IoCProvider.Resolve<IMvxAndroidCurrentTopActivity>();
                 top.Activity.StartActivity(i);
             }
         }

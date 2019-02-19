@@ -23,7 +23,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Converters
 			AssetPlugin plugin = value as AssetPlugin;
 
 			if (plugin == null) {
-				plugin = (AssetPlugin)MvvmCross.Mvx.Resolve<IAssetPlugin>();
+				plugin = (AssetPlugin)MvvmCross.Mvx.IoCProvider.Resolve<IAssetPlugin>();
 			}
 
 			if (parameter!= null){

@@ -12,21 +12,23 @@ using Redhotminute.Mvx.Plugin.Style.Droid.Plugin;
 using Redhotminute.Mvx.Plugin.Style.Models;
 using Redhotminute.Mvx.Plugin.Style.Plugin;
 
-namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings {
-	public class ButtonFontTargetBinding
-		: MvxConvertingTargetBinding {
+namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings 
+{
+	public class ButtonFontTargetBinding : MvxConvertingTargetBinding {
 
 		protected Button Btn => Target as Button;
 
 		public ButtonFontTargetBinding(Button target)
-			: base(target) {
+			: base(target) 
+        {
 			if (target == null) {
                 MvxBindingLog.Instance.Error("Error - button is null in ButtonFontTargetBinding");
 				return;
 			}
 		}
 
-		protected override void SetValueImpl(object target, object toSet) {
+		protected override void SetValueImpl(object target, object toSet) 
+        {
 			var button = (Button)target;
 			Font font = toSet as Font;
 			if (font != null) {
@@ -77,19 +79,15 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings {
 						}
 					}
 				}
-				catch (Exception e) {
+				catch
+                { 
                     MvxBindingLog.Instance.Error("Failed to set font to Button. Check if font exists, has a size and filename");
 				}
 			}
 		}
 
 		public override MvxBindingMode DefaultMode => MvxBindingMode.OneWay;
-
-		public override Type TargetType {
-			get {
-				return typeof(Font);
-			}
-		}
+		public override Type TargetType => typeof(Font);
 	}
 }
 

@@ -20,10 +20,10 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Plugin
 		public void Load() {
 			var instance = new TouchAssetPlugin();
 			instance.Setup(configuration);
-			MvvmCross.Mvx.RegisterSingleton<IAssetPlugin>(instance);
+			MvvmCross.Mvx.IoCProvider.RegisterSingleton<IAssetPlugin>(instance);
 
-            MvvmCross.Mvx.CallbackWhenRegistered<IMvxValueConverterRegistry>(RegisterValueConverters);
-            MvvmCross.Mvx.CallbackWhenRegistered<IMvxTargetBindingFactoryRegistry>(RegisterCustomBinding);
+            MvvmCross.Mvx.IoCProvider.CallbackWhenRegistered<IMvxValueConverterRegistry>(RegisterValueConverters);
+            MvvmCross.Mvx.IoCProvider.CallbackWhenRegistered<IMvxTargetBindingFactoryRegistry>(RegisterCustomBinding);
 		}
 
 		public void Configure(IMvxPluginConfiguration configuration) {
@@ -37,7 +37,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Plugin
         /// </summary>
         private void RegisterValueConverters()
         {
-            var registry = MvvmCross.Mvx.Resolve<IMvxValueConverterRegistry>();
+            var registry = MvvmCross.Mvx.IoCProvider.Resolve<IMvxValueConverterRegistry>();
             registry.AddOrOverwriteFrom(typeof(FontResourceValueConverter).GetTypeInfo().Assembly);
             registry.AddOrOverwriteFrom(typeof(AssetColorValueConverter).GetTypeInfo().Assembly);
             registry.AddOrOverwriteFrom(typeof(FontLangValueConverter).GetTypeInfo().Assembly);
@@ -49,7 +49,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Plugin
         /// </summary>
         private void RegisterCustomBinding()
         {
-            var registry = MvvmCross.Mvx.Resolve<IMvxTargetBindingFactoryRegistry>();
+            var registry = MvvmCross.Mvx.IoCProvider.Resolve<IMvxTargetBindingFactoryRegistry>();
             registry.RegisterCustomBindingFactory<UILabel>("Font", binary => new UILabelFontTargetBinding(binary));
             registry.RegisterCustomBindingFactory<UILabel>("AttributedText", binary => new UILabelAttributedFontTargetBinding(binary));
             registry.RegisterCustomBindingFactory<UITextView>("AttributedText", binary => new UITextViewAttributedFontTargetBinding(binary));

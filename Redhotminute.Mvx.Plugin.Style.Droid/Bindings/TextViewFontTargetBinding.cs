@@ -1,29 +1,26 @@
-
-
-using System;
-using Android.Content.Res;
 using Android.Graphics;
-using Android.Util;
 using Android.Widget;
 using MvvmCross.Binding;
 using MvvmCross.Binding.Bindings.Target;
-using MvvmCross;
+using MvvmCross.Logging;
+using MvvmCross.Plugin.Color.Platforms.Android;
 using Redhotminute.Mvx.Plugin.Style.Droid.Helpers;
 using Redhotminute.Mvx.Plugin.Style.Droid.Plugin;
 using Redhotminute.Mvx.Plugin.Style.Models;
 using Redhotminute.Mvx.Plugin.Style.Plugin;
-using MvvmCross.Logging;
-using MvvmCross.Plugin.Color.Platforms.Android;
+using System;
 
-namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings {
-	public class TextViewFontTargetBinding
+namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings
+{
+    public class TextViewFontTargetBinding
 		: MvxConvertingTargetBinding {
 
 		protected TextView tv => Target as TextView;
 
-		public TextViewFontTargetBinding(TextView target)
-			: base(target) {
-			if (target == null) {
+		public TextViewFontTargetBinding(TextView target): base(target) 
+        {
+			if (target == null) 
+            {
                 MvxBindingLog.Instance.Error("Error - textview is null in TextViewFontTargetBinding");
 				return;
 			}
@@ -32,8 +29,10 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings {
 		protected override void SetValueImpl(object target, object toSet) {
 			var label = (TextView)target;
 			Font font = toSet as Font;
-			if (font != null) {
-				try {
+			if (font != null)
+            {
+				try 
+                {
 					Typeface droidFont = DroidAssetPlugin.GetCachedFont(font,label.Context);
 					label.SetTypeface(droidFont, new TypefaceStyle());
 
@@ -47,7 +46,8 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings {
 
 					if (font.Color != null) {
 						label.SetTextColor(font.Color.ToNativeColor());
-					}
+
+                    }
 
 					var multiplierFactor = AssetPlugin.LineHeightFactor ?? 1;
 
@@ -61,7 +61,8 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings {
 						label.Gravity = font.ToNativeAlignment();
 					}
 				}
-				catch (Exception e) {
+				catch
+                {
                     MvxBindingLog.Instance.Error("Failed to set font to Textview. Check if font exists, has a size and filename");
 				}
 			}

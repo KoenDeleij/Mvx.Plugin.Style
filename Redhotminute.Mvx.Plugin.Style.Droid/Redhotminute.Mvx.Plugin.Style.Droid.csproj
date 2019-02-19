@@ -12,7 +12,7 @@
     <AndroidResgenClass>Resource</AndroidResgenClass>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AssemblyName>Redhotminute.Mvx.Plugin.Style.Droid</AssemblyName>
-    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
     <AndroidTlsProvider></AndroidTlsProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -54,12 +54,12 @@
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
     <Reference Include="Mono.Android.Export" />
-    <Reference Include="MvvmCross">
-      <HintPath>..\packages\MvvmCross.6.2.3\lib\netstandard2.0\MvvmCross.dll</HintPath>
-    </Reference>
     <Reference Include="Java.Interop" />
+    <Reference Include="MvvmCross">
+      <HintPath>..\packages\MvvmCross.6.2.3\lib\monoandroid81\MvvmCross.dll</HintPath>
+    </Reference>
     <Reference Include="MvvmCross.Plugin.Color">
-      <HintPath>..\packages\MvvmCross.Plugin.Color.6.2.3\lib\netstandard2.0\MvvmCross.Plugin.Color.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Plugin.Color.6.2.3\lib\monoandroid81\MvvmCross.Plugin.Color.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
