@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;Xamarin.iOS10;MonoAndroid80</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;Xamarin.iOS10;MonoAndroid81</TargetFrameworks>
     <!--<TargetFramework>Xamarin.iOS10</TargetFramework>-->
     <Authors>Koen Deleij</Authors>
     <Company>Redhotminute BV</Company>
@@ -20,11 +20,11 @@
   </PropertyGroup>
     
   <Target Name="IncludePlatformSpecificDlls">
-      <ItemGroup Condition=" '$(TargetFramework)' == 'MonoAndroid80' ">
-          <BuildOutputInPackage Include="..\bin\$(Configuration)\Redhotminute.Mvx.Plugin.Style.Droid.dll" />
+      <ItemGroup Condition=" '$(TargetFramework)' == 'MonoAndroid81' ">
+          <BuildOutputInPackage Include="./bin/$(Configuration)/Redhotminute.Mvx.Plugin.Style.Droid.dll" />
       </ItemGroup>
       <ItemGroup Condition=" '$(TargetFramework)' == 'Xamarin.iOS10' ">
-          <BuildOutputInPackage Include="..\bin\$(Configuration)\Redhotminute.Mvx.Plugin.Style.Touch.dll" />
+          <BuildOutputInPackage Include="./bin/$(Configuration)/Redhotminute.Mvx.Plugin.Style.Touch.dll" />
       </ItemGroup>
   </Target>
     
