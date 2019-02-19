@@ -166,6 +166,10 @@ Global
 		{4A355044-681E-4F4D-9C0A-6F30BBFFC1A8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4A355044-681E-4F4D-9C0A-6F30BBFFC1A8}.UnitTest|Any CPU.ActiveCfg = Debug|Any CPU
 		{4A355044-681E-4F4D-9C0A-6F30BBFFC1A8}.UnitTest|Any CPU.Build.0 = Debug|Any CPU
+		{4A355044-681E-4F4D-9C0A-6F30BBFFC1A8}.Sample|Any CPU.ActiveCfg = Sample|Any CPU
+		{4A355044-681E-4F4D-9C0A-6F30BBFFC1A8}.Sample|Any CPU.Build.0 = Sample|Any CPU
+		{4A355044-681E-4F4D-9C0A-6F30BBFFC1A8}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{4A355044-681E-4F4D-9C0A-6F30BBFFC1A8}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
