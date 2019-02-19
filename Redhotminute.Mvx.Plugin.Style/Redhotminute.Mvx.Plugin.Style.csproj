@@ -14,6 +14,20 @@
     <RepositoryUrl>https://github.com/Redhotminute/Redhotminute.Mvx.Plugin.Style</RepositoryUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
+    
+  <PropertyGroup>
+    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);IncludePlatformSpecificDlls</TargetsForTfmSpecificBuildOutput>
+  </PropertyGroup>
+    
+  <Target Name="IncludePlatformSpecificDlls">
+      <ItemGroup Condition=" '$(TargetFramework)' == 'MonoAndroid80' ">
+          <BuildOutputInPackage Include="..\bin\$(Configuration)\Redhotminute.Mvx.Plugin.Style.Droid.dll" />
+      </ItemGroup>
+      <ItemGroup Condition=" '$(TargetFramework)' == 'Xamarin.iOS10' ">
+          <BuildOutputInPackage Include="..\bin\$(Configuration)\Redhotminute.Mvx.Plugin.Style.Touch.dll" />
+      </ItemGroup>
+  </Target>
+    
 <ItemGroup>
     <Folder Include="Bindings\" />
     <Folder Include="Converters\" />
