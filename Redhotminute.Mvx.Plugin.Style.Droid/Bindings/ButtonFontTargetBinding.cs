@@ -6,29 +6,29 @@ using Android.Text;
 using Android.Widget;
 using MvvmCross.Binding;
 using MvvmCross.Binding.Bindings.Target;
-using MvvmCross.Binding.ExtensionMethods;
-using MvvmCross.Platform;
-using MvvmCross.Platform.Platform;
-using MvvmCross.Plugins.Color.Droid;
+using MvvmCross.Logging;
+using MvvmCross.Plugin.Color.Platforms.Android;
 using Redhotminute.Mvx.Plugin.Style.Droid.Plugin;
 using Redhotminute.Mvx.Plugin.Style.Models;
 using Redhotminute.Mvx.Plugin.Style.Plugin;
 
-namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings {
-	public class ButtonFontTargetBinding
-		: MvxConvertingTargetBinding {
+namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings 
+{
+	public class ButtonFontTargetBinding : MvxConvertingTargetBinding {
 
 		protected Button Btn => Target as Button;
 
 		public ButtonFontTargetBinding(Button target)
-			: base(target) {
+			: base(target) 
+        {
 			if (target == null) {
-				MvxBindingTrace.Trace(MvxTraceLevel.Error, "Error - button is null in ButtonFontTargetBinding");
+                MvxBindingLog.Instance.Error("Error - button is null in ButtonFontTargetBinding");
 				return;
 			}
 		}
 
-		protected override void SetValueImpl(object target, object toSet) {
+		protected override void SetValueImpl(object target, object toSet) 
+        {
 			var button = (Button)target;
 			Font font = toSet as Font;
 			if (font != null) {
@@ -75,23 +75,19 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings {
 							button.SetTextColor(new ColorStateList(states.ToArray(), colors.ToArray()));
 						}
 						else {
-							button.SetTextColor(font.Color.ToAndroidColor());
+							button.SetTextColor(font.Color.ToNativeColor());
 						}
 					}
 				}
-				catch (Exception e) {
-					MvvmCross.Platform.Mvx.Trace(MvvmCross.Platform.Platform.MvxTraceLevel.Error, "Failed to set font to Button. Check if font exists, has a size and filename");
+				catch
+                { 
+                    MvxBindingLog.Instance.Error("Failed to set font to Button. Check if font exists, has a size and filename");
 				}
 			}
 		}
 
 		public override MvxBindingMode DefaultMode => MvxBindingMode.OneWay;
-
-		public override Type TargetType {
-			get {
-				return typeof(Font);
-			}
-		}
+		public override Type TargetType => typeof(Font);
 	}
 }
 

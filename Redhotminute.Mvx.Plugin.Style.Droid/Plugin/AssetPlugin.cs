@@ -1,14 +1,12 @@
-using System;
 using System.Collections.Generic;
 using Android.Content;
-using Android.Content.Res;
 using Android.Graphics;
-using Android.Util;
 using Redhotminute.Mvx.Plugin.Style.Models;
 using Redhotminute.Mvx.Plugin.Style.Plugin;
 
-namespace Redhotminute.Mvx.Plugin.Style.Droid.Plugin {
-	public class DroidAssetPlugin : AssetPlugin {
+namespace Redhotminute.Mvx.Plugin.Style.Droid.Plugin
+{
+    public class DroidAssetPlugin : AssetPlugin {
 		#region implemented abstract members of AssetPlugin
 
 		public override void ConvertFontFileNameForPlatform(ref IBaseFont font) {

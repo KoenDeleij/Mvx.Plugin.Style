@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MvvmCross.Core.ViewModels;
-using MvvmCross.Platform.IoC;
-using MvvmCross.Platform.UI;
+using MvvmCross.Commands;
+using MvvmCross.IoC;
+using MvvmCross.UI;
+using MvvmCross.ViewModels;
 using Redhotminute.Mvx.Plugin.Style.Models;
 using Redhotminute.Mvx.Plugin.Style.Plugin;
 
@@ -30,7 +31,7 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.ViewModels
         private const string ColorMarked = "Marked";
         List<FontTag> _tags;
 
-        public void Init() {
+        public override void Prepare() {
             Stories = StoryService.GetStories();
 
             _tags = new List<FontTag>();
@@ -38,7 +39,9 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.ViewModels
             _tags.Add(new FontTag(FontBold, "b"));
             _tags.Add(new FontTag(FontBold, "a",FontTagAction.Link));
 
-            SelectStoryCommand = new MvxCommand<Story>(UpdateStory);
+            SelectStoryCommand = new MvxCommand<Story>((story) => {
+                UpdateStory(story);
+            });
 
             ChangeStyleCommand = new MvxCommand<int>((styleNumber) => {
                 Style1Selected = styleNumber==0;
@@ -60,6 +63,8 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.ViewModels
             ChangeStyleCommand.Execute(0);
             SelectStoryCommand.Execute(Stories.FirstOrDefault());
             RaisePropertyChanged(() => Stories);
+
+            base.Prepare();
         }
 
         private void LoadStyle1() {
@@ -76,7 +81,7 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.ViewModels
 
             AssetProvider.AddFont(new Font() { Name = FontH1, FontFilename = "JosefinSlab-Thin.ttf", FontPlatformName = "JosefinSlab-Thin", Size = 40, LineHeight = 20, Color = AssetProvider.GetColor(ColorSecondairy),LineBreakMode= LineBreakMode.TruncateTail })
                          .AddFont(new Font() { Name = FontItalic, FontFilename = "Nunito-Italic.ttf", FontPlatformName = "Nunito-Italic", Size = 13, Color = AssetProvider.GetColor(ColorSecondairy), Alignment = TextAlignment.Right })
-                         .AddFont(new Font() { Name = FontBold, FontFilename = "Nunito-Light.ttf", FontPlatformName = "Nunito-Light", Size = 13, Color = AssetProvider.GetColor(ColorPrimary) })
+                         .AddFont(new Font() { Name = FontBold, FontFilename = "Nunito-Light.ttf", FontPlatformName = "Nunito-Light", Size = 13, Color = AssetProvider.GetColor(ColorSecondairy) })
                          .AddFont(new Font() { Name = FontRegular, FontFilename = "Nunito-Regular.ttf", FontPlatformName = "Nunito-Regular", Size = 16, LineHeight = 12, Color = AssetProvider.GetColor(ColorPrimary), SelectedColor = AssetProvider.GetColor(ColorBackground), }, _tags)//10 13
                          .AddFont(regularFont, _tags)
                          .AddFont(regularFontAndroid, _tags);

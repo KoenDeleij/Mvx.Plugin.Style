@@ -1,57 +1,49 @@
-﻿using System;
-using MvvmCross.Platform.UI;
-using MvvmCross.Test.Core;
-using NUnit.Framework;
-using Redhotminute.Mvx.Plugin.Style.Converters;
+﻿using FluentAssertions;
+using MvvmCross.Tests;
+using MvvmCross.UI;
 using Redhotminute.Mvx.Plugin.Style.Models;
-using Redhotminute.Mvx.Plugin.Style.Plugin;
-using Redhotminute.Mvx.Plugin.Style.Tests.Helpers;
+using Xunit;
 
 namespace Redhotminute.Mvx.Plugin.Style.Tests.Models
 {
-    [TestFixture]
+   
     public class ModelsTests : MvxIoCSupportingTest
     {
-        [SetUp]
-        public void Init()
-        {
-            base.Setup();
-        }
 
-        [Test]
+        [Fact]
         public void FontCanBeCopied()
         {
             Font f = new Font() { Name = "test", Color = new MvxColor(255, 0, 0), Size = 20, LineHeight = 10 };
 
             var newF = Font.CopyFont<Font, Font>(f, "test2");
 
-            Assert.That(f.Color, Is.EqualTo(newF.Color));
-            Assert.That(newF.Name, Is.EqualTo("test2"));
-            Assert.That(f.Alignment, Is.EqualTo(newF.Alignment));
-            Assert.That(f.LineHeight, Is.EqualTo(newF.LineHeight));
+            f.Color.Should().Be(newF.Color);
+            newF.Name.Should().Be("test2");
+            f.Alignment.Should().Be(newF.Alignment);
+            f.LineHeight.Should().Be(newF.LineHeight);
         }
 
-        [Test]
+        [Fact]
         public void CopiedFontCanBeEasilyModified()
         {
             Font f = new Font() { Name = "test", Color = new MvxColor(255, 0, 0), Size = 20, LineHeight = 10 };
 
             var newF = Font.CopyFont<Font, Font>(f, "test2").SetLineHeight(30);
 
-            Assert.That(f.Color, Is.EqualTo(newF.Color));
-            Assert.That(newF.Name, Is.EqualTo("test2"));
-            Assert.That(f.Alignment, Is.EqualTo(newF.Alignment));
-            Assert.That(newF.LineHeight, Is.EqualTo(30));
+            f.Color.Should().Be(newF.Color);
+            newF.Name.Should().Be("test2");
+            f.Alignment.Should().Be(newF.Alignment);
+            newF.LineHeight.Should().Be(30);
         }
 
-        [Test]
+        [Fact]
         public void CopiedFontCanBeEasilyModifiedBetweenTypes()
         {
             Font f = new Font() { Name = "test", Color = new MvxColor(255, 0, 0), Size = 20, LineHeight = 10 };
 
             var newF = (iOSFont) Font.CopyFont<Font, iOSFont>(f, "test2").SetLineHeight(30);
 
-            Assert.That(newF,Is.Not.Null);
+            newF.Should().NotBeNull();
         }
     }
 }

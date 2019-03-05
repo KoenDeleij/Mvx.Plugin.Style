@@ -7,9 +7,10 @@ using Android.Graphics;
 using Android.Text;
 using Android.Text.Style;
 using MvvmCross.Binding;
-using MvvmCross.Platform.Converters;
-using MvvmCross.Platform.Droid.Platform;
-using MvvmCross.Plugins.Color.Droid;
+using MvvmCross.Converters;
+using MvvmCross.Logging;
+using MvvmCross.Platforms.Android;
+using MvvmCross.Plugin.Color.Platforms.Android;
 using Redhotminute.Mvx.Plugin.Style.Droid.Helpers;
 using Redhotminute.Mvx.Plugin.Style.Droid.Helpers.Spans;
 using Redhotminute.Mvx.Plugin.Style.Droid.Plugin;
@@ -37,10 +38,10 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Converters {
 				}
 
 				if (_assetPlugin == null) {
-					_assetPlugin = MvvmCross.Platform.Mvx.Resolve<IAssetPlugin>();
+					_assetPlugin = MvvmCross.Mvx.IoCProvider.Resolve<IAssetPlugin>();
 				}
 				if (_context == null) {
-					_context = MvvmCross.Platform.Mvx.Resolve<IMvxAndroidCurrentTopActivity>().Activity.BaseContext;
+					_context = MvvmCross.Mvx.IoCProvider.Resolve<IMvxAndroidCurrentTopActivity>().Activity.BaseContext;
 				}
 
 				_extendedFont = _assetPlugin.GetFontByName(fontName) as Font;
@@ -57,7 +58,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Converters {
 				return new AttributedStringBaseFontWrapper() { SpannableString = converted , Font = _extendedFont,ContainsClickable = _containsLink,ClickableFont = _clickableFont};
 			}
 			catch (Exception e){
-				MvxBindingTrace.Trace(MvvmCross.Platform.Platform.MvxTraceLevel.Error, e.Message);
+                MvxBindingLog.Instance.Error(e.Message);
 			}
 
             return DefaultWrapper(value);
@@ -94,7 +95,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Converters {
         private void SetFont(ref SpannableString converted, IBaseFont font,FontIndexPair pair,FontTag fontTag) {
 			//set the text color
 			if (font.Color != null) {
-                converted.SetSpan(new ForegroundColorSpan(font.Color.ToAndroidColor()), pair.StartIndex, pair.EndIndex, SpanTypes.ExclusiveInclusive);
+                converted.SetSpan(new ForegroundColorSpan(font.Color.ToNativeColor()), pair.StartIndex, pair.EndIndex, SpanTypes.ExclusiveInclusive);
 			}
 
             if (fontTag != null && fontTag.FontAction == FontTagAction.Link)

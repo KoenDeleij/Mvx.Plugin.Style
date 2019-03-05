@@ -1,5 +1,9 @@
 using System;
 using UIKit;
+using MvvmCross.Binding;
+using MvvmCross.Binding.Bindings.Target;
+using MvvmCross.Plugin.Color.Platforms.Ios;
+using MvvmCross;
 using Redhotminute.Mvx.Plugin.Style.Models;
 using Redhotminute.Mvx.Plugin.Style.Touch.Plugin;
 using Redhotminute.Mvx.Plugin.Style.Touch.Helpers;
@@ -30,7 +34,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Bindings
 					}
 				}
 				catch (Exception e) {
-					MvvmCross.Platform.Mvx.Trace(MvvmCross.Platform.Platform.MvxTraceLevel.Error, "Failed to set font to UITextField. Check if font exists, has a size and filename, and is added to the plist");
+                    MvxBindingLog.Error("Failed to set font to UITextField. Check if font exists, has a size and filename, and is added to the plist");
 				}
 			}
 		}

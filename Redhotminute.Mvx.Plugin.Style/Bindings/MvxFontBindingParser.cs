@@ -1,10 +1,10 @@
-using System;
-namespace Redhotminute.Mvx.Plugin.Style.Binding {
-	using MvvmCross.Binding;
-	using MvvmCross.Binding.Parse.Binding;
-	using MvvmCross.Platform.Exceptions;
+namespace Redhotminute.Mvx.Plugin.Style.Bindings
+{
+    using MvvmCross.Binding;
+    using MvvmCross.Binding.Parse.Binding;
+    using MvvmCross.Exceptions;
 
-	public class MvxFontBindingParser
+    public class MvxFontBindingParser
 		: MvxBindingParser
 		  , IMvxFontBindingParser {
 		

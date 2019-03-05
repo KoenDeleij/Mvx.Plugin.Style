@@ -1,10 +1,10 @@
-using MvvmCross.Platform.IoC;
-using MvvmCross.Platform.UI;
-using Redhotminute.Mvx.Plugin.Style.Plugin;
+
+using MvvmCross.IoC;
+using MvvmCross.ViewModels;
 
 namespace Redhotminute.Mvx.Plugin.Style.SampleApp
 {
-    public class App : MvvmCross.Core.ViewModels.MvxApplication
+    public class App : MvxApplication
     {
         public override void Initialize()
         {
@@ -12,15 +12,9 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp
                 .EndingWith("Service")
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
-
+            
             RegisterAppStart<ViewModels.FirstViewModel>();
         }
 
-		public override void LoadPlugins(MvvmCross.Platform.Plugins.IMvxPluginManager pluginManager) {
-			base.LoadPlugins(pluginManager);
-			var plugin = MvvmCross.Platform.Mvx.Resolve<IAssetPlugin>();
-
-			//plugin.LoadJsonFontFile("textstyles.json");
-		}
     }
 }

@@ -1,5 +1,9 @@
 using System;
 using UIKit;
+using MvvmCross.Binding;
+using MvvmCross.Binding.Bindings.Target;
+using MvvmCross.Plugin.Color.Platforms.Ios;
+using MvvmCross;
 using Foundation;
 
 namespace Redhotminute.Mvx.Plugin.Style.Touch.Bindings
@@ -37,7 +41,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Bindings
 			}
 			catch (Exception e) 
             {
-				MvvmCross.Platform.Mvx.Trace(MvvmCross.Platform.Platform.MvxTraceLevel.Error, "Failed to set font+language to UILabel. Binded value is null or not an AttributedString.");
+                MvxBindingLog.Error("Failed to set font+language to UILabel. Binded value is null or not an AttributedString.");
 			}
 			
 		}

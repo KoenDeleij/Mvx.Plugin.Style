@@ -1,9 +1,10 @@
 using System;
 using UIKit;
-using Redhotminute.Mvx.Plugin.Style.Models;
 using Redhotminute.Mvx.Plugin.Style.Touch.Plugin;
 using Redhotminute.Mvx.Plugin.Style.Touch.Helpers;
-using MvvmCross.Plugins.Color.iOS;
+using Redhotminute.Mvx.Plugin.Style.Models;
+using MvvmCross.Plugin.Color.Platforms.Ios;
+using MvvmCross.Binding;
 
 namespace Redhotminute.Mvx.Plugin.Style.Touch.Bindings
 {
@@ -30,7 +31,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Bindings
 					}
 				}
 				catch (Exception e) {
-					MvvmCross.Platform.Mvx.Trace(MvvmCross.Platform.Platform.MvxTraceLevel.Error, "Failed to set font to UILabel. Check if font exists, has a size and filename, and is added to the plist");
+					MvxBindingLog.Error("Failed to set font to UILabel. Check if font exists, has a size and filename, and is added to the plist");
 				}
 			}
 		}

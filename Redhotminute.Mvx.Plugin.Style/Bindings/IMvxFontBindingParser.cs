@@ -1,7 +1,7 @@
 using System;
 using MvvmCross.Binding.Parse.Binding;
 
-namespace Redhotminute.Mvx.Plugin.Style.Binding {
+namespace Redhotminute.Mvx.Plugin.Style.Bindings {
 
 	public interface IMvxFontBindingParser
 		: IMvxBindingParser {

@@ -1,6 +1,7 @@
 using System;
 using Android.Views;
 using MvvmCross.Binding;
+using MvvmCross.Logging;
 using Redhotminute.Mvx.Plugin.Style.Models;
 
 namespace Redhotminute.Mvx.Plugin.Style.Droid.Helpers {
@@ -13,7 +14,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Helpers {
 				case TextAlignment.Center: 		flags= GravityFlags.CenterHorizontal; break;
 				case TextAlignment.Right: 		flags= GravityFlags.Right; break;
 				case TextAlignment.Justified: 	flags = GravityFlags.Left;
-												MvxBindingTrace.Warning("Justified binding is not supported on android");break;	
+												MvxBindingLog.Instance.Warn("Justified binding is not supported on android");break;	
 			}
 
 			return flags;

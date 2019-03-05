@@ -11,9 +11,7 @@ Redhotminute.Mvx.Plugin.Style.Tests/obj
 UserPrefs.xml
 .vs/Redhotminute.Mvx.Plugin.Style/xs
 Samples/Redhotminute.Mvx.Plugin.Style.SampleApp/.vs/Redhotminute.Mvx.Plugin.Style.SampleApp/xs
-Redhotminute.Mvx.Plugin.Style.SampleApp.Droid/obj
-Redhotminute.Mvx.Plugin.Style.SampleApp.Fonts/obj
-Redhotminute.Mvx.Plugin.Style.SampleApp.iOS/obj
-Redhotminute.Mvx.Plugin.Style.SampleApp/obj
-Samples/Redhotminute.Mvx.Plugin.Style.SampleApp/Redhotminute.Mvx.Plugin.Style.SampleApp.Droid/obj
-Samples/Redhotminute.Mvx.Plugin.Style.SampleApp/Redhotminute.Mvx.Plugin.Style.SampleApp.iOS/obj
+
+bin/
+obj/
+Packages/

@@ -1,108 +1,49 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{BC2ECA0D-7FDB-4C96-88B8-5E7F88594839}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>Redhotminute.Mvx.Plugin.Style</RootNamespace>
-    <AssemblyName>Redhotminute.Mvx.Plugin.Style</AssemblyName>
-    <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworks>netstandard2.0;Xamarin.iOS10;MonoAndroid81</TargetFrameworks>
+    <!--<TargetFramework>Xamarin.iOS10</TargetFramework>-->
+    <Authors>Koen Deleij</Authors>
+    <Company>Redhotminute BV</Company>
+    <Product>Redhotminute.Mvx.Plugin.Style</Product>
+    <PackageVersion>1.0.0</PackageVersion>
+    <Summary>Basic plugin for using the Specification Pattern with Linq</Summary>
+    <Description>Mvvmcross plugin to easily cross style fonts and colors</Description>
+    <PackageProjectUrl>https://github.com/Redhotminute/Redhotminute.Mvx.Plugin.Style</PackageProjectUrl>
+    <PackageTags>mvvm mvvmcross xamarin monodroid monotouch style fonts</PackageTags>
+    <RepositoryUrl>https://github.com/Redhotminute/Redhotminute.Mvx.Plugin.Style</RepositoryUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>..\bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
+    
+  <PropertyGroup>
+    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);IncludePlatformSpecificDlls</TargetsForTfmSpecificBuildOutput>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType></DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>..\bin\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'UnitTest|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>..\bin\UnitTest</OutputPath>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'UnitTest|x86' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>..\bin\UnitTest</OutputPath>
-    <DefineConstants>DEBUG</DefineConstants>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\Font.cs" />
-    <Compile Include="Models\BaseFont.cs" />
-    <Compile Include="Plugin\AssetPlugin.cs" />
-    <Compile Include="Plugin\IAssetPlugin.cs" />
-    <Compile Include="Converters\FontResourceValueConverter.cs" />
-    <Compile Include="Bindings\MvxFontBindingParser.cs" />
-    <Compile Include="Bindings\MvxBindingDescriptionExtendedParser.cs" />
-    <Compile Include="Bindings\IMvxFontBindingParser.cs" />
-    <Compile Include="Bindings\MvxFromTextExtendedBinder.cs" />
-    <Compile Include="Converters\AssetColorValueConverter.cs" />
-    <Compile Include="Enums\TextAlignment.cs" />
-    <Compile Include="Plugin\RedhotminuteStyleConfiguration.cs" />
-    <Compile Include="Models\Stylable.cs" />
-    <Compile Include="Bindings\MvxBindingContextOwnerExtensions.Font.cs" />
-    <Compile Include="Models\IBaseFont.cs" />
-    <Compile Include="Helpers\AttributedFontHelper.cs" />
-    <Compile Include="Models\Json\FontStyles.cs" />
-    <Compile Include="Models\FontTag.cs" />
-    <Compile Include="Models\FontTagAction.cs" />
-    <Compile Include="Models\iOSFont.cs" />
-    <Compile Include="Models\AndroidFont.cs" />
-    <Compile Include="Enums\LineBreakMode.cs" />
-  </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
-  <ItemGroup>
-    <Folder Include="Models\" />
-    <Folder Include="Plugin\" />
+    
+  <Target Name="IncludePlatformSpecificDlls">
+      <ItemGroup Condition=" '$(TargetFramework)' == 'MonoAndroid81' ">
+          <BuildOutputInPackage Include="./bin/$(Configuration)/Redhotminute.Mvx.Plugin.Style.Droid.dll" />
+      </ItemGroup>
+      <ItemGroup Condition=" '$(TargetFramework)' == 'Xamarin.iOS10' ">
+          <BuildOutputInPackage Include="./bin/$(Configuration)/Redhotminute.Mvx.Plugin.Style.Touch.dll" />
+      </ItemGroup>
+  </Target>
+    
+<ItemGroup>
     <Folder Include="Bindings\" />
     <Folder Include="Converters\" />
     <Folder Include="Enums\" />
     <Folder Include="Helpers\" />
-    <Folder Include="Models\Json\" />
+    <Folder Include="Models\" />
+    <Folder Include="Plugin\" />
+</ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MvvmCross" Version="6.2.3" />
+    <PackageReference Include="MvvmCross.Plugin.Color" Version="6.2.3" />
+    <PackageReference Include="MSBuild.Sdk.Extras" Version="1.5.4" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="MvvmCross.Platform">
-      <HintPath>..\packages\MvvmCross.Platform.5.7.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Platform.dll</HintPath>
-    </Reference>
-    <Reference Include="MvvmCross.Core">
-      <HintPath>..\packages\MvvmCross.Core.5.7.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="MvvmCross.Binding">
-      <HintPath>..\packages\MvvmCross.Binding.5.7.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Binding.dll</HintPath>
-    </Reference>
-    <Reference Include="MvvmCross.Localization">
-      <HintPath>..\packages\MvvmCross.Binding.5.7.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Localization.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\portable-net45+win8+wp8+wpa81\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="MvvmCross.Plugins.Json">
-      <HintPath>..\packages\MvvmCross.Plugin.Json.5.7.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Plugins.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="MvvmCross.Plugins.Color">
-      <HintPath>..\packages\MvvmCross.Plugin.Color.5.7.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Plugins.Color.dll</HintPath>
-    </Reference>
+    <Reference Include="mscorlib" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
+  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
 </Project>

@@ -1,11 +1,10 @@
-using System;
 using System.Collections.Generic;
-using MvvmCross.Platform.UI;
+using MvvmCross.UI;
 using Redhotminute.Mvx.Plugin.Style.Models;
 
 namespace Redhotminute.Mvx.Plugin.Style.Plugin
 {
-	public interface IAssetPlugin
+    public interface IAssetPlugin
 	{
 		/// <summary>
 		/// Add a base font

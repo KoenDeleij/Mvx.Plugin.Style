@@ -1,9 +1,8 @@
-using System;
-using MvvmCross.Platform.UI;
+using MvvmCross.UI;
 
 namespace Redhotminute.Mvx.Plugin.Style.Models
 {
-	public class Font : BaseFont
+    public class Font : BaseFont
 	{
 		public MvxColor SelectedColor {
 			get;
@@ -68,20 +67,18 @@ namespace Redhotminute.Mvx.Plugin.Style.Models
 
         public static TFont CopyFont<TRefFont, TFont>(TRefFont font, string newId) where TRefFont : Font where TFont : Font, new()
         {
-            TFont newFont = new TFont
-            {
-                Name = newId,
-                FontFilename = font.FontFilename,
-                FontPlatformName = font.FontPlatformName,
-                FontPlatformSize = font.FontPlatformSize,
-                Alignment = font.Alignment,
-                Color = font.Color,
-                DisabledColor = font.DisabledColor,
-                LineHeight = font.LineHeight,
-                LineHeightMultiplier = font.LineHeightMultiplier,
-                SelectedColor = font.SelectedColor,
-                Size = font.Size
-            };
+            TFont newFont = new TFont();
+            newFont.Name = newId;
+            newFont.FontFilename = font.FontFilename;
+            newFont.FontPlatformName = font.FontPlatformName;
+            newFont.FontPlatformSize = font.FontPlatformSize;
+            newFont.Alignment = font.Alignment;
+            newFont.Color = font.Color;
+            newFont.DisabledColor = font.DisabledColor;
+            newFont.LineHeight = font.LineHeight;
+            newFont.LineHeightMultiplier = font.LineHeightMultiplier;
+            newFont.SelectedColor = font.SelectedColor;
+            newFont.Size = font.Size;
 
             return newFont;
         }

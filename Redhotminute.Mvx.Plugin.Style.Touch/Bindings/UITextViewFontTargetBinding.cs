@@ -1,9 +1,10 @@
 using System;
 using UIKit;
+using MvvmCross.Plugin.Color.Platforms.Ios;
 using Redhotminute.Mvx.Plugin.Style.Touch.Plugin;
 using Redhotminute.Mvx.Plugin.Style.Models;
 using Redhotminute.Mvx.Plugin.Style.Touch.Helpers;
-using MvvmCross.Plugins.Color.iOS;
+using MvvmCross.Binding;
 
 namespace Redhotminute.Mvx.Plugin.Style.Touch.Bindings
 {
@@ -18,19 +19,24 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Bindings
 		{
 			var tf = (UITextView)target;
 			Font font = value as Font;
-			if (font != null){
-				try {
+			if (font != null)
+            {
+				try 
+                {
 					tf.Font = TouchAssetPlugin.GetCachedFont(font);
-					if (font.Color != null) {
+					if (font.Color != null) 
+                    {
 						tf.TextColor = font.Color.ToNativeColor();
 					}
 
-					if (font.Alignment != TextAlignment.None) {
+					if (font.Alignment != TextAlignment.None) 
+                    {
 						tf.TextAlignment = font.ToNativeAlignment();
 					}
 				}
-				catch (Exception e) {
-					MvvmCross.Platform.Mvx.Trace(MvvmCross.Platform.Platform.MvxTraceLevel.Error, "Failed to set font to UITextView. Check if font exists, has a size and filename, and is added to the plist");
+				catch
+                {
+					MvxBindingLog.Error("Failed to set font to UITextView. Check if font exists, has a size and filename, and is added to the plist");
 				}
 			}
 		}

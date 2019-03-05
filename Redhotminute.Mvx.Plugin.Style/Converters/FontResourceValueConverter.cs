@@ -1,11 +1,12 @@
 using System;
-using MvvmCross.Platform.Converters;
 using System.Globalization;
+using MvvmCross.Converters;
+using MvvmCross.Logging;
 using Redhotminute.Mvx.Plugin.Style.Plugin;
 
 namespace Redhotminute.Mvx.Plugin.Style.Converters
 {
-	public class FontResourceValueConverter : MvxValueConverter {
+    public class FontResourceValueConverter : MvxValueConverter {
 		/// <summary>
 		/// Convert the specified value, targetType, parameter and culture.
 		/// </summary>
@@ -22,7 +23,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Converters
 			AssetPlugin plugin = value as AssetPlugin;
 
 			if (plugin == null) {
-				plugin = (AssetPlugin)MvvmCross.Platform.Mvx.Resolve<IAssetPlugin>();
+				plugin = (AssetPlugin)MvvmCross.Mvx.IoCProvider.Resolve<IAssetPlugin>();
 			}
 
 			if (parameter!= null){
@@ -37,7 +38,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Converters
 					var font = plugin.GetFontByName(fontName);
 					return font;
 				}catch(Exception e){
-					MvvmCross.Platform.Mvx.Trace(MvvmCross.Platform.Platform.MvxTraceLevel.Error, $"Failed to get font {e.Message}");
+                    MvxPluginLog.Instance.Error(e, $"Failed to get font {e.Message}");
 				}
 			}
 

@@ -1,8 +1,8 @@
-﻿using System;
-using Redhotminute.Mvx.Plugin.Style.Models;
+﻿using Redhotminute.Mvx.Plugin.Style.Models;
 
-namespace Redhotminute.Mvx.Plugin.Style.SampleApp {
-	public class Story :IStylable{
+namespace Redhotminute.Mvx.Plugin.Style.SampleApp
+{
+    public class Story :IStylable{
 		public string Title{
 			get;
 			set;

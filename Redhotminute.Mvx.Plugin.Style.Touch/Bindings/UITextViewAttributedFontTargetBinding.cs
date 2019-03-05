@@ -1,5 +1,6 @@
 ﻿using System;
 using Foundation;
+using MvvmCross.Binding;
 using UIKit;
 
 namespace Redhotminute.Mvx.Plugin.Style.Touch.Bindings
@@ -40,7 +41,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Bindings
             }
             catch (Exception e)
             {
-                MvvmCross.Platform.Mvx.Trace(MvvmCross.Platform.Platform.MvxTraceLevel.Error, "Failed to set font+language to UITextView. Binded value is null or not an AttributedString.");
+                MvxBindingLog.Error("Failed to set font+language to UITextView. Binded value is null or not an AttributedString.");
             }
         }
 
