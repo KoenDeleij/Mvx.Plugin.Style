@@ -24,11 +24,14 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Converters
 			return ConvertValue(value, parameter);
 		}
 
-		private object ConvertValue(object value,object parameter) {
-			TouchAssetPlugin assetPlugin = MvvmCross.Mvx.Resolve<IAssetPlugin>() as TouchAssetPlugin;
+		private object ConvertValue(object value,object parameter) 
+        {
+			TouchAssetPlugin assetPlugin = MvvmCross.Mvx.IoCProvider.Resolve<IAssetPlugin>() as TouchAssetPlugin;
 
-			if (value!= null && parameter!= null){
-				try{
+			if (value!= null && parameter!= null)
+            {
+				try
+                {
                     var stringValue = value.ToString();
                     if (string.IsNullOrWhiteSpace(stringValue))
                     {
@@ -36,7 +39,9 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Converters
                     }
 					var text = assetPlugin.ParseToAttributedText(value.ToString(), assetPlugin.GetFontByName(parameter.ToString()));
                     return text;
-				}catch(Exception e){
+				}
+                catch(Exception e)
+                {
                     MvxBindingLog.Error("Problem parsing binding {0}", e.ToLongString());
 				}
 			}

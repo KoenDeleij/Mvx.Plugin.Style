@@ -64,7 +64,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Plugin
                 {
                     this.ConvertFontFileNameForPlatform(ref font);
 
-                    var assetPlugin = MvvmCross.Mvx.Resolve<IAssetPlugin>();
+                    var assetPlugin = MvvmCross.Mvx.IoCProvider.Resolve<IAssetPlugin>();
 
                     string cleanText = string.Empty;
 
