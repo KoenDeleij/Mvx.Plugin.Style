@@ -7,11 +7,10 @@ using MvvmCross;
 using Redhotminute.Mvx.Plugin.Style.Models;
 using Redhotminute.Mvx.Plugin.Style.Touch.Plugin;
 using Redhotminute.Mvx.Plugin.Style.Touch.Helpers;
-using MvvmCross.Plugins.Color.iOS;
 
 namespace Redhotminute.Mvx.Plugin.Style.Touch.Bindings
 {
-    public class UITextFieldFontTargetBinding : BaseStyleBinding<UITextField>
+	public class UITextFieldFontTargetBinding : BaseStyleBinding<UITextField>
 	{
 		public UITextFieldFontTargetBinding(UITextField target)
 			: base(target)

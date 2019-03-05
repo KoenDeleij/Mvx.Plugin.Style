@@ -8,7 +8,7 @@ using MvvmCross.Logging;
 
 namespace Redhotminute.Mvx.Plugin.Style.Touch.Bindings
 {
-    public class UIButtonFontTargetBinding : BaseStyleBinding<UIButton>
+	public class UIButtonFontTargetBinding : BaseStyleBinding<UIButton>
 	{
 		public UIButtonFontTargetBinding(UIButton target)
 			: base(target)

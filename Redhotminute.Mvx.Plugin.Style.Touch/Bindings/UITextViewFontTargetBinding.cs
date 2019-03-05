@@ -8,7 +8,7 @@ using MvvmCross.Binding;
 
 namespace Redhotminute.Mvx.Plugin.Style.Touch.Bindings
 {
-    public class UITextViewFontTargetBinding : BaseStyleBinding<UITextView>
+	public class UITextViewFontTargetBinding : BaseStyleBinding<UITextView>
 	{
 		public UITextViewFontTargetBinding(UITextView target)
 			: base(target)
