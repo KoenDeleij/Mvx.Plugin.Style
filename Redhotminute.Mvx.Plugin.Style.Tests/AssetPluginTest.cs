@@ -63,7 +63,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
 		public void GettingANonExistingColorReturnsNull()
 		{
             AssetPlugin plugin = new TestAssetPlugin();
-            plugin.GetColor("H1").Should().Be(new Color());
+            plugin.GetColor("H1").Should().Be(Color.Empty);
 		}
 
         [Fact]
@@ -124,7 +124,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
             AssetPlugin plugin = new TestAssetPlugin();
             var color = Color.FromArgb(10, 0, 10);
 
-            plugin.GetColor("Main").Should().NotBe(color);
+            plugin.GetColor("Main").Should().Be(Color.Empty);
             plugin.AddColor(color, "Main");
             plugin.GetColor("Main").Should().Be(color);
 		}
@@ -135,11 +135,11 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
             AssetPlugin plugin = new TestAssetPlugin();
 			plugin.AddColor(Color.FromArgb(10, 0, 10), "Main");
 
-            plugin.GetColor("Main").Should().NotBe(new Color());
+            plugin.GetColor("Main").Should().NotBe(Color.Empty);
 
             plugin.ClearColors();
 
-            plugin.GetColor("Main").Should().Be(new Color());
+            plugin.GetColor("Main").Should().Be(Color.Empty);
 		}
 
         [Fact]

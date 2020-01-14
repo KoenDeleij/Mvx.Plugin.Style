@@ -58,7 +58,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Converters
         private object GetColorByName(string colorName)
         {
 			var color = _plugin.GetColor(colorName);
-			if (color != null)
+			if (color != System.Drawing.Color.Empty)
 			{
 				return NativeColor.ToNative(color);
 			}

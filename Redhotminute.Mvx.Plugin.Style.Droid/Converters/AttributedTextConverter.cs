@@ -94,7 +94,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Converters {
 
         private void SetFont(ref SpannableString converted, IBaseFont font,FontIndexPair pair,FontTag fontTag) {
 			//set the text color
-			if (font.Color != null) {
+			if (font.Color != System.Drawing.Color.Empty) {
                 converted.SetSpan(new ForegroundColorSpan(font.Color.ToNativeColor()), pair.StartIndex, pair.EndIndex, SpanTypes.ExclusiveInclusive);
 			}
 

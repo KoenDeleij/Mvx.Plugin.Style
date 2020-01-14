@@ -22,15 +22,15 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Bindings
 			if (font != null){
 				try {
 					button.Font = TouchAssetPlugin.GetCachedFont(font);
-					if (font.Color != null) {
+					if (font.Color != System.Drawing.Color.Empty) {
 						button.SetTitleColor(font.Color.ToNativeColor(),UIControlState.Normal);
 					}
 
-					if (font.SelectedColor != null) {
+					if (font.SelectedColor != System.Drawing.Color.Empty) {
 						button.SetTitleColor(font.SelectedColor.ToNativeColor(), UIControlState.Selected);
 					}
 
-					if (font.DisabledColor != null) {
+					if (font.DisabledColor != System.Drawing.Color.Empty) {
 						button.SetTitleColor(font.DisabledColor.ToNativeColor(), UIControlState.Disabled);
 					}
 				}

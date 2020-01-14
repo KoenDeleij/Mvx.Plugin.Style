@@ -22,7 +22,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Touch.Bindings
 			if (font != null){
 				try {
 					label.Font = TouchAssetPlugin.GetCachedFont(font);
-					if (font.Color != null) {
+					if (font.Color != System.Drawing.Color.Empty) {
 						label.TextColor = font.Color.ToNativeColor();
 					}
 

@@ -44,7 +44,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings
                         fontSize = label.TextSize;
                     }
 
-					if (font.Color != null) {
+					if (font.Color != System.Drawing.Color.Empty) {
 						label.SetTextColor(font.Color.ToNativeColor());
 
                     }

@@ -39,12 +39,13 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings
 					if (font.Size != default(int)) {
 						button.SetTextSize(Android.Util.ComplexUnitType.Dip, AssetPlugin.GetPlatformFontSize(font.Size));
 					}
-					if (font.Color != null){
+					if (font.Color != System.Drawing.Color.Empty)
+					{
 						List<int[]> states = new List<int[]>();
 						List<int> colors = new List<int>();
 
 						//if there's only a disabled color
-						if (font.DisabledColor != null)
+						if (font.DisabledColor != System.Drawing.Color.Empty)
 						{
 							if (font.SelectedColor == null) {
 								states.Add(new int[] { Android.Resource.Attribute.StateEnabled });
@@ -55,7 +56,8 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings
 							colors.Add(font.DisabledColor.ToArgb());
 						}
 
-						if (font.SelectedColor != null){
+						if (font.SelectedColor != System.Drawing.Color.Empty)
+						{
 							if (font.DisabledColor == null) {
 								states.Add(new int[] { Android.Resource.Attribute.StateActivated });
 								states.Add(new int[] { -Android.Resource.Attribute.StateActivated });
@@ -65,7 +67,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings
 						}
 
 						//if both disabled color and activated color are available
-						if (font.DisabledColor != null && font.SelectedColor != null) {
+						if (font.DisabledColor != System.Drawing.Color.Empty && font.SelectedColor != System.Drawing.Color.Empty) {
 							states.Add(new int[] { Android.Resource.Attribute.StateEnabled,-Android.Resource.Attribute.StateActivated });
 							states.Add(new int[] { -Android.Resource.Attribute.StateEnabled,-Android.Resource.Attribute.StateActivated });
 							states.Add(new int[] { Android.Resource.Attribute.StateEnabled, Android.Resource.Attribute.StateActivated });
