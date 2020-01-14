@@ -13,7 +13,7 @@
     <PackageProjectUrl>https://github.com/Redhotminute/Redhotminute.Mvx.Plugin.Style</PackageProjectUrl>
     <PackageTags>mvvm mvvmcross xamarin monodroid monotouch style fonts</PackageTags>
     <RepositoryUrl>https://github.com/Redhotminute/Redhotminute.Mvx.Plugin.Style</RepositoryUrl>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
     
   <PropertyGroup>
