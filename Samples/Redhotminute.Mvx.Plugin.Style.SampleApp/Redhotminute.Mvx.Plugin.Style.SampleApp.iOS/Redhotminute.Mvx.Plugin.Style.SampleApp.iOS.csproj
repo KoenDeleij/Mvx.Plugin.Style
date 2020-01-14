@@ -95,14 +95,13 @@
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
     <Reference Include="MvvmCross">
-      <HintPath>..\..\..\packages\MvvmCross.6.2.3\lib\xamarinios10\MvvmCross.dll</HintPath>
-    </Reference>
-    <Reference Include="MvvmCross.Plugin.Color">
-      <HintPath>..\..\..\packages\MvvmCross.Plugin.Color.6.2.3\lib\xamarinios10\MvvmCross.Plugin.Color.dll</HintPath>
+      <HintPath>..\..\..\packages\MvvmCross.6.4.2\lib\xamarinios10\MvvmCross.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\..\packages\Newtonsoft.Json.12.0.1\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="OpenTK-1.0" />
+    <Reference Include="System.Drawing.Common.dll" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Redhotminute.Mvx.Plugin.Style.SampleApp\Redhotminute.Mvx.Plugin.Style.SampleApp.csproj">

@@ -1,15 +1,15 @@
-using MvvmCross.UI;
+using System.Drawing;
 
 namespace Redhotminute.Mvx.Plugin.Style.Models
 {
     public class Font : BaseFont
 	{
-		public MvxColor SelectedColor {
+		public Color SelectedColor {
 			get;
 			set;
 		}
 
-		public MvxColor DisabledColor {
+		public Color DisabledColor {
 			get;
 			set;
 		}
@@ -53,13 +53,13 @@ namespace Redhotminute.Mvx.Plugin.Style.Models
             return this;
         }
 
-        public Font SetSelectedColor(MvxColor color)
+        public Font SetSelectedColor(Color color)
         {
             this.SelectedColor = color;
             return this;
         }
 
-        public Font SetDisabledColor(MvxColor color)
+        public Font SetDisabledColor(Color color)
         {
             this.DisabledColor = color;
             return this;

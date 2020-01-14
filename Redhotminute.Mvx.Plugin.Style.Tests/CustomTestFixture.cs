@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using MvvmCross.Commands;
 using MvvmCross.IoC;
 using MvvmCross.Tests;
@@ -22,8 +23,8 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
             Ioc.RegisterSingleton<IMvxCommandHelper>(UnitTestCommandHelper);
 
             var plugin = new TestAssetPlugin();
-            plugin.AddColor(new MvxColor(255, 0, 0), "Red");
-            plugin.AddColor(new MvxColor(0, 0, 255), "Blue");
+            plugin.AddColor(Color.FromArgb(255, 0, 0), "Red");
+            plugin.AddColor(Color.FromArgb(0, 0, 255), "Blue");
             FontToAdd = new Font() { Name = "Bold", FontFilename = "Bold.otf", Color = plugin.GetColor("Blue") };
             plugin.AddFont(FontToAdd);
 

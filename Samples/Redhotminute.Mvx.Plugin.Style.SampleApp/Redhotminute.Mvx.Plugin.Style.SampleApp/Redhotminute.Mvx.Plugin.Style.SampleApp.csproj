@@ -22,7 +22,7 @@
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="MvvmCross" Version="6.2.3" />
+    <PackageReference Include="MvvmCross" Version="6.4.2" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Redhotminute.Mvx.Plugin.Style\Redhotminute.Mvx.Plugin.Style.csproj" />

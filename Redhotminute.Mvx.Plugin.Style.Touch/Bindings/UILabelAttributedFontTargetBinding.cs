@@ -2,7 +2,6 @@ using System;
 using UIKit;
 using MvvmCross.Binding;
 using MvvmCross.Binding.Bindings.Target;
-using MvvmCross.Plugin.Color.Platforms.Ios;
 using MvvmCross;
 using Foundation;
 using MvvmCross.Localization;

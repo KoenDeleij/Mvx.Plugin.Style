@@ -1,10 +1,10 @@
 using System;
 using UIKit;
-using MvvmCross.Plugin.Color.Platforms.Ios;
 using Redhotminute.Mvx.Plugin.Style.Models;
 using Redhotminute.Mvx.Plugin.Style.Touch.Plugin;
 using MvvmCross.Binding;
 using MvvmCross.Logging;
+using MvvmCross.Plugin.Color.Platforms.Ios;
 
 namespace Redhotminute.Mvx.Plugin.Style.Touch.Bindings
 {

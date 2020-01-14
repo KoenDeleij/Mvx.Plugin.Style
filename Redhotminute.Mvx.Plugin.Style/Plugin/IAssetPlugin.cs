@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using MvvmCross.UI;
+using System.Drawing;
 using Redhotminute.Mvx.Plugin.Style.Models;
 
 namespace Redhotminute.Mvx.Plugin.Style.Plugin
@@ -27,7 +27,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Plugin
 		/// </summary>
 		/// <returns>The color.</returns>
 		/// <param name="colorId">Color identifier.</param>
-		MvxColor GetColor(string colorId);
+		Color GetColor(string colorId);
 
 		/// <summary>
 		/// Add a color
@@ -35,7 +35,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Plugin
 		/// <returns>The color.</returns>
 		/// <param name="color">Color.</param>
 		/// <param name="id">Identifier.</param>
-		IAssetPlugin AddColor(MvxColor color, string id);
+		IAssetPlugin AddColor(Color color, string id);
 
 		/// <summary>
 		/// Adds the font.

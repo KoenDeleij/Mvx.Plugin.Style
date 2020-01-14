@@ -12,6 +12,7 @@ using Redhotminute.Mvx.Plugin.Style.Droid.Plugin;
 using Redhotminute.Mvx.Plugin.Style.Models;
 using Redhotminute.Mvx.Plugin.Style.Plugin;
 
+
 namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings 
 {
 	public class ButtonFontTargetBinding : MvxConvertingTargetBinding {
@@ -50,8 +51,8 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings
 								states.Add(new int[] { -Android.Resource.Attribute.StateEnabled });
 							}
 
-							colors.Add(font.Color.ARGB);
-							colors.Add(font.DisabledColor.ARGB);
+							colors.Add(font.Color.ToArgb());
+							colors.Add(font.DisabledColor.ToArgb());
 						}
 
 						if (font.SelectedColor != null){
@@ -59,8 +60,8 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings
 								states.Add(new int[] { Android.Resource.Attribute.StateActivated });
 								states.Add(new int[] { -Android.Resource.Attribute.StateActivated });
 							}
-							colors.Add(font.SelectedColor.ARGB);
-							colors.Add(font.Color.ARGB);
+							colors.Add(font.SelectedColor.ToArgb());
+							colors.Add(font.Color.ToArgb());
 						}
 
 						//if both disabled color and activated color are available

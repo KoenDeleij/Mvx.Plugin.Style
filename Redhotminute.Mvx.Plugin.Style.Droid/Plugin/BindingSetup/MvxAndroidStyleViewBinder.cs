@@ -6,40 +6,47 @@ using Android.Content.Res;
 using Android.Util;
 using Android.Views;
 using MvvmCross.Binding;
-using MvvmCross.Binding.Binders;
-using MvvmCross.Binding.BindingContext;
 using MvvmCross.Binding.Bindings;
 using MvvmCross.Exceptions;
 using MvvmCross.Logging;
 using MvvmCross.Platforms.Android.Binding.Binders;
+using MvvmCross.Platforms.Android.Binding.ResourceHelpers;
 using Redhotminute.Mvx.Plugin.Style.Bindings;
 
 namespace Redhotminute.Mvx.Plugin.Style.Droid.BindingSetup {
 	public class MvxAndroidStyleViewBinder : MvxAndroidViewBinder{
 
+		private readonly Lazy<IMvxAndroidBindingResource> mvxAndroidBindingResource
+            = new Lazy<IMvxAndroidBindingResource>(() => MvvmCross.Mvx.IoCProvider.GetSingleton<IMvxAndroidBindingResource>());
 		private readonly object _source;
 		public MvxAndroidStyleViewBinder(object source):base(source) {
 			_source = source;
 		}
 
-		public override void BindView(View view, Context context, IAttributeSet attrs) {
-			
-			using (
-				var typedArray = context.ObtainStyledAttributes(attrs,MvxAndroidStyleBindingResource.Instance.BindingStylableGroupId)) {
-				int numStyles = typedArray.IndexCount;
+		public override void BindView(View view, Context context, IAttributeSet attrs)
+		{
 
-				var resource = (MvxAndroidStyleBindingResource.Instance as MvxAndroidStyleBindingResource);
+			var resource = (mvxAndroidBindingResource.Value as MvxAndroidStyleBindingResource);
 
-				for (var i = 0; i < numStyles; ++i) {
-					var attributeId = typedArray.GetIndex(i);
+			if (resource != null)
+			{
+				using (var typedArray = context.ObtainStyledAttributes(attrs, mvxAndroidBindingResource.Value.BindingStylableGroupId))
+				{
 
-					if (attributeId == resource.BindingFontId) {
-						this.ApplyFontBindingsFromAttribute(view,context, typedArray, attributeId);
+					int numStyles = typedArray.IndexCount;
+					for (var i = 0; i < numStyles; ++i)
+					{
+						var attributeId = typedArray.GetIndex(i);
+
+						if (attributeId == resource.BindingFontId)
+						{
+							this.ApplyFontBindingsFromAttribute(view, context, typedArray, attributeId);
+						}
 					}
+					typedArray.Recycle();
 				}
-				typedArray.Recycle();
-				base.BindView(view, context, attrs);
 			}
+			base.BindView(view, context, attrs);
 		}
 
 		private void ApplyFontBindingsFromAttribute(View view,Context context, TypedArray typedArray, int attributeId) {

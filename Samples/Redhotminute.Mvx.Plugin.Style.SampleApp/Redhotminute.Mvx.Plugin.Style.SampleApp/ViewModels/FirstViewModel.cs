@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using MvvmCross.Commands;
 using MvvmCross.IoC;
@@ -69,10 +70,10 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.ViewModels
 
         private void LoadStyle1() {
             
-            AssetProvider.AddColor(new MvxColor(42, 74, 99), ColorBackground)
-                         .AddColor(new MvxColor(255, 255, 245), ColorPrimary)
-                         .AddColor(new MvxColor(42, 183, 202), ColorSecondairy)
-                         .AddColor(new MvxColor(42, 183, 202), ColorMarked);
+            AssetProvider.AddColor( Color.FromArgb (42, 74, 99), ColorBackground)
+                         .AddColor(Color.FromArgb(255, 255, 245), ColorPrimary)
+                         .AddColor(Color.FromArgb(42, 183, 202), ColorSecondairy)
+                         .AddColor(Color.FromArgb(42, 183, 202), ColorMarked);
 
             var regularFont = new iOSFont() { Name = FontRegularSmall, FontFilename = "Nunito-Regular.ttf", FontPlatformName = "Nunito-Regular", Size = 12, LineHeight = 12, LineHeightMultiplier = 1.33f, Color = AssetProvider.GetColor(ColorPrimary), SelectedColor = AssetProvider.GetColor(ColorBackground) };
             var regularFontAndroid = Font.CopyFont<iOSFont, AndroidFont>(regularFont, FontRegularSmall);
@@ -88,10 +89,10 @@ namespace Redhotminute.Mvx.Plugin.Style.SampleApp.ViewModels
         }                               
 
         private void LoadStyle2() {
-            AssetProvider.AddColor(new MvxColor(0, 200, 190), ColorBackground)
-                         .AddColor(new MvxColor(101, 18, 111), ColorPrimary)
-                         .AddColor(new MvxColor(230, 229, 6), ColorSecondairy)
-                         .AddColor(new MvxColor(101, 18, 111), ColorMarked);
+            AssetProvider.AddColor(Color.FromArgb(0, 200, 190), ColorBackground)
+                         .AddColor(Color.FromArgb(101, 18, 111), ColorPrimary)
+                         .AddColor(Color.FromArgb(230, 229, 6), ColorSecondairy)
+                         .AddColor(Color.FromArgb(101, 18, 111), ColorMarked);
 			AssetProvider.AddFont(new Font() { Name = FontH1, FontFilename = "JosefinSlab-Bold.ttf", FontPlatformName = "JosefinSlab-Bold", Size = 40, LineHeight = 50,LineHeightMultiplier=1.0f, Color = AssetProvider.GetColor(ColorSecondairy) })
                          .AddFont(new Font() { Name = FontItalic, FontFilename = "Nunito-Italic.ttf", FontPlatformName = "Nunito-Italic", Size = 15, Color = AssetProvider.GetColor(ColorSecondairy), Alignment = TextAlignment.Center })
                          .AddFont(new BaseFont() { Name = FontBold, FontFilename = "Nunito-Bold.ttf", FontPlatformName = "Nunito-Bold", Size = 15, Color = AssetProvider.GetColor(ColorSecondairy) })

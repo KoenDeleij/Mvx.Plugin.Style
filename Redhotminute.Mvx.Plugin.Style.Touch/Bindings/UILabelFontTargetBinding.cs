@@ -3,8 +3,8 @@ using UIKit;
 using Redhotminute.Mvx.Plugin.Style.Touch.Plugin;
 using Redhotminute.Mvx.Plugin.Style.Touch.Helpers;
 using Redhotminute.Mvx.Plugin.Style.Models;
-using MvvmCross.Plugin.Color.Platforms.Ios;
 using MvvmCross.Binding;
+using MvvmCross.Plugin.Color.Platforms.Ios;
 
 namespace Redhotminute.Mvx.Plugin.Style.Touch.Bindings
 {

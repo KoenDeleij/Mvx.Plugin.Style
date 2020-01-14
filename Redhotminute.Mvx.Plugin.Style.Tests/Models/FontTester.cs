@@ -1,6 +1,6 @@
-﻿using FluentAssertions;
+﻿using System.Drawing;
+using FluentAssertions;
 using MvvmCross.Tests;
-using MvvmCross.UI;
 using Redhotminute.Mvx.Plugin.Style.Models;
 using Xunit;
 
@@ -13,7 +13,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests.Models
         [Fact]
         public void FontCanBeCopied()
         {
-            Font f = new Font() { Name = "test", Color = new MvxColor(255, 0, 0), Size = 20, LineHeight = 10 };
+            Font f = new Font() { Name = "test", Color = Color.FromArgb(255, 0, 0), Size = 20, LineHeight = 10 };
 
             var newF = Font.CopyFont<Font, Font>(f, "test2");
 
@@ -26,7 +26,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests.Models
         [Fact]
         public void CopiedFontCanBeEasilyModified()
         {
-            Font f = new Font() { Name = "test", Color = new MvxColor(255, 0, 0), Size = 20, LineHeight = 10 };
+            Font f = new Font() { Name = "test", Color = Color.FromArgb(255, 0, 0), Size = 20, LineHeight = 10 };
 
             var newF = Font.CopyFont<Font, Font>(f, "test2").SetLineHeight(30);
 
@@ -39,7 +39,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests.Models
         [Fact]
         public void CopiedFontCanBeEasilyModifiedBetweenTypes()
         {
-            Font f = new Font() { Name = "test", Color = new MvxColor(255, 0, 0), Size = 20, LineHeight = 10 };
+            Font f = new Font() { Name = "test", Color = Color.FromArgb(255, 0, 0), Size = 20, LineHeight = 10 };
 
             var newF = (iOSFont) Font.CopyFont<Font, iOSFont>(f, "test2").SetLineHeight(30);
 

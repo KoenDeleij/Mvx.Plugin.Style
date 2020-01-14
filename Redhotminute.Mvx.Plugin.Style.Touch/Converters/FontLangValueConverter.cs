@@ -2,12 +2,8 @@ using System;
 using MvvmCross.Converters;
 using System.Globalization;
 using MvvmCross.Localization;
-using Foundation;
 using MvvmCross.Binding;
-using MvvmCross;
 using MvvmCross.Exceptions;
-using UIKit;
-using MvvmCross.Plugin.Color.Platforms.Ios;
 using Redhotminute.Mvx.Plugin.Style.Touch.Plugin;
 using Redhotminute.Mvx.Plugin.Style.Plugin;
 

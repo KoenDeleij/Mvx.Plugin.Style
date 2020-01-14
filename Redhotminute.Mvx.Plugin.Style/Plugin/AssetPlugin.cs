@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
-using MvvmCross.UI;
 using Redhotminute.Mvx.Plugin.Style.Models;
 
 namespace Redhotminute.Mvx.Plugin.Style.Plugin
@@ -74,14 +74,14 @@ namespace Redhotminute.Mvx.Plugin.Style.Plugin
             }
         }
 
-        private Dictionary<string, MvxColor> _colors;
-        private Dictionary<string, MvxColor> Colors
+        private Dictionary<string, Color> _colors;
+        private Dictionary<string, Color> Colors
         {
             get
             {
                 if (_colors == null)
                 {
-                    _colors = new Dictionary<string, MvxColor>();
+                    _colors = new Dictionary<string, Color>();
                 }
                 return _colors;
             }
@@ -149,9 +149,9 @@ namespace Redhotminute.Mvx.Plugin.Style.Plugin
                 Fonts.TryGetValue(fontName, out fontWithoutColor);
                 if (fontWithoutColor != null)
                 {
-                    if (fontWithoutColor is Font)
+                    if (fontWithoutColor is Models.Font)
                     {
-                        font = Font.CopyFont<Font, Font>((Font)fontWithoutColor, combinedFontId);
+                        font = Models.Font.CopyFont<Models.Font, Models.Font>((Models.Font)fontWithoutColor, combinedFontId);
                         (font as BaseFont).SetColor(GetColor(fontColor));
                     }
                     else if (fontWithoutColor is BaseFont)
@@ -247,15 +247,15 @@ namespace Redhotminute.Mvx.Plugin.Style.Plugin
             return this;
         }
 
-        public IAssetPlugin AddColor(MvxColor color, string id)
+        public IAssetPlugin AddColor(Color color, string id)
         {
             Colors.Add(id, color);
             return this;
         }
 
-        public MvxColor GetColor(string colorId)
+        public Color GetColor(string colorId)
         {
-            MvxColor color;
+            Color color;
             Colors.TryGetValue(colorId, out color);
             return color;
         }

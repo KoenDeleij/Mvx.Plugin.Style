@@ -4,7 +4,6 @@ using Foundation;
 using MvvmCross.Binding;
 using MvvmCross.Exceptions;
 using MvvmCross.Logging;
-using MvvmCross.Plugin;
 using MvvmCross.Plugin.Color.Platforms.Ios;
 using Redhotminute.Mvx.Plugin.Style.Helpers;
 using Redhotminute.Mvx.Plugin.Style.Models;

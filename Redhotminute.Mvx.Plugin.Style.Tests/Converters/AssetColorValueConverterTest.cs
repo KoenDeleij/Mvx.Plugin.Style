@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System.Drawing;
+using FluentAssertions;
 using MvvmCross.Tests;
 using MvvmCross.UI;
 using Redhotminute.Mvx.Plugin.Style.Converters;
@@ -28,7 +29,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests.Converters
         public void IfNoPluginIsPassedItsResolved()
         {
             AssetColorValueConverter conv = new AssetColorValueConverter();
-            var font = conv.Convert(_fixture.Ioc.Resolve<IAssetPlugin>(), typeof(MvxColor), "Red", null);
+            var font = conv.Convert(_fixture.Ioc.Resolve<IAssetPlugin>(), typeof(Color), "Red", null);
             font.Should().BeNull();
         }
 
@@ -36,7 +37,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests.Converters
         public void IfColorIsNotFoundReturnNull()
         {
             AssetColorValueConverter conv = new AssetColorValueConverter();
-            var font = conv.Convert(_fixture.Ioc.Resolve<IAssetPlugin>(), typeof(MvxColor), "11", null);
+            var font = conv.Convert(_fixture.Ioc.Resolve<IAssetPlugin>(), typeof(Color), "11", null);
             font.Should().BeNull();
         }
     }

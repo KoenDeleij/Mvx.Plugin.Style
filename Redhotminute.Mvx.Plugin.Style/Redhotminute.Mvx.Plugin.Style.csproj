@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;Xamarin.iOS10;MonoAndroid81</TargetFrameworks>
     <!--<TargetFramework>Xamarin.iOS10</TargetFramework>-->
+    <PackageId>Redhotminute.Mvx.Plugin.Style</PackageId>
     <Authors>Koen Deleij</Authors>
     <Company>Redhotminute BV</Company>
     <Product>Redhotminute.Mvx.Plugin.Style</Product>
@@ -12,7 +13,7 @@
     <PackageProjectUrl>https://github.com/Redhotminute/Redhotminute.Mvx.Plugin.Style</PackageProjectUrl>
     <PackageTags>mvvm mvvmcross xamarin monodroid monotouch style fonts</PackageTags>
     <RepositoryUrl>https://github.com/Redhotminute/Redhotminute.Mvx.Plugin.Style</RepositoryUrl>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
     
   <PropertyGroup>
@@ -38,9 +39,9 @@
 </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MvvmCross" Version="6.2.3" />
-    <PackageReference Include="MvvmCross.Plugin.Color" Version="6.2.3" />
+    <PackageReference Include="MvvmCross" Version="6.4.2" />
     <PackageReference Include="MSBuild.Sdk.Extras" Version="1.5.4" />
+    <PackageReference Include="MvvmCross.Plugin.Color" Version="6.4.2" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />

@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Drawing;
 using FluentAssertions;
 using MvvmCross.Tests;
-using MvvmCross.UI;
 using Redhotminute.Mvx.Plugin.Style.Models;
 using Redhotminute.Mvx.Plugin.Style.Plugin;
 using Redhotminute.Mvx.Plugin.Style.Tests.Helpers;
@@ -63,7 +63,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
 		public void GettingANonExistingColorReturnsNull()
 		{
             AssetPlugin plugin = new TestAssetPlugin();
-            plugin.GetColor("H1").Should().BeNull();
+            plugin.GetColor("H1").Should().Be(new Color());
 		}
 
         [Fact]
@@ -122,33 +122,32 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
 		public void AddingColorAddsColor()
 		{
             AssetPlugin plugin = new TestAssetPlugin();
+            var color = Color.FromArgb(10, 0, 10);
 
-            plugin.GetColor("Main").Should().BeNull();
-
-            plugin.AddColor(new MvxColor(10,0,10),"Main");
-
-            plugin.GetColor("Main").Should().NotBeNull();
+            plugin.GetColor("Main").Should().NotBe(color);
+            plugin.AddColor(color, "Main");
+            plugin.GetColor("Main").Should().Be(color);
 		}
 
         [Fact]
 		public void ClearingColorClearsAllColors()
 		{
             AssetPlugin plugin = new TestAssetPlugin();
-			plugin.AddColor(new MvxColor(10, 0, 10), "Main");
+			plugin.AddColor(Color.FromArgb(10, 0, 10), "Main");
 
-            plugin.GetColor("Main").Should().NotBeNull();
+            plugin.GetColor("Main").Should().NotBe(new Color());
 
             plugin.ClearColors();
 
-            plugin.GetColor("Main").Should().BeNull();
+            plugin.GetColor("Main").Should().Be(new Color());
 		}
 
         [Fact]
 		public void AddingColorToTheBaseFontLookupOverridesTheColor()
 		{
             AssetPlugin plugin = new TestAssetPlugin();
-			plugin.AddColor(new MvxColor(255, 0, 0), "Red");
-            plugin.AddColor(new MvxColor(0, 0, 255), "Blue");
+			plugin.AddColor(Color.FromArgb(255, 0, 0), "Red");
+            plugin.AddColor(Color.FromArgb(0, 0, 255), "Blue");
             plugin.AddFont(new BaseFont() { Name = "Bold", FontFilename = "Bold.otf",Color=plugin.GetColor("Blue") });
 
             plugin.GetFontByName("Bold").Color.R.Should().Be(0);
@@ -164,8 +163,8 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
 		public void AddingColorToTheFontLookupOverridesTheColor()
 		{
             AssetPlugin plugin = new TestAssetPlugin();
-			plugin.AddColor(new MvxColor(255, 0, 0), "Red");
-			plugin.AddColor(new MvxColor(0, 0, 255), "Blue");
+			plugin.AddColor(Color.FromArgb(255, 0, 0), "Red");
+			plugin.AddColor(Color.FromArgb(0, 0, 255), "Blue");
 			plugin.AddFont(new Font() { Name = "Bold", FontFilename = "Bold.otf", Color = plugin.GetColor("Blue") });
 
             plugin.GetFontByName("Bold").Color.R.Should().Be(0);
@@ -181,8 +180,8 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
         public void GettingFontWithoutFaultyColorsFallBackToDefaultColor()
         {
             AssetPlugin plugin = new TestAssetPlugin();
-            plugin.AddColor(new MvxColor(255, 0, 0), "Red");
-            plugin.AddColor(new MvxColor(0, 0, 255), "Blue");
+            plugin.AddColor(Color.FromArgb(255, 0, 0), "Red");
+            plugin.AddColor(Color.FromArgb(0, 0, 255), "Blue");
             plugin.AddFont(new Font() { Name = "Bold", FontFilename = "Bold.otf", Color = plugin.GetColor("Red") });
 
             plugin.GetFontByName("Bold:").Color.R.Should().Be(255);
@@ -193,7 +192,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
         {
             AssetPlugin plugin = new TestAssetPlugin();
 
-            plugin.AddColor(new MvxColor(255, 0, 0), "Red");
+            plugin.AddColor(Color.FromArgb(255, 0, 0), "Red");
 
             var font = new iOSFont() { Name = "Bold", FontFilename = "Bold.otf", Color = plugin.GetColor("Red") };
 
@@ -209,7 +208,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Tests
         {
             AssetPlugin plugin = new TestAssetPlugin();
 
-            plugin.AddColor(new MvxColor(255, 0, 0), "Red");
+            plugin.AddColor(Color.FromArgb(255, 0, 0), "Red");
 
             Assert.Throws<Exception>(() => plugin.AddFont(new Font() { FontFilename = "Bold.otf", Color = plugin.GetColor("Red") }));
         }

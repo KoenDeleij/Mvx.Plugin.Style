@@ -1,4 +1,4 @@
-using MvvmCross.UI;
+using System.Drawing;
 
 namespace Redhotminute.Mvx.Plugin.Style.Models
 {
@@ -13,7 +13,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Models
 			set;
 		}
 
-		MvxColor Color {
+		Color Color {
 			get;
 			set;
 		}
