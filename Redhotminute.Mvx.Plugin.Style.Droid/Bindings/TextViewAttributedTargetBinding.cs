@@ -36,9 +36,12 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings {
 			}
 			else {
 				spannable = toSet as SpannableString;
-				if (spannable != null){
+				if (spannable != null)
+				{
 					label.TextFormatted = toSet as SpannableString;
-				}else{
+				}
+				else if (toSet != null)
+				{
 					label.Text = toSet.ToString();
 				}
 			}
