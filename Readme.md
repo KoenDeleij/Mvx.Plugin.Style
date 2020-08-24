@@ -1,8 +1,13 @@
-# Redhotminute MvvmCross Style Plugin
+# MvvmCross Style Plugin
 
 
 ![Alt Screenshot1](https://github.com/Redhotminute/Redhotminute.Mvx.Plugin.Style/blob/master/Samples/Screenshots/Style1.png?raw=true "Screenshot1" )
 ![Alt Screenshot2](https://github.com/Redhotminute/Redhotminute.Mvx.Plugin.Style/blob/master/Samples/Screenshots/Style2.png?raw=true "Screenshot2" )
+
+
+# Whats new in 2.3.0
+- Android X + Mvvmcross 7.0.0 support
+- Breaking : namespace changes (Removed references to Redhotminute)
 
 # Initialization
 
@@ -11,7 +16,7 @@
 Override the plugin configuration in your setup to set a fontsize factor. You could, depending on the device, change the overall size factor. 
 
 	protected override IMvxPluginConfiguration GetPluginConfiguration(Type plugin) { 
-		if (plugin == typeof(Redhotminute.Mvx.Plugin.Style.Touch.Plugin)) {
+		if (plugin == typeof(Mvx.Plugin.Style.Touch.Plugin)) {
 			return new RedhotminuteStyleConfiguration() {
 				FontSizeFactor = sizeFactor
 			};
@@ -23,7 +28,7 @@ Override the plugin configuration in your setup to set a fontsize factor. You co
 Same as with iOS. You can optionally also add a different lineheight. In some cases older Android devices really lack space. This will help.
 
 	protected override IMvxPluginConfiguration GetPluginConfiguration(Type plugin) {
-		if (plugin == typeof(Redhotminute.Mvx.Plugin.Style.Droid.Plugin)) {
+		if (plugin == typeof(Mvx.Plugin.Style.Droid.Plugin)) {
 			return new RedhotminuteStyleConfiguration() {
 				FontSizeFactor = fontSizeFactor,
 				LineHeightFactor = lineHeightFactor
