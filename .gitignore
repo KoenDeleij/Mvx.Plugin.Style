@@ -17,3 +17,4 @@ obj/
 Packages/
 *.DS_Store
 Resource.designer.cs
+.vs
