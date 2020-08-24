@@ -17,7 +17,7 @@ namespace Mvx.Plugin.Style.Droid.Plugin
     [Preserve(AllMembers = true)]
 	public class Plugin : IMvxConfigurablePlugin
 	{
-        private RedhotminuteStyleConfiguration configuration;
+        private StyleConfiguration configuration;
 
         public void Load()
         {
