@@ -13,7 +13,7 @@ namespace Mvx.Plugin.Style.SampleApp.iOS
         
 		protected override IMvxPluginConfiguration GetPluginConfiguration(Type plugin) {
 		    if (plugin == typeof(Mvx.Plugin.Style.iOS.Plugin.Plugin)) {
-                return new Mvx.Plugin.Style.Plugin.RedhotminuteStyleConfiguration()
+                return new Mvx.Plugin.Style.Plugin.StyleConfiguration()
                 {
                     FontSizeFactor = 1.0f,
                     LineHeightFactor = 1.0f

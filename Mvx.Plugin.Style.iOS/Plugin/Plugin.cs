@@ -16,7 +16,7 @@ namespace Mvx.Plugin.Style.iOS.Plugin
     [Preserve(AllMembers = true)]
 	public class Plugin : IMvxConfigurablePlugin
 	{
-		private RedhotminuteStyleConfiguration configuration;
+		private StyleConfiguration configuration;
 		public void Load() {
 			var instance = new TouchAssetPlugin();
 			instance.Setup(configuration);
@@ -28,7 +28,7 @@ namespace Mvx.Plugin.Style.iOS.Plugin
 
 		public void Configure(IMvxPluginConfiguration configuration) {
 			if (configuration != null) {
-				this.configuration = configuration as RedhotminuteStyleConfiguration;
+				this.configuration = configuration as StyleConfiguration;
 			}
 		}
 

@@ -1,11 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;Xamarin.iOS10;MonoAndroid11.0</TargetFrameworks>
+   <TargetFrameworks>netstandard2.0;Xamarin.iOS10;MonoAndroid11.0</TargetFrameworks>
    <!--<TargetFramework>netstandard2.0</TargetFramework>-->
     <PackageId>Mvx.Plugin.Style</PackageId>
     <Authors>Koen Deleij</Authors>
-    <Company>Redhotminute BV</Company>
     <Product>Mvx.Plugin.Style</Product>
     <PackageVersion>1.0.0</PackageVersion>
     <Summary>Basic plugin for using the Specification Pattern with Linq</Summary>

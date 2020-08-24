@@ -8,16 +8,16 @@ namespace Mvx.Plugin.Style.Plugin
 {
     public abstract class AssetPlugin : IAssetPlugin
     {
-        RedhotminuteStyleConfiguration _configuration;
+        StyleConfiguration _configuration;
 
         public AssetPlugin()
         {
-            _configuration = new RedhotminuteStyleConfiguration() { FontSizeFactor = 1.0f, LineHeightFactor = 1.0f };
+            _configuration = new StyleConfiguration() { FontSizeFactor = 1.0f, LineHeightFactor = 1.0f };
             FontSizeFactor = _configuration.FontSizeFactor.Value;
             LineHeightFactor = _configuration.LineHeightFactor;
         }
 
-        public void Setup(RedhotminuteStyleConfiguration configuration)
+        public void Setup(StyleConfiguration configuration)
         {
             if (configuration != null)
             {

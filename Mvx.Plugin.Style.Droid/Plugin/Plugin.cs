@@ -34,7 +34,7 @@ namespace Mvx.Plugin.Style.Droid.Plugin
         {
             if (configuration != null)
             {
-                this.configuration = configuration as RedhotminuteStyleConfiguration;
+                this.configuration = configuration as StyleConfiguration;
             }
         }
 

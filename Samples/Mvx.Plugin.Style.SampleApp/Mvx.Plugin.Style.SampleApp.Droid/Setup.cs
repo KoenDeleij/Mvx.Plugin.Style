@@ -20,7 +20,7 @@ namespace Mvx.Plugin.Style.SampleApp.Droid
 
 		protected override MvvmCross.Plugin.IMvxPluginConfiguration GetPluginConfiguration(System.Type plugin) {
 			if (plugin == typeof(Mvx.Plugin.Style.Droid.Plugin.Plugin)) {
-                return new RedhotminuteStyleConfiguration() {
+                return new StyleConfiguration() {
 					FontSizeFactor = 1.0f,
 					LineHeightFactor = 1.0f
 				};
