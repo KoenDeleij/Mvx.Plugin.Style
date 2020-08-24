@@ -45,7 +45,7 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings
 
 					if (font.Color != System.Drawing.Color.Empty)
                     {
-						label.SetTextColor(font.Color.ToNativeColor());
+						label.SetTextColor(new Color(font.Color.R,font.Color.G,font.Color.B,font.Color.A));
 					}
 
 					var multiplierFactor = AssetPlugin.LineHeightFactor ?? 1;

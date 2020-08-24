@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;Xamarin.iOS10;MonoAndroid11.0</TargetFrameworks>
-    <!--<TargetFramework>netstandard2.0</TargetFramework>-->
+   <!--<TargetFramework>netstandard2.0</TargetFramework>-->
     <PackageId>Redhotminute.Mvx.Plugin.Style</PackageId>
     <Authors>Koen Deleij</Authors>
     <Company>Redhotminute BV</Company>
@@ -20,12 +20,20 @@
     <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);IncludePlatformSpecificDlls</TargetsForTfmSpecificBuildOutput>
   </PropertyGroup>
     
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>..\bin\Debug</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>..\bin\Release</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
   <Target Name="IncludePlatformSpecificDlls">
       <ItemGroup Condition=" '$(TargetFramework)' == 'MonoAndroid11.0' ">
-          <BuildOutputInPackage Include="./bin/$(Configuration)/Redhotminute.Mvx.Plugin.Style.Droid.dll" />
+          <BuildOutputInPackage Include="../bin/$(Configuration)/Redhotminute.Mvx.Plugin.Style.Droid.dll" />
       </ItemGroup>
       <ItemGroup Condition=" '$(TargetFramework)' == 'Xamarin.iOS10' ">
-          <BuildOutputInPackage Include="./bin/$(Configuration)/Redhotminute.Mvx.Plugin.Style.Touch.dll" />
+          <BuildOutputInPackage Include="../bin/$(Configuration)/Redhotminute.Mvx.Plugin.Style.Touch.dll" />
       </ItemGroup>
   </Target>
     
