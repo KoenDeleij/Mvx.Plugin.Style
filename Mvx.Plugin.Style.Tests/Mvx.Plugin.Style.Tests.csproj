@@ -38,6 +38,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Redhotminute.Mvx.Plugin.Style\Redhotminute.Mvx.Plugin.Style.csproj" />
+    <ProjectReference Include="..\Mvx.Plugin.Style\Mvx.Plugin.Style.csproj" />
   </ItemGroup>
 </Project>
