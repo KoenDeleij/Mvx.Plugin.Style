@@ -3,7 +3,6 @@ using Android.Widget;
 using MvvmCross.Binding;
 using MvvmCross.Binding.Bindings.Target;
 using MvvmCross.Logging;
-using MvvmCross.Plugin.Color.Platforms.Android;
 using Redhotminute.Mvx.Plugin.Style.Droid.Helpers;
 using Redhotminute.Mvx.Plugin.Style.Droid.Plugin;
 using Redhotminute.Mvx.Plugin.Style.Models;
@@ -44,10 +43,10 @@ namespace Redhotminute.Mvx.Plugin.Style.Droid.Bindings
                         fontSize = label.TextSize;
                     }
 
-					if (font.Color != System.Drawing.Color.Empty) {
+					if (font.Color != System.Drawing.Color.Empty)
+                    {
 						label.SetTextColor(font.Color.ToNativeColor());
-
-                    }
+					}
 
 					var multiplierFactor = AssetPlugin.LineHeightFactor ?? 1;
 

@@ -1,12 +1,12 @@
 using Android.App;
 using Android.OS;
-using MvvmCross.Droid.Support.V7.AppCompat;
+using MvvmCross.Platforms.Android.Views;
 using Redhotminute.Mvx.Plugin.Style.SampleApp.ViewModels;
 
 namespace Redhotminute.Mvx.Plugin.Style.SampleApp.Droid.Views
 {
     [Activity]
-    public class FirstView : MvxAppCompatActivity<FirstViewModel>
+    public class FirstView : MvxActivity<FirstViewModel>
     {
         protected override void OnCreate(Bundle bundle)
         {
