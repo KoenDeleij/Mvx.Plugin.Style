@@ -65,7 +65,7 @@ namespace Mvx.Plugin.Style.Models
             return this;
         }
 
-        public static TFont CopyFont<TRefFont, TFont>(TRefFont font, string newId) where TRefFont : Font where TFont : Font, new()
+        public static new TFont CopyFont<TRefFont, TFont>(TRefFont font, string newId) where TRefFont : Font where TFont : Font, new()
         {
             TFont newFont = new TFont();
             newFont.Name = newId;

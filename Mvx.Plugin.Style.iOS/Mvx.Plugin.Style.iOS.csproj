@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Redhotminute.Mvx.Plugin.Style.Touch</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>Redhotminute.Mvx.Plugin.Style.Touch</AssemblyName>
+    <AssemblyName>Mvx.Plugin.Style.iOS</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

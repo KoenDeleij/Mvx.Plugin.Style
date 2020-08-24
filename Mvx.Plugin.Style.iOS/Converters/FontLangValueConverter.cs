@@ -24,7 +24,7 @@ namespace Mvx.Plugin.Style.iOS.Converters
 
 		private object ConvertValue(object value,object parameter) {
 			IMvxLanguageBinder textProvider = value as IMvxLanguageBinder;
-			TouchAssetPlugin assetPlugin = MvvmCross.Mvx.Resolve<IAssetPlugin>() as TouchAssetPlugin;
+			TouchAssetPlugin assetPlugin = MvvmCross.Mvx.IoCProvider.Resolve<IAssetPlugin>() as TouchAssetPlugin;
 
 			if (value!= null && parameter!= null){
 				try{
