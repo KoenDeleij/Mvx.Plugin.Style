@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <!--<TargetFrameworks>netstandard2.0;Xamarin.iOS10;MonoAndroid11.0</TargetFrameworks>-->
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;Xamarin.iOS10;MonoAndroid11.0</TargetFrameworks>
+    <!--<TargetFramework>netstandard2.0</TargetFramework>-->
     <PackageId>Redhotminute.Mvx.Plugin.Style</PackageId>
     <Authors>Koen Deleij</Authors>
     <Company>Redhotminute BV</Company>
