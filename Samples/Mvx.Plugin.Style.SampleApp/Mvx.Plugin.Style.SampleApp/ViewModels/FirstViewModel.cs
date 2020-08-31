@@ -70,7 +70,7 @@ namespace Mvx.Plugin.Style.SampleApp.ViewModels
 
         private void LoadStyle1() {
             
-            AssetProvider.AddColor( Color.FromArgb (42, 74, 99), ColorBackground)
+            AssetProvider.AddColor(Color.FromArgb (42, 74, 99), ColorBackground)
                          .AddColor(Color.FromArgb(255, 255, 245), ColorPrimary)
                          .AddColor(Color.FromArgb(42, 183, 202), ColorSecondairy)
                          .AddColor(Color.FromArgb(42, 183, 202), ColorMarked);
