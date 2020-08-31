@@ -50,7 +50,6 @@
     <PackageReference Include="MvvmCross" Version="7.0.0" />
     <PackageReference Include="MSBuild.Sdk.Extras" Version="1.5.4" />
     <PackageReference Include="MvvmCross.Plugin.Color" Version="7.0.0" />
-        <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
   </ItemGroup><!--
   <ItemGroup>
     <Reference Include="mscorlib" />
