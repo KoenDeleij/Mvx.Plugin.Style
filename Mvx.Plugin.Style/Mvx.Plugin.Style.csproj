@@ -1,4 +1,4 @@
-<Project Sdk="MSBuild.Sdk.Extras">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
    <TargetFrameworks>netstandard2.1;Xamarin.iOS10;MonoAndroid10.0</TargetFrameworks>
@@ -14,11 +14,11 @@
     <RepositoryUrl>https://github.com/KoenDeleij/Mvx.Plugin.Style</RepositoryUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
-    
+
   <PropertyGroup>
     <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);IncludePlatformSpecificDlls</TargetsForTfmSpecificBuildOutput>
   </PropertyGroup>
-    
+   
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>..\bin\Debug</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
@@ -50,9 +50,10 @@
     <PackageReference Include="MvvmCross" Version="7.0.0" />
     <PackageReference Include="MSBuild.Sdk.Extras" Version="1.5.4" />
     <PackageReference Include="MvvmCross.Plugin.Color" Version="7.0.0" />
+        <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
   </ItemGroup><!--
   <ItemGroup>
     <Reference Include="mscorlib" />
-  </ItemGroup>
-  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />-->
+  </ItemGroup>-->
+  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
 </Project>
