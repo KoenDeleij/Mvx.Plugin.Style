@@ -10,6 +10,7 @@ using Mvx.Plugin.Style.Models;
 using Mvx.Plugin.Style.Plugin;
 using Mvx.Plugin.Style.iOS.Helpers;
 using UIKit;
+using MvvmCross.IoC;
 
 namespace Mvx.Plugin.Style.iOS.Plugin
 {
