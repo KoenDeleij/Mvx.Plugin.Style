@@ -57,8 +57,6 @@
     <Reference Include="MvvmCross">
       <HintPath>..\packages\MvvmCross.7.0.0\lib\xamarinios10\MvvmCross.dll</HintPath>
     </Reference>
-    <Reference Include="OpenTK-1.0" />
-    <Reference Include="System.Drawing.Common.dll" />
     <Reference Include="MvvmCross.Plugin.Color">
       <HintPath>..\packages\MvvmCross.Plugin.Color.7.0.0\lib\xamarinios10\MvvmCross.Plugin.Color.dll</HintPath>
     </Reference>
