@@ -2,6 +2,7 @@
 using Android.Content;
 using Android.Text.Style;
 using Android.Views;
+using MvvmCross.IoC;
 using MvvmCross.Platforms.Android;
 
 namespace Mvx.Plugin.Style.Droid.Helpers.Spans
@@ -22,7 +23,7 @@ namespace Mvx.Plugin.Style.Droid.Helpers.Spans
                 Intent i = new Intent(Intent.ActionView);
                 i.SetData(Android.Net.Uri.Parse(url));
 
-                var top = MvvmCross.Mvx.IoCProvider.Resolve<IMvxAndroidCurrentTopActivity>();
+                var top = MvxIoCProvider.Instance.Resolve<IMvxAndroidCurrentTopActivity>();
                 top.Activity.StartActivity(i);
             }
         }

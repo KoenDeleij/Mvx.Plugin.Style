@@ -1,6 +1,7 @@
 using System;
 using System.Globalization;
 using MvvmCross.Converters;
+using MvvmCross.IoC;
 using MvvmCross.Logging;
 using Mvx.Plugin.Style.Plugin;
 
@@ -23,7 +24,7 @@ namespace Mvx.Plugin.Style.Converters
 			AssetPlugin plugin = value as AssetPlugin;
 
 			if (plugin == null) {
-				plugin = (AssetPlugin)MvvmCross.Mvx.IoCProvider.Resolve<IAssetPlugin>();
+				plugin = (AssetPlugin)MvxIoCProvider.Instance.Resolve<IAssetPlugin>();
 			}
 
 			if (parameter!= null){

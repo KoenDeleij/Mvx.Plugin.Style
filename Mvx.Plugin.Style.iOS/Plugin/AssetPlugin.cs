@@ -63,7 +63,7 @@ namespace Mvx.Plugin.Style.iOS.Plugin
                 {
                     this.ConvertFontFileNameForPlatform(ref font);
 
-                    var assetPlugin = MvvmCross.Mvx.IoCProvider.Resolve<IAssetPlugin>();
+                    var assetPlugin = MvxIoCProvider.Instance.Resolve<IAssetPlugin>();
 
                     string cleanText = string.Empty;
 

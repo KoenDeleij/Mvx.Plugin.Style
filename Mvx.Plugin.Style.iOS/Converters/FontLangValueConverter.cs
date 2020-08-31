@@ -6,6 +6,7 @@ using MvvmCross.Binding;
 using MvvmCross.Exceptions;
 using Mvx.Plugin.Style.iOS.Plugin;
 using Mvx.Plugin.Style.Plugin;
+using MvvmCross.IoC;
 
 namespace Mvx.Plugin.Style.iOS.Converters
 {
@@ -24,7 +25,7 @@ namespace Mvx.Plugin.Style.iOS.Converters
 
 		private object ConvertValue(object value,object parameter) {
 			IMvxLanguageBinder textProvider = value as IMvxLanguageBinder;
-			TouchAssetPlugin assetPlugin = MvvmCross.Mvx.IoCProvider.Resolve<IAssetPlugin>() as TouchAssetPlugin;
+			TouchAssetPlugin assetPlugin = MvxIoCProvider.Instance.Resolve<IAssetPlugin>() as TouchAssetPlugin;
 
 			if (value!= null && parameter!= null){
 				try{

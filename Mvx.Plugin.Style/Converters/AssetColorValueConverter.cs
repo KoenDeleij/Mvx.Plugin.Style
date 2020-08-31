@@ -1,6 +1,7 @@
 using System;
 using System.Globalization;
 using MvvmCross.Converters;
+using MvvmCross.IoC;
 using MvvmCross.Logging;
 using MvvmCross.UI;
 using Mvx.Plugin.Style.Plugin;
@@ -10,7 +11,7 @@ namespace Mvx.Plugin.Style.Converters
     public class AssetColorValueConverter : MvxValueConverter {
 
 		private IMvxNativeColor _nativeColor;
-        private IMvxNativeColor NativeColor => _nativeColor ?? (_nativeColor = MvvmCross.Mvx.IoCProvider.Resolve<IMvxNativeColor>());
+        private IMvxNativeColor NativeColor => _nativeColor ?? (_nativeColor = MvxIoCProvider.Instance.Resolve<IMvxNativeColor>());
 
         private IAssetPlugin _plugin;
 		public override object Convert (object value, Type targetType, object parameter, CultureInfo culture)
@@ -27,7 +28,7 @@ namespace Mvx.Plugin.Style.Converters
             else if(_plugin == null)
             {
 				//try to resolve it. Not ideal but sometimes necessary within simpel cells
-                _plugin = MvvmCross.Mvx.IoCProvider.Resolve<IAssetPlugin>();
+                _plugin = MvxIoCProvider.Instance.Resolve<IAssetPlugin>();
 
                 MvxPluginLog.Instance.Trace("AssetProvider not available for Color conversion. Resolved it");
 			}

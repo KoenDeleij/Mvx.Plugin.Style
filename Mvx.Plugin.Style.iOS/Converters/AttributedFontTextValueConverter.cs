@@ -8,6 +8,7 @@ using Mvx.Plugin.Style.Plugin;
 using Mvx.Plugin.Style.iOS.Plugin;
 using Foundation;
 using UIKit;
+using MvvmCross.IoC;
 
 namespace Mvx.Plugin.Style.iOS.Converters
 {
@@ -26,7 +27,7 @@ namespace Mvx.Plugin.Style.iOS.Converters
 
 		private object ConvertValue(object value,object parameter) 
         {
-			TouchAssetPlugin assetPlugin = MvvmCross.Mvx.IoCProvider.Resolve<IAssetPlugin>() as TouchAssetPlugin;
+			TouchAssetPlugin assetPlugin = MvxIoCProvider.Instance.Resolve<IAssetPlugin>() as TouchAssetPlugin;
 
 			if (value!= null && parameter!= null)
             {

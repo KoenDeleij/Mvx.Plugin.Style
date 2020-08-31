@@ -8,6 +8,7 @@ using Android.Text;
 using Android.Text.Style;
 using MvvmCross.Binding;
 using MvvmCross.Converters;
+using MvvmCross.IoC;
 using MvvmCross.Logging;
 using MvvmCross.Platforms.Android;
 using MvvmCross.Plugin.Color.Platforms.Android;
@@ -38,10 +39,10 @@ namespace Mvx.Plugin.Style.Droid.Converters {
 				}
 
 				if (_assetPlugin == null) {
-					_assetPlugin = MvvmCross.Mvx.IoCProvider.Resolve<IAssetPlugin>();
+					_assetPlugin = MvxIoCProvider.Instance.Resolve<IAssetPlugin>();
 				}
 				if (_context == null) {
-					_context = MvvmCross.Mvx.IoCProvider.Resolve<IMvxAndroidCurrentTopActivity>().Activity.BaseContext;
+					_context = MvxIoCProvider.Instance.Resolve<IMvxAndroidCurrentTopActivity>().Activity.BaseContext;
 				}
 
 				_extendedFont = _assetPlugin.GetFontByName(fontName) as Font;

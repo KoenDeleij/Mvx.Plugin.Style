@@ -8,6 +8,7 @@ using Android.Views;
 using MvvmCross.Binding;
 using MvvmCross.Binding.Bindings;
 using MvvmCross.Exceptions;
+using MvvmCross.IoC;
 using MvvmCross.Logging;
 using MvvmCross.Platforms.Android.Binding.Binders;
 using MvvmCross.Platforms.Android.Binding.ResourceHelpers;
@@ -17,7 +18,7 @@ namespace Mvx.Plugin.Style.Droid.BindingSetup {
 	public class MvxAndroidStyleViewBinder : MvxAndroidViewBinder{
 
 		private readonly Lazy<IMvxAndroidBindingResource> mvxAndroidBindingResource
-            = new Lazy<IMvxAndroidBindingResource>(() => MvvmCross.Mvx.IoCProvider.GetSingleton<IMvxAndroidBindingResource>());
+            = new Lazy<IMvxAndroidBindingResource>(() => MvxIoCProvider.Instance.GetSingleton<IMvxAndroidBindingResource>());
 		private readonly object _source;
 		public MvxAndroidStyleViewBinder(object source):base(source) {
 			_source = source;

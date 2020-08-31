@@ -1,4 +1,5 @@
 using MvvmCross.Binding.Binders;
+using MvvmCross.IoC;
 using MvvmCross.Platforms.Android.Binding;
 using MvvmCross.Platforms.Android.Binding.Binders;
 using MvvmCross.Platforms.Android.Binding.ResourceHelpers;
@@ -20,11 +21,11 @@ namespace Mvx.Plugin.Style.Droid.BindingSetup
         protected override void RegisterCore() {
 			base.RegisterCore();
 			//override the IMvxBinder by a custom one providing a fontbinding
-			MvvmCross.Mvx.IoCProvider.RegisterSingleton<IMvxBinder>(new MvxFromTextExtendedBinder());
+			MvxIoCProvider.Instance.RegisterSingleton<IMvxBinder>(new MvxFromTextExtendedBinder());
 		}
 
 		protected override void RegisterBindingDescriptionParser() {
-			MvvmCross.Mvx.IoCProvider.RegisterSingleton<IMvxBindingDescriptionParser>(new MvxBindingDescriptionExtendedParser());
+			MvxIoCProvider.Instance.RegisterSingleton<IMvxBindingDescriptionParser>(new MvxBindingDescriptionExtendedParser());
 		}
 	}
 }

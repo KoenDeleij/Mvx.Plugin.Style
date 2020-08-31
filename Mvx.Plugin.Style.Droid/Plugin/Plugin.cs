@@ -4,6 +4,7 @@ using Android.Widget;
 using MvvmCross;
 using MvvmCross.Binding.Bindings.Target.Construction;
 using MvvmCross.Converters;
+using MvvmCross.IoC;
 using MvvmCross.Plugin;
 using Mvx.Plugin.Style.Bindings;
 using Mvx.Plugin.Style.Converters;
@@ -23,11 +24,11 @@ namespace Mvx.Plugin.Style.Droid.Plugin
         {
             var instance = new DroidAssetPlugin();
             instance.Setup(configuration);
-            MvvmCross.Mvx.IoCProvider.RegisterSingleton<IAssetPlugin>(instance);
+            MvxIoCProvider.Instance.RegisterSingleton<IAssetPlugin>(instance);
 
-            MvvmCross.Mvx.IoCProvider.CallbackWhenRegistered<IMvxValueConverterRegistry>(RegisterValueConverters);
-            MvvmCross.Mvx.IoCProvider.CallbackWhenRegistered<IMvxTargetBindingFactoryRegistry>(RegisterCustomBinding);
-            MvvmCross.Mvx.IoCProvider.RegisterSingleton<IMvxFontBindingParser>(new MvxFontBindingParser());
+            MvxIoCProvider.Instance.CallbackWhenRegistered<IMvxValueConverterRegistry>(RegisterValueConverters);
+            MvxIoCProvider.Instance.CallbackWhenRegistered<IMvxTargetBindingFactoryRegistry>(RegisterCustomBinding);
+            MvxIoCProvider.Instance.RegisterSingleton<IMvxFontBindingParser>(new MvxFontBindingParser());
         }
 
         public void Configure(IMvxPluginConfiguration configuration)
@@ -40,7 +41,7 @@ namespace Mvx.Plugin.Style.Droid.Plugin
 
         private void RegisterValueConverters()
         {
-            var registry = MvvmCross.Mvx.IoCProvider.Resolve<IMvxValueConverterRegistry>();
+            var registry = MvxIoCProvider.Instance.Resolve<IMvxValueConverterRegistry>();
             registry.AddOrOverwriteFrom(typeof(FontResourceValueConverter).GetTypeInfo().Assembly);
             registry.AddOrOverwriteFrom(typeof(AttributedTextConverter).GetTypeInfo().Assembly);
             registry.AddOrOverwriteFrom(typeof(AssetColorValueConverter).GetTypeInfo().Assembly);
@@ -48,7 +49,7 @@ namespace Mvx.Plugin.Style.Droid.Plugin
 
         private void RegisterCustomBinding()
         {
-            var registry = MvvmCross.Mvx.IoCProvider.Resolve<IMvxTargetBindingFactoryRegistry>();
+            var registry = MvxIoCProvider.Instance.Resolve<IMvxTargetBindingFactoryRegistry>();
             registry.RegisterCustomBindingFactory<TextView>("AttributedText", textView => new TextViewAttributedTargetBinding(textView));
             registry.RegisterCustomBindingFactory<TextView>("Font", textView => new TextViewFontTargetBinding(textView));
             registry.RegisterCustomBindingFactory<EditText>("Font", textView => new TextViewFontTargetBinding(textView));
