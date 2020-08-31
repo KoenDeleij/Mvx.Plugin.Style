@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="MSBuild.Sdk.Extras">
 
   <PropertyGroup>
    <TargetFrameworks>netstandard2.1;Xamarin.iOS10;MonoAndroid10.0</TargetFrameworks>
@@ -50,9 +50,9 @@
     <PackageReference Include="MvvmCross" Version="7.0.0" />
     <PackageReference Include="MSBuild.Sdk.Extras" Version="1.5.4" />
     <PackageReference Include="MvvmCross.Plugin.Color" Version="7.0.0" />
-  </ItemGroup>
+  </ItemGroup><!--
   <ItemGroup>
     <Reference Include="mscorlib" />
   </ItemGroup>
-  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
+  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />-->
 </Project>
