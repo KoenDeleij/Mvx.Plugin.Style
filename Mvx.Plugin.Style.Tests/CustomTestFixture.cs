@@ -22,7 +22,7 @@ namespace Mvx.Plugin.Style.Tests
             var plugin = new TestAssetPlugin();
             plugin.AddColor(System.Drawing.Color.FromArgb(255, 0, 0), "Red");
             plugin.AddColor(System.Drawing.Color.FromArgb(0, 0, 255), "Blue");
-            FontToAdd = new Style.Models.Font() { Name = "Bold", FontFilename = "Bold.otf", Color = plugin.GetColor("Blue") };
+            FontToAdd = new Font() { Name = "Bold", FontFilename = "Bold.otf", Color = plugin.GetColor("Blue") };
             plugin.AddFont(FontToAdd);
 
             Ioc.RegisterSingleton<IAssetPlugin>(plugin);
