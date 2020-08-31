@@ -17,7 +17,7 @@ Override the plugin configuration in your setup to set a fontsize factor. You co
 
 	protected override IMvxPluginConfiguration GetPluginConfiguration(Type plugin) { 
 		if (plugin == typeof(Mvx.Plugin.Style.Touch.Plugin)) {
-			return new RedhotminuteStyleConfiguration() {
+			return new StyleConfiguration() {
 				FontSizeFactor = sizeFactor
 			};
 		}
@@ -29,7 +29,7 @@ Same as with iOS. You can optionally also add a different lineheight. In some ca
 
 	protected override IMvxPluginConfiguration GetPluginConfiguration(Type plugin) {
 		if (plugin == typeof(Mvx.Plugin.Style.Droid.Plugin)) {
-			return new RedhotminuteStyleConfiguration() {
+			return new StyleConfiguration() {
 				FontSizeFactor = fontSizeFactor,
 				LineHeightFactor = lineHeightFactor
 			};
@@ -310,7 +310,7 @@ In case you want to bind the color you can use the color name as bindable proper
 
 ## NUGET
 
-<a href="https://www.nuget.org/packages/Redhotminute.Mvx.Plugin.Style/">https://www.nuget.org/packages/Redhotminute.Mvx.Plugin.Style/</a>
+<a href="https://www.nuget.org/packages/Mvx.Plugin.Style/">https://www.nuget.org/packages/Mvx.Plugin.Style/</a>
 
 		
 ## Next

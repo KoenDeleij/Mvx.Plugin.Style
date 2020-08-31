@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-   <TargetFrameworks>netstandard2.0;Xamarin.iOS10;MonoAndroid11.0</TargetFrameworks>
-   <!--<TargetFramework>netstandard2.0</TargetFramework>-->
+   <TargetFrameworks>netstandard2.1;Xamarin.iOS10;MonoAndroid10.0</TargetFrameworks>
+   <!--<TargetFramework>netstandard2.1</TargetFramework>-->
     <PackageId>Mvx.Plugin.Style</PackageId>
     <Authors>Koen Deleij</Authors>
     <Product>Mvx.Plugin.Style</Product>
@@ -27,8 +27,9 @@
     <OutputPath>..\bin\Release</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
+    
   <Target Name="IncludePlatformSpecificDlls">
-      <ItemGroup Condition=" '$(TargetFramework)' == 'MonoAndroid11.0' ">
+      <ItemGroup Condition=" '$(TargetFramework)' == 'MonoAndroid10.0' ">
           <BuildOutputInPackage Include="../bin/$(Configuration)/Mvx.Plugin.Style.Droid.dll" />
       </ItemGroup>
       <ItemGroup Condition=" '$(TargetFramework)' == 'Xamarin.iOS10' ">

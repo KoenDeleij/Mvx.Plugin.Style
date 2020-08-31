@@ -45,7 +45,7 @@ namespace Mvx.Plugin.Style.iOS.Plugin
         }
 
         /// <summary>
-        /// Custom bind the Redhotminutefont to controls
+        /// Custom bind the controls
         /// </summary>
         private void RegisterCustomBinding()
         {

@@ -1,3 +1,4 @@
+using Android;
 using Android.App;
 using Android.OS;
 using MvvmCross.Platforms.Android.Views;
