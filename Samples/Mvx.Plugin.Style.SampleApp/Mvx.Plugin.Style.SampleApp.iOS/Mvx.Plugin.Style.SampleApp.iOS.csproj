@@ -124,13 +124,6 @@
     <Reference Include="MvvmCross.Plugin.Color">
       <HintPath>..\..\..\packages\MvvmCross.Plugin.Color.7.0.0\lib\xamarinios10\MvvmCross.Plugin.Color.dll</HintPath>
     </Reference>
-    <Reference Include="System.Drawing.Common.dll" />
-    <Reference Include="Mvx.Plugin.Style">
-      <HintPath>..\..\..\packages\Mvx.Plugin.Style.2.3.0-beta35\lib\xamarinios10\Mvx.Plugin.Style.dll</HintPath>
-    </Reference>
-    <Reference Include="Mvx.Plugin.Style.iOS">
-      <HintPath>..\..\..\packages\Mvx.Plugin.Style.2.3.0-beta35\lib\xamarinios10\Mvx.Plugin.Style.iOS.dll</HintPath>
-    </Reference>
     <Reference Include="mscorlib" />
   </ItemGroup>
   <ItemGroup>
@@ -249,6 +242,14 @@
     <ProjectReference Include="..\Mvx.Plugin.Style.SampleApp\Mvx.Plugin.Style.SampleApp.csproj">
       <Project>{2C4924EC-F433-40B5-B803-1CAB89D5ACA6}</Project>
       <Name>Mvx.Plugin.Style.SampleApp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Mvx.Plugin.Style.iOS\Mvx.Plugin.Style.iOS.csproj">
+      <Project>{D802EB5C-F1CA-40E8-B59B-1995CA3BE304}</Project>
+      <Name>Mvx.Plugin.Style.iOS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Mvx.Plugin.Style\Mvx.Plugin.Style.csproj">
+      <Project>{4A355044-681E-4F4D-9C0A-6F30BBFFC1A8}</Project>
+      <Name>Mvx.Plugin.Style</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

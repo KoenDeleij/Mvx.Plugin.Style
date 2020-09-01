@@ -69,35 +69,34 @@ namespace Mvx.Plugin.Style.SampleApp.ViewModels
         }
 
         private void LoadStyle1() {
-            
             AssetProvider.AddColor(Color.FromArgb (42, 74, 99), ColorBackground)
                          .AddColor(Color.FromArgb(255, 255, 245), ColorPrimary)
                          .AddColor(Color.FromArgb(42, 183, 202), ColorSecondairy)
                          .AddColor(Color.FromArgb(42, 183, 202), ColorMarked);
 
             var regularFont = new iOSFont() { Name = FontRegularSmall, FontFilename = "Nunito-Regular.ttf", FontPlatformName = "Nunito-Regular", Size = 12, LineHeight = 12, LineHeightMultiplier = 1.33f, Color = AssetProvider.GetColor(ColorPrimary), SelectedColor = AssetProvider.GetColor(ColorBackground) };
-            var regularFontAndroid = Font.CopyFont<iOSFont, AndroidFont>(regularFont, FontRegularSmall);
+            var regularFontAndroid = Models.Font.CopyFont<iOSFont, AndroidFont>(regularFont, FontRegularSmall);
             regularFontAndroid.LineHeightMultiplier = 1.16f;
 
 
-            AssetProvider.AddFont(new Font() { Name = FontH1, FontFilename = "JosefinSlab-Thin.ttf", FontPlatformName = "JosefinSlab-Thin", Size = 40, LineHeight = 20, Color = AssetProvider.GetColor(ColorSecondairy),LineBreakMode= LineBreakMode.TruncateTail })
-                         .AddFont(new Font() { Name = FontItalic, FontFilename = "Nunito-Italic.ttf", FontPlatformName = "Nunito-Italic", Size = 13, Color = AssetProvider.GetColor(ColorSecondairy), Alignment = TextAlignment.Right })
-                         .AddFont(new Font() { Name = FontBold, FontFilename = "Nunito-Light.ttf", FontPlatformName = "Nunito-Light", Size = 13, Color = AssetProvider.GetColor(ColorSecondairy) })
-                         .AddFont(new Font() { Name = FontRegular, FontFilename = "Nunito-Regular.ttf", FontPlatformName = "Nunito-Regular", Size = 16, LineHeight = 12, Color = AssetProvider.GetColor(ColorPrimary), SelectedColor = AssetProvider.GetColor(ColorBackground), }, _tags)//10 13
+            AssetProvider.AddFont(new Models.Font() { Name = FontH1, FontFilename = "JosefinSlab-Thin.ttf", FontPlatformName = "JosefinSlab-Thin", Size = 40, LineHeight = 20, Color = AssetProvider.GetColor(ColorSecondairy),LineBreakMode= LineBreakMode.TruncateTail })
+                         .AddFont(new Models.Font() { Name = FontItalic, FontFilename = "Nunito-Italic.ttf", FontPlatformName = "Nunito-Italic", Size = 13, Color = AssetProvider.GetColor(ColorSecondairy), Alignment = TextAlignment.Right })
+                         .AddFont(new Models.Font() { Name = FontBold, FontFilename = "Nunito-Light.ttf", FontPlatformName = "Nunito-Light", Size = 13, Color = AssetProvider.GetColor(ColorSecondairy) })
+                         .AddFont(new Models.Font() { Name = FontRegular, FontFilename = "Nunito-Regular.ttf", FontPlatformName = "Nunito-Regular", Size = 16, LineHeight = 12, Color = AssetProvider.GetColor(ColorPrimary), SelectedColor = AssetProvider.GetColor(ColorBackground), }, _tags)//10 13
                          .AddFont(regularFont, _tags)
                          .AddFont(regularFontAndroid, _tags);
         }                               
 
         private void LoadStyle2() {
-            AssetProvider.AddColor(Color.FromArgb(0, 200, 190), ColorBackground)
-                         .AddColor(Color.FromArgb(101, 18, 111), ColorPrimary)
-                         .AddColor(Color.FromArgb(230, 229, 6), ColorSecondairy)
-                         .AddColor(Color.FromArgb(101, 18, 111), ColorMarked);
-			AssetProvider.AddFont(new Font() { Name = FontH1, FontFilename = "JosefinSlab-Bold.ttf", FontPlatformName = "JosefinSlab-Bold", Size = 40, LineHeight = 50,LineHeightMultiplier=1.0f, Color = AssetProvider.GetColor(ColorSecondairy) })
-                         .AddFont(new Font() { Name = FontItalic, FontFilename = "Nunito-Italic.ttf", FontPlatformName = "Nunito-Italic", Size = 15, Color = AssetProvider.GetColor(ColorSecondairy), Alignment = TextAlignment.Center })
+            AssetProvider.AddColor(System.Drawing.Color.FromArgb(0, 200, 190), ColorBackground)
+                         .AddColor(System.Drawing.Color.FromArgb(101, 18, 111), ColorPrimary)
+                         .AddColor(System.Drawing.Color.FromArgb(230, 229, 6), ColorSecondairy)
+                         .AddColor(System.Drawing.Color.FromArgb(101, 18, 111), ColorMarked);
+			AssetProvider.AddFont(new Models.Font() { Name = FontH1, FontFilename = "JosefinSlab-Bold.ttf", FontPlatformName = "JosefinSlab-Bold", Size = 40, LineHeight = 50,LineHeightMultiplier=1.0f, Color = AssetProvider.GetColor(ColorSecondairy) })
+                         .AddFont(new Models.Font() { Name = FontItalic, FontFilename = "Nunito-Italic.ttf", FontPlatformName = "Nunito-Italic", Size = 15, Color = AssetProvider.GetColor(ColorSecondairy), Alignment = TextAlignment.Center })
                          .AddFont(new BaseFont() { Name = FontBold, FontFilename = "Nunito-Bold.ttf", FontPlatformName = "Nunito-Bold", Size = 15, Color = AssetProvider.GetColor(ColorSecondairy) })
-                         .AddFont(new Font() { Name = FontRegular,FontFilename = "Nunito-Regular.ttf", FontPlatformName = "Nunito-Regular", Size = 13, LineHeight = 28, Color = AssetProvider.GetColor(ColorPrimary),SelectedColor= AssetProvider.GetColor(ColorBackground)},_tags)
-                         .AddFont(new Font() { Name = FontRegularSmall, FontFilename = "Nunito-Regular.ttf", FontPlatformName = "Nunito-Regular", Size = 10, LineHeight = 32, Color = AssetProvider.GetColor(ColorPrimary), SelectedColor = AssetProvider.GetColor(ColorBackground) }, _tags);
+                         .AddFont(new Models.Font() { Name = FontRegular,FontFilename = "Nunito-Regular.ttf", FontPlatformName = "Nunito-Regular", Size = 13, LineHeight = 28, Color = AssetProvider.GetColor(ColorPrimary),SelectedColor= AssetProvider.GetColor(ColorBackground)},_tags)
+                         .AddFont(new Models.Font() { Name = FontRegularSmall, FontFilename = "Nunito-Regular.ttf", FontPlatformName = "Nunito-Regular", Size = 10, LineHeight = 32, Color = AssetProvider.GetColor(ColorPrimary), SelectedColor = AssetProvider.GetColor(ColorBackground) }, _tags);
         }
 
         public string ColorNameBindingTest => ColorMarked;
