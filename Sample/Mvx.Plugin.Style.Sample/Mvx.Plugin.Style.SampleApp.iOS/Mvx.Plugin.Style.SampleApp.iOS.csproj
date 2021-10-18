@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\MSBuild.Sdk.Extras.1.5.4\build\MSBuild.Sdk.Extras.props" Condition="Exists('..\packages\MSBuild.Sdk.Extras.1.5.4\build\MSBuild.Sdk.Extras.props')" />
+  <Import Project="..\..\..\packages\MSBuild.Sdk.Extras.1.5.4\build\MSBuild.Sdk.Extras.props" Condition="Exists('..\..\..\packages\MSBuild.Sdk.Extras.1.5.4\build\MSBuild.Sdk.Extras.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectGuid>{A47C1CFF-5B3D-42F9-A101-8747C783A96B}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Mvx.Plugin.Style.SampleApp.iOS</RootNamespace>
+    <AssemblyName>Mvx.Plugin.Style.SampleApp.iOS</AssemblyName>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+  </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Sample|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchProfiling>true</MtouchProfiling>
+    <IOSDebuggerPort>48012</IOSDebuggerPort>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchProfiling>true</MtouchProfiling>
+    <IOSDebuggerPort>48012</IOSDebuggerPort>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <DeviceSpecificBuild>true</DeviceSpecificBuild>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchProfiling>true</MtouchProfiling>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Sample|AnyCPU' ">
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Sample</OutputPath>
+    <DefineConstants></DefineConstants>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchVerbosity></MtouchVerbosity>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+    <Reference Include="OpenTK-1.0" />
+    <Reference Include="mscorlib" />
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.2.0.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.5.0.0\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog">
+      <HintPath>..\packages\Serilog.2.8.0\lib\netstandard2.0\Serilog.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.4.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.2.0.0\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options">
+      <HintPath>..\packages\Microsoft.Extensions.Options.2.0.0\lib\netstandard2.0\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.2.0.0\lib\netstandard2.0\Microsoft.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Extensions.Logging">
+      <HintPath>..\packages\Serilog.Extensions.Logging.3.0.1\lib\netstandard2.0\Serilog.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross">
+      <HintPath>..\packages\MvvmCross.8.0.2\lib\xamarinios10\MvvmCross.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing.Common.dll" />
+    <Reference Include="MvvmCross.Plugin.Color">
+      <HintPath>..\packages\MvvmCross.Plugin.Color.8.0.2\lib\xamarinios10\MvvmCross.Plugin.Color.dll</HintPath>
+    </Reference>
+    <Reference Include="Mvx.Plugin.Style">
+      <HintPath>..\packages\Mvx.Plugin.Style.1.0.3\lib\xamarinios10\Mvx.Plugin.Style.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Contents.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="Resources\Fonts\" />
+    <Folder Include="Views\Cells\" />
+    <Folder Include="Views\Source\" />
+    <Folder Include="Controls\" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="LaunchScreen.storyboard" />
+    <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="Views\FirstView.xib" />
+    <InterfaceDefinition Include="Views\Cells\StoryCell.xib" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="Views\FirstView.designer.cs" />
+    <Compile Include="Views\FirstView.cs" />
+    <Compile Include="Setup.cs" />
+    <Compile Include="LinkerPleaseInclude.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="Views\Cells\StoryCell.cs" />
+    <Compile Include="Views\Cells\StoryCell.designer.cs">
+      <DependentUpon>StoryCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Source\SimpleTableViewSource.cs" />
+    <Compile Include="Views\Source\IDynamicCell.cs" />
+    <Compile Include="Controls\ColoredButton.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="..\Mvx.Plugin.Style.SampleApp.Fonts\Josefin_Slab\JosefinSlab-Bold.ttf">
+      <Link>Resources\Fonts\JosefinSlab-Bold.ttf</Link>
+    </BundleResource>
+    <BundleResource Include="..\Mvx.Plugin.Style.SampleApp.Fonts\Josefin_Slab\JosefinSlab-BoldItalic.ttf">
+      <Link>Resources\Fonts\JosefinSlab-BoldItalic.ttf</Link>
+    </BundleResource>
+    <BundleResource Include="..\Mvx.Plugin.Style.SampleApp.Fonts\Josefin_Slab\JosefinSlab-Italic.ttf">
+      <Link>Resources\Fonts\JosefinSlab-Italic.ttf</Link>
+    </BundleResource>
+    <BundleResource Include="..\Mvx.Plugin.Style.SampleApp.Fonts\Josefin_Slab\JosefinSlab-Light.ttf">
+      <Link>Resources\Fonts\JosefinSlab-Light.ttf</Link>
+    </BundleResource>
+    <BundleResource Include="..\Mvx.Plugin.Style.SampleApp.Fonts\Josefin_Slab\JosefinSlab-LightItalic.ttf">
+      <Link>Resources\Fonts\JosefinSlab-LightItalic.ttf</Link>
+    </BundleResource>
+    <BundleResource Include="..\Mvx.Plugin.Style.SampleApp.Fonts\Josefin_Slab\JosefinSlab-Regular.ttf">
+      <Link>Resources\Fonts\JosefinSlab-Regular.ttf</Link>
+    </BundleResource>
+    <BundleResource Include="..\Mvx.Plugin.Style.SampleApp.Fonts\Josefin_Slab\JosefinSlab-SemiBold.ttf">
+      <Link>Resources\Fonts\JosefinSlab-SemiBold.ttf</Link>
+    </BundleResource>
+    <BundleResource Include="..\Mvx.Plugin.Style.SampleApp.Fonts\Josefin_Slab\JosefinSlab-SemiBoldItalic.ttf">
+      <Link>Resources\Fonts\JosefinSlab-SemiBoldItalic.ttf</Link>
+    </BundleResource>
+    <BundleResource Include="..\Mvx.Plugin.Style.SampleApp.Fonts\Josefin_Slab\JosefinSlab-Thin.ttf">
+      <Link>Resources\Fonts\JosefinSlab-Thin.ttf</Link>
+    </BundleResource>
+    <BundleResource Include="..\Mvx.Plugin.Style.SampleApp.Fonts\Josefin_Slab\JosefinSlab-ThinItalic.ttf">
+      <Link>Resources\Fonts\JosefinSlab-ThinItalic.ttf</Link>
+    </BundleResource>
+    <BundleResource Include="..\Mvx.Plugin.Style.SampleApp.Fonts\Nunito\Nunito-Black.ttf">
+      <Link>Resources\Fonts\Nunito-Black.ttf</Link>
+    </BundleResource>
+    <BundleResource Include="..\Mvx.Plugin.Style.SampleApp.Fonts\Nunito\Nunito-BlackItalic.ttf">
+      <Link>Resources\Fonts\Nunito-BlackItalic.ttf</Link>
+    </BundleResource>
+    <BundleResource Include="..\Mvx.Plugin.Style.SampleApp.Fonts\Nunito\Nunito-Bold.ttf">
+      <Link>Resources\Fonts\Nunito-Bold.ttf</Link>
+    </BundleResource>
+    <BundleResource Include="..\Mvx.Plugin.Style.SampleApp.Fonts\Nunito\Nunito-BoldItalic.ttf">
+      <Link>Resources\Fonts\Nunito-BoldItalic.ttf</Link>
+    </BundleResource>
+    <BundleResource Include="..\Mvx.Plugin.Style.SampleApp.Fonts\Nunito\Nunito-ExtraBold.ttf">
+      <Link>Resources\Fonts\Nunito-ExtraBold.ttf</Link>
+    </BundleResource>
+    <BundleResource Include="..\Mvx.Plugin.Style.SampleApp.Fonts\Nunito\Nunito-ExtraBoldItalic.ttf">
+      <Link>Resources\Fonts\Nunito-ExtraBoldItalic.ttf</Link>
+    </BundleResource>
+    <BundleResource Include="..\Mvx.Plugin.Style.SampleApp.Fonts\Nunito\Nunito-ExtraLight.ttf">
+      <Link>Resources\Fonts\Nunito-ExtraLight.ttf</Link>
+    </BundleResource>
+    <BundleResource Include="..\Mvx.Plugin.Style.SampleApp.Fonts\Nunito\Nunito-ExtraLightItalic.ttf">
+      <Link>Resources\Fonts\Nunito-ExtraLightItalic.ttf</Link>
+    </BundleResource>
+    <BundleResource Include="..\Mvx.Plugin.Style.SampleApp.Fonts\Nunito\Nunito-Italic.ttf">
+      <Link>Resources\Fonts\Nunito-Italic.ttf</Link>
+    </BundleResource>
+    <BundleResource Include="..\Mvx.Plugin.Style.SampleApp.Fonts\Nunito\Nunito-Light.ttf">
+      <Link>Resources\Fonts\Nunito-Light.ttf</Link>
+    </BundleResource>
+    <BundleResource Include="..\Mvx.Plugin.Style.SampleApp.Fonts\Nunito\Nunito-LightItalic.ttf">
+      <Link>Resources\Fonts\Nunito-LightItalic.ttf</Link>
+    </BundleResource>
+    <BundleResource Include="..\Mvx.Plugin.Style.SampleApp.Fonts\Nunito\Nunito-Regular.ttf">
+      <Link>Resources\Fonts\Nunito-Regular.ttf</Link>
+    </BundleResource>
+    <BundleResource Include="..\Mvx.Plugin.Style.SampleApp.Fonts\Nunito\Nunito-SemiBold.ttf">
+      <Link>Resources\Fonts\Nunito-SemiBold.ttf</Link>
+    </BundleResource>
+    <BundleResource Include="..\Mvx.Plugin.Style.SampleApp.Fonts\Nunito\Nunito-SemiBoldItalic.ttf">
+      <Link>Resources\Fonts\Nunito-SemiBoldItalic.ttf</Link>
+    </BundleResource>
+    <BundleResource Include="Resources\textstyles.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Mvx.Plugin.Style.SampleApp\Mvx.Plugin.Style.SampleApp.csproj">
+      <Project>{830B8F94-3BC4-4FA1-A587-3AA0B8511E80}</Project>
+      <Name>Mvx.Plugin.Style.SampleApp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Mvx.Plugin.Style.SampleApp.Fonts\Mvx.Plugin.Style.SampleApp.Fonts.csproj">
+      <Project>{76D4ED63-4747-43FB-9109-2B05A178F41B}</Project>
+      <Name>Mvx.Plugin.Style.SampleApp.Fonts</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <Import Project="..\..\..\packages\MSBuild.Sdk.Extras.1.5.4\build\MSBuild.Sdk.Extras.targets" Condition="Exists('..\..\..\packages\MSBuild.Sdk.Extras.1.5.4\build\MSBuild.Sdk.Extras.targets')" />
+  <Import Project="..\packages\MSBuild.Sdk.Extras.1.5.4\build\MSBuild.Sdk.Extras.targets" Condition="Exists('..\packages\MSBuild.Sdk.Extras.1.5.4\build\MSBuild.Sdk.Extras.targets')" />
+</Project>

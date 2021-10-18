@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Configurations>Sample;Debug;Release</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Sample|AnyCPU' ">
+    <IntermediateOutputPath>obj\Sample\netstandard2.1\netstandard2.1\netstandard2.1\netstandard2.1\netstandard2.1\netstandard2.1</IntermediateOutputPath>
+    <DebugType></DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Sample\netstandard2.1\netstandard2.1\netstandard2.1\netstandard2.1\netstandard2.1\netstandard2.1</OutputPath>
+    <DefineConstants></DefineConstants>
+    <NoWarn></NoWarn>
+    <NoStdLib>false</NoStdLib>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Class1.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="Services\" />
+    <Folder Include="ViewModels\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MvvmCross" Version="8.0.2" />
+    <PackageReference Include="Mvx.Plugin.Style" Version="1.0.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Mvx.Plugin.Style" />
+  </ItemGroup>
+</Project>

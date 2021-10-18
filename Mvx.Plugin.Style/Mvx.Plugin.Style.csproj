@@ -1,59 +1,41 @@
-<Project Sdk="Microsoft.NET.Sdk">
-<!--MSBuild.Sdk.Extras/1.5.4-->
+<Project Sdk="MSBuild.Sdk.Extras">
 
   <PropertyGroup>
-   <TargetFrameworks>netstandard2.1;Xamarin.iOS10;MonoAndroid10.0</TargetFrameworks>
-   <!--<TargetFramework>netstandard2.1</TargetFramework>-->
-    <PackageId>Mvx.Plugin.Style</PackageId>
-    <Authors>Koen Deleij</Authors>
-    <Product>Mvx.Plugin.Style</Product>
-    <PackageVersion>1.0.0</PackageVersion>
-    <Summary>Basic plugin for using the Specification Pattern with Linq</Summary>
-    <Description>Mvvmcross plugin to easily cross style fonts and colors</Description>
-    <PackageProjectUrl>https://github.com/KoenDeleij/Mvx.Plugin.Style</PackageProjectUrl>
-    <PackageTags>mvvm mvvmcross xamarin monodroid monotouch style fonts</PackageTags>
-    <RepositoryUrl>https://github.com/KoenDeleij/Mvx.Plugin.Style</RepositoryUrl>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <TargetFrameworks>netstandard2.0;MonoAndroid10.0;xamarin.ios10</TargetFrameworks>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <PackageVersion>1.0</PackageVersion>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);IncludePlatformSpecificDlls</TargetsForTfmSpecificBuildOutput>
-  </PropertyGroup>
-   
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>..\bin\Debug</OutputPath>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <LangVersion>9.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <OutputPath>..\bin\Release</OutputPath>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <LangVersion>9.0</LangVersion>
   </PropertyGroup>
-  <!--
-  <Target Name="IncludePlatformSpecificDlls">
-      <ItemGroup Condition=" '$(TargetFramework)' == 'MonoAndroid10.0' ">
-          <BuildOutputInPackage Include="../bin/$(Configuration)/monoandroid10.0/Mvx.Plugin.Style.Droid.dll" />
-      </ItemGroup>
-      <ItemGroup Condition=" '$(TargetFramework)' == 'Xamarin.iOS10' ">
-          <BuildOutputInPackage Include="../bin/$(Configuration)/xamarin.ios10/Mvx.Plugin.Style.iOS.dll" />
-      </ItemGroup>
-  </Target>
-  -->
-<ItemGroup>
-    <Folder Include="Bindings\" />
-    <Folder Include="Converters\" />
-    <Folder Include="Enums\" />
-    <Folder Include="Helpers\" />
-    <Folder Include="Models\" />
-    <Folder Include="Plugin\" />
-</ItemGroup>
+
+  <PropertyGroup>
+    <!-- Nuget package info -->
+    <PackageId>Mvx.Plugin.Style</PackageId>
+    <PackageVersion>1.0.3</PackageVersion>
+  </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MvvmCross" Version="7.0.0" />
-    <PackageReference Include="MSBuild.Sdk.Extras" Version="1.5.4" />
-    <PackageReference Include="MvvmCross.Plugin.Color" Version="7.0.0" />
-  </ItemGroup><!--
-  <ItemGroup>
-    <Reference Include="mscorlib" />
-  </ItemGroup>-->
-  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
+    <!-- This None is here so the conditionally included files show up in the Solution Explorer -->
+    <None Include="**\*.xml;**\*.axml;**\*.png" Exclude="obj\**\*.*;bin\**\*.*;bin;obj;.vs\**" />
+
+    <Compile Include="Shared\**\*.cs" />
+
+    <PackageReference Include="MvvmCross" version="8.0.2" Version="8.0.2" />
+    <PackageReference Include="MvvmCross.Plugin.Color" Version="8.0.2" />
+
+  </ItemGroup>
+  
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('MonoAndroid')) ">
+    <Compile Include="Android\**\*.cs" />
+    <AndroidResource Include="Android\Resources\values\*.xml" SubType="Designer" Generator="MSBuild:UpdateAndroidResources" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('xamarin.ios')) ">
+    <Compile Include="iOS\**\*.cs" />
+  </ItemGroup>
 </Project>

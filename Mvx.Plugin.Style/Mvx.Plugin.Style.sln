@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.810.9
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mvx.Plugin.Style", "Mvx.Plugin.Style.csproj", "{865DEEA1-63F5-47D1-A611-565FDB355415}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Sample|Any CPU = Sample|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{865DEEA1-63F5-47D1-A611-565FDB355415}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{865DEEA1-63F5-47D1-A611-565FDB355415}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{865DEEA1-63F5-47D1-A611-565FDB355415}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{865DEEA1-63F5-47D1-A611-565FDB355415}.Release|Any CPU.Build.0 = Release|Any CPU
+		{865DEEA1-63F5-47D1-A611-565FDB355415}.Sample|Any CPU.ActiveCfg = Debug|Any CPU
+		{865DEEA1-63F5-47D1-A611-565FDB355415}.Sample|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C5171C27-D621-48BB-9D8F-DAD79B112891}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+	EndGlobalSection
+EndGlobal
