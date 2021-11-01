@@ -1,8 +1,8 @@
 # MvvmCross Style Plugin
 
 
-![Alt Screenshot1](https://github.com/KoenDeleij/Mvx.Plugin.Style/tree/master/Sample/Screenshots/Style1.png?raw=true "Screenshot1" )
-![Alt Screenshot2](https://github.com/KoenDeleij/Mvx.Plugin.Style/tree/master/Sample/Screenshots/Style2.png?raw=true "Screenshot2" )
+![Alt Screenshot1](https://github.com/KoenDeleij/Mvx.Plugin.Style/raw/master/Sample/Screenshots/Style1.png?raw=true "Screenshot1" )
+![Alt Screenshot2](https://github.com/KoenDeleij/Mvx.Plugin.Style/raw/master/Sample/Screenshots/Style2.png?raw=true "Screenshot2" )
 
 
 # Whats new in 3.0.0
