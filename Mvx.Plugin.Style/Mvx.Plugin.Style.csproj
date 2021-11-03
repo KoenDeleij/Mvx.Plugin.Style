@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;MonoAndroid10.0;xamarin.ios10</TargetFrameworks>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <PackageVersion>1.0</PackageVersion>
+    <Description>MvvmCross plugin to bind custom fonts and other text styles</Description>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -16,7 +16,8 @@
   <PropertyGroup>
     <!-- Nuget package info -->
     <PackageId>Mvx.Plugin.Style</PackageId>
-    <PackageVersion>1.0.3</PackageVersion>
+    <PackageVersion>3.0.0-beta2</PackageVersion>
+    <Authors>Koen Deleij, Jelle Damen</Authors>
   </PropertyGroup>
 
   <ItemGroup>
@@ -32,10 +33,11 @@
   
   <ItemGroup Condition=" $(TargetFramework.StartsWith('MonoAndroid')) ">
     <Compile Include="Android\**\*.cs" />
-    <AndroidResource Include="Android\Resources\values\*.xml" SubType="Designer" Generator="MSBuild:UpdateAndroidResources" />
+    <AndroidResource Include="Resources\**\*.xml" SubType="Designer" Generator="MSBuild:UpdateAndroidResources" />
   </ItemGroup>
 
   <ItemGroup Condition=" $(TargetFramework.StartsWith('xamarin.ios')) ">
     <Compile Include="iOS\**\*.cs" />
   </ItemGroup>
+
 </Project>
